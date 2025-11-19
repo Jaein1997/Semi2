@@ -8,22 +8,22 @@
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 </head>
 <body>
-<header>
-<a href="#">회원가입</a> | <a href="#">로그인</a>
-</header>
-<main>
-<img src="http://localhost:9090/codeEffluve/img/leLogo2.png">
-<div>
-<a href="#">내 일정</a>
-<a href="#">공개 일정</a>
-<a href="#">그룹 일정</a>
-<a href="#">고객센터</a>
-</div>
-</main>
-<footer>
-	<hr>
-	<div>Copyright &copy; 쌍용. All Rights Reserved.</div>
-</footer>
-
+	<header>
+		<div>
+			<a href="/memberJoin.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
+		</div>
+	</header>
+	
+	<main>
+		<img src="http://localhost:9090/codeEffluve/img/leLogo2.png" alt="leLogo2"> 
+		<div>
+			<a href="#">내 일정</a>
+			<a href="#">공개 일정</a>
+			<a href="#">그룹 일정</a>
+			<a href="#">고객센터</a>
+		</div>
+	</main>
+	
+	<%@include file="footer.jsp" %>
 </body>
 </html>
