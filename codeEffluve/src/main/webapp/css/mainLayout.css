@@ -20,11 +20,19 @@ header {
 	width: 100%;
 	margin-bottom: 20px;
 }
+#leLogo2 {
+	display: block;
+	margin: 0 auto;
+	padding-top: 100px;
+	padding-bottom: 50px;
+	width: 45%;
+	height: auto;
+}
 
 .indexMenu {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -41,6 +49,19 @@ header {
 	border-radius: 13px;
 	width: 200px;
 	height: 200px;
+	margin: 10px 30px;
+	margin-bottom: 110px;
+}
+
+.indexMenu a:hover {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border-color: rgb(109, 16, 68);
+	cursor: pointer;
+}
+
+.indexMenu a:hover img {
+	filter: brightness(0) invert(1);
 }
 
 .indexMenu img {
