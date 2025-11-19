@@ -21,6 +21,21 @@ header {
 	margin-bottom: 20px;
 }
 
+.indexMenu {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.indexMenu a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	text-decoration: none;
+}
+
 .titleLogo {
 	display: flex;
 	justify-content: center;
