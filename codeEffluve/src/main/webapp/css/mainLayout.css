@@ -34,6 +34,20 @@ header {
 	justify-content: center;
 	text-align: center;
 	text-decoration: none;
+	font-size: 26px;
+	font-weight: 500;
+	color:rgb(109, 16, 68);
+	border: 2px solid rgb(109, 16, 68);
+	border-radius: 13px;
+	width: 200px;
+	height: 200px;
+}
+
+.indexMenu img {
+	align-self: center;
+	margin-bottom: 15px;
+	width: 100px;
+	height: 100px;
 }
 
 .titleLogo {
