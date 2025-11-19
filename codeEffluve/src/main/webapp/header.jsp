@@ -13,11 +13,15 @@
 		<ul>
 			<%
 			String selectedPage = "public.jsp";
+			String menu=request.getParameter("menu");
+			if(menu!=null){
+				selectedPage=menu+".jsp";
+			}
 			%>
-			<li <%=selectedPage.equals("public.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/public.jsp">공개 일정</a></li>
-			<li <%=selectedPage.equals("private.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/private.jsp">내 일정</a></li>
-			<li <%=selectedPage.equals("group.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/group.jsp">그룹 일정</a></li>
-			<li <%=selectedPage.equals("cs.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/cs.jsp">고객센터</a></li>
+			<li <%=selectedPage.equals("public.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/public.jsp?menu=public">공개 일정</a></li>
+			<li <%=selectedPage.equals("private.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/private.jsp?menu=private">내 일정</a></li>
+			<li <%=selectedPage.equals("group.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/group.jsp?menu=group">그룹 일정</a></li>
+			<li <%=selectedPage.equals("cs.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/cs.jsp?menu=cs">고객센터</a></li>
 		</ul>
 	</nav>
 </header>
