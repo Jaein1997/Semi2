@@ -16,11 +16,11 @@
 	
 	<main>
 		<img src="http://localhost:9090/codeEffluve/img/leLogo2.png" alt="leLogo2"> 
-		<div>
-			<a href="#">내 일정</a>
-			<a href="#">공개 일정</a>
-			<a href="#">그룹 일정</a>
-			<a href="#">고객센터</a>
+		<div class="indexMenu">
+			<a href="#"><img src="http://localhost:9090/codeEffluve/img/internet.png" alt="public">공개 일정</a>
+			<a href="#"><img src="http://localhost:9090/codeEffluve/img/profile.png" alt="private">내 일정</a>
+			<a href="#"><img src="http://localhost:9090/codeEffluve/img/people.png" alt="group">그룹 일정</a>
+			<a href="#"><img src="http://localhost:9090/codeEffluve/img/headset.png" alt="cs">고객센터</a>
 		</div>
 	</main>
 	
