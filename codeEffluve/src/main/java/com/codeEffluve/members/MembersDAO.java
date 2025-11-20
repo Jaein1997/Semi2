@@ -34,7 +34,7 @@ public class MembersDAO {
 			ps.setString(6,mdto.getTel());
 			ps.setString(7, mdto.getM_profile());
 			int count = ps.executeUpdate();
-			return count;
+			return count;	
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
