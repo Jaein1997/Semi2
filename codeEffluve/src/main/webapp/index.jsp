@@ -16,7 +16,7 @@
 <body>
 	<header>
 		<div>
-			<a href="#">회원가입</a> | <a href="#" id="loginButton">로그인</a>
+			<a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="#" id="loginButton">로그인</a>
 		</div>
 	</header>
 	

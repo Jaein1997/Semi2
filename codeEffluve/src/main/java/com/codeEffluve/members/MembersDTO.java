@@ -2,7 +2,7 @@ package com.codeEffluve.members;
 
 import java.sql.Date;
 
-public class membersDTO {
+public class MembersDTO {
 
 	private int m_idx;
 	private String id, pwd, m_name, sex, tel, m_profile;
