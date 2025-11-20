@@ -32,12 +32,14 @@ request.setCharacterEncoding("UTF-8");
 	Date birthday = Date.valueOf(mr.getParameter("birthday"));
 	mdto.setBirthday(birthday);
 	mdto.setTel(mr.getParameter("tel"));
+	/*
 	if(mr.getFilesystemName("m_profile")==null) {
 		mdto.setM_profile("basic.jpg");
 	} else {
 		mdto.setM_profile( mr.getFilesystemName("m_profile") );
 	}
-	
+	*/
+	mdto.setM_profile("basic.jpg");
 	System.out.println(mdto.getId()+mdto.getPwd()+mdto.getM_name()+mdto.getSex()+mdto.getBirthday()+mdto.getTel()+mdto.getM_profile());
 	int count = mdao.makeAccount(mdto);
 	String msg = count>0?"회원가입 완료":"오류:회원가입 실패";
