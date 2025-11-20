@@ -18,13 +18,13 @@
    if(sname==null) {
       %>
       <div>
-      <a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>| <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
+      <a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
       </div>
       <%
    } else {
       %>
       <div>
-      <label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a>| <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
+      <label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
       </div>
    <%
    }

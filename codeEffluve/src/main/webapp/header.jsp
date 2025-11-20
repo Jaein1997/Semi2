@@ -15,7 +15,7 @@
 	} else {
 		%>
 		<div>
-		<label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a>
+		<label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
 		</div>
 	<%
 	}
