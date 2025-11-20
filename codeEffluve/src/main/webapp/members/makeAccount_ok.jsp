@@ -12,7 +12,9 @@ request.setCharacterEncoding("UTF-8");
 <jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
 
 <%
-	String savePath = "C:/student_java/Semi2/Semi2/codeEffluve/src/main/webapp/membersProfiles";  // 저장 경로
+	String savePath1 = request.getRealPath("/");
+	String savePath = savePath1+"membersProfiles";  // 저장 경로
+	System.out.println(savePath);
 	int size = 10 * 1024 * 1024;                 // 10MB
 	
 	MultipartRequest mr = new MultipartRequest(
