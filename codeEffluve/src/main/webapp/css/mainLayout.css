@@ -21,6 +21,14 @@ header {
 	margin-bottom: 20px;
 }
 
+#miniProfile {
+	width: 30px;
+	height: 30px;	
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+}
+
 #leLogo2 {
 	display: block;
 	margin: 0 auto;
@@ -98,9 +106,13 @@ header h1 {
 }
 
 header div {
-	text-align: right;
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px; 
 	font-size: 15px;
 	color: gray;
+	line-height: 30px;
 }
 
 header nav {
