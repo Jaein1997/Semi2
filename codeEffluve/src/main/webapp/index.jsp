@@ -10,7 +10,7 @@
 
 
 <%
-   String sname = (String)session.getAttribute("sname");
+    String sname = (String)session.getAttribute("sname");
 %>
 
 </head>
@@ -54,9 +54,9 @@
 	<%@include file="footer.jsp"%>
 </body>
 <script>
-   var loginButton = document.getElementById("loginButton");
-   loginButton.onclick = function() {
-      window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
-   };
+    var loginButton = document.getElementById("loginButton");
+    loginButton.onclick = function() {
+       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+    };
 </script>
 </html>

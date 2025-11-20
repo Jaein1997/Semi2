@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
-<style>
-    section { text-align: center; padding: 50px; }
-    form { margin: 20px auto; width: 400px; border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
-    th, td { padding: 10px; }
-</style>
 <script>
     function validateDelete() {
         const form = document.deleteForm;
