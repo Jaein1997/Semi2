@@ -39,6 +39,7 @@ header {
 
 .indexMenu a {
 	display: flex;
+	flex-shrink: 0;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
@@ -50,8 +51,8 @@ header {
 	color:rgb(109, 16, 68);
 	border: 2px solid rgb(109, 16, 68);
 	border-radius: 13px;
-	width: 200px;
-	height: 200px;
+	width: 200px !important;
+	height: 200px !important;
 	margin: 10px 30px;
 	margin-bottom: 110px;
 }
@@ -140,6 +141,89 @@ header a {
 header nav a {
 	color: rgb(109, 16, 68);
 	font-weight: 500;
+}
+
+#makeAccount form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#makeAccount h1 {
+	text-align: center;
+	color: rgb(109, 16, 68);
+	font-size: 29px;
+	
+}
+
+#makeAccount div {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#makeAccount div img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+}
+
+#makeAccount img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#makeAccount table {
+	margin: 6px auto;
+	background-color: white;
+	border: 1px solid #AEAEAE;
+	border-radius: 15px;
+	width: 350px;
+}
+
+#makeAccount table td {
+	border-bottom: 1px solid #AEAEAE;
+	height: 50px;
+	padding: 0 15px;               /* 왼오 여백만 */
+    display: flex;                 /* 한 줄을 flex 컨테이너로 */
+    align-items: center;
+}
+
+#makeAccount table tr:last-child td {
+	border-bottom: none;
+}
+
+#makeAccount td input[type="text"],input[type="password"] {
+	border: 0px solid #AEAEAE;
+	font-size: 16px;
+	flex: 1;
+	padding: 0;
+    background: transparent;
+}
+
+#makeAccount td input[type="text"],input[type="password"]:focus {
+	outline: none;
+}
+
+#makeAccount input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+}
+
+#makeAccount input[type="button"] {
+	background-color: #E3E3E3;
+	color: black;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
 }
 
 main {

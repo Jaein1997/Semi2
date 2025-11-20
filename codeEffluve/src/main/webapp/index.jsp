@@ -6,14 +6,12 @@
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+
+
 <%
    String sname = (String)session.getAttribute("sname");
 %>
-<script>
-   function mouseOver() {
-      
-   }
-</script>
+
 </head>
 <body>
    <header>
@@ -27,7 +25,11 @@
    } else {
       %>
       <div>
+<<<<<<< HEAD
       <label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a>
+=======
+      <label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
+>>>>>>> a7c82f3df5a1cf7e37efd7a2d6aedcecb26907a0
       </div>
    <%
    }
