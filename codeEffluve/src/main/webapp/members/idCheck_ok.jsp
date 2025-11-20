@@ -25,9 +25,9 @@
 <%
 	} else {
 %>
-	<script>0
+	<script>
 		alert('사용 가능한 ID입니다.');
-		opener.document.memberJoin.id.value = '<%=idFind%>';
+		opener.document.makeAccount.id.value = '<%=idFind%>';
 		window.self.close();
 	</script>
 <%
