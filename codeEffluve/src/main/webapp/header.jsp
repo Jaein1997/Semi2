@@ -1,10 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	String sname = (String)session.getAttribute("sname");
+%>
 <header>
-	
+	<%
+	if(sname==null) {
+		%>
 		<div>
-		<a href="/memberJoin.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
+		<a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
 		</div>
+		<%
+	} else {
+		%>
+		<div>
+		<label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a>
+		</div>
+	<%
+	}
+	%>
+		
 		
 		<a href="/codeEffluve/public.jsp" class="titleLogo"><img src="http://localhost:9090/codeEffluve/img/leLogo1.png" alt="leLogo1"><h1>Life Effluve</h1></a>
 
@@ -24,3 +40,10 @@
 		</ul>
 	</nav>
 </header>
+
+<script>
+	var loginButton = document.getElementById("loginButton");
+	loginButton.onclick = function() {
+		window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+	};
+</script>
