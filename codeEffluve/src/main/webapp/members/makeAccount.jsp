@@ -20,48 +20,48 @@
 </script>
 </head>
 <body>
-	<%@include file="/header.jsp" %>
+	
 	<main>
-		<section>
-			<h2>회원가입</h2>
+		<section id="makeAccount">
+			<div>
+				<img src="http://localhost:9090/codeEffluve/img/leLogo1.png" alt="leLogo1" id="makeAccountLogo">
+				<h1>회원가입</h1>
+			</div>
+			
 			<form name="makeAccount" action="makeAccount_ok.jsp" method="post" enctype="multipart/form-data">
-				<img src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg" alt="basic" id="profileImg">
-				<input type="file" name="m_profile">
+				<!--
+				<div>
+					<img src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg" alt="basic" id="profileImg">
+					<input type="file" name="m_profile">
+				</div>
+				  -->
 				<table>
 					<tr>
-						<th>ID</th>
-						<td><input type="text" name="id" readonly></td>
-						<td><input type="button" value="중복확인" id="checkbtn"></td>
+						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="id"><input type="text" name="id" placeholder="아이디" required readonly></td>
 					</tr>
 					<tr>
-						<th>비밀번호</th>
-						<td><input type="password" name="pwd"></td>
+						<td><img src="http://localhost:9090/codeEffluve/img/pwdIcon.png" alt="pwd"><input type="password" name="pwd" placeholder="비밀번호" required></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="name"><input type="text" name="m_name" placeholder="이름" required></td>
 					</tr>
 					<tr>
-						<th>이름</th>
-						<td><input type="text" name="m_name"></td>
+						<td><input type="radio" name="sex" value="m" checked>남자<input type="radio" name="sex" value="f">여자<input type="radio" name="sex" value="n">선택안함</td>
 					</tr>
 					<tr>
-						<th>성별</th>
-						<td><input type="radio" name="sex" value="m" checked>남성<input type="radio" name="sex" value="f">여성</td>
+						<td><img src="http://localhost:9090/codeEffluve/img/birthdayIcon.png" alt="birthday">생년월일&nbsp;<input type="date" name="birthday" required></td>
 					</tr>
 					<tr>
-						<th>생년월일</th>
-						<td><input type="date" name="birthday"></td>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<td><input type="text" name="tel"></td>
-					</tr>
-					<tr>
-						<td colspan="3" align="center">
-							<input type="submit" value="가입">
-							<input type="button" value="취소" id="backbtn">
-						</td>
+						<td><img src="http://localhost:9090/codeEffluve/img/telIcon.png" alt="tel"><input type="text" name="tel" placeholder="휴대전화번호" required></td>
 					</tr>
 					
 					
 				</table>
+				<input type="submit" value="가입">
+				<input type="button" value="취소" id="backbtn">
+				<input type="button" value="중복확인" id="checkbtn">
 			</form>
 		</section>
 	</main>
@@ -78,7 +78,6 @@
 	var checkbtn = document.getElementById("checkbtn");
 	checkbtn.onclick= function() {
 		openCheck();
-		
 	}
 </script>
 </html>
