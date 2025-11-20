@@ -26,7 +26,43 @@ public class MembersDAO {
 		
 	}
 	
-	
+	public int getMemberMidx(String id) {
+	    int m_idx = 0;
+	    
+	    
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    String sql = "select m_idx from members where id = ?"; 
+	    
+	    try {
+	    
+	        conn = com.codeEffluve.db.CodeEffluveDB.getConn(); 
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, id);
+	        
+	        rs = ps.executeQuery();
+	        
+	        if (rs.next()) {
+	            m_idx = rs.getInt("M_IDX");
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("ERROR: getMemberMidx 중 DB 오류 발생: " + e.getMessage());
+	    } finally {
+	        // DB 리소스 해제
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close(); 
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	    return m_idx;
+	}
 	
 	
 	public int makeAccount(MembersDTO mdto) {
