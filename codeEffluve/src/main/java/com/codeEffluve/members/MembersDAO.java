@@ -10,7 +10,7 @@ public class MembersDAO {
 	private ResultSet rs;
 	
 	public static final int WRONG_ID = 1;
-	public static final int WRONG_PWD = 2;
+	public static final int WRONG_PWD = 2; 
 	public static final int CORRECT_IDPWD = 3;
 	public static final int ERROR = -1;
 	
@@ -18,17 +18,21 @@ public class MembersDAO {
 		
 	}
 	
-	public int memberJoin(MembersDTO mdto) {  //회원가입 처리
+	public int makeAccount(MembersDTO mdto) {  //회원가입 처리
 		try {
 			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 			
 			String sql = "insert into members values(members_m_idx.nextval,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,mdto.getId());
-			ps.setString(2,mdto.getM_name());
 			String temp = com.codeEffluve.javasecur.JavaDataSecurModule.getSHA256(mdto.getPwd());  // 암호화
-			ps.setString(3,temp);
-			ps.setString(5,mdto.getTel());
+			ps.setString(2, temp);
+			ps.setString(3,mdto.getM_name());
+			
+			ps.setString(4,mdto.getSex());
+			ps.setDate(5, mdto.getBirthday());
+			ps.setString(6,mdto.getTel());
+			ps.setString(7, mdto.getM_profile());
 			int count = ps.executeUpdate();
 			return count;
 		} catch (Exception e) {

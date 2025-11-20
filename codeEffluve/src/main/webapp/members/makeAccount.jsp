@@ -6,13 +6,27 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<style>
+	#profileImg {
+		width: 200px;
+		height: 200px;
+	}
+</style>
+<script>
+	function openCheck() {
+		window.open('idCheck.jsp', 'idCheck', 'width=450, height=300');
+		
+	}
+</script>
 </head>
 <body>
 	<%@include file="/header.jsp" %>
 	<main>
 		<section>
 			<h2>회원가입</h2>
-			<form name="makeAccount" action="makeAccount_ok.jsp">
+			<form name="makeAccount" action="makeAccount_ok.jsp" method="post" enctype="multipart/form-data">
+				<img src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg" alt="basic" id="profileImg">
+				<input type="file" name="m_profile">
 				<table>
 					<tr>
 						<th>ID</th>
@@ -54,4 +68,17 @@
 	
 	<%@include file="/footer.jsp" %>
 </body>
+
+<script>
+	var backbtn = document.getElementById("backbtn");
+	backbtn.onclick = function() {
+		location.href='/codeEffluve/index.jsp';
+	}
+	
+	var checkbtn = document.getElementById("checkbtn");
+	checkbtn.onclick= function() {
+		openCheck();
+		
+	}
+</script>
 </html>
