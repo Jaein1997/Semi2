@@ -21,6 +21,8 @@ header {
 	margin-bottom: 20px;
 }
 
+/*index.jsp*/
+
 #miniProfile {
 	width: 30px;
 	height: 30px;	
@@ -96,6 +98,8 @@ header {
 	height: 120px;
 }
 
+/* header.jsp */
+
 header h1 {
 	color: rgb(109, 16, 68);
 	font-size: 80px;
@@ -154,6 +158,8 @@ header nav a {
 	color: rgb(109, 16, 68);
 	font-weight: 500;
 }
+
+/*makeAccount.jsp*/
 
 #makeAccount form {
 	display: flex;
@@ -237,6 +243,145 @@ header nav a {
 	height: 40px;
 	font-size: 16px;
 }
+
+/*myPage.jsp*/
+#myPage h2 {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+#myPage #profileImg { 
+	width: 150px; 
+	height: 150px; 
+	border-radius: 50%; 
+	object-fit: cover; 
+}
+    
+  
+#myPage .profile-layout {
+	display: flex; 
+	align-items: flex-start;
+	justify-content: center; 
+	width: 800px; 
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+    
+   
+#myPage table { 
+    margin-left: 20px;
+    background-color: white;
+    width: 350px;
+
+    border: 1px solid #AEAEAE;   /* 바깥 테두리 */
+    border-radius: 15px;
+}
+
+#myPage td {
+	border: none;
+}
+#myPage th,
+#myPage td { 
+    padding: 10px; 
+    border-bottom: 1px solid #AEAEAE;   /* 행 사이 선 */
+}
+
+#myPage tr:last-child th,
+#myPage tr:last-child td {
+    border-bottom: none;         /* 마지막 행 아래는 내부선 제거 */
+}
+
+#myPage th {
+    width: 30%; 
+    border-right: 1px solid #AEAEAE;    /* 가운데 세로선 */
+}
+ 
+#myPage .action-buttons { 
+	text-align: center; 
+	width: 800px; 
+	margin: 10px auto;
+}
+
+#myPage .action-buttons button {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+/*myPageEdit.jsp*/
+#myPageEdit h2 {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+#editDiv {
+	display: flex;
+	flex-direction: row;
+	align-items:flex-start;
+	justify-content: center;
+	gap: 0;
+}
+
+#editProfile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#myPageEdit #profileImg {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+#myPageEdit table { 
+    background-color: white;
+    width: 500px;
+
+    border: 1px solid #AEAEAE;
+    border-radius: 15px;
+}
+
+#myPageEdit th, td {
+	padding: 10px; 
+    border-bottom: 1px solid #AEAEAE;
+}
+
+#myPageEdit th {
+	width: 150px;
+	text-align: right;
+}
+
+#myPageEdit tr:last-child th,
+#myPageEdit tr:last-child td {
+    border-bottom: none;
+}
+
+#myPageEdit input[type="submit"], #myPageEdit input[type="button"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#editBtnDiv {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+}
+
+/**/
 
 main {
 	width: 100%;
