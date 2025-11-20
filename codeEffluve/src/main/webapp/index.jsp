@@ -14,37 +14,6 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-    <header>
-      <%
-    if(sname==null) {
-      %>
-      <div>
-      <a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
-      </div>
-      <%
-    } else {
-      %>
-      <div>
-      <label><%=sname %>님 로그인 중</label> | <a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <a href="/codeEffluve/members/myPage.jsp" >마이페이지</a>
-      </div>
-    <%
-    }
-    %>
-    </header>
-    
-    <main>
-      <img src="http://localhost:9090/codeEffluve/img/leLogo2.png" alt="leLogo2" id="leLogo2"> 
-      <div class="indexMenu">
-          <a href="/codeEffluve/public.jsp"><img src="http://localhost:9090/codeEffluve/img/internet.png" alt="public" onmouseover="mouseOver();">공개 일정</a>
-          <a href="/codeEffluve/private.jsp"><img src="http://localhost:9090/codeEffluve/img/profile.png" alt="private">내 일정</a>
-          <a href="/codeEffluve/group.jsp"><img src="http://localhost:9090/codeEffluve/img/people.png" alt="group">그룹 일정</a>
-          <a href="/codeEffluve/cs.jsp"><img src="http://localhost:9090/codeEffluve/img/headset.png" alt="cs">고객센터</a>
-      </div>
-    </main>
-    
-    <%@include file="footer.jsp" %>
-=======
 	<header>
 		<%
    if(sname==null) {
@@ -61,7 +30,7 @@
 				src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg"
 				alt="basic" id="miniProfile"></a>
 		</div>
-		<%
+	<%
    }
    %>
 	</header>
@@ -83,7 +52,6 @@
 	</main>
 
 	<%@include file="footer.jsp"%>
->>>>>>> 76492b80f76a240707b7e27bcd86270c6b0c1c29
 </body>
 <script>
     var loginButton = document.getElementById("loginButton");
