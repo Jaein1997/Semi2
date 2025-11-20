@@ -8,7 +8,7 @@
 	if(request.getParameter("findid")==null || request.getParameter("findid").equals("")) {
 %>
 	<script>
-		alert('검색할 ID를 입력하세요.');
+		window.alert('검색할 ID를 입력하세요.');
 		location.href='idCheck.jsp';
 	</script>
 <%
