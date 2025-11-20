@@ -16,7 +16,7 @@
 <body>
 	<header>
 		<div>
-			<a href="#">회원가입</a> | <a href="#" id="loginButton">로그인</a>
+			<a href="/codeEffluve/members/makeAccount.jsp">회원가입</a> | <a href="" id="loginButton">로그인</a>
 		</div>
 	</header>
 	
@@ -32,4 +32,10 @@
 	
 	<%@include file="footer.jsp" %>
 </body>
+<script>
+	var loginButton = document.getElementById("loginButton");
+	loginButton.onclick = function() {
+		window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+	};
+</script>
 </html>
