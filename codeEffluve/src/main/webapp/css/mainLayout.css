@@ -5,11 +5,11 @@ html {
 	padding:0px 0px;
 	height:100%;
 }
-
 body {
+	background: linear-gradient(#FFFDFE, #FFF6FA);
 	width: 100%;
 	margin: 0 auto;
-	background-color: white;
+	/*background-color: white;*/
 	padding-top: 20px;
 	padding-left: 60px;
 	padding-right: 60px;
@@ -21,10 +21,19 @@ header {
 	margin-bottom: 20px;
 }
 
+#leLogo2 {
+	display: block;
+	margin: 0 auto;
+	padding-top: 100px;
+	padding-bottom: 50px;
+	width: 700px;
+	height: auto;
+}
+
 .indexMenu {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -34,6 +43,35 @@ header {
 	justify-content: center;
 	text-align: center;
 	text-decoration: none;
+	font-size: 26px;
+	font-weight: 500;
+	background-color: white;
+	box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+	color:rgb(109, 16, 68);
+	border: 2px solid rgb(109, 16, 68);
+	border-radius: 13px;
+	width: 200px;
+	height: 200px;
+	margin: 10px 30px;
+	margin-bottom: 110px;
+}
+
+.indexMenu a:hover {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border-color: rgb(109, 16, 68);
+	cursor: pointer;
+}
+
+.indexMenu a:hover img {
+	filter: brightness(0) invert(1);
+}
+
+.indexMenu img {
+	align-self: center;
+	margin-bottom: 15px;
+	width: 100px;
+	height: 100px;
 }
 
 .titleLogo {
@@ -113,6 +151,7 @@ section {
 }
 
 footer {
+	display: block;
 	margin-top: auto;
 	padding-bottom: 20px;
 	width: 100%;
