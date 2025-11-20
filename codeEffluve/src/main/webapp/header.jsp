@@ -13,6 +13,9 @@
 		<ul>
 			<%
 			String selectedPage = "public.jsp";
+			String path=request.getRequestURI();
+			int lidx=path.lastIndexOf("/");
+			selectedPage=path.substring(lidx+1);
 			%>
 			<li <%=selectedPage.equals("public.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/public.jsp">공개 일정</a></li>
 			<li <%=selectedPage.equals("private.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/private.jsp">내 일정</a></li>
