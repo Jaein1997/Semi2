@@ -77,8 +77,6 @@ public class MembersDAO {
 	
 	public int loginCheck(String id, String pwd) {
 		try {
-			
-			
 			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 			
 			String sql = "select pwd from members where id=?";
@@ -117,13 +115,13 @@ public class MembersDAO {
 		try {
 			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 			
-			String sql = "select name from members where id=?";
+			String sql = "select m_name from members where id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,id);
 			rs = ps.executeQuery();
 			
 			if(rs.next())
-				return rs.getString("name");
+				return rs.getString("m_name");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
