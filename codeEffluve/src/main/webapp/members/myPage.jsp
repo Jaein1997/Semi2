@@ -11,9 +11,44 @@
 <title>마이페이지</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
-    #profileImg { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
-    table { margin: 20px auto; border-collapse: collapse; }
-    th, td { padding: 10px; border: 1px solid #ccc; }
+  
+    #profileImg { 
+        width: 150px; 
+        height: 150px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+    
+  
+    .profile-layout {
+        display: flex; 
+        align-items: flex-start; 
+        width: 800px; 
+        margin: 20px auto; 
+    }
+    
+   
+    table { 
+        width: 60%; 
+        margin: 0 0 0 30px; 
+        border-collapse: collapse; 
+        
+        border: 1px solid #ccc;
+    }
+    th, td { 
+        padding: 10px; 
+        border: 1px solid #ccc; 
+    }
+    th {
+        width: 30%; 
+    }
+    
+    
+    .action-buttons { 
+        text-align: right; 
+        width: 800px; 
+        margin: 10px auto;
+    }
     .action-buttons button { padding: 10px 20px; margin: 0 5px; cursor: pointer; }
 </style>
 </head>
@@ -23,12 +58,10 @@
         <section>
             
             <%
-              
                 String sid = (String)session.getAttribute("sid");
                 MembersDTO member = null;
 
                 if (sid == null) {
-                   
             %>
                 <script>
                     alert('로그인 후 이용해 주세요.');
@@ -38,12 +71,10 @@
                     return;
                 }
                 
-              
                 MembersDAO dao = MembersDAO.getInstance();
                 member = dao.getMemberInfo(sid); 
 
                 if (member == null) {
-                  
                     session.invalidate();
             %>
                 <script>
@@ -54,23 +85,23 @@
                     return;
                 }
                 
-                
                 session.setAttribute("loginMember", member);
             %>
 
             <h2><%=member.getM_name()%> 님의 마이페이지</h2>
             
-            <img id="profileImg" src="/codeEffluve/membersProfiles/<%=member.getM_profile()%>" alt="프로필">
+            <div class="profile-layout">
+                <img id="profileImg" src="/codeEffluve/membersProfiles/<%=member.getM_profile()%>" alt="프로필">
 
-            <table>
-               
-                <tr><th>ID</th><td><%=member.getId()%></td></tr>
-                <tr><th>이름</th><td><%=member.getM_name()%></td></tr>
-                <tr><th>성별</th><td><%=member.getSex()%></td></tr>
-                <tr><th>생년월일</th><td><%=member.getBirthday()%></td></tr>
-                <tr><th>전화번호</th><td><%=member.getTel()%></td></tr>
-            </table>
-
+                <table>
+                    <tr><th>ID</th><td><%=member.getId()%></td></tr>
+                    <tr><th>이름</th><td><%=member.getM_name()%></td></tr>
+                    <tr><th>성별</th><td><%=member.getSex()%></td></tr>
+                    <tr><th>생년월일</th><td><%=member.getBirthday()%></td></tr>
+                    <tr><th>전화번호</th><td><%=member.getTel()%></td></tr>
+                </table>
+            </div>
+            
             <div class="action-buttons">
                 <a href="/codeEffluve/members/myPageEdit.jsp"><button>정보 수정</button></a>
                 <a href="/codeEffluve/members/deleteAccount.jsp"><button>회퇴 탈퇴</button></a>
