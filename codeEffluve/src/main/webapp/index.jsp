@@ -10,6 +10,9 @@
 
 <%
     String sname = (String)session.getAttribute("sname");
+	String sprofile = (String)session.getAttribute("sprofile");
+	String sprofilePath = request.getContextPath() + "/membersProfiles/" + sprofile;
+	System.out.println(sprofilePath);
 %>
 
 </head>
@@ -27,7 +30,7 @@
       %>
 		<div>
 			<a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <label>환영합니다, <%=sname %>님!</label> <a href="/codeEffluve/members/myPage.jsp"><img
-				src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg"
+				src="<%=sprofilePath %>"
 				alt="basic" id="miniProfile"></a>
 		</div>
 		<%   }

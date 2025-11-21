@@ -163,17 +163,20 @@ public class MembersDAO {
 	
 	
 	
-	public String getUserInfo(String id) {
+	public String[] getUserInfo(String id) {
 		try {
 			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 			
-			String sql = "select m_name from members where id=?";
+			String sql = "select m_name,m_profile from members where id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,id);
 			rs = ps.executeQuery();
-			
-			if(rs.next())
-				return rs.getString("m_name");
+			String infos[] = new String[2];
+			if(rs.next()) {
+				infos[0] = rs.getString("m_name");
+				infos[1] = rs.getString("m_profile");
+			}
+			return infos;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,7 +190,6 @@ public class MembersDAO {
 				e2.printStackTrace();
 			}
 		}
-		return null;
 	}
 	
 	
