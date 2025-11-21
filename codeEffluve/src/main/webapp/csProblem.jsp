@@ -7,7 +7,7 @@
 <title>불편사항 접수</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
-    /* 서브 메뉴 스타일 (cs.jsp에서 사용했던 스타일을 여기에 복사해야 합니다) */
+해야 합니다) */
     .sub-menu {
         width: 1000px; 
         margin: 0 auto;
@@ -34,7 +34,7 @@
         background-color: #f0f0f0; 
     }
     
-    /* 폼 스타일 */
+  
     .problem-form-container { width: 600px; margin: 30px auto; }
     .problem-form-container table { width: 100%; border-collapse: collapse; }
     .problem-form-container th, .problem-form-container td { 
