@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Life Effluve</title>
-<link rel="stylesheet" type="text/css"
-	href="/codeEffluve/css/mainLayout.css">
 
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 
 <%
     String sname = (String)session.getAttribute("sname");
