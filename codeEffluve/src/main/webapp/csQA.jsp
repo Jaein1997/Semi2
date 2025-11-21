@@ -57,7 +57,7 @@
             
             <div class="qa-container">
                 
-                <%-- FAQ 항목 1 --%>
+                
                 <div class="faq-item">
                     <div class="question">
                         <span>Q1. 회원 가입은 어떻게 하나요?</span>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <%-- FAQ 항목 2 --%>
+               
                 <div class="faq-item">
                     <div class="question">
                         <span>Q2. 일정 공유는 어디까지 가능한가요?</span>
