@@ -30,34 +30,12 @@
 	</tr>
 	
 <%
-	ArrayList<daydelDTO> arr = sdao.getTodoList();
+	// ArrayList<daydelDTO> arr = sdao.getTodoList();
 	
-	if(arr == null || arr.size() == 0){
+//	if(arr == null || arr.size() == 0){
 %>
 	    <tr>
 	        <td colspan="7">등록된 일정이 없습니다.</td>
 	    </tr>
 <%
-	    } else {
-	        for(daydelDTO dto : arr){
-%>
-
-	    <tr>
-	        <td><%=dto.getT_idx()%></td>
-	        <td><%=dto.getM_idx()%></td>
-	        <td><%=dto.getContent()%></td>
-	        <td><%=dto.getT_time()%></td>
-	        <td><%=dto.getT_memo()%></td>
-	        <td><%=dto.getShares()%></td>
-			<td>
-            <form action="todoListDel.jsp" method="post">
-                <input type="hidden" name="t_idx" value="<%=dto.getT_idx()%>">
-                <input type="submit" value="삭제" class = "delete-btn">
-            </form>
-        </td>
-	</tr>
-<%
-			}
-	    }
-%>
-</table>
+	//    } else {

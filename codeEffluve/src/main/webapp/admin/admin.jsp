@@ -55,8 +55,8 @@
 		%><%@ include file="that.jsp" %><%
 	}else if(menu.equals("qa")){
 		%><%@ include file="qa.jsp" %><%
-	}else if(menu.equals("singo")) {
-		%><%@ include file="singo.jsp" %><%
+	
+				
 	}
 	%>
 </div>
