@@ -56,7 +56,7 @@
 <script>
     var loginButton = document.getElementById("loginButton");
     loginButton.onclick = function() {
-       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=500,height=350,top=100px,left=700px');
     };
 </script>
 </html>

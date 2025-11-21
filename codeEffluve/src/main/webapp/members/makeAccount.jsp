@@ -37,7 +37,7 @@
 				  -->
 				<table>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="id"><input type="text" name="id" placeholder="아이디" required readonly></td>
+						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="id"><input type="text" name="id" placeholder="아이디" required readonly><input type="button" value="중복확인" id="checkbtn"></td>
 					</tr>
 					<tr>
 						<td><img src="http://localhost:9090/codeEffluve/img/pwdIcon.png" alt="pwd"><input type="password" name="pwd" placeholder="비밀번호" required></td>
@@ -59,9 +59,10 @@
 					
 					
 				</table>
-				<input type="submit" value="가입">
-				<input type="button" value="취소" id="backbtn">
-				<input type="button" value="중복확인" id="checkbtn">
+				<div class="makeAccountBtns">
+					<input type="submit" value="가입">
+					<input type="button" value="취소" id="backbtn">
+				</div>
 			</form>
 		</section>
 	</main>

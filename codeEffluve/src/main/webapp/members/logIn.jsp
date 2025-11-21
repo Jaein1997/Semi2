@@ -8,29 +8,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
-	div {
-		display:flex;
-		flex-direction: column;
+	body {
+		background:white;
+		display: flex;
+		padding-left: 0px;
+		padding-right: 0px;
 		justify-content: center;
-	}
-	table {
-		margin: 0 auto;
-	}
-	input[type="submit"] {
-		display:block;
-		margin: 0 auto;
 	}
 </style>
 </head>
 <body>
-	<div style = "border:2px solid gray; width:350px; height:250px;">
-        <h2 style="text-align:center;">로 그 인</h2>
+	<div id="loginDiv">
+        <h2 style="text-align:center; color: rgb(109, 16, 68)">로 그 인</h2>
     
     	<form name="logIn" action="logIn_ok.jsp">
-    		<table>
+    		<table id="loginTable">
 					<tr>
-						<th>ID</th>
+						
 						<%
 						String id = "";
 						Cookie cks[] = request.getCookies();
@@ -42,16 +38,14 @@
 							}
 						}
 						%>
-						<td><input type="text" name="id" value="<%=id%>"></td>
+						<td><input type="text" name="id" value="<%=id%>" placeholder="아이디" required></td>
 					</tr>
 					<tr>
-						<th>비밀번호</th>
-						<td><input type="password" name="pwd"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="rememberID" value="remem" <%= id.length()>0?"checked":"" %>>아이디 저장</td>
+						<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
 					</tr>
 			</table>
+					<input type="checkbox" name="rememberID" value="remem" <%= id.length()>0?"checked":"" %>>아이디 저장
+			
     		
     		<br>
     		<input type="submit" value="로그인">
