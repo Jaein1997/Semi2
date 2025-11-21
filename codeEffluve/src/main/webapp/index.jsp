@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Life Effluve</title>
-<link rel="stylesheet" type="text/css"
-	href="/codeEffluve/css/mainLayout.css">
 
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 
 <%
     String sname = (String)session.getAttribute("sname");
@@ -56,7 +55,7 @@
 <script>
     var loginButton = document.getElementById("loginButton");
     loginButton.onclick = function() {
-       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=500,height=350,top=100px,left=700px');
     };
 </script>
 </html>
