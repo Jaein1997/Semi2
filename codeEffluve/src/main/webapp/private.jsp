@@ -87,7 +87,6 @@ main {
     gap: 5px;
     margin-top: 10px;
 }
-
 </style>
 <% 
 String name=(String)session.getAttribute("sname");
