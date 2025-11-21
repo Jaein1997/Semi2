@@ -29,6 +29,7 @@ header {
 	border-radius: 50%;
 	flex-shrink: 0;
 	vertical-align: middle;
+	object-fit: cover; 
 }
 
 #leLogo2 {
@@ -68,9 +69,12 @@ header {
 }
 
 .indexMenu a:hover {
+	transform: translateY(-4px); /*위로 뜨기*/
+	box-shadow:3px 3px 5px #888888;
 	background-color: rgb(109, 16, 68);
 	color: white;
 	border-color: rgb(109, 16, 68);
+	transition:0.15s; /*붕 뜨는 애니메이션*/
 	cursor: pointer;
 }
 
@@ -105,8 +109,8 @@ header h1 {
 	font-size: 80px;
 	font-weight: 500;
 	font-family: "Alex Brush", cursive;
-	margin-block-start: 30px;
-	margin-block-end: 30px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
 }
 
 header div {
@@ -120,7 +124,7 @@ header div {
 }
 
 header nav {
-	height: 30px;
+	height: 40px;
 	border-bottom: 2px solid rgb(109, 16, 68);
 }
 
@@ -130,6 +134,8 @@ header nav ul {
 	justify-content: space-between;
 	align-items: center;
 	padding-inline-start: 0px;
+	height: 100%;
+	gap: 10px;
 }
 
 header nav li {
@@ -137,16 +143,34 @@ header nav li {
 	align-items: center;
 	width: 100%;
 	text-align:center;
-	height: 30px;
-	font-size: 20px;
+	height: 100%;
+	font-size: 18px;
 }
-
-.selectedPage {
+header nav ul li a{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	background-color: #EFD79B;
+  	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+header nav ul li a:hover{
 	background-color: rgb(109, 16, 68);
+	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 5px #D8CDD2;
 }
 .selectedPage a {
 	background-color: rgb(109, 16, 68);
 	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 7px #D8CDD2;
 }
 
 header a {
@@ -235,7 +259,7 @@ header nav a {
 	padding-right: 10px;
 }
 #makeAccount input[type="radio"] {
-	accent-color: rgb(109, 16, 68);
+	accent-color: #1E8A8A;
 	margin-left: 35px;
 }
 
@@ -271,6 +295,8 @@ header nav a {
 	font-size: 15px;
 	width: 90px;
 	height: 35px;
+	background-color: #1E8A8A;
+	color: white;
 }
 
 .makeAccountBtns {
@@ -282,7 +308,7 @@ header nav a {
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
-	border:1px solid #E3E3E3 !important;
+	border:1px solid #6D1044 !important;
 	border-radius: 13px !important;
 	width:90%;
 	height:90%;
@@ -337,6 +363,7 @@ header nav a {
 #loginDiv input[type="checkbox"] {
 	margin-left: 30px;
 	margin-bottom: 25px;
+	accent-color: #1E8A8A;
 }
 
 /*myPage.jsp*/
@@ -514,4 +541,79 @@ footer div {
 	text-align: center;
 	color: gray;
 	font-size: 12px;
+}
+
+
+/*public.jsp*/
+#public {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 50px;
+}
+
+#publicListArea {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	border-right: 1px solid #AEAEAE;
+	justify-content: center;
+	
+}
+
+#publicListArea div {
+	margin: 0 auto;
+	width: 90%;
+	background-color: white;
+	border: 1px solid #D8CDD2;
+	border-radius: 30px;
+}
+
+#publicListArea h1 {
+	text-align: center;
+}
+
+#commentArea {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	background-color: white;
+	border: 0px;
+	border-radius: 15px;
+}
+#publicListArea ul {
+	padding-left: 0px;
+}
+.publicListUnit {
+	display: flex;
+	padding-left: 20px;
+	width: 80%;
+	height: 50px;
+	border: 2px solid #1E8A8A;
+	border-radius: 20px;
+	background-color: #CFE9E7;
+	list-style-type: none;
+	margin: 0 auto;
+	box-shadow: 3px 3px 5px #888888;
+}
+.publicListUnit:hover {
+	border: 4px solid #7E4746;
+	background-color: #FAF7F4;
+}
+
+.publicListUnit a {
+	display: flex;
+  	align-items: center;
+	width: 100%;
+	height: 100%;
+	color: black;
+	font-size: 19px;
+	text-decoration: none;
+}
+
+.publicListUnit a:hover {
+	color: #7E4746;
+	font-weight: 500;
+
 }

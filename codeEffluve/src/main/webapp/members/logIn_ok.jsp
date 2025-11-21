@@ -32,9 +32,12 @@
 		<%
 		break;
 	case 3:
-		String name = mdao.getUserInfo(id);
+		String infos[] = mdao.getUserInfo(id);
+		String name = infos[0];
+		String profile = infos[1];
 		session.setAttribute("sid", id);
 		session.setAttribute("sname", name);
+		session.setAttribute("sprofile", profile);
 		
 		Cookie ck;
 		if(remem==null) {
