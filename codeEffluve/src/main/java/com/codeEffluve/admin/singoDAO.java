@@ -1,5 +1,72 @@
 package com.codeEffluve.admin;
 
+import java.sql.*;
+import java.util.*;
+
 public class singoDAO {
 
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
+    
+    public singoDAO() {
+	}
+    
+    //불편사항 목록
+    public ArrayList<singoDTO> getsingoList(){
+    	ArrayList<singoDTO> list = new ArrayList<>();
+    	
+    	try {
+    		conn=com.codeEffluve.db.CodeEffluveDB.getConn();
+    		String sql = "SELECT * FROM singo order by s_idx desc";
+    		
+    		ps = conn.prepareStatement(sql);
+    		rs = ps.executeQuery();
+    		
+    		while (rs.next()) {
+    			singoDTO dto = new singoDTO(
+    					rs.getInt("s_idx"),
+    					rs.getInt("m_idx"),
+    					rs.getString("title"),
+    					rs.getString("content"),
+    					rs.getString("status"),
+    					rs.getDate("s_date")
+    					);
+    			list.add(dto);
+    		}
+    		return list;
+    		
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		return null;
+    	}finally {
+    		try {
+    			 if (rs != null) rs.close();
+                 if (ps != null) ps.close();
+                 if (conn != null) conn.close();
+    		}catch(Exception e2) {
+    			
+    		}
+    	}
+    	
+    }
+    
+    //확인전 -> 확인완료
+    public int updatestatus(int s_idx) {
+    	try {
+    		conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+    		String sql = "UPDATE singo SET status='확인완료' WHERE s_idx=?";
+    		ps = conn.prepareStatement(sql);
+            ps.setInt(1, s_idx);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            try {
+                if(ps!=null) ps.close();
+                if(conn!=null) conn.close();
+            } catch(Exception e2){}
+        }
+    }
 }

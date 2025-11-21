@@ -1,11 +1,11 @@
 package com.codeEffluve.admin;
 
-public class qaDTO {
+public class qadelDTO {
 	
 	private int q_idx, viewcount;
 	private String q,a;
 	
-	public qaDTO() {
+	public qadelDTO() {
 		
 	}
 
@@ -41,7 +41,7 @@ public class qaDTO {
 		this.viewcount = viewcount;
 	}
 
-	public qaDTO(int q_idx, String q, String a, int viewcount) {
+	public qadelDTO(int q_idx, String q, String a, int viewcount) {
 		super();
 		this.q_idx = q_idx;
 		this.q = q;

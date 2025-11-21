@@ -9,7 +9,7 @@
 <style>
 .delete-btn {
 	  padding: 6px 12px;
-    background-color: rgb(red);
+    background-color: rgb(160, 40, 90);
     color: white;
     border: none;
     border-radius: 8px;
@@ -18,9 +18,8 @@
 }
 
 </style>
+<section>
 <h2 style="text-align:center;">회원 관리</h2>
-<style>
-</style>
 <table border ="1" cellspacing="0" width="800px" style ="margin: 0px auto; text-align: center;">
 	<tr>
 	<th>번호</th>
@@ -61,9 +60,11 @@
 		<input type="hidden" name="m_idx" value="<%=dto.getM_idx() %>">
 		<input type="submit" value="삭제" class = "delete-btn">
 		</form>
+		</td>
 <%	
 		}
 	}
 %>
 </table>
+</section>
 </html>
