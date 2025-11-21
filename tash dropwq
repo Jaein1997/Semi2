@@ -1,0 +1,41 @@
+[33m6e7df36[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/hohyeon[m[33m)[m feat: CS 기능 구현 중간 저장
+[33m28f4195[m Delete codeEffluve/.gitignore
+[33mb708954[m Delete git
+[33m25b2005[m[33m ([m[1;31morigin/feature/hohyeon[m[33m, [m[1;32mswitch[m[33m)[m 마이페이지 수정
+[33m2601dbe[m 마이페이지 수정,탈퇴 추가
+[33m20f7474[m Merge: Resolved conflict in .classpath by accepting develop changes
+[33m86f36aa[m Merge branch 'feature/develop' of https://github.com/Jaein1997/Semi2 into feature/develop
+[33m6a62b0f[m chore: 브랜치 전환 전 설정 파일 임시 커밋
+[33md8b30c9[m Merge pull request #14 from Jaein1997/soyeon
+[33mc1cfd3b[m add: logout and header update
+[33m309e12c[m Merge pull request #13 from Jaein1997/soyeon
+[33mbf90b97[m update: 회원가입 수정
+[33mdae019b[m Merge pull request #12 from Jaein1997/soyeon
+[33m1de5d12[m add: 회원가입 기능
+[33m5a0b119[m Merge pull request #11 from Jaein1997/soyeon
+[33m914bb4a[m[33m ([m[1;31morigin/soyeon[m[33m)[m add: db연결 & 패스워드 암호화
+[33m5ce7e34[m refactor: Change source path from src/java to src/main/java
+[33m139994d[m Merge branch 'feature/develop' of https://github.com/Jaein1997/Semi2 into feature/develop
+[33m4829a69[m Merge pull request #10 from Jaein1997/soyeon
+[33mc36caf4[m add:com.codeEffluve.members package
+[33m4c63324[m Merge pull request #9 from Jaein1997/feature/jaein
+[33m4af2709[m[33m ([m[1;31morigin/feature/jaein[m[33m)[m update:header수정
+[33mf6ac6d6[m feat: myPageEdit.jsp 화면 구현 완료
+[33me142f6d[m Merge pull request #8 from Jaein1997/soyeon
+[33m853e0e5[m update: index css 오늘 최종
+[33md9cafe4[m Merge pull request #7 from Jaein1997/soyeon
+[33m51e5b5a[m update:index select effect
+[33mbddeb3e[m Merge pull request #6 from Jaein1997/feature/jaein
+[33mdb6f09c[m update:header, group.jsp
+[33m06426d0[m Merge pull request #5 from Jaein1997/soyeon
+[33m06db7bc[m update:index and css
+[33m0e7bc52[m Merge pull request #4 from Jaein1997/soyeon
+[33m55b95bb[m update:index and images
+[33md573bba[m Merge pull request #3 from Jaein1997/feature/jaein
+[33m39ef49b[m feat:private 수정
+[33mdcb3d04[m Merge pull request #2 from uoehoswi3/soyeon
+[33meb2d6a0[m add: default files and css
+[33m2d10b87[m feat:private, group jsp생성!
+[33m8799233[m Merge pull request #1 from uoehoswi3/soyeon
+[33mb553101[m add:index.jsp and css file
+[33m00224b7[m feat:codeEffluve starts!

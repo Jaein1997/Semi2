@@ -5,10 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Life Effluve</title>
+
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 
 <%
     String sname = (String)session.getAttribute("sname");
+	String sprofile = (String)session.getAttribute("sprofile");
+	String sprofilePath = request.getContextPath() + "/membersProfiles/" + sprofile;
+	System.out.println(sprofilePath);
 %>
 
 </head>
@@ -26,11 +30,10 @@
       %>
 		<div>
 			<a href="/codeEffluve/members/logOut.jsp">로그아웃</a> | <label>환영합니다, <%=sname %>님!</label> <a href="/codeEffluve/members/myPage.jsp"><img
-				src="http://localhost:9090/codeEffluve/membersProfiles/basic.jpg"
+				src="<%=sprofilePath %>"
 				alt="basic" id="miniProfile"></a>
 		</div>
-	<%
-   }
+		<%   }
    %>
 	</header>
 
@@ -55,7 +58,7 @@
 <script>
     var loginButton = document.getElementById("loginButton");
     loginButton.onclick = function() {
-       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=370,height=300,top=100px,left=700px');
+       window.open('/codeEffluve/members/logIn.jsp', 'logInpopup', 'width=500,height=350,top=100px,left=700px');
     };
 </script>
 </html>
