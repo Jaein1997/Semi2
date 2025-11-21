@@ -8,11 +8,6 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
-<style>
-    #profileImg { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
-    table { margin: 20px auto; border-collapse: collapse; }
-    th, td { padding: 10px; border: 1px solid #ccc; }
-</style>
 <script>
     // 이미지 미리보기 함수
     function setThumbnail(event) {
@@ -50,7 +45,7 @@
 <body>
     <%@include file="/header.jsp" %>
     <main>
-        <section>
+        <section id="myPageEdit">
             <%
                 
                 MembersDTO member = (MembersDTO)session.getAttribute("loginMember");
@@ -68,35 +63,39 @@
                   method="post" 
                   enctype="multipart/form-data" 
                   onsubmit="return validateEditForm()">
+                <div id="editDiv">
                 
-                <img id="profileImg" src="/codeEffluve/membersProfiles/<%=member.getM_profile()%>" alt="현재 프로필">
-                <input type="file" name="m_profile_upload" onchange="setThumbnail(event)">
-                
-                <table>
-                    <tr><th>ID</th><td><input type="text" name="id" value="<%=member.getId()%>" readonly></td></tr>
-                    
-                    <tr><th>현재 비밀번호 확인</th><td><input type="password" name="currentPwd" required placeholder="정보 수정을 위해 반드시 입력"></td></tr>
-                    
-                    <tr><th>새 비밀번호</th><td><input type="password" name="newPwd" placeholder="변경할 경우에만 입력"></td></tr>
-                    <tr><th>새 비밀번호 확인</th><td><input type="password" name="newPwdCheck" placeholder="새 비밀번호를 다시 입력"></td></tr>
-                    
-                    <tr><th>이름</th><td><input type="text" name="m_name" value="<%=member.getM_name()%>" required></td></tr>
-                    <tr><th>성별</th>
-                        <td>
-                            <input type="radio" name="sex" value="남" <%=member.getSex().equals("남") ? "checked" : ""%>>남성
-                            <input type="radio" name="sex" value="여" <%=member.getSex().equals("여") ? "checked" : ""%>>여성
-                        </td>
-                    </tr>
-                    <tr><th>생년월일</th><td><input type="date" name="birthday" value="<%=member.getBirthday()%>" required></td></tr>
-                    <tr><th>전화번호</th><td><input type="text" name="tel" value="<%=member.getTel()%>"></td></tr>
-                    
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" value="수정 완료">
-                            <input type="button" value="취소" onclick="history.back()">
-                        </td>
-                    </tr>
-                </table>
+	                <div id="editProfile">
+		                <img id="profileImg" src="/codeEffluve/membersProfiles/<%=member.getM_profile()%>" alt="현재 프로필">
+		                <input type="file" name="m_profile_upload" onchange="setThumbnail(event)">
+	                </div>
+	                
+	                
+	                <table>
+	                    <tr><th>ID</th><td><input type="text" name="id" value="<%=member.getId()%>" readonly></td></tr>
+	                    
+	                    <tr><th>현재 비밀번호 확인</th><td><input type="password" name="currentPwd" required placeholder="정보 수정을 위해 반드시 입력"></td></tr>
+	                    
+	                    <tr><th>새 비밀번호</th><td><input type="password" name="newPwd" placeholder="변경할 경우에만 입력"></td></tr>
+	                    <tr><th>새 비밀번호 확인</th><td><input type="password" name="newPwdCheck" placeholder="새 비밀번호를 다시 입력"></td></tr>
+	                    
+	                    <tr><th>이름</th><td><input type="text" name="m_name" value="<%=member.getM_name()%>" required></td></tr>
+	                    <tr><th>성별</th>
+	                        <td>
+	                            <input type="radio" name="sex" value="m" <%=member.getSex().equals("m") ? "checked" : ""%>>남성
+	                            <input type="radio" name="sex" value="f" <%=member.getSex().equals("f") ? "checked" : ""%>>여성
+	                            <input type="radio" name="sex" value="n" <%=member.getSex().equals("n") ? "checked" : ""%>>선택안함
+	                        </td>
+	                    </tr>
+	                    <tr><th>생년월일</th><td><input type="date" name="birthday" value="<%=member.getBirthday()%>" required></td></tr>
+	                    <tr><th>전화번호</th><td><input type="text" name="tel" value="<%=member.getTel()%>"></td></tr>
+	                    
+	                </table>
+                </div>
+                <div id="editBtnDiv">
+					<input type="submit" value="수정 완료">
+                    <input type="button" value="취소" onclick="history.back()">
+                </div>
             </form>
         </section>
     </main>
