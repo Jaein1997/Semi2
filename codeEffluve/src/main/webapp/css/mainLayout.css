@@ -551,7 +551,6 @@ footer div {
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
-	gap: 50px;
 }
 
 #publicListArea {
@@ -580,8 +579,14 @@ footer div {
 	flex-direction: column;
 	width: 40%;
 	background-color: white;
-	border: 0px;
+	border: 1px solid #D8CDD2;
 	border-radius: 15px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+#commentArea h2 {
+	margin-left: 20px;
 }
 #publicListArea ul {
 	padding-left: 0px;
