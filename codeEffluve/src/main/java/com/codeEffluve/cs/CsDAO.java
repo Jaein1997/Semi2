@@ -62,8 +62,6 @@ public class CsDAO {
             ps.setString(2, title);     
             ps.setString(3, content);   
             
-          
-            ps.setString(4, "WAITING"); 
             
             
             result = ps.executeUpdate();
