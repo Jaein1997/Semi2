@@ -9,8 +9,31 @@ public class TodolistDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	//내 일정 추가 메서드
 	
+	//내 일정 추가 메서드
+	public int insertTodolist(TodolistDTO dto,String date) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="insert into todolist values(todolist_t_idx.nextval,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, dto.getM_idx());
+			ps.setString(2, dto.getContent());
+			ps.setString(3, date);
+			ps.setString(4,dto.getT_memo());
+			ps.setString(5, "private");
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	
 	//m_idx 리턴 메서드
 	public int returnM_idx(String id) {
@@ -28,7 +51,9 @@ public class TodolistDAO {
 			return -1;
 		}finally {
 			try {
-				
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				
 			}
@@ -68,9 +93,9 @@ public class TodolistDAO {
 			return null;
 		}finally {
 			try {
-				if(conn!=null)conn.close();
-				if(ps!=null)ps.close();
 				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				
 			}

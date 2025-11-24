@@ -93,14 +93,15 @@ switch(day_n) {
 }
 
 Calendar nowTime = Calendar.getInstance();
-String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>10?nowTime.get(Calendar.HOUR_OF_DAY):"0"+nowTime.get(Calendar.HOUR_OF_DAY));
-String minute=""+(nowTime.get(Calendar.MINUTE)>10?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
+String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF_DAY):"0"+nowTime.get(Calendar.HOUR_OF_DAY));
+String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
 long time=today.getTimeInMillis();
 Date now=new Date(time);
 int idx=tdao.returnM_idx(id);
 ArrayList arr=tdao.showTodolist(idx, now);
+System.out.println(currentTime);
 %>
 </head>
 <body>
