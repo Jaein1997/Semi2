@@ -24,6 +24,9 @@
 		break;
 	case 1:
 	case 2:
+		Cookie ck2 = new Cookie("savedID", "");
+		ck2.setMaxAge(0);
+		response.addCookie(ck2);
 		%>
 		<script>
 			window.alert('아이디와 비밀번호를 확인하세요.');

@@ -13,6 +13,12 @@
 <!DOCTYPE html>
 
 <%
+ArrayList<TodolistDTO> tdtoLists = tdao.pubLists();
+int defT_idx = 0;
+if(tdtoLists!=null && tdtoLists.size()>0) {
+	defT_idx = tdtoLists.get(0).getT_idx(); // default todolist 선택
+}
+int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):defT_idx; // 선택한 todolist Parameter
 String sid = "";
 if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) {
 	
@@ -34,10 +40,18 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 				<h1>오늘의 공개된 일정</h1>
 				<div>
 				<%
-				ArrayList<TodolistDTO> tdtoLists = tdao.pubLists();
+				
 				if(tdtoLists==null || tdtoLists.size()==0) {
+					%>
+					<div id="emptyLists">
+						앗! 오늘은 공개된 일정이 없습니다.
+					</div>
 					
+					<%
 				} else {
+					%>
+					<ul>
+					<%
 					SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 					for(TodolistDTO temp:tdtoLists) {
 						Timestamp t_time = temp.getT_time();
@@ -46,14 +60,23 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 						String content = temp.getContent();
 						int t_idx = temp.getT_idx();
 						%>
-						<ul>
-							<li class="publicListUnit"><a href="/codeEffluve/public.jsp?t_idx=<%=t_idx%>"><%=id%> : <%=content%>(<%=timeStr%>)</a></li>
-						</ul>
+						
+							<li class=<%=t_idx==selectedT_idx?"publicListUnit_selected":"publicListUnit" %>>
+								<a href="/codeEffluve/public.jsp?t_idx=<%=t_idx%>">
+									<span style="width:25%; border-right:1px solid #888888; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><%=id%></span>
+									<span style="width:60%; padding-left: 15px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><%=content%></span>
+									<span style="width:15%; text-align: right; border-left:1px solid #888888;"><%=timeStr%></span>
+								</a>
+							</li>
+						
 						
 						<%
 					}
-					
+					%>
+					</ul>
+					<%
 				}
+				
 				%>
 				</div>
 				
@@ -61,37 +84,54 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 			<article id="commentArea">
 				<h2>댓글</h2>
 				<div>
+					<ul>
 					<%
-					int t_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):0;
-					ArrayList<CommentsDTO> cdtoLists =cdao.getComments(t_idx);
+					
+					ArrayList<CommentsDTO> cdtoLists =cdao.getComments(selectedT_idx);
 					if(cdtoLists==null || cdtoLists.size()==0) {
 						
 					} else {
-						SimpleDateFormat tf = new SimpleDateFormat("MM-dd HH:mm");
+						SimpleDateFormat tf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 						for(CommentsDTO temp:cdtoLists) {
+							String profileStr = mdao.getProfilePath(temp.getM_idx());
+							String profilePath = request.getContextPath() + "/membersProfiles/" + profileStr;
 							String id = mdao.getIdStr(temp.getM_idx());
+							String message = temp.getMessage();
 							Timestamp c_time = temp.getC_time();
 							String timeStr = (c_time != null) ? tf.format(c_time) : "";
-							String message = temp.getMessage();
+							
 							%>
-							<ul>
-								<li class="publicListCommentUnit"><%=id%> : <%=message%>(<%=timeStr%>)</li>
-							</ul>
+							
+								<li id="publicListCommentUnit">
+									<div id="profile_id_time">
+										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
+										<div style="display:flex; flex-direction:column">
+											<span id="commentId"><%=id%></span>
+											<span id="commentTime"><%=timeStr%></span>
+										</div>
+									</div>
+									<span id="commentMessage"><%=message%></span>
+								</li>
+							
 							
 							<%
 						}
 					}
 					%>
-					
+					</ul>
 				</div>
-				<form action="/codeEffluve/comments/writeComment_ok.jsp">
-					<div class="writeComment">
+				
+				<!-- 댓글입력창 -->
+				
+				<div class="writeComment">
+					<form action="/codeEffluve/comments/writeComment_ok.jsp">
 						<input type="text" name="message">
 						<input type="hidden" name="id" value="<%=sid%>">
-						<input type="hidden" name="t_idx" value="<%=t_idx%>">
+						<input type="hidden" name="t_idx" value="<%=selectedT_idx%>">
 						<input type="submit" value="작성">
-					</div>
-				</form>
+					</form>
+				</div>
+				
 			</article>
 		</section>
 	
