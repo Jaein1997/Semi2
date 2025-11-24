@@ -90,8 +90,25 @@ public class TodolistDAO {
 		}
 	}
 	//내 일정 삭제 메서드
-	public void deleteTodolist(int m_idx, int t_idx) {
-		
+	public int deleteTodolist(int t_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from todolist where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 	//내 일정 조회 메서드
 	public ArrayList<TodolistDTO> showTodolist(int idx,String date){
