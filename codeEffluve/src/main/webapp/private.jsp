@@ -164,7 +164,14 @@ String currentTime = hour+":"+minute;
                         
                         <label>메모</label>
                         <textarea name="t_memo"></textarea><br>
-                        
+                        <select>
+                            	<option>비공개</option>
+                            	<option>그룹공개</option>
+                            	<option>전체공개</option>
+                            </select>
+                            <select>
+                            	<option>그룹선택</option>
+                            </select>
                         <div class="form-buttons">
                             <input type="submit" value="등록하기">
                             <input type="reset" value="초기화">
@@ -196,9 +203,15 @@ String currentTime = hour+":"+minute;
                             
                             <label>메모</label>
                             <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
-                            <label>공개범위</label>
-                            <input type="radio">
-                            <div class="form-buttons">
+                            <select>
+                            	<option>비공개</option>
+                            	<option>그룹공개</option>
+                            	<option>전체공개</option>
+                            </select>
+                            <select>
+                            	<option>그룹선택</option>
+                            </select>
+                            <div>
                                 <input type="submit" value="수정하기">
                                 <input type="reset" value="초기화">
                                 <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
