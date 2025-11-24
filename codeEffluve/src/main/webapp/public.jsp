@@ -83,7 +83,7 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 			</article>
 			<article id="commentArea">
 				<h2>댓글</h2>
-				<div>
+				<div id="commentList">
 					<ul>
 					<%
 					
@@ -125,6 +125,8 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 				
 				<div class="writeComment">
 					<form action="/codeEffluve/comments/writeComment_ok.jsp">
+						<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
+						<span>댓글</span>
 						<input type="text" name="message">
 						<input type="hidden" name="id" value="<%=sid%>">
 						<input type="hidden" name="t_idx" value="<%=selectedT_idx%>">
