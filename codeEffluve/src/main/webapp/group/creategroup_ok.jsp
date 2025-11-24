@@ -12,6 +12,7 @@ if(result>0){
 	window.alert("그룹이 생성되었습니다.");
 	location.href="../private.jsp";
 	</script>
+	
 	<%
 }else{
 	%>
