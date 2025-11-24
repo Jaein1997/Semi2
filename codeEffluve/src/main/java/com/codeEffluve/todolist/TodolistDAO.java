@@ -9,8 +9,33 @@ public class TodolistDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	//내 일정 추가 메서드
 	
+	//내 일정 추가 메서드
+	public int insertTodolist(TodolistDTO dto,String date) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="insert into todolist values(todolist_t_idx.nextval,?,?,TO_DATE(?,'YYYY-MM-DD HH24:MI'),?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, dto.getM_idx());
+			ps.setString(2, dto.getContent());
+			ps.setString(3, date);
+			ps.setString(4, dto.getT_memo());
+			ps.setString(5, "private");
+
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	
 	//m_idx 리턴 메서드
 	public int returnM_idx(String id) {
@@ -28,38 +53,86 @@ public class TodolistDAO {
 			return -1;
 		}finally {
 			try {
-				
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				
 			}
 		}
 		
 	}
+	//내 일정 수정 메서드
+	public int editTodolist(TodolistDTO dto,String date) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="update todolist "
+					+ "set content=?, t_memo=?, t_time=TO_DATE(?,'YYYY-MM-DD HH24:MI') "
+					+ "where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, dto.getContent());
+			ps.setString(2, dto.getT_memo());
+			ps.setString(3, date);
+			ps.setInt(4, dto.getT_idx());
+
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	//내 일정 삭제 메서드
+	public int deleteTodolist(int t_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from todolist where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	//내 일정 조회 메서드
-	public ArrayList<TodolistDTO> showTodolist(int idx,Date date){
+	public ArrayList<TodolistDTO> showTodolist(int idx,String date){
 		try {
 			conn=CodeEffluveDB.getConn();
 			String sql = "SELECT * FROM todolist " +
-                    "WHERE m_idx=? AND a.t_time >= ? AND a.t_time < ?";
+                    "WHERE m_idx=? AND t_time >= TO_DATE(?,'YYYY-MM-DD HH24:MI') "
+                    + "AND t_time <= TO_DATE(?,'YYYY-MM-DD HH24:MI') order by t_time";
 			ps=conn.prepareStatement(sql);
             ps.setInt(1,idx);
-            ps.setDate(2, date); 
-          
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            cal.add(Calendar.DATE, 1);
-            java.sql.Date nextDate = new java.sql.Date(cal.getTimeInMillis());
-            
-            ps.setDate(3, nextDate);
+            ps.setString(2, date);
+            date+=" 23:59";
+            ps.setString(3, date);
 
             rs = ps.executeQuery();
             ArrayList<TodolistDTO> arr=new ArrayList<>();
             while(rs.next()) {
             	TodolistDTO dto=new TodolistDTO();
+            	dto.setM_idx(idx);
             	dto.setT_idx(rs.getInt("t_idx"));
-            	dto.setContent("content");
+            	dto.setContent(rs.getString("content"));
             	dto.setT_time(rs.getTimestamp("t_time"));
             	dto.setT_memo(rs.getString("t_memo"));
+            	dto.setShares(rs.getString("shares"));
             	arr.add(dto);
             }
 			return arr;
@@ -68,9 +141,9 @@ public class TodolistDAO {
 			return null;
 		}finally {
 			try {
-				if(conn!=null)conn.close();
-				if(ps!=null)ps.close();
 				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				
 			}
@@ -87,7 +160,7 @@ public class TodolistDAO {
 //					+ " on t.m_idx = m.m_idx"
 //					+ " where t.shares = 'public'"
 //					+ " order by t.t_time desc;";
-			String sql = "select t_idx, m_idx, content, t_time from todolist where shares='public' and trunc(t_time) = trunc(sysdate)";
+			String sql = "select t_idx, m_idx, content, t_time from todolist where shares='public' and trunc(t_time) = trunc(sysdate) order by t_time";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {

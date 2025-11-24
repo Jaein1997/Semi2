@@ -19,6 +19,7 @@ public class CsDAO {
 
    
     private Connection getConnection() throws Exception {
+      
         return com.codeEffluve.db.CodeEffluveDB.getConn(); 
     }
 
@@ -33,11 +34,14 @@ public class CsDAO {
         }
     }
 
+
+  
     public int insertProblem(String writerId, String title, String content) {
         int result = 0;
         
         try {
             
+           
             int m_idx = MembersDAO.getInstance().getMemberMidx(writerId); 
             
             if (m_idx <= 0) {
@@ -53,9 +57,14 @@ public class CsDAO {
             conn=com.codeEffluve.db.CodeEffluveDB.getConn();
             ps = conn.prepareStatement(sql);
             
+          
             ps.setInt(1, m_idx);        
             ps.setString(2, title);     
             ps.setString(3, content);   
+            
+          
+            ps.setString(4, "WAITING"); 
+            
             
             result = ps.executeUpdate();
             

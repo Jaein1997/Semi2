@@ -10,12 +10,11 @@ public class CsDTO {
     private String content, status;     // 내용
     private Date s_date;        // 접수일
     
-    // ⚠️ category 필드는 DB에 저장되지 않지만, JSP에서 데이터를 전달하기 위해 임시로 유지하거나 제거할 수 있습니다.
-    // 여기서는 DB 구조에 맞게 제거합니다.
+  
 
     public CsDTO() { }
 
-    // Getter and Setter
+    
     public int getS_idx() { return s_idx; }
     public void setS_idx(int s_idx) { this.s_idx = s_idx; }
     
