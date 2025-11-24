@@ -321,4 +321,60 @@ public class MembersDAO {
 	    return count;
 	}
 	
+	// idx로 id 조회 메소드
+	public String getIdStr(int m_idx) {
+		try {
+	        conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+	        
+	        String sql = "select id from members where m_idx=?";
+	        
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, m_idx);
+	        rs = ps.executeQuery();
+	        if(rs.next()) {
+	        	return rs.getString("id");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "";
+	    } finally {
+	        try {
+	        	if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
+		return "";
+	}
+	
+	public String getProfilePath(int idx) {
+	    try {
+	    	conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+
+		    String sql = "select m_profile from members where m_idx = ?"; 
+		    ps = conn.prepareStatement(sql);
+		    ps.setInt(1, idx);
+	        rs = ps.executeQuery();
+	        
+	        if (rs.next()) {
+	            return rs.getString("m_profile");
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "";
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close(); 
+	        } catch (SQLException e2) {
+	            e2.printStackTrace();
+	        }
+	    }
+	    return "";
+	}
+	
 }

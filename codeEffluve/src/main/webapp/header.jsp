@@ -5,7 +5,6 @@
 	String sname = (String)session.getAttribute("sname");
 	String sprofile = (String)session.getAttribute("sprofile");
 	String sprofilePath = request.getContextPath() + "/membersProfiles/" + sprofile;
-	System.out.println(sprofilePath);
 %>
 <header>
 	<%

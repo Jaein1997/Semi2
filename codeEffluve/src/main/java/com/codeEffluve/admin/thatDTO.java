@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class thatDTO {
 	private int c_idx, t_idx, m_idx;
-	private String content,t_memo,shares,message;
-	private Date t_time,c_time;
+	private String content,shares,message;
+	private Date c_time;
 	
 	public thatDTO() {
 		
@@ -43,14 +43,6 @@ public class thatDTO {
 		this.content = content;
 	}
 
-	public String getT_memo() {
-		return t_memo;
-	}
-
-	public void setT_memo(String t_memo) {
-		this.t_memo = t_memo;
-	}
-
 	public String getShares() {
 		return shares;
 	}
@@ -67,14 +59,6 @@ public class thatDTO {
 		this.message = message;
 	}
 
-	public Date getT_time() {
-		return t_time;
-	}
-
-	public void setT_time(Date t_time) {
-		this.t_time = t_time;
-	}
-
 	public Date getC_time() {
 		return c_time;
 	}
@@ -83,17 +67,15 @@ public class thatDTO {
 		this.c_time = c_time;
 	}
 
-	public thatDTO(int c_idx, int t_idx, int m_idx, String content, String t_memo, String shares, String message,
-			Date t_time, Date c_time) {
+	public thatDTO(int c_idx, int t_idx, int m_idx, String content, String shares, String message,
+			 Date c_time) {
 		super();
 		this.c_idx = c_idx;
 		this.t_idx = t_idx;
 		this.m_idx = m_idx;
 		this.content = content;
-		this.t_memo = t_memo;
 		this.shares = shares;
 		this.message = message;
-		this.t_time = t_time;
 		this.c_time = c_time;
 	}
 	

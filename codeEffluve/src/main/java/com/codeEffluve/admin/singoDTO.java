@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class singoDTO {
 	private int s_idx, m_idx;
-	private String title,content;
+	private String title,content, status;
 	private Date s_date;
 	
 	public singoDTO() {
@@ -50,13 +50,23 @@ public class singoDTO {
 	public void setS_date(Date s_date) {
 		this.s_date = s_date;
 	}
+	
 
-	public singoDTO(int s_idx, int m_idx, String title, String content, Date s_date) {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public singoDTO(int s_idx, int m_idx, String title, String content, String status, Date s_date) {
 		super();
 		this.s_idx = s_idx;
 		this.m_idx = m_idx;
 		this.title = title;
 		this.content = content;
+		this.status = status;
 		this.s_date = s_date;
 	}
 	
