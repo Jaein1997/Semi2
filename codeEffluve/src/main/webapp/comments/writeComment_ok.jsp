@@ -22,5 +22,11 @@ if (result>0) {
 		location.href='/codeEffluve/public.jsp?t_idx=<%=t_idx%>';
 	</script>
 	<%
+} else {
+	%>
+	<script>
+		location.href='/codeEffluve/public.jsp?t_idx=<%=t_idx%>';
+	</script>
+	<%
 }
 %>

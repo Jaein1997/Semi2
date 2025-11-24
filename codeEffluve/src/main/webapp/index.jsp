@@ -37,7 +37,7 @@
    %>
 	</header>
 
-	<main>
+	<main style="background-color: transparent !important; border: 0px;">
 		<img src="http://localhost:9090/codeEffluve/img/leLogo2.png"
 			alt="leLogo2" id="leLogo2">
 		<div class="indexMenu">
