@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
         <tr>
             <td colspan="2" style="text-align:center;">
                 <input type="submit" value="등록"
-                       style="padding:6px 15px; background:rgb(160,40,90); color:white; border:none; border-radius:8px;">
+                       style="padding:6px 15px; background:rgb(109, 16, 68); color:white; border:none; border-radius:8px;">
                 <input type="button" value="취소"
                        onclick="window.close()"
                        style="padding:6px 15px; background:#aaa; color:white; border:none; border-radius:8px;">

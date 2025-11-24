@@ -7,7 +7,7 @@
 <style>
 .delete-btn {
     padding: 6px 12px;
-    background-color: rgb(160,40,90);
+    background-color: rgb(109, 16, 68);
     color: white;
     border: none;
     border-radius: 8px;
@@ -57,7 +57,7 @@
 </table>
 <div style="width:800px; margin:10px auto; text-align:right;">
     <button onclick="openWritePopup()"
-            style="padding:8px 14px; background-color:rgb(160,40,90); color:white; border:none; border-radius:8px; cursor:pointer;">
+            style="padding:8px 14px; background-color:rgb(109, 16, 68); color:white; border:none; border-radius:8px; cursor:pointer;">
         글쓰기
     </button>
 </div>
