@@ -7,7 +7,7 @@
 <style>
 .delete-btn {
 	  padding: 6px 12px;
-    background-color: rgb(160, 40, 90);
+    background-color: rgb(109, 16, 68);
     color: white;
     border: none;
     border-radius: 8px;
