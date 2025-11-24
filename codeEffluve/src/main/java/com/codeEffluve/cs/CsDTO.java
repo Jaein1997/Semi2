@@ -4,11 +4,11 @@ import java.sql.*;
 
 public class CsDTO {
 
-    private int s_idx;          // singo 테이블의 PK
-    private int m_idx;          // 작성자 회원 고유 번호
-    private String title;       // 제목
-    private String content, status;     // 내용
-    private Timestamp s_date;        // 접수일
+    private int s_idx;          
+    private int m_idx;          
+    private String title;      
+    private String content, status;     
+    private Timestamp s_date;        
     
   
 
