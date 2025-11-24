@@ -46,11 +46,11 @@ public class CsDAO {
             }
             
             
-            String sql = "insert into singo (s_idx, m_idx, title, content, s_date) " +
-                         "values (singo_seq.nextval, ?, ?, ?, sysdate)";
+            String sql = "insert into singo (s_idx, m_idx, title, content, status, s_date) " +
+                         "values (singo_s_idx.nextval, ?, ?, ?, 'N', sysdate)";
             
            
-            conn = getConnection();
+            conn=com.codeEffluve.db.CodeEffluveDB.getConn();
             ps = conn.prepareStatement(sql);
             
             ps.setInt(1, m_idx);        
