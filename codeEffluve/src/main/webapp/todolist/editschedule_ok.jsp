@@ -12,18 +12,18 @@ String setTime="";
 if(date!=null&&time!=null){
 	setTime=date+" "+time;
 }
-int result=tdao.insertTodolist(tdto, setTime);
+int result=tdao.editTodolist(tdto, setTime);
 if(result>0){
 	%>
 	<script>
-	window.alert("일정이 등록되었습니다.");
+	window.alert("일정이 수정되었습니다.");
 	location.href="../private.jsp";
 	</script>
 	<%
 }else{
 	%>
 	<script>
-	window.alert("일정 등록에 실패했습니다.");
+	window.alert("일정 수정에 실패했습니다.");
 	location.href="../private.jsp";
 	</script>
 	<%

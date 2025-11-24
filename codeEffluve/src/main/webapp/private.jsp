@@ -1,7 +1,9 @@
+<%@page import="java.security.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.Date" %>
+<%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -97,11 +99,7 @@ String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF
 String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
-long time=today.getTimeInMillis();
-Date now=new Date(time);
-int idx=tdao.returnM_idx(id);
-ArrayList arr=tdao.showTodolist(idx, now);
-System.out.println(currentTime);
+
 %>
 </head>
 <body>
@@ -124,21 +122,24 @@ System.out.println(currentTime);
             
             <fieldset>
                 
-                <table>
+                <% 
+                String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
+                int idx=tdao.returnM_idx(id);
+                ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
+                for(int i=0;i<(arr==null?0:arr.size());i++){
+                	%>
+                	<table>
                     <tr>
-                    	<td rowspan="3">일정</td>
-                        <td rowspan="3">공개</td>
-                        <td rowspan="3">비공개</td>
+                    	<td><a href="private.jsp?arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a></td>
+                        <td><%= arr.get(i).getT_memo() %></td>
+                        <td>공개범위:<%= arr.get(i).getShares() %></td>
                         <td>그룹</td>
-                        <td rowspan="3">삭제</td>
-                    </tr>
-                    <tr>
-                        <td>그룹1</td>
-                    </tr>
-                    <tr>
-                        <td>그룹2</td>
+                        <td>삭제</td>
                     </tr>
                 </table>
+                <%
+                }%>
+                
             </fieldset>
             </div>
         
@@ -146,6 +147,7 @@ System.out.println(currentTime);
             
             <div class="add-schedule">
                 <fieldset>
+                <%if(request.getParameter("arr_idx")==null){ %>
                     <h3>일정 추가</h3>
                     <form name="newschedule" action="todolist/addschedule_ok.jsp">
                     	<input type="hidden" name="m_idx" value="<%=idx%>">
@@ -158,8 +160,6 @@ System.out.println(currentTime);
                  		<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
                         <input type="time" name="time" value="<%=currentTime%>"><br>
 
-                        <input type="checkbox">
-                        <label>하루 종일</label>
                         <br>
                         
                         <label>메모</label>
@@ -170,6 +170,42 @@ System.out.println(currentTime);
                             <input type="reset" value="초기화">
                         </div>
                     </form>
+                    <%}else{
+                    	
+                    	int arr_idx=Integer.parseInt(request.getParameter("arr_idx"));
+                    	year=arr.get(arr_idx).getT_time().getYear()+1900;
+                    	month=arr.get(arr_idx).getT_time().getMonth()+1;
+                    	date=arr.get(arr_idx).getT_time().getDate();
+                    	int hours=arr.get(arr_idx).getT_time().getHours();
+                    	int minutes=arr.get(arr_idx).getT_time().getMinutes();
+                    	currentTime=""+(hours<10?"0"+hours:hours)+":"+(minutes<10?"0"+minutes:minutes);
+                    	%>
+                    	<h3>일정 수정</h3>
+                        <form name="editschedule" action="todolist/editschedule_ok.jsp">
+                        	<input type="hidden" name="t_idx" value="<%=arr.get(arr_idx).getT_idx()%>">
+                            <label>일정 이름</label>
+                            <input type="text" name="content" value="<%=arr.get(arr_idx).getContent()%>"><br>
+                            
+                            <label>시작 날짜</label>
+                            <br>
+                            
+                     		<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+                            <input type="time" name="time" value="<%=currentTime%>"><br>
+
+                            <br>
+                            
+                            <label>메모</label>
+                            <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
+                            <label>공개범위</label>
+                            <input type="radio">
+                            <div class="form-buttons">
+                                <input type="submit" value="수정하기">
+                                <input type="reset" value="초기화">
+                                <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
+                            </div>
+                        </form>
+                        <%
+                    }%>
                 </fieldset>
             </div>
             
