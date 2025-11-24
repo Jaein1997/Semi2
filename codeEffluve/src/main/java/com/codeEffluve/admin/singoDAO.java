@@ -56,8 +56,8 @@ public class singoDAO {
     	try {
     		conn=com.codeEffluve.db.CodeEffluveDB.getConn();
     		
-    		String sql = "INSERT INTO singo(s_idx, m_idx, title, content, s_date, status) "
-    				   + "values(singo_s_idx.nextval, ?, ?, ?, sysdate, '확인전')";
+    		String sql = "INSERT INTO singo(s_idx, m_idx, title, content, status, s_date) "
+    				   + "values(singo_s_idx.nextval, ?, ?, ?, 'N',sysdate)";
     		ps = conn.prepareStatement(sql);
     		ps.setInt(1, dto.getM_idx());
     		ps.setString(2, dto.getTitle());
