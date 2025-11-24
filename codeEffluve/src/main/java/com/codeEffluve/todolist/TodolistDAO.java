@@ -87,7 +87,7 @@ public class TodolistDAO {
 //					+ " on t.m_idx = m.m_idx"
 //					+ " where t.shares = 'public'"
 //					+ " order by t.t_time desc;";
-			String sql = "select t_idx, m_idx, content, t_time from todolist where shares='public' and trunc(t_time) = trunc(sysdate)";
+			String sql = "select t_idx, m_idx, content, t_time from todolist where shares='public' and trunc(t_time) = trunc(sysdate) order by t_time";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
