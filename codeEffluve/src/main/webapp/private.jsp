@@ -100,7 +100,7 @@ String currentTime = hour+":"+minute;
 long time=today.getTimeInMillis();
 Date now=new Date(time);
 int idx=tdao.returnM_idx(id);
-ArrayList arr=tdao.showTodolist(idx, now);
+// ArrayList arr=tdao.showTodolist(idx, now);
 %>
 </head>
 <body>

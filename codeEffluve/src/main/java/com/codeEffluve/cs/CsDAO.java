@@ -44,7 +44,7 @@ public class CsDAO {
                 System.out.println("ERROR: 유효한 M_IDX를 찾을 수 없어 singo 테이블에 저장 불가. ID: " + writerId);
                 return 0; 
             }
-            
+        
             
             String sql = "insert into singo (s_idx, m_idx, title, content, status, s_date) " +
                          "values (singo_s_idx.nextval, ?, ?, ?, 'N', sysdate)";
