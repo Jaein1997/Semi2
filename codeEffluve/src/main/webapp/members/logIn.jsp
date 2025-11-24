@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
 	body {
-		background:white;
+		background:#FAF7F9;
 		display: flex;
 		padding-left: 0px;
 		padding-right: 0px;
