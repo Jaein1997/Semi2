@@ -24,7 +24,7 @@
 
 </style>
 <body>
-<%@include file="/header.jsp" %>
+
 <main>
 <!-- 왼쪽메뉴 -->
 <div id="leftMenu">
