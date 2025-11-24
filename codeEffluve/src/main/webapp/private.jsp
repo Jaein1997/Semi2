@@ -134,7 +134,7 @@ String currentTime = hour+":"+minute;
                         <td><%= arr.get(i).getT_memo() %></td>
                         <td>공개범위:<%= arr.get(i).getShares() %></td>
                         <td>그룹</td>
-                        <td>삭제</td>
+                        <td><a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>">삭제</a></td>
                     </tr>
                 </table>
                 <%
@@ -164,14 +164,14 @@ String currentTime = hour+":"+minute;
                         
                         <label>메모</label>
                         <textarea name="t_memo"></textarea><br>
-                        <select>
-                            	<option>비공개</option>
-                            	<option>그룹공개</option>
-                            	<option>전체공개</option>
-                            </select>
-                            <select>
-                            	<option>그룹선택</option>
-                            </select>
+                        <select id="range" name="shares">
+                            <option value="private">비공개</option>
+                            <option value="group">그룹공개</option>
+                            <option value="public">전체공개</option>
+                        </select>
+                        <select id="group" name="group" disabled>
+                            <option>그룹선택</option>
+                        </select>
                         <div class="form-buttons">
                             <input type="submit" value="등록하기">
                             <input type="reset" value="초기화">
@@ -203,14 +203,20 @@ String currentTime = hour+":"+minute;
                             
                             <label>메모</label>
                             <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
-                            <select>
-                            	<option>비공개</option>
-                            	<option>그룹공개</option>
-                            	<option>전체공개</option>
-                            </select>
-                            <select>
-                            	<option>그룹선택</option>
-                            </select>
+                            <select id="range" name="shares">
+                            <option value="private">비공개</option>
+                            <option value="group">그룹공개</option>
+                            <option value="public">전체공개</option>
+                        	</select>
+                       		 <select id="group" name="group" disabled>
+                            <option>그룹선택</option>
+                            <option>그룹1</option>
+                            <option>그룹2</option>
+                            <option>그룹3</option>
+                            <option>그룹4</option>
+                            <option>그룹5</option>
+                        	</select>
+                        	<input type="button" id="creategroup" value="그룹만들기" disabled>
                             <div>
                                 <input type="submit" value="수정하기">
                                 <input type="reset" value="초기화">
@@ -246,6 +252,20 @@ calendar.onchange=function(){
     const month = parseInt(dateParts[1]); 
     const date = parseInt(dateParts[2]);
     window.location.href = "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
+}
+
+var select=document.getElementById("range");
+var group=document.getElementById("group");
+var creategroup=document.getElementById("creategroup");
+select.onchange=function(){
+	const selectedrange=select.value;
+	if(selectedrange==="group"){
+		group.removeAttribute('disabled');
+		creategroup.removeAttribute('disabled');
+	}else{
+		group.setAttribute('disabled','disabled');
+		creategroup.setAttribute('disabled','disabled');
+	}
 }
 </script>
 </html>
