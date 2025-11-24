@@ -42,6 +42,7 @@ public class thatDAO {
 	        			rs.getString("message"),
 	        			rs.getDate("c_time")
 	        			);
+	        	arr.add(dto);
 	        }
 	        return arr;
 
