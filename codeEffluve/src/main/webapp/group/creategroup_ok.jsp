@@ -5,7 +5,7 @@
 <jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
 <%
 
-int result=tdao.insertTodolist(tdto, setTime);
+int result=gdao.createGroup(gdto);
 if(result>0){
 	%>
 	<script>
@@ -19,3 +19,7 @@ if(result>0){
 	<script>
 	window.alert("그룹 생성에 실패했습니다.");
 	location.href="../private.jsp";
+	</script>
+	<%
+	}%>
+	

@@ -12,7 +12,7 @@
 <fieldset>
 <legend>그룹정보입력</legend>
 <label>그룹이름</label>
-<input type="text" name="g_name"><input type="button" value="중복검사"><br>
+<input type="text" name="g_name" readonly><input type="button" id="groupcheck" value="중복검사"><br>
 <label>그룹프로필</label>
 <input type="file"><br>
 <input type="submit" value="등록하기">
@@ -20,5 +20,11 @@
 
 </fieldset>
 </form>
+<script>
+	var back=document.getElementById('groupcheck');
+	back.onclick=function(){
+		window.open('groupcheck.jsp','groupCheck','width=400, height=300');	
+	};
+    </script>
 </body>
 </html>
