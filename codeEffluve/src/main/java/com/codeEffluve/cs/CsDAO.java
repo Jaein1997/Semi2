@@ -52,7 +52,6 @@ public class CsDAO {
         
             String sql = "insert into singo (s_idx, m_idx, title, content, s_date, status) " +
                          "values (singo_s_idx.nextval, ?, ?, ?, sysdate, ?)"; 
-            
            
             conn = getConnection();
             ps = conn.prepareStatement(sql);
