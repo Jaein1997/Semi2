@@ -82,7 +82,7 @@
                         <tr>
                             <th>작성자 ID</th>
                             <td>
-                                <% String sessionId = (String)session.getAttribute("sid"); %>
+                                <% String sessionId = (String)session.getAttribute("sid");%>
                                 <input type="text" name="writerId" value="<%= sessionId != null ? sessionId : "비회원" %>" readonly>
                             </td>
                         </tr>

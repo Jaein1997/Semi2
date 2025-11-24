@@ -1,6 +1,6 @@
 package com.codeEffluve.cs;
 
-import java.sql.Date;
+import java.sql.*;
 
 public class CsDTO {
 
@@ -8,7 +8,7 @@ public class CsDTO {
     private int m_idx;          // 작성자 회원 고유 번호
     private String title;       // 제목
     private String content, status;     // 내용
-    private Date s_date;        // 접수일
+    private Timestamp s_date;        // 접수일
     
   
 
@@ -30,8 +30,8 @@ public class CsDTO {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-	public Date getS_date() { return s_date; }
-    public void setS_date(Date s_date) { this.s_date = s_date; }
+	public Timestamp getS_date() { return s_date; }
+    public void setS_date(Timestamp s_date) { this.s_date = s_date; }
 }
 
 

@@ -13,23 +13,13 @@
     String content = request.getParameter("content");
     String category = request.getParameter("category"); 
 
-    
-    if (writerId == null || writerId.trim().isEmpty() ||
-        title == null || title.trim().isEmpty() || 
-        content == null || content.trim().isEmpty()) {
-        
-        msg = "필수 항목(ID, 제목, 내용)을 입력하지 않으셨습니다.";
-        response.setContentType("text/html; charset=UTF-8");
-        out.println("<script>alert('" + msg + "'); history.back();</script>");
-        return;
-    }
 
-    CsDAO dao = CsDAO.getInstance();
+    CsDAO cdao = new CsDAO();
     int result = 0;
     
     try {
         
-        result = dao.insertProblem(writerId, title, content); 
+        result = cdao.insertProblem(writerId, title, content); 
         
     } catch (Exception e) {
         e.printStackTrace();

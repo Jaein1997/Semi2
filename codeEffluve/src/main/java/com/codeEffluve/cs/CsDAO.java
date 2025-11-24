@@ -5,25 +5,19 @@ import java.sql.*;
 
 public class CsDAO {
 
-    
-    private static CsDAO instance = new CsDAO();
-
-    private CsDAO() { }
-
-    public static CsDAO getInstance() { return instance; }
-    
+    public CsDAO() { }    
 
     private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
    
-    private Connection getConnection() throws Exception {
+    public Connection getConnection() throws Exception {
       
         return com.codeEffluve.db.CodeEffluveDB.getConn(); 
     }
 
-    private void close() {
+    public void close() {
         
         try {
             if (rs != null) rs.close();
@@ -44,7 +38,7 @@ public class CsDAO {
            
             int m_idx = MembersDAO.getInstance().getMemberMidx(writerId); 
             
-            if (m_idx <= 0) {
+            if (m_idx < 0) {
                 System.out.println("ERROR: 유효한 M_IDX를 찾을 수 없어 singo 테이블에 저장 불가. ID: " + writerId);
                 return 0; 
             }
@@ -61,8 +55,7 @@ public class CsDAO {
             ps.setInt(1, m_idx);        
             ps.setString(2, title);     
             ps.setString(3, content);   
-            
-            
+
             
             result = ps.executeUpdate();
             
