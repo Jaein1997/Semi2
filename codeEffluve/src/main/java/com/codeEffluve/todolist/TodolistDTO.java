@@ -1,11 +1,11 @@
 package com.codeEffluve.todolist;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TodolistDTO {
 	private int t_idx,m_idx;
 	private String content,t_memo,shares;
-	private Date t_time;
+	private Timestamp t_time;
 	
 	public int getT_idx() {
 		return t_idx;
@@ -37,10 +37,10 @@ public class TodolistDTO {
 	public void setShares(String shares) {
 		this.shares = shares;
 	}
-	public Date getT_time() {
+	public Timestamp getT_time() {
 		return t_time;
 	}
-	public void setT_time(Date t_time) {
+	public void setT_time(Timestamp t_time) {
 		this.t_time = t_time;
 	}
 }
