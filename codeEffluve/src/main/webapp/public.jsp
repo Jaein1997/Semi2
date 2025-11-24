@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
+<jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <!DOCTYPE html>
 
 <%
@@ -18,15 +26,28 @@
 			<article id="publicListArea">
 				<h1>오늘의 공개된 일정</h1>
 				<div>
-					<ul>
-						<li class="publicListUnit"><a href="/codeEffluve/public.jsp">thdus1821 : 학원 가기(9:00~)</a></li>
-					</ul>
-					<ul>
-						<li class="publicListUnit"><a href="/codeEffluve/public.jsp">thdus1821 : 학원 가기(9:00~)</a></li>
-					</ul>
-					<ul>
-						<li class="publicListUnit"><a href="/codeEffluve/public.jsp">thdus1821 : 학원 가기(9:00~)</a></li>
-					</ul>
+				<%
+				ArrayList<TodolistDTO> tdtoLists = tdao.pubLists();
+				if(tdtoLists==null || tdtoLists.size()==0) {
+					
+				} else {
+					SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+					for(TodolistDTO temp:tdtoLists) {
+						Timestamp t_time = temp.getT_time();
+						String timeStr = (t_time != null) ? tf.format(t_time) : "";
+						String id = mdao.getIdStr(temp.getM_idx());
+						String content = temp.getContent();
+						int t_idx = temp.getT_idx();
+						%>
+						<ul>
+							<li class="publicListUnit"><a href="/codeEffluve/public.jsp?t_idx=<%=t_idx%>"><%=id%> : <%=content%>(<%=timeStr%>)</a></li>
+						</ul>
+						
+						<%
+					}
+					
+				}
+				%>
 				</div>
 				
 			</article>
