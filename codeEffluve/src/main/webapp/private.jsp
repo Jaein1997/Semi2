@@ -164,14 +164,21 @@ String currentTime = hour+":"+minute;
                         
                         <label>메모</label>
                         <textarea name="t_memo"></textarea><br>
+                        
                         <select id="range" name="shares">
                             <option value="private">비공개</option>
                             <option value="group">그룹공개</option>
                             <option value="public">전체공개</option>
-                        </select>
-                        <select id="group" name="group" disabled>
+                        	</select>
+                       		 <select id="group" name="group" disabled>
                             <option>그룹선택</option>
-                        </select>
+                            <option>그룹1</option>
+                            <option>그룹2</option>
+                            <option>그룹3</option>
+                            <option>그룹4</option>
+                            <option>그룹5</option>
+                        	</select>
+                        	<input type="button" id="creategroup" value="그룹만들기" disabled>
                         <div class="form-buttons">
                             <input type="submit" value="등록하기">
                             <input type="reset" value="초기화">
@@ -203,6 +210,7 @@ String currentTime = hour+":"+minute;
                             
                             <label>메모</label>
                             <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
+                            
                             <select id="range" name="shares">
                             <option value="private">비공개</option>
                             <option value="group">그룹공개</option>
@@ -266,6 +274,9 @@ select.onchange=function(){
 		group.setAttribute('disabled','disabled');
 		creategroup.setAttribute('disabled','disabled');
 	}
+}
+creategroup.onclick=function(){
+	window.open("group/creategroup.jsp","create","width=400px, height=500px");
 }
 </script>
 </html>

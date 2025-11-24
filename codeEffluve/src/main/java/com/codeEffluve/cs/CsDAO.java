@@ -54,7 +54,8 @@ public class CsDAO {
           
             ps.setInt(1, m_idx);        
             ps.setString(2, title);     
-            ps.setString(3, content); 
+            ps.setString(3, content);   
+
             
             result = ps.executeUpdate();
             
