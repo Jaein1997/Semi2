@@ -17,10 +17,24 @@
 main {
     margin: 0 auto;
 }
-.header {
+.dateHeader {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.dateHeader a {
+	text-decoration: none;
+	color: #6D1044;
+}
+
+input[type="date"] {
+	width: 140px; height: 30px;
+	font-size: 15px;
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 10px;
 }
 #schedule {
     display: flex;
@@ -28,23 +42,114 @@ main {
     justify-content: space-between;
 }
 .myschedule {
-    flex: 2; 
+	width: 60%;
+	background-color: #FAF7F9;
+	padding: 15px;
 }
+
 .right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	width: 40%;
 }
-.add-schedule {
-    flex-grow: 1;
+
+.myschedule ul {
+	display: flex;
+	flex-direction: column;
+	padding-inline-start: 0px !important;
+	gap: 15px;
 }
-.comments {
-    flex-grow: 0; 
+
+.myschedule li {
+	list-style-type: none;
+	border: 1px solid #6D1044;
+	border-radius: 15px;
+	height: 40px;
+	background-color: white;
+	overflow: hidden;
 }
-.comments fieldset > div { 
-    display: block;
+
+.myScheduleUnit {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
+
+input[type="checkbox"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+#schedule_a {
+	display: flex;
+	width: 30%;
+	height: 100%;
+	align-items: center;
+	padding-left: 10px;
+	color: black;
+	font-size: 17px;
+	font-weight: 500;
+}
+#memo_span {
+	display: flex;
+	width: 20%;
+	height: 100%;
+	border-left: 1px solid #D8CDD2;
+	padding-left: 15px;
+	align-items: center;
+}
+#shares_div {
+	display: flex;
+	justify-content: center;
+	width: 25%;
+	height: 100%;
+	align-items: center;
+}
+
+#shares_div div {
+	width: 33%;
+	height: 100%;
+	display: flex;
+	border-left: 1px solid #D8CDD2;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: #EEEEEE;
+}
+
+#publicUnitBtn_selected, #publicUnitBtn:hover {
+	background-color: #7E9AD9 !important;
+	
+}
+
+#privateUnitBtn_selected, #privateUnitBtn:hover {
+	background-color: #8FAF9A !important;
+}
+
+#groupUnitBtn_selected, #groupUnitBtn:hover {
+	background-color: #B79AD7 !important;
+}
+
+#groupList_div {
+	display: flex;
+	padding-left: 15px;
+	border-left: 1px solid #D8CDD2;
+	border-right: 1px solid #D8CDD2;
+	width: 20%;
+	height: 100%;
+	align-items: center;
+	background-color: white;
+}
+
+#deleteUnitBtn_a {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	color: #6D1044;
+	text-decoration: none;
+	background-color: white;
+}
+
 </style>
 <% 
 String id=(String)session.getAttribute("sid");
@@ -107,11 +212,11 @@ String currentTime = hour+":"+minute;
 <body>
 	<%@include file="header.jsp" %>
 	<main>
-    <div class="header">
+    <div class="dateHeader">
         <h2>
-            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날"><<</a>
+            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
             <%=year %>년 <%=month %>월 <%=date %>일 <%=day %>요일
-            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">>></a>
+            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
         </h2>
         <div>
             <input type="date" id="calendar" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
@@ -121,28 +226,43 @@ String currentTime = hour+":"+minute;
     <section id="schedule">
         
         <div class="myschedule">
-            
-            <fieldset>
                 
                 <% 
                 String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
                 int idx=tdao.returnM_idx(id);
                 ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
-                for(int i=0;i<(arr==null?0:arr.size());i++){
-                	%>
-                	<table>
-                    <tr>
-                    	<td><a href="private.jsp?arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a></td>
-                        <td><%= arr.get(i).getT_memo() %></td>
-                        <td>공개범위:<%= arr.get(i).getShares() %></td>
-                        <td>그룹</td>
-                        <td><a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>">삭제</a></td>
-                    </tr>
-                </table>
-                <%
-                }%>
+                %>
+                <ul>
                 
-            </fieldset>
+                <%
+                for(int i=0;i<(arr==null?0:arr.size());i++){
+                %>
+                	<li>
+                		<div class="myScheduleUnit">
+                			<input type="checkbox">
+                			<a href="private.jsp?arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a>
+		                    <span id="memo_span"><%= arr.get(i).getT_memo() %></span>
+		                    <div id="shares_div">
+		                    	<div <%= arr.get(i).getShares().equals("public")?"id='publicUnitBtn_selected'":"id='publicUnitBtn'" %>>
+		                    		공개
+		                    	</div>
+		                    	<div <%= arr.get(i).getShares().equals("private")?"id='privateUnitBtn_selected'":"id='privateUnitBtn'" %>>
+		                    		비공개
+		                    	</div>
+		                    	<div <%= arr.get(i).getShares().equals("group")?"id='groupUnitBtn_selected'":"id='groupUnitBtn'" %>>
+		                    		그룹
+		                    	</div>
+		                    </div>
+		                    <div id="groupList_div">그룹list</div>
+		                    <a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>" id="deleteUnitBtn_a">×</a>
+                		</div>
+	                	
+                    </li>
+                <%
+                }
+                %>
+                
+                </ul>
             </div>
         
         <div class="right-column">

@@ -8,6 +8,7 @@ html {
 body {
 	background: linear-gradient(#FFFDFE, #FFF6FA);
 	width: 100%;
+	height: 100%;
 	margin: 0 auto;
 	/*background-color: white;*/
 	padding-top: 20px;
@@ -1061,3 +1062,5 @@ footer div {
 .faq-item.active .answer {
 	max-height: 200px;
 }
+
+/* private.jsp */
