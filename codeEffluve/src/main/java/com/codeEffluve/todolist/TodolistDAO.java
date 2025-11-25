@@ -9,6 +9,76 @@ public class TodolistDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	//일정 그룹핑 해제 메서드
+	public int groopDelete(int t_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from sharedList where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	//일정 그룹 수정 메서드(그룹공개->그룹공개)
+	public int groopChange(int t_idx, int g_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from sharedList where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			ps.executeUpdate();
+			
+			sql="insert into sharedList values(?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			ps.setInt(2, g_idx);
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	//일정 그루핑 메서드
+	public int groopingTodolist(int t_idx, int g_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="insert into sharedList values(?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			ps.setInt(2, g_idx);
+			int count=ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	
 	//내 일정 추가 메서드
 	public int insertTodolist(TodolistDTO dto,String date) {
@@ -20,13 +90,20 @@ public class TodolistDAO {
 			ps.setString(2, dto.getContent());
 			ps.setString(3, date);
 			ps.setString(4, dto.getT_memo());
-			ps.setString(5, "private");
-
+			ps.setString(5, dto.getShares());
 			int count=ps.executeUpdate();
+			
+			sql="select t_idx from todolist idx order by t_idx desc";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt("t_idx");
+			}
+			
 			return count;
 		}catch(Exception e) {
 			e.printStackTrace();
-			return -1;
+			return 0;
 		}finally {
 			try {
 				if(ps!=null)ps.close();
@@ -67,14 +144,15 @@ public class TodolistDAO {
 		try {
 			conn=CodeEffluveDB.getConn();
 			String sql="update todolist "
-					+ "set content=?, t_memo=?, t_time=TO_DATE(?,'YYYY-MM-DD HH24:MI') "
+					+ "set content=?, t_memo=?, t_time=TO_DATE(?,'YYYY-MM-DD HH24:MI'), shares=? "
 					+ "where t_idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, dto.getContent());
 			ps.setString(2, dto.getT_memo());
 			ps.setString(3, date);
-			ps.setInt(4, dto.getT_idx());
-
+			ps.setString(4, dto.getShares());
+			ps.setInt(5, dto.getT_idx());
+			
 			int count=ps.executeUpdate();
 			return count;
 		}catch(Exception e) {
