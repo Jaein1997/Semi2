@@ -4,30 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/admin.css"> 
 </head>
-<style>
-#leftMenu {
-   float:left;
-   width:200px;
-   min-height:500px;
-   padding:20px;
-   border-right:1px solid #ccc;
-}
 
-#rightContent {
-   margin-left:220px;
-   padding:20px;
-   min-height:500px;
-}
-
-</style>
 <body>
+<div id="adminWrapper">
 
-<main>
 <!-- 왼쪽메뉴 -->
-<div id="leftMenu">
+<aside id="adminSidebar">
 <h2>관리자 메뉴</h2>
 <ul>
 	<li><a href="admin.jsp?menu=member">회원관리</a></li>
@@ -37,10 +23,10 @@
 	<li><a href="admin.jsp?menu=qa">자주묻는질문</a></li>
 	<li><a href="admin.jsp?menu=singo">불편사항</a></li>
 </ul>
-</div>
+</aside>
 
 <!-- 오른쪽내용 -->
-<div id="rightContent">
+<section id="adminContent">
 	<%
 	String menu= request.getParameter("menu");
 	if(menu == null) menu="member";
@@ -59,6 +45,7 @@
 	    %><%@ include file="singo.jsp" %><%
 	}
 	%>
+	</section>
 </div>
 
 </main>

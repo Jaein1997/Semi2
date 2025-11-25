@@ -17,7 +17,7 @@
 }
 </style>
 <h2 style="text-align:center;">자주 묻는 질문</h2>
-<table border="1" cellspacing="0" width="800px" style="margin:0 auto; text-align:center;">
+<table class = "adminTable">
     <tr>
         <th>질문 번호</th>
         <th>질문</th>
@@ -55,7 +55,7 @@
     }
 %>
 </table>
-<div style="width:800px; margin:10px auto; text-align:right;">
+<div style="width:100%; margin:10px auto; text-align:right;"> 
     <button onclick="openWritePopup()"
             style="padding:8px 14px; background-color:rgb(109, 16, 68); color:white; border:none; border-radius:8px; cursor:pointer;">
         글쓰기

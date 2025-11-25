@@ -101,7 +101,6 @@ String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF
 String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
-
 %>
 </head>
 <body>
