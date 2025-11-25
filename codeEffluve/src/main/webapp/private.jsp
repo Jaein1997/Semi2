@@ -4,7 +4,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
+<%@ page import="com.codeEffluve.groups.GroupsDTO" %>
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
+<jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -170,13 +172,17 @@ String currentTime = hour+":"+minute;
                             <option value="group">그룹공개</option>
                             <option value="public">전체공개</option>
                         	</select>
-                       		 <select id="group" name="group" disabled>
-                            <option>그룹선택</option>
-                            <option>그룹1</option>
-                            <option>그룹2</option>
-                            <option>그룹3</option>
-                            <option>그룹4</option>
-                            <option>그룹5</option>
+                       		 <select id="group" name="g_idx" disabled>
+                       		 <%
+                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+                       		 if(g_arr!=null){
+                       			 for(int i=0;i<g_arr.size();i++){
+                       			 %>
+                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
+                       			 <%
+                       			 }
+                       		 }
+                       		 %>
                         	</select>
                         	<input type="button" id="creategroup" value="그룹만들기" disabled>
                         <div class="form-buttons">
@@ -210,21 +216,71 @@ String currentTime = hour+":"+minute;
                             
                             <label>메모</label>
                             <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
-                            
                             <select id="range" name="shares">
-                            <option value="private">비공개</option>
+                            <%
+                            String option=arr.get(arr_idx).getShares();
+                            switch(option){
+                            case "private":%>
+                            <option value="private" selected>비공개</option>
                             <option value="group">그룹공개</option>
                             <option value="public">전체공개</option>
-                        	</select>
-                       		 <select id="group" name="group" disabled>
-                            <option>그룹선택</option>
-                            <option>그룹1</option>
-                            <option>그룹2</option>
-                            <option>그룹3</option>
-                            <option>그룹4</option>
-                            <option>그룹5</option>
+                            </select>
+                       		 <select id="group" name="g_idx" disabled>
+                       		 <%
+                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+                       		 if(g_arr!=null){
+                       			 for(int i=0;i<g_arr.size();i++){
+                       			 %>
+                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
+                       			 <%
+                       			 }
+                       		 }
+                       		 %>
                         	</select>
                         	<input type="button" id="creategroup" value="그룹만들기" disabled>
+                            <%break;
+                            case "group":%>
+                            <option value="private">비공개</option>
+                            <option value="group" selected>그룹공개</option>
+                            <option value="public">전체공개</option>
+                            </select>
+                       		 <select id="group" name="g_idx">
+                       		 <%
+                       			g_arr=gdao.myGroups(idx);
+                       		 if(g_arr!=null){
+                       			 for(int i=0;i<g_arr.size();i++){
+                       			 %>
+                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
+                       			 <%
+                       			 }
+                       		 }
+                       		 %>
+                        	</select>
+                        	<input type="button" id="creategroup" value="그룹만들기">
+                            <%break;
+                            case "public":%>
+                            <option value="private">비공개</option>
+                            <option value="group">그룹공개</option>
+                            <option value="public" selected>전체공개</option>
+                            </select>
+                       		 <select id="group" name="g_idx" disabled>
+                       		 <%
+                       		g_arr=gdao.myGroups(idx);
+                       		 if(g_arr!=null){
+                       			 for(int i=0;i<g_arr.size();i++){
+                       			 %>
+                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
+                       			 <%
+                       			 }
+                       		 }
+                       		 %>
+                        	</select>
+							<input type="button" id="creategroup" value="그룹만들기" disabled>
+                            <%break;
+                            }
+                            %>
+                        	
+                        	
                             <div>
                                 <input type="submit" value="수정하기">
                                 <input type="reset" value="초기화">
@@ -276,7 +332,7 @@ select.onchange=function(){
 	}
 }
 creategroup.onclick=function(){
-	window.open("group/creategroup.jsp","create","width=400px, height=500px");
+	window.open("group/creategroup.jsp?m_idx=<%=idx%>","create","width=400px, height=500px");
 }
 </script>
 </html>

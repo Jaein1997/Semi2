@@ -15,7 +15,7 @@ if(g_name==null){
 	%>
 	<script>
 	window.alert('그룹명 중복 없음');
-	opener.document.group.g_name.value='<%=g_name%>';
+	opener.document.creategroup.g_name.value='<%=g_name%>';
 	window.self.close();
 	</script>
 	<%
