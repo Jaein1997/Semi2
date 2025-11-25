@@ -21,7 +21,13 @@ if(tdtoLists!=null && tdtoLists.size()>0) {
 int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):defT_idx; // 선택한 todolist Parameter
 String sid = "";
 if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) {
-	
+	%>
+	<script>
+	window.alert("로그인 후 이용하실 수 있습니다.");
+	window.location.href="index.jsp";
+	</script>
+	<%
+	return;
 } else {
 	sid = (String)session.getAttribute("sid");
 }

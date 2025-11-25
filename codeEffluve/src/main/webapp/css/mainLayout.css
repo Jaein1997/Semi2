@@ -178,6 +178,10 @@ header a {
 	color: gray;
 }
 
+header div a {
+	height: 30px;
+}
+
 header nav a {
 	color: rgb(109, 16, 68);
 	font-weight: 500;
@@ -470,7 +474,7 @@ header nav a {
     border-radius: 15px;
 }
 
-#myPageEdit th, td {
+#myPageEdit th, #myPageEdit td {
 	padding: 10px; 
     border-bottom: 1px solid #AEAEAE;
 }
@@ -841,4 +845,219 @@ footer div {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	cursor: pointer;
+}
+
+/*********************************************/
+/* cs.jsp */
+#cs {
+	display: flex;
+	flex-direction: row;
+}
+
+.sub-menu {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #D8CDD2;
+}
+
+.sub-menu a {
+	width: block;
+	height: 45px;
+	background-color: #CFE9E7;
+	text-decoration : none;
+	color: #1E8A8A;
+	display: flex;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	align-items: center;
+	padding-left: 15px;
+	text-decoration: none;
+	border-bottom: 1px solid #1E8A8A;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.selectedSubmenu {
+	width: block;
+	height: 45px;
+	background-color: #1E8A8A !important;
+	text-decoration: none;
+	color: white !important;
+	display: flex;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	align-items: center;
+	padding-left: 15px;
+	border-bottom: 1px solid #1E8A8A;
+}
+
+.sub-menu a:hover {
+	background-color: #1E8A8A;
+	color: white;
+}
+
+.cs-main-content {
+	width: 80%;
+	padding: 20px 40px;
+	margin-left: 50px;
+}
+
+.cs-main-content h3 {
+	color: #333;
+	font-size: 1.8em;
+	margin-top: 0;
+	border-bottom: 2px solid #1E8A8A;
+	padding-bottom: 10px;
+}
+
+.cs-main-content p {
+	color: #555;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.contact-info {
+	background-color: #FAF7F9;
+	padding: 15px;
+	border-radius: 8px;
+	border: 1px solid #D8CDD2;
+}
+
+/* csProblem.jsp */
+.problem-form-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.problem-form-container table {
+	width: 100%;
+}
+
+.cs-main-content table {
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	border-spacing: 0px;
+	overflow: hidden;
+}
+
+.cs-main-content table th {
+	background-color: #FAF7F9;
+	border-bottom: 1px solid #D8CDD2;
+	border-right: 1px solid #D8CDD2;
+}
+
+.cs-main-content table input[type="text"] {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	border: 0px;
+	font-size: 15px;
+}
+.cs-main-content table td {
+	padding: 10px; 
+    border-bottom: 1px solid #D8CDD2;
+}
+
+.cs-main-content table tr:last-child td, .cs-main-content table tr:last-child th {
+	border-bottom: 0px;
+}
+
+
+.cs-main-content table input[type="text"]:focus, .cs-main-content table textarea:focus {
+	outline: none;
+}
+
+.problem-form-container select {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #D8CDD2;
+	border-radius: 6px;
+	box-sizing: border-box;
+	font-size: 15px;
+}
+
+.cs-main-content table textarea {
+	width: 100%;
+	height: 150px;
+	font-family: sans-serif;
+	font-size: 15px;
+	resize: none;
+	border: 0px;
+}
+
+.submit-area button[type="submit"] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+	width: 100px;
+	height: 45px;
+	border: 0px;
+	border-radius: 13px;
+	font-size: 16px;
+	margin: 20px auto;
+	padding-top: 0px !important;
+}
+
+/* csQA.jsp */
+.csQA {
+	display: flex;
+	flex-direction: row;
+}
+
+.qa-container {
+	width: 80%;
+}
+
+.faq-item {
+	margin-bottom: 10px;
+	border: 1px solid #D8CDD2;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.question {
+	background-color: #FAF7F9;
+	cursor: pointer;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background-color 0.3s;
+}
+
+.question span {
+	margin: 15px;
+}
+
+.question:hover {
+	background-color: #FAF7F9;
+}
+
+.answer {
+	background-color: white;
+	color: black; 
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.answer p {	
+	padding: 15px 15px;
+	border-top: 1px solid #D8CDD2;
+	margin: 0px;
+}
+
+.toggle-icon {
+	font-size: 1.2em;
+}
+
+.faq-item.active .answer {
+	max-height: 200px;
 }
