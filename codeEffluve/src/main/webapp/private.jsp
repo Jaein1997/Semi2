@@ -1,7 +1,9 @@
+<%@page import="java.security.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.Date" %>
+<%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -93,14 +95,10 @@ switch(day_n) {
 }
 
 Calendar nowTime = Calendar.getInstance();
-String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>10?nowTime.get(Calendar.HOUR_OF_DAY):"0"+nowTime.get(Calendar.HOUR_OF_DAY));
-String minute=""+(nowTime.get(Calendar.MINUTE)>10?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
+String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF_DAY):"0"+nowTime.get(Calendar.HOUR_OF_DAY));
+String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
-long time=today.getTimeInMillis();
-Date now=new Date(time);
-int idx=tdao.returnM_idx(id);
-// ArrayList arr=tdao.showTodolist(idx, now);
 %>
 </head>
 <body>
@@ -123,21 +121,24 @@ int idx=tdao.returnM_idx(id);
             
             <fieldset>
                 
-                <table>
+                <% 
+                String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
+                int idx=tdao.returnM_idx(id);
+                ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
+                for(int i=0;i<(arr==null?0:arr.size());i++){
+                	%>
+                	<table>
                     <tr>
-                    	<td rowspan="3">일정</td>
-                        <td rowspan="3">공개</td>
-                        <td rowspan="3">비공개</td>
+                    	<td><a href="private.jsp?arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a></td>
+                        <td><%= arr.get(i).getT_memo() %></td>
+                        <td>공개범위:<%= arr.get(i).getShares() %></td>
                         <td>그룹</td>
-                        <td rowspan="3">삭제</td>
-                    </tr>
-                    <tr>
-                        <td>그룹1</td>
-                    </tr>
-                    <tr>
-                        <td>그룹2</td>
+                        <td><a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>">삭제</a></td>
                     </tr>
                 </table>
+                <%
+                }%>
+                
             </fieldset>
             </div>
         
@@ -145,6 +146,7 @@ int idx=tdao.returnM_idx(id);
             
             <div class="add-schedule">
                 <fieldset>
+                <%if(request.getParameter("arr_idx")==null){ %>
                     <h3>일정 추가</h3>
                     <form name="newschedule" action="todolist/addschedule_ok.jsp">
                     	<input type="hidden" name="m_idx" value="<%=idx%>">
@@ -157,18 +159,79 @@ int idx=tdao.returnM_idx(id);
                  		<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
                         <input type="time" name="time" value="<%=currentTime%>"><br>
 
-                        <input type="checkbox">
-                        <label>하루 종일</label>
                         <br>
                         
                         <label>메모</label>
                         <textarea name="t_memo"></textarea><br>
                         
+                        <select id="range" name="shares">
+                            <option value="private">비공개</option>
+                            <option value="group">그룹공개</option>
+                            <option value="public">전체공개</option>
+                        	</select>
+                       		 <select id="group" name="group" disabled>
+                            <option>그룹선택</option>
+                            <option>그룹1</option>
+                            <option>그룹2</option>
+                            <option>그룹3</option>
+                            <option>그룹4</option>
+                            <option>그룹5</option>
+                        	</select>
+                        	<input type="button" id="creategroup" value="그룹만들기" disabled>
                         <div class="form-buttons">
                             <input type="submit" value="등록하기">
                             <input type="reset" value="초기화">
                         </div>
                     </form>
+                    <%}else{
+                    	
+                    	int arr_idx=Integer.parseInt(request.getParameter("arr_idx"));
+                    	year=arr.get(arr_idx).getT_time().getYear()+1900;
+                    	month=arr.get(arr_idx).getT_time().getMonth()+1;
+                    	date=arr.get(arr_idx).getT_time().getDate();
+                    	int hours=arr.get(arr_idx).getT_time().getHours();
+                    	int minutes=arr.get(arr_idx).getT_time().getMinutes();
+                    	currentTime=""+(hours<10?"0"+hours:hours)+":"+(minutes<10?"0"+minutes:minutes);
+                    	%>
+                    	<h3>일정 수정</h3>
+                        <form name="editschedule" action="todolist/editschedule_ok.jsp">
+                        	<input type="hidden" name="t_idx" value="<%=arr.get(arr_idx).getT_idx()%>">
+                            <label>일정 이름</label>
+                            <input type="text" name="content" value="<%=arr.get(arr_idx).getContent()%>"><br>
+                            
+                            <label>시작 날짜</label>
+                            <br>
+                            
+                     		<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+                            <input type="time" name="time" value="<%=currentTime%>"><br>
+
+                            <br>
+                            
+                            <label>메모</label>
+                            <textarea name="t_memo"><%=arr.get(arr_idx).getT_memo()%></textarea><br>
+                            
+                            <select id="range" name="shares">
+                            <option value="private">비공개</option>
+                            <option value="group">그룹공개</option>
+                            <option value="public">전체공개</option>
+                        	</select>
+                       		 <select id="group" name="group" disabled>
+                            <option>그룹선택</option>
+                            <option>그룹1</option>
+                            <option>그룹2</option>
+                            <option>그룹3</option>
+                            <option>그룹4</option>
+                            <option>그룹5</option>
+                        	</select>
+                        	<input type="button" id="creategroup" value="그룹만들기" disabled>
+                            <div>
+                                <input type="submit" value="수정하기">
+                                <input type="reset" value="초기화">
+                                <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
+                            </div>
+                        </form>
+                        <%
+                    }%>
                 </fieldset>
             </div>
             
@@ -196,6 +259,23 @@ calendar.onchange=function(){
     const month = parseInt(dateParts[1]); 
     const date = parseInt(dateParts[2]);
     window.location.href = "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
+}
+
+var select=document.getElementById("range");
+var group=document.getElementById("group");
+var creategroup=document.getElementById("creategroup");
+select.onchange=function(){
+	const selectedrange=select.value;
+	if(selectedrange==="group"){
+		group.removeAttribute('disabled');
+		creategroup.removeAttribute('disabled');
+	}else{
+		group.setAttribute('disabled','disabled');
+		creategroup.setAttribute('disabled','disabled');
+	}
+}
+creategroup.onclick=function(){
+	window.open("group/creategroup.jsp","create","width=400px, height=500px");
 }
 </script>
 </html>

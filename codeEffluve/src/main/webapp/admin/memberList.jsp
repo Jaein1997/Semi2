@@ -20,7 +20,7 @@
 </style>
 <section>
 <h2 style="text-align:center;">회원 관리</h2>
-<table border ="1" cellspacing="0" width="800px" style ="margin: 0px auto; text-align: center;">
+<table class = "adminTable">
 	<tr>
 	<th>번호</th>
 	<th>아이디</th>

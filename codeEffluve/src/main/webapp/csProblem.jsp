@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+   
+    Object loginCheck = session.getAttribute("sid"); 
+    
+    if (loginCheck == null) {
+    
+        String loginUrl = "/codeEffluve/members/logIn.jsp"; 
+        
+        out.println("<script>");
+        out.println("  alert('로그인이 필요한 서비스입니다.');");
+       
+        out.println("  window.open('" + loginUrl + "', 'loginWin', 'width=450,height=350,scrollbars=no');");
+        out.println("</script>");
+        
+        return; 
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,34 +24,7 @@
 <title>불편사항 접수</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
-    /* 서브 메뉴 스타일 (cs.jsp에서 사용했던 스타일을 여기에 복사해야 합니다) */
-    .sub-menu {
-        width: 1000px; 
-        margin: 0 auto;
-        padding-top: 10px;
-    }
-    .sub-menu table {
-        border-collapse: collapse;
-        width: 250px; 
-    }
-    .sub-menu td {
-        border: 1px solid #000;
-        padding: 8px 10px;
-        text-align: left;
-    }
-    .current-menu {
-        background-color: #FFFF99; 
-    }
-    .sub-menu a {
-        text-decoration: none;
-        color: #000;
-        display: block; 
-    }
-    .sub-menu a:hover td {
-        background-color: #f0f0f0; 
-    }
-    
-    /* 폼 스타일 */
+   
     .problem-form-container { width: 600px; margin: 30px auto; }
     .problem-form-container table { width: 100%; border-collapse: collapse; }
     .problem-form-container th, .problem-form-container td { 
@@ -74,15 +64,13 @@
             <h1>불편사항 접수 📝</h1>
             <p style="text-align: center; color: #555;">사용 중 불편했던 점을 상세히 알려주시면 빠르게 해결하겠습니다.</p>
             
-        
-
             <div class="problem-form-container">
                 <form action="csProblem_ok.jsp" method="post" name="problemForm">
                     <table>
                         <tr>
                             <th>작성자 ID</th>
                             <td>
-                                <% String sessionId = (String)session.getAttribute("sid"); %>
+                                <% String sessionId = (String)session.getAttribute("sid");%>
                                 <input type="text" name="writerId" value="<%= sessionId != null ? sessionId : "비회원" %>" readonly>
                             </td>
                         </tr>

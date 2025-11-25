@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+   
+    Object loginCheck = session.getAttribute("sid"); 
+    
+    if (loginCheck == null) {
+       
+        String loginUrl = "/codeEffluve/members/logIn.jsp"; 
+        
+        out.println("<script>");
+        out.println("  alert('로그인이 필요한 서비스입니다.');");
+     
+        out.println("  window.open('" + loginUrl + "', 'loginWin', 'width=450,height=350,scrollbars=no');");
+        out.println("</script>");
+        
+        return; 
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +24,7 @@
 <title>자주 묻는 질문 (FAQ)</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <style>
-    /* 서브 메뉴 스타일 (cs.jsp에서 사용했던 스타일을 여기에 복사해야 합니다) */
+   
     .sub-menu {
         width: 1000px; 
         margin: 0 auto;
@@ -34,7 +51,7 @@
         background-color: #f0f0f0; 
     }
     
-    /* FAQ 아코디언 스타일 */
+    
     .qa-container { width: 800px; margin: 30px auto; }
     .faq-item { margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
     .question { background-color: #f7f7f7; padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s; }
@@ -43,7 +60,8 @@
     .answer p { padding: 15px 0; margin: 0; border-top: 1px solid #eee; }
     .toggle-icon { font-size: 1.2em; transition: transform 0.4s; }
     .faq-item.active .toggle-icon { transform: rotate(45deg); }
-    .faq-item.active .answer { max-height: 200px; padding: 0 15px; }
+  
+    .faq-item.active .answer { max-height: 200px; padding: 15px; } 
 </style>
 </head>
 <body>
@@ -53,11 +71,8 @@
             <h1>자주 묻는 질문 (FAQ) 💡</h1>
             <p style="text-align: center; color: #555;">궁금한 점을 빠르고 정확하게 해결하세요.</p>
             
-        
-            
             <div class="qa-container">
                 
-                <%-- FAQ 항목 1 --%>
                 <div class="faq-item">
                     <div class="question">
                         <span>Q1. 회원 가입은 어떻게 하나요?</span>
@@ -68,7 +83,6 @@
                     </div>
                 </div>
 
-                <%-- FAQ 항목 2 --%>
                 <div class="faq-item">
                     <div class="question">
                         <span>Q2. 일정 공유는 어디까지 가능한가요?</span>
@@ -88,6 +102,7 @@
         document.querySelectorAll('.question').forEach(item => {
             item.addEventListener('click', event => {
                 const faqItem = item.closest('.faq-item');
+         
                 faqItem.classList.toggle('active');
             });
         });

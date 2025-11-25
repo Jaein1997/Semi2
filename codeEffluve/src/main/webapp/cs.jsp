@@ -83,12 +83,12 @@
                 <table>
                     <tr>
                         <td>
-                            <a href="csQA.jsp">자주 묻는 질문 (FAQ)</a>
+                            <a href="/codeEffluve/csQA.jsp">자주 묻는 질문 (FAQ)</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="csProblem.jsp">불편사항 접수</a>
+                            <a href="/codeEffluve/csProblem.jsp">불편사항 접수</a>
                         </td>
                     </tr>
                 </table>
