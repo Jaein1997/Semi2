@@ -16,7 +16,8 @@ public class GroupsDAO {
 			conn=CodeEffluveDB.getConn();
 			String sql="select a.g_idx, a.g_name "
 					+ "from group_info a, grouping b "
-					+ "where a.g_idx=b.g_idx and b.m_idx=?";
+					+ "where a.g_idx=b.g_idx and b.m_idx=? "
+					+ "order by a.g_idx";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_idx);
 			rs=ps.executeQuery();

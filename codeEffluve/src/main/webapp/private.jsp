@@ -1,12 +1,21 @@
-<%@page import="java.security.Timestamp"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.Date" %>
+    
+<%@ page import="com.codeEffluve.comments.CommentsDTO" %>
 <%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
 <%@ page import="com.codeEffluve.groups.GroupsDTO" %>
+
+
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
+<jsp:useBean id="cdao" class="com.codeEffluve.comments.CommentsDAO"></jsp:useBean>
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
 <jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,7 +108,7 @@ input[type="checkbox"] {
 #shares_div {
 	display: flex;
 	justify-content: center;
-	width: 25%;
+	width: 30%;
 	height: 100%;
 	align-items: center;
 }
@@ -141,6 +150,7 @@ input[type="checkbox"] {
 
 #deleteUnitBtn_a {
 	height: 100%;
+	width: 2%;
 	display: flex;
 	align-items: center;
 	padding-right: 15px;
@@ -236,27 +246,59 @@ String currentTime = hour+":"+minute;
                 <%
                 for(int i=0;i<(arr==null?0:arr.size());i++){
                 %>
+                <form action="todolist/editRangeofTodolist_ok.jsp">
                 	<li>
                 		<div class="myScheduleUnit">
-                			<input type="checkbox">
-                			<a href="private.jsp?arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a>
+                			<input type="checkbox" id="complete">
+                			<a href="private.jsp?t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a>
 		                    <span id="memo_span"><%= arr.get(i).getT_memo() %></span>
 		                    <div id="shares_div">
 		                    	<div <%= arr.get(i).getShares().equals("public")?"id='publicUnitBtn_selected'":"id='publicUnitBtn'" %>>
-		                    		공개
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=public&year=<%=year%>&month=<%=month%>&day=<%=date%>">공개</a>
 		                    	</div>
 		                    	<div <%= arr.get(i).getShares().equals("private")?"id='privateUnitBtn_selected'":"id='privateUnitBtn'" %>>
-		                    		비공개
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=private&year=<%=year%>&month=<%=month%>&day=<%=date%>">비공개</a>
 		                    	</div>
 		                    	<div <%= arr.get(i).getShares().equals("group")?"id='groupUnitBtn_selected'":"id='groupUnitBtn'" %>>
-		                    		그룹
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=group&year=<%=year%>&month=<%=month%>&day=<%=date%>">그룹</a>
 		                    	</div>
 		                    </div>
-		                    <div id="groupList_div">그룹list</div>
-		                    <a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>" id="deleteUnitBtn_a">×</a>
+		                    <% if(arr.get(i).getShares().equals("group")){
+		                    	%>
+		                    	<div id="groupList_div">
+			                    	<select select id="group" name="g_idx" multiple size="1">
+		                       		 <%
+		                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+		                       		 ArrayList<GroupsDTO> tgroup=tdao.groupsofTodolist(arr.get(i).getT_idx());
+		                       		 
+		                       		 if(g_arr!=null){
+		                       			 for(int j=0;j<g_arr.size();j++){
+											String selected="";
+											for(int k=0;k<(tgroup!=null?tgroup.size():0);k++){
+												if(g_arr.get(j).getG_idx()==tgroup.get(k).getG_idx()){
+													selected="selected";
+												}
+											}
+		                       			 %>
+		                       			 <option value="<%=g_arr.get(j).getG_idx()%>" <%=selected %>><%=g_arr.get(j).getG_name() %></option>
+		                       			 <%
+		                       			 }
+		                       		 }
+		                       		 %>
+		                        	</select>
+		                        	<input type="hidden" name="t_idx" value="<%=arr.get(i).getT_idx()%>">
+		                        	<input type="hidden" name="shares" value="group">
+		                        	<input type="submit" value="변경">
+		                    	</div>
+		                    	<%
+		                    }
+		                    
+		                    %>
+		                    <a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
                 		</div>
 	                	
                     </li>
+                </form>
                 <%
                 }
                 %>
@@ -291,20 +333,24 @@ String currentTime = hour+":"+minute;
                             <option value="group">그룹공개</option>
                             <option value="public">전체공개</option>
                         	</select>
-                       		 <select id="group" name="g_idx" disabled>
+                       		 <select id="group" name="g_idx" multiple size="1" disabled>
                        		 <%
-                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
-                       		 if(g_arr!=null){
-                       			 for(int i=0;i<g_arr.size();i++){
-                       			 %>
-                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
-                       			 <%
-                       			 }
-                       		 }
+                       		ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+                        		 
+                        		 if(g_arr!=null){
+                        			 for(int j=0;j<g_arr.size();j++){
+                        			 %>
+                        			 <option value="<%=g_arr.get(j).getG_idx()%>"><%=g_arr.get(j).getG_name() %></option>
+                        			 <%
+                        			 }
+                        		 }
                        		 %>
                         	</select>
                         	<input type="button" id="creategroup" value="그룹만들기" disabled>
                         <div class="form-buttons">
+                        	<input type="hidden" name="year" value="<%=year%>">
+                        	<input type="hidden" name="month" value="<%=month%>">
+                        	<input type="hidden" name="day" value="<%=date%>">
                             <input type="submit" value="등록하기">
                             <input type="reset" value="초기화">
                         </div>
@@ -338,19 +384,27 @@ String currentTime = hour+":"+minute;
                             <select id="range" name="shares">
                             <%
                             String option=arr.get(arr_idx).getShares();
+                            ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+                      		 ArrayList<GroupsDTO> tgroup=tdao.groupsofTodolist(arr.get(arr_idx).getT_idx());
                             switch(option){
                             case "private":%>
                             <option value="private" selected>비공개</option>
                             <option value="group">그룹공개</option>
                             <option value="public">전체공개</option>
                             </select>
-                       		 <select id="group" name="g_idx" disabled>
+                       		 <select id="group" name="g_idx" multiple size="1" disabled>
                        		 <%
-                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+                       		
                        		 if(g_arr!=null){
-                       			 for(int i=0;i<g_arr.size();i++){
+                       			 for(int j=0;j<g_arr.size();j++){
+									String selected="";
+									for(int k=0;k<(tgroup!=null?tgroup.size():0);k++){
+										if(g_arr.get(j).getG_idx()==tgroup.get(k).getG_idx()){
+											selected="selected";
+										}
+									}
                        			 %>
-                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
+                       			 <option value="<%=g_arr.get(j).getG_idx()%>" <%=selected %>><%=g_arr.get(j).getG_name() %></option>
                        			 <%
                        			 }
                        		 }
@@ -363,16 +417,22 @@ String currentTime = hour+":"+minute;
                             <option value="group" selected>그룹공개</option>
                             <option value="public">전체공개</option>
                             </select>
-                       		 <select id="group" name="g_idx">
+                       		 <select id="group" name="g_idx" multiple size="1">
                        		 <%
-                       			g_arr=gdao.myGroups(idx);
-                       		 if(g_arr!=null){
-                       			 for(int i=0;i<g_arr.size();i++){
-                       			 %>
-                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
-                       			 <%
-                       			 }
-                       		 }
+                       		 
+                        		 if(g_arr!=null){
+                        			 for(int j=0;j<g_arr.size();j++){
+ 									String selected="";
+ 									for(int k=0;k<(tgroup!=null?tgroup.size():0);k++){
+ 										if(g_arr.get(j).getG_idx()==tgroup.get(k).getG_idx()){
+ 											selected="selected";
+ 										}
+ 									}
+                        			 %>
+                        			 <option value="<%=g_arr.get(j).getG_idx()%>" <%=selected %>><%=g_arr.get(j).getG_name() %></option>
+                        			 <%
+                        			 }
+                        		 }
                        		 %>
                         	</select>
                         	<input type="button" id="creategroup" value="그룹만들기">
@@ -382,23 +442,30 @@ String currentTime = hour+":"+minute;
                             <option value="group">그룹공개</option>
                             <option value="public" selected>전체공개</option>
                             </select>
-                       		 <select id="group" name="g_idx" disabled>
+                       		 <select id="group" name="g_idx" multiple size="1" disabled>
                        		 <%
-                       		g_arr=gdao.myGroups(idx);
-                       		 if(g_arr!=null){
-                       			 for(int i=0;i<g_arr.size();i++){
-                       			 %>
-                       			 <option value="<%=g_arr.get(i).getG_idx()%>"><%=g_arr.get(i).getG_name() %></option>
-                       			 <%
-                       			 }
-                       		 }
+                        		 if(g_arr!=null){
+                        			 for(int j=0;j<g_arr.size();j++){
+ 									String selected="";
+ 									for(int k=0;k<(tgroup!=null?tgroup.size():0);k++){
+ 										if(g_arr.get(j).getG_idx()==tgroup.get(k).getG_idx()){
+ 											selected="selected";
+ 										}
+ 									}
+                        			 %>
+                        			 <option value="<%=g_arr.get(j).getG_idx()%>" <%=selected %>><%=g_arr.get(j).getG_name() %></option>
+                        			 <%
+                        			 }
+                        		 }
                        		 %>
                         	</select>
 							<input type="button" id="creategroup" value="그룹만들기" disabled>
                             <%break;
                             }
                             %>
-                        	
+                        	<input type="hidden" name="year" value="<%=year%>">
+                        	<input type="hidden" name="month" value="<%=month%>">
+                        	<input type="hidden" name="day" value="<%=date%>">
                         	
                             <div>
                                 <input type="submit" value="수정하기">
@@ -410,17 +477,67 @@ String currentTime = hour+":"+minute;
                     }%>
                 </fieldset>
             </div>
-            
-            <div class="comments">
-                <fieldset>
-                    <h3>댓글</h3>
-                    <div>
-                        <input type="text" placeholder="댓글 입력">
-                        <button>등록</button>
-                    </div>
-                </fieldset>
-            </div>
-            
+            <%
+            if(request.getParameter("t_idx")!=null){
+            %>
+            <article class="comments">
+				<h2>댓글</h2>
+				<div id="commentList">
+					<ul>
+					<%
+					int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):0;
+					ArrayList<CommentsDTO> cdtoLists =cdao.getComments(selectedT_idx);
+					if(cdtoLists==null || cdtoLists.size()==0) {
+						
+					} else {
+						SimpleDateFormat tf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+						for(CommentsDTO temp:cdtoLists) {
+							String profileStr = mdao.getProfilePath(temp.getM_idx());
+							String profilePath = request.getContextPath() + "/membersProfiles/" + profileStr;
+							id = mdao.getIdStr(temp.getM_idx());
+							String message = temp.getMessage();
+							Timestamp c_time = temp.getC_time();
+							String timeStr = (c_time != null) ? tf.format(c_time) : "";
+							
+							%>
+							
+								<li id="publicListCommentUnit">
+									<div id="profile_id_time">
+										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
+										<div style="display:flex; flex-direction:column">
+											<span id="commentId"><%=id%></span>
+											<span id="commentTime"><%=timeStr%></span>
+										</div>
+									</div>
+									<span id="commentMessage"><%=message%></span>
+								</li>
+							
+							
+							<%
+						}
+					}
+					%>
+					</ul>
+				</div>
+				
+				<!-- 댓글입력창 -->
+				
+				<div class="writeComment">
+					<form action="/codeEffluve/comments/writeComment_ok(private).jsp">
+						<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
+						<span>댓글</span>
+						<input type="text" name="message">
+						<input type="hidden" name="id" value="<%=id%>">
+						<input type="hidden" name="t_idx" value="<%=selectedT_idx%>">
+						<input type="hidden" name="year" value="<%=year%>">
+                       	<input type="hidden" name="month" value="<%=month%>">
+                        <input type="hidden" name="day" value="<%=date%>">
+						<input type="submit" value="작성">
+					</form>
+				</div>
+				
+			</article>
+            <%} %>
         </div>
 	</section>
 </main>
