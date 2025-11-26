@@ -4,11 +4,76 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 import com.codeEffluve.db.*;
+import com.codeEffluve.groups.GroupsDTO;
 
 public class TodolistDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	//일정이 공유된 그룹들 정보 리턴 메서드
+		public ArrayList<GroupsDTO> groupsofTodolist(int t_idx){
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql="select a.g_idx, a.g_name "
+						+ "from group_info a,sharedList b "
+						+ "where a.g_idx=b.g_idx and b.t_idx=? "
+						+ "order by a.g_idx";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, t_idx);
+				rs=ps.executeQuery();
+				
+				ArrayList<GroupsDTO> arr=new ArrayList();
+				while(rs.next()) {
+					GroupsDTO gdto=new GroupsDTO();
+					gdto.setG_idx(rs.getInt("g_idx"));
+					gdto.setG_name(rs.getString("g_name"));
+					arr.add(gdto);
+				}
+				
+				return arr;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				try {
+					ps.close();
+					conn.close();
+					rs.close();
+				}catch(Exception e2) {
+					
+				}
+			}
+		}
+	//공개범위 수정 메서드
+	public int rangeEdit(int t_idx, String range) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="update todolist "
+					+ "set shares=? "
+					+ "where t_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, range);
+			ps.setInt(2, t_idx);
+			int count=ps.executeUpdate();
+			if(range.equals("private")||range.equals("public")) {
+				sql="delete from sharedList where t_idx=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, t_idx);
+				ps.executeUpdate();
+			}
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)ps.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	//일정 그룹핑 해제 메서드
 	public int groopDelete(int t_idx) {
 		try {
