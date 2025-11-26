@@ -106,6 +106,16 @@
     font-size: 15px;
 }
 
+/* 테이블 프로필 이미지 크기 통일 */
+.table-profile-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;      /* 이미지가 딱 맞게 잘림 */
+    border-radius: 10px;    /* 살짝 둥글게 */
+    display: block;
+    margin: 0 auto;         /* 가운데 정렬 */
+}
+
 /* 짝수 줄 배경색 */
 .adminTable tr:nth-child(even) {
     background: #FAF7FA;

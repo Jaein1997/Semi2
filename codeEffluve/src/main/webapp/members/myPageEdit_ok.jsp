@@ -79,7 +79,6 @@ try {
     
    
     dto.setM_name(multi.getParameter("m_name"));
-    
    
     String sexParam = multi.getParameter("sex");
     if (sexParam == null || sexParam.isEmpty()) {
