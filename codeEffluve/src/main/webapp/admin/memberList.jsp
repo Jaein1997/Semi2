@@ -51,8 +51,7 @@
 		<td><%=dto.getBirthday()%></td>
 		<td><%=dto.getTel()%></td>
        <td>
-    <img src="/codeEffluve/membersProfiles/<%=dto.getM_profile()%>"
-         width="50" height="50" style="border-radius:50%;">
+    <img src="/codeEffluve/membersProfiles/<%=dto.getM_profile()%>" class ="table-profile-img">
 </td>
 
 		<td>

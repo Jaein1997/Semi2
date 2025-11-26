@@ -13,6 +13,13 @@ if(date!=null&&time!=null){
 	setTime=date+" "+time;
 }
 int result=tdao.editTodolist(tdto, setTime);
+String g_idx_s=request.getParameter("g_idx");
+if(g_idx_s!=null){
+	int g_idx=Integer.parseInt(g_idx_s);
+	int g_result=tdao.groopChange(tdto.getT_idx(), g_idx);	
+}else{
+	tdao.groopDelete(tdto.getT_idx());
+}
 if(result>0){
 	%>
 	<script>

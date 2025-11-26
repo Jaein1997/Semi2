@@ -11,7 +11,7 @@ String m_idx=request.getParameter("m_idx");
 %>
 <body>
 <h2>그룹 생성</h2>
-<form name="creategroup" action="creategroup_ok.jsp">
+<form name="creategroup" action="creategroup_ok.jsp"method = "post" enctype = "multipart/form-data">
 <fieldset>
 <legend>그룹정보입력</legend>
 <input type="hidden" name="m_idx" value="<%=m_idx%>">

@@ -12,8 +12,13 @@ String setTime="";
 if(date!=null&&time!=null){
 	setTime=date+" "+time;
 }
-int result=tdao.insertTodolist(tdto, setTime);
-if(result>0){
+int t_idx=tdao.insertTodolist(tdto, setTime);
+String g_idx_s=request.getParameter("g_idx");
+if(g_idx_s!=null){
+	int g_idx=Integer.parseInt(g_idx_s);
+	int g_result=tdao.groopingTodolist(t_idx, g_idx);	
+}
+if(t_idx>0){
 	%>
 	<script>
 	window.alert("일정이 등록되었습니다.");
