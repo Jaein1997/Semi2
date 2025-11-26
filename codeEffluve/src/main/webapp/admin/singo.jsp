@@ -60,5 +60,9 @@
       }
    }
 %>
+<<<<<<< Updated upstream
 </table>
    
+=======
+</table>
+>>>>>>> Stashed changes
