@@ -13,10 +13,7 @@
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
-<style>
 
-
-</style>
 <% 
 String id=(String)session.getAttribute("sid");
 if(id==null||id.equals("")){
@@ -92,6 +89,13 @@ String currentTime = hour+":"+minute;
 					<input type="date" id="calendar"
 						value="<%=year%>-<%=month < 10 ? "0" + month : month%>-<%=date < 10 ? "0" + date : date%>">
 				</div>
+				<div class="groupPageSwitch">
+					<select>
+						<option>그룹이름1</option>
+						<option>그룹이름2</option>
+						<option>그룹이름3</option>
+					</select>
+				</div>
 			</div>
 			<div class="groupMain">
 				<div class="groupSchedule">
@@ -104,13 +108,13 @@ String currentTime = hour+":"+minute;
 							<span class="groupScheduleUserID">thdus1821</span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"><span>학원가기</span><span>09:00</span>
+							<input type="checkbox"><span>학원가기</span><span>(09:00)</span>
 						</div>
 						<div class="groupComment">
 							<ul>
-								<li><span>thdus1821 : </span><span>ㅋㅋㅋ</span><span class="groupCommentTime">08:37</span>
+								<li><span>thdus1821 : </span><span class="groupCommentMessage">ㅋㅋㅋ</span><span class="groupCommentTime">08:37</span>
 								</li>
-								<li><span>thdus1821 : </span><span>ㅋㅋㅋㅋㅋ</span><span class="groupCommentTime">08:39</span>
+								<li><span>thdus1821 : </span><span class="groupCommentMessage">ㅋㅋㅋㅋㅋ</span><span class="groupCommentTime">08:39</span>
 								</li>
 							</ul>
 						</div>
@@ -122,13 +126,13 @@ String currentTime = hour+":"+minute;
 							<span class="groupScheduleUserID">thdus1821</span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"><span>운동하기</span><span>19:00</span>
+							<input type="checkbox"><span>운동하기</span><span>(19:00)</span>
 						</div>
 						<div class="groupComment">
 							<ul>
-								<li><span>thdus1821 : </span><span>힘들다</span><span class="groupCommentTime">08:40</span>
+								<li><span>thdus1821 : </span><span class="groupCommentMessage">힘들다</span><span class="groupCommentTime">08:40</span>
 								</li>
-								<li><span>thdus1821 : </span><span>가기싫다</span><span class="groupCommentTime">08:41</span>
+								<li><span>thdus1821 : </span><span class="groupCommentMessage">가기싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</span><span class="groupCommentTime">08:41</span>
 								</li>
 							</ul>
 						</div>
@@ -142,16 +146,24 @@ String currentTime = hour+":"+minute;
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span>그룹이름</span> <span>그룹소개말</span>
+							<span class="groupName">그룹이름1</span> <span>그룹소개말</span>
 						</div>
 
 					</div>
-
-					<ul>
-						<li>그룹장</li>
-						<li>그룹원1</li>
-						<li>그룹원2</li>
-					</ul>
+					<div class="groupingList">
+						<div class="groupingListTitle">
+							<span>그룹 멤버</span>
+						</div>
+						<div class="groupingListMembers">
+							<ul>
+								<li class="groupLeader">그룹장</li>
+								<li class="groupMember">그룹원1</li>
+								<li class="groupMember">그룹원2</li>
+							</ul>
+						</div>
+						
+					</div>
+					
 				</div>
 			</div>
 		</section>

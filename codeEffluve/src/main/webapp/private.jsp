@@ -124,6 +124,13 @@ input[type="checkbox"] {
 	background-color: #EEEEEE;
 }
 
+#shares_div a {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	text-decoration: none;
+	color: black;
+}
 #publicUnitBtn_selected, #publicUnitBtn:hover {
 	background-color: #7E9AD9 !important;
 	
