@@ -45,8 +45,8 @@
         <td><%=dto.getG_name()%></td>
         <td><%=dto.getG_memo()%></td>
         <td>
-            <img src="/codeEffluve/membersProfiles/<%=dto.getG_profile()%>" 
-                 class="profile-img" alt="profile">
+            <img src="/codeEffluve/membersProfiles/<%=dto.getG_profile()%>" class ="table-profile-img">
+              <!--    class="profile-img" alt="profile"> -->
         </td>
         <td><%=dto.getLeader()%></td>
         <td>
