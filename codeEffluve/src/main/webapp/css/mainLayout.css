@@ -1064,3 +1064,140 @@ footer div {
 }
 
 /* private.jsp */
+
+
+/* group. jsp */
+#groupPage {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.groupMain {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 20px;
+}
+
+.groupMain ul {
+	display: flex;
+	flex-direction: column;
+	padding-inline-start: 0px !important;
+	margin-top: 0px; margin-bottom: 0px;
+	margin-left: 15px;
+	gap: 5px;
+}
+.groupMain li {
+	list-style: none;
+}
+#groupPage .dateHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#groupPage .dateHeader a {
+	text-decoration: none;
+	color: #6D1044;
+}
+
+#groupPage input[type="date"] {
+	width: 140px; height: 30px;
+	font-size: 15px;
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 10px;
+}
+#groupPage .groupSchedule {
+	width: 60%;
+	background-color: #FAF7F9;
+	padding: 20px;
+}
+
+#groupPage .groupProfileArea {
+	width: 40%;
+}
+
+#groupPage #groupProfile {
+	width: 150px;
+	height: 150px;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+}
+
+.groupScheduleUserImg {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+}
+#groupPage #groupImgAndName {
+	display: flex;
+	flex-direction: row;
+}
+
+#groupPage input[type="checkbox"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+
+.schedule_left {
+	width: fit-content;
+    margin-right: auto;
+}
+
+.schedule_right {
+	width: fit-content;
+    margin-left: auto;
+}
+
+.groupScheduleUnit {
+	width: 450px;
+	border: 1px solid #1E8A8A;
+	background-color: #CFE9E7;
+	border-radius: 12px;
+	padding: 4px 4px;
+}
+
+.groupComment {
+	display: flex;
+	flex-direction: column;
+}
+.groupComment li {
+    position: relative;
+    padding-left: 24px;
+}
+.groupComment li::before {
+	content: "";
+	position: absolute;
+	left: 6px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 10px;
+	height: 10px;
+	background: url("/codeEffluve/img/arrow.png") no-repeat center;
+	background-size: contain;
+}
+
+.groupScheduleUser {
+	display: inline;
+	margin-left: 5px;
+	align-items: center;
+}
+
+.groupScheduleUserID {
+	margin: auto 0;
+	font-size: 12px;
+}
+.groupCommentTime {
+	position: absolute;
+	right: 5px;
+	top: 3px;
+	font-size: 13px;
+	color: #888888;
+}
