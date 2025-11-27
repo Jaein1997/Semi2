@@ -12,7 +12,7 @@ if(result>0){
 	%>
 	<script>
 	window.alert('가입완료');
-	opener.location.leload();
+	opener.location.reload();
 	window.self.close();
 	</script>
 	<%
@@ -20,7 +20,7 @@ if(result>0){
 	%>
 	<script>
 	window.alert('가입실패');
-	opener.location.leload();
+	opener.location.reload();
 	window.self.close();
 	</script>
 	<%
