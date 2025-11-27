@@ -28,11 +28,6 @@ public class MembersDAO {
 	
 	public int getMemberMidx(String id) {
 	    int m_idx = 0;
-	    
-	    
-	    Connection conn = null;
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
 
 	    String sql = "select m_idx from members where id = ?"; 
 	    
@@ -88,9 +83,9 @@ public class MembersDAO {
 			return ERROR;
 		} finally {
 			try {
-				if(conn!=null) conn.close();
-				if(ps!=null) ps.close();
 				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+				if(conn!=null) conn.close();
  			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -114,9 +109,9 @@ public class MembersDAO {
 			return ERROR;
 		} finally {
 			try {
-				if(conn!=null) conn.close();
-				if(ps!=null) ps.close();
 				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+				if(conn!=null) conn.close();
  			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -262,21 +257,17 @@ public class MembersDAO {
 	
 	public boolean checkPassword(int mIdx, String encryptedPwd) {
 	    boolean result = false;
-	   
-	    ResultSet tempRs = null;
-	    PreparedStatement tempPs = null;
-	    Connection tempConn = null;
 
 	    try {
-	        tempConn = com.codeEffluve.db.CodeEffluveDB.getConn();
+	        conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 	        
 	        String sql = "select pwd from members where m_idx=?";
-	        tempPs = tempConn.prepareStatement(sql);
-	        tempPs.setInt(1, mIdx);
-	        tempRs = tempPs.executeQuery();
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, mIdx);
+	        rs = ps.executeQuery();
 	        
-	        if (tempRs.next()) {
-	            String dbPwd = tempRs.getString("PWD");
+	        if (rs.next()) {
+	            String dbPwd = rs.getString("PWD");
 	            if (dbPwd.equals(encryptedPwd)) {
 	                result = true;
 	            }
@@ -285,9 +276,9 @@ public class MembersDAO {
 	        e.printStackTrace();
 	    } finally {
 	        try {
-	            if(tempRs!=null)tempRs.close();
-	            if(tempPs!=null)tempPs.close();
-	            if(tempConn!=null)tempConn.close();
+	        	if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+				if(conn!=null) conn.close();
 	        } catch (Exception e2) {
 	            e2.printStackTrace();
 	        }
