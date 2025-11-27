@@ -18,8 +18,12 @@ public class singoDAO {
     	
     	try {
     		conn=com.codeEffluve.db.CodeEffluveDB.getConn();
-    		String sql = "SELECT * FROM singo order by s_idx desc";
-    		
+    		String sql = 
+    			    "SELECT s.s_idx, s.m_idx, s.title, s.content, s.status, " +
+    			    	    "       s.s_date, m.id AS singoja " +
+    			    	    "FROM singo s " +
+    			    	    "JOIN members m ON s.m_idx = m.m_idx " +
+    			    	    "ORDER BY s.s_idx DESC";	
     		ps = conn.prepareStatement(sql);
     		rs = ps.executeQuery();
     		
@@ -30,7 +34,8 @@ public class singoDAO {
     					rs.getString("title"),
     					rs.getString("content"),
     					rs.getString("status"),
-    					rs.getDate("s_date")
+    					rs.getString("singoja"),
+    					rs.getDate("s_date")	
     					);
     			list.add(dto);
     		}

@@ -21,13 +21,11 @@ public class thatDAO {
 	    try {
 	    	conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 	    	 String sql =
-	    	            "SELECT c.c_idx, c.t_idx, c.m_idx, " +
-	    	            "       c.message, c.c_time, " +
-	    	            "       t.content, t.shares " +
-	    	            "FROM comments c " +
-	    	            "JOIN todolist t ON c.t_idx = t.t_idx " +
+	    	            "SELECT c.c_idx, c.t_idx, c.m_idx, m.id AS member_id, " +
+	    	            " c.message, c.c_time, t.content, t.shares " +
+	    	            "FROM comments c JOIN todolist t ON c.t_idx = t.t_idx " +
+	    	            "JOIN members m ON c.m_idx = m.m_idx " +
 	    	            "ORDER BY c.c_idx DESC";
-
 
 	        ps = conn.prepareStatement(sql);
 	        rs = ps.executeQuery();
@@ -37,6 +35,7 @@ public class thatDAO {
 	        			rs.getInt("c_idx"),
 	        			rs.getInt("t_idx"),
 	        			rs.getInt("m_idx"),
+	        			rs.getString("member_id"),
 	        			rs.getString("content"),
 	        			rs.getString("shares"),
 	        			rs.getString("message"),

@@ -20,7 +20,7 @@
 <table class = "adminTable">
 	<tr>
 		<th>일정번호</th>
-		<th>회원번호</th>
+		<th>회원아이디</th>
 		<th>일정</th>
 		<th>시간</th>
 		<th>일정메모</th>
@@ -43,7 +43,7 @@
 
 	    <tr>
 	        <td><%=dto.getT_idx()%></td>
-	        <td><%=dto.getM_idx()%></td>
+	        <td><%=dto.getMember_id()%></td>
 	        <td><%=dto.getContent()%></td>
 	        <td><%=dto.getT_time()%></td>
 	        <td><%=dto.getT_memo()%></td>

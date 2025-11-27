@@ -18,17 +18,23 @@ public class groupdelDAO {
         try {
             conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 
-            String sql = "SELECT * FROM group_info ORDER BY g_idx DESC";
+            String sql = 
+            		"SELECT g.g_idx, g.g_name, g.g_memo, g.g_profile, " +
+            		"		g.leader, m.id AS leader_id " +
+            		"FROM group_info g " +
+            		"JOIN members m ON g.leader = m.m_idx " +
+            		"ORDER BY g_idx DESC";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 groupdelDTO dto = new groupdelDTO(
                     rs.getInt("g_idx"),
+                    rs.getInt("leader"),
                     rs.getString("g_name"),
                     rs.getString("g_memo"),
                     rs.getString("g_profile"),
-                    rs.getInt("leader")
+                    rs.getString("leader_id")
                 );
                 arr.add(dto);
             }

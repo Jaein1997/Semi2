@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class daydelDTO {
 	private int t_idx, m_idx;
-	private String content,t_memo,shares;
+	private String member_id,content,t_memo,shares;
 	private Date t_time;
 	
 	public daydelDTO() {
@@ -25,6 +25,14 @@ public class daydelDTO {
 
 	public void setM_idx(int m_idx) {
 		this.m_idx = m_idx;
+	}
+	
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public String getContent() {
@@ -59,13 +67,17 @@ public class daydelDTO {
 		this.shares = shares;
 	}
 
-	public daydelDTO(int t_idx, int m_idx, String content, Date t_time, String t_memo, String shares) {
-		super();
-		this.t_idx = t_idx;
-		this.m_idx = m_idx;
-		this.content = content;
-		this.t_time = t_time;
-		this.t_memo = t_memo;
-		this.shares = shares;
-	}
+	
+	public daydelDTO(int t_idx, int m_idx, String member_id,
+            String content, Date t_time, String t_memo, String shares) {
+
+this.t_idx = t_idx;
+this.m_idx = m_idx;
+this.member_id = member_id;
+this.content = content;
+this.t_time = t_time;
+this.t_memo = t_memo;
+this.shares = shares;
+}
+
 }
