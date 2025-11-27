@@ -24,7 +24,7 @@
 	<main>
 		<section id="makeAccount">
 			<div>
-				<img src="http://localhost:9090/codeEffluve/img/leLogo1.png" alt="leLogo1" id="makeAccountLogo">
+				<img src="/codeEffluve/img/leLogo1.png" alt="leLogo1" id="makeAccountLogo">
 				<h1>회원가입</h1>
 			</div>
 			
@@ -37,24 +37,24 @@
 				  -->
 				<table>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="id"><input type="text" name="id" placeholder="아이디" required readonly><input type="button" value="중복확인" id="checkbtn"></td>
+						<td><img src="/codeEffluve/img/idIcon.png" alt="id"><input type="text" name="id" placeholder="아이디" required readonly><input type="button" value="중복확인" id="checkbtn"></td>
 					</tr>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/pwdIcon.png" alt="pwd"><input type="password" name="pwd" placeholder="비밀번호" required></td>
+						<td><img src="/codeEffluve/img/pwdIcon.png" alt="pwd"><input type="password" name="pwd" placeholder="비밀번호" required></td>
 					</tr>
 				</table>
 				<table>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/idIcon.png" alt="name"><input type="text" name="m_name" placeholder="이름" required></td>
+						<td><img src="/codeEffluve/img/idIcon.png" alt="name"><input type="text" name="m_name" placeholder="이름" required></td>
 					</tr>
 					<tr>
 						<td><input type="radio" name="sex" value="m" checked>남자<input type="radio" name="sex" value="f">여자<input type="radio" name="sex" value="n">선택안함</td>
 					</tr>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/birthdayIcon.png" alt="birthday">생년월일&nbsp;<input type="date" name="birthday" required></td>
+						<td><img src="/codeEffluve/img/birthdayIcon.png" alt="birthday">생년월일&nbsp;<input type="date" name="birthday" required></td>
 					</tr>
 					<tr>
-						<td><img src="http://localhost:9090/codeEffluve/img/telIcon.png" alt="tel"><input type="text" name="tel" placeholder="휴대전화번호" required></td>
+						<td><img src="/codeEffluve/img/telIcon.png" alt="tel"><input type="text" name="tel" placeholder="휴대전화번호" required></td>
 					</tr>
 					
 					

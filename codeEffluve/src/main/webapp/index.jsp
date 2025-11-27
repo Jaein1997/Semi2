@@ -37,18 +37,18 @@
 	</header>
 
 	<main style="background-color: transparent !important; border: 0px;">
-		<img src="http://localhost:9090/codeEffluve/img/leLogo2.png"
+		<img src="/codeEffluve/img/leLogo2.png"
 			alt="leLogo2" id="leLogo2">
 		<div class="indexMenu">
 			<a href="/codeEffluve/public.jsp"><img
-				src="http://localhost:9090/codeEffluve/img/internet.png"
+				src="/codeEffluve/img/internet.png"
 				alt="public" onmouseover="mouseOver();">공개 일정</a> <a
 				href="/codeEffluve/private.jsp"><img
-				src="http://localhost:9090/codeEffluve/img/profile.png"
+				src="/codeEffluve/img/profile.png"
 				alt="private">내 일정</a> <a href="/codeEffluve/group.jsp"><img
-				src="http://localhost:9090/codeEffluve/img/people.png" alt="group">그룹
+				src="/codeEffluve/img/people.png" alt="group">그룹
 				일정</a> <a href="/codeEffluve/cs.jsp"><img
-				src="http://localhost:9090/codeEffluve/img/headset.png" alt="cs">고객센터</a>
+				src="/codeEffluve/img/headset.png" alt="cs">고객센터</a>
 		</div>
 	</main>
 

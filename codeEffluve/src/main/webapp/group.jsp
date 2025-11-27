@@ -71,6 +71,11 @@ String currentTime = hour+":"+minute;
 
 int idx=tdao.returnM_idx(id);
 
+String g_idx_s=request.getParameter("g_idx");
+int g_idx=0;
+if(g_idx_s!=null){
+	g_idx=Integer.parseInt(g_idx_s);
+}
 %>
 </head>
 <body>
@@ -96,16 +101,16 @@ int idx=tdao.returnM_idx(id);
 				ArrayList<GroupsDTO> mygroups=gdao.myGroups(idx);
 				if(mygroups==null||mygroups.size()==0){
 					%>
-					<input type="button" value="그룹만들기">
+					<input type="button" id="creategroup" value="그룹만들기">
 					<%
 				}else{
 				%>
 					<select id="selectedgroup">
 					<% for(int i=0;i<mygroups.size();i++){%>
-						<option value="<%=mygroups.get(i).getG_idx()%>"><%=mygroups.get(i).getG_name() %></option>
+						<option value="<%=mygroups.get(i).getG_idx()%>" <%=g_idx==mygroups.get(i).getG_idx()?"selected":"" %>><%=mygroups.get(i).getG_name() %></option>
 					<%} %>
 					</select>
-					<input type="button" value="그룹만들기">
+					<input type="button" id="creategroup" value="그룹만들기">
 				<%
 				}
 				%>
@@ -155,12 +160,16 @@ int idx=tdao.returnM_idx(id);
 
 				<div class="groupProfileArea">
 					<%
-					String gprofilePath = request.getContextPath() + "/groupProfiles/" + "basic_group.jpg";
+					GroupsDTO selectedgroup=gdao.selectedGroup(g_idx);
+					
+					String gprofilePath = request.getContextPath() + "/groupProfiles/";
+					if(selectedgroup!=null){
+						gprofilePath+=selectedgroup.getG_profile()==null?"basic_group.jpg":selectedgroup.getG_profile();
 					%>
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span class="groupName">그룹이름1</span><span>그룹소개말</span>
+							<span class="groupName"></span><span><%=selectedgroup.getG_memo() %></span>
 						</div>
 
 					</div>
@@ -170,14 +179,16 @@ int idx=tdao.returnM_idx(id);
 						</div>
 						<div class="groupingListMembers">
 							<ul>
-								<li class="groupLeader">그룹장</li>
+								<li class="groupLeader">그룹장:<%=selectedgroup.getM_idx() %></li>
 								<li class="groupMember">그룹원1</li>
 								<li class="groupMember">그룹원2</li>
 							</ul>
 						</div>
 						
 					</div>
-					
+					<%}else{
+						
+					}%>
 				</div>
 			</div>
 		</section>
@@ -194,6 +205,15 @@ int idx=tdao.returnM_idx(id);
 		const date = parseInt(dateParts[2]);
 		window.location.href = "group.jsp?year=" + year + "&month=" + month
 				+ "&date=" + date;
+	}
+	
+	var selectedgroup=document.getElementById("selectedgroup")
+	selectedgroup.onchange=function(){
+	    window.location.href = "group.jsp?g_idx="+selectedgroup.value+"&year=<%=year%>"+"&month=<%=month%>"+"&date=<%=date%>";
+	}
+	var creategroup=document.getElementById("creategroup");
+	creategroup.onclick=function(){
+		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
 	}
 </script>
 </html>
