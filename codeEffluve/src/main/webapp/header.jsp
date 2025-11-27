@@ -24,7 +24,7 @@
 	%>
 		
 		
-		<a href="/codeEffluve/public.jsp" class="titleLogo"><img src="http://localhost:9090/codeEffluve/img/leLogo1.png" alt="leLogo1"><h1>Life Effluve</h1></a>
+		<a href="/codeEffluve/public.jsp" class="titleLogo"><img src="/codeEffluve/img/leLogo1.png" alt="leLogo1"><h1>Life Effluve</h1></a>
 
 	
 	<nav>

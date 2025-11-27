@@ -22,152 +22,7 @@
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
-<style>
-main {
-    margin: 0 auto;
-}
-.dateHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
 
-.dateHeader a {
-	text-decoration: none;
-	color: #6D1044;
-}
-
-input[type="date"] {
-	width: 140px; height: 30px;
-	font-size: 15px;
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 10px;
-}
-#schedule {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-}
-.myschedule {
-	width: 75%;
-	background-color: #FAF7F9;
-	padding: 15px;
-}
-
-.right-column {
-	width: 25%;
-}
-
-.myschedule ul {
-	display: flex;
-	flex-direction: column;
-	padding-inline-start: 0px !important;
-	gap: 15px;
-}
-
-.myschedule li {
-	list-style-type: none;
-	border: 1px solid #6D1044;
-	border-radius: 15px;
-	height: 40px;
-	background-color: white;
-	overflow: hidden;
-}
-
-.myScheduleUnit {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-
-input[type="checkbox"] {
-	accent-color: #1E8A8A;
-	margin-left: 15px;
-}
-#schedule_a {
-	display: flex;
-	width: 30%;
-	height: 100%;
-	align-items: center;
-	padding-left: 10px;
-	color: black;
-	font-size: 17px;
-	font-weight: 500;
-}
-#memo_span {
-	display: flex;
-	width: 20%;
-	height: 100%;
-	border-left: 1px solid #D8CDD2;
-	padding-left: 15px;
-	align-items: center;
-}
-#shares_div {
-	display: flex;
-	justify-content: center;
-	width: 30%;
-	height: 100%;
-	align-items: center;
-}
-
-#shares_div div {
-	width: 33%;
-	height: 100%;
-	display: flex;
-	border-left: 1px solid #D8CDD2;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	background-color: #EEEEEE;
-}
-
-#shares_div a {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	text-decoration: none;
-	color: black;
-}
-#publicUnitBtn_selected, #publicUnitBtn:hover {
-	background-color: #7E9AD9 !important;
-	
-}
-
-#privateUnitBtn_selected, #privateUnitBtn:hover {
-	background-color: #8FAF9A !important;
-}
-
-#groupUnitBtn_selected, #groupUnitBtn:hover {
-	background-color: #B79AD7 !important;
-}
-
-#groupList_div {
-	display: flex;
-	padding-left: 15px;
-	border-left: 1px solid #D8CDD2;
-	border-right: 1px solid #D8CDD2;
-	width: 20%;
-	height: 100%;
-	align-items: center;
-	background-color: white;
-}
-
-#deleteUnitBtn_a {
-	height: 100%;
-	width: 2%;
-	display: flex;
-	align-items: center;
-	padding-right: 15px;
-	padding-left: 15px;
-	color: #6D1044;
-	text-decoration: none;
-	background-color: white;
-}
-
-</style>
 <% 
 String id=(String)session.getAttribute("sid");
 if(id==null||id.equals("")){
@@ -231,12 +86,12 @@ String currentTime = hour+":"+minute;
     <div class="dateHeader">
         <h2>
             <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
-            <%=year %>년 <%=month %>월 <%=date %>일 <%=day %>요일
-            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
+            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
+            
+            <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+    		<button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
+        	<a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
         </h2>
-        <div>
-            <input type="date" id="calendar" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
-        </div>    
     </div>
     
     <section id="schedule">
@@ -578,6 +433,33 @@ String currentTime = hour+":"+minute;
 	<%@include file="footer.jsp" %>
 </body>
 <script>
+
+var calendar = document.getElementById("calendar");
+var calendarBtn = document.getElementById("calendarBtn");
+
+// 📅 버튼 클릭하면 브라우저 기본 날짜 선택창 띄우기
+calendarBtn.onclick = function() {
+    if (calendar.showPicker) {   // 크롬/엣지 등 최신 브라우저
+        calendar.showPicker();
+    } else {
+        // 혹시 showPicker 없으면 포커스만이라도
+        calendar.focus();
+    }
+};
+
+// 날짜 선택 후 페이지 이동
+calendar.onchange = function() {
+    const selectedDate = calendar.value;
+    if (!selectedDate) return;
+
+    const dateParts = selectedDate.split('-');
+    const year = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10);
+    const date = parseInt(dateParts[2], 10);
+    window.location.href =
+        "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
+};
+/*
 var calendar=document.getElementById("calendar")
 calendar.onchange=function(){
     const selectedDate = calendar.value; 
@@ -587,6 +469,7 @@ calendar.onchange=function(){
     const date = parseInt(dateParts[2]);
     window.location.href = "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
 }
+*/
 
 var select=document.getElementById("range");
 var group=document.getElementById("group");
