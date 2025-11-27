@@ -69,6 +69,8 @@ String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF
 String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
+int idx=tdao.returnM_idx(id);
+
 %>
 </head>
 <body>
@@ -77,24 +79,36 @@ String currentTime = hour+":"+minute;
 		<section id="groupPage">
 			<div class="dateHeader">
 				<h2>
-					<a
-						href="private.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=이전날">◀</a>
+					<a href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=이전날">◀</a>
 					<%=year%>년
 					<%=month%>월
 					<%=date%>일
 					<%=day%>요일 <a
-						href="private.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=다음날">▶</a>
+						href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=다음날">▶</a>
 				</h2>
 				<div>
 					<input type="date" id="calendar"
 						value="<%=year%>-<%=month < 10 ? "0" + month : month%>-<%=date < 10 ? "0" + date : date%>">
 				</div>
+				
 				<div class="groupPageSwitch">
-					<select>
-						<option>그룹이름1</option>
-						<option>그룹이름2</option>
-						<option>그룹이름3</option>
+				<%
+				ArrayList<GroupsDTO> mygroups=gdao.myGroups(idx);
+				if(mygroups==null||mygroups.size()==0){
+					%>
+					<input type="button" value="그룹만들기">
+					<%
+				}else{
+				%>
+					<select id="selectedgroup">
+					<% for(int i=0;i<mygroups.size();i++){%>
+						<option value="<%=mygroups.get(i).getG_idx()%>"><%=mygroups.get(i).getG_name() %></option>
+					<%} %>
 					</select>
+					<input type="button" value="그룹만들기">
+				<%
+				}
+				%>
 				</div>
 			</div>
 			<div class="groupMain">
@@ -146,7 +160,7 @@ String currentTime = hour+":"+minute;
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span class="groupName">그룹이름1</span> <span>그룹소개말</span>
+							<span class="groupName">그룹이름1</span><span>그룹소개말</span>
 						</div>
 
 					</div>
