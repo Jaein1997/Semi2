@@ -1066,23 +1066,63 @@ footer div {
 /* private.jsp */
 .dateHeader {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
 .dateHeader a {
 	text-decoration: none;
-	color: #6D1044;
+	color: #1E8A8A;
+	margin: 5px;
 }
 
-input[type="date"] {
-	width: 140px; height: 30px;
-	font-size: 15px;
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 10px;
+.dateHeader h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 30px;
+	gap: 1px;
 }
+.dateHeader img {
+	padding-top: 2px;
+	width: 29px;
+	height: 29px;
+}/*
+.calendar-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+*/
+.calendar-input {
+    width: 1px;
+    height: 1px;
+    opacity: 0;      /* 완전히 투명 */
+    border: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none; /* 클릭은 버튼으로만 */
+}
+
+/* 실제로 보이는 버튼 */
+.calendar-btn {
+    margin-left: 2px;
+    
+    width: 30px;
+    height: 30px;
+    display: inline;
+    background-color: white;
+	border: 0px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
 #schedule {
     display: flex;
     gap: 20px;
