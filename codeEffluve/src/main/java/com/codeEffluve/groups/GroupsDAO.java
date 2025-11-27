@@ -10,6 +10,38 @@ public class GroupsDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	//그룹 정보 조회 메서드
+	public GroupsDTO selectedGroup(int g_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="select * from group_info where g_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, g_idx);
+			rs=ps.executeQuery();
+			
+			GroupsDTO gdto=new GroupsDTO();
+			if(rs.next()) {
+				gdto.setG_idx(g_idx);
+				gdto.setG_name(rs.getString("g_name"));
+				gdto.setG_memo(rs.getString("g_memo"));
+				gdto.setG_profile(rs.getString("g_profile"));
+				gdto.setM_idx(rs.getInt("leader"));
+			}
+			return gdto;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	//본인 그룹 조회 메서드
 	public ArrayList<GroupsDTO> myGroups(int m_idx){
 		try {
