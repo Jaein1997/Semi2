@@ -801,7 +801,7 @@ footer div {
 	align-items: center;
 }
 
-.writeComment form span {
+#public .writeComment form span {
 	display: flex;
 	box-sizing: border-box;
 	width: 50px;
@@ -1069,6 +1069,7 @@ footer div {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .dateHeader a {
@@ -1084,6 +1085,8 @@ footer div {
 	text-align: center;
 	font-size: 30px;
 	gap: 1px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
 }
 .dateHeader img {
 	padding-top: 2px;
@@ -1125,24 +1128,45 @@ footer div {
 
 #schedule {
     display: flex;
-    gap: 20px;
     justify-content: space-between;
 }
-.myschedule {
+
+.left-column {
 	width: 60%;
+	padding-right: 20px;
+	border-right: 1px solid #D8CDD2;
+}
+.myschedule {
+	width: 100%;
+	height: 450px;
+	box-sizing: border-box;
 	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
 	padding: 15px;
+	overflow-y: auto;
+	scrollbar-width: none;
 }
 
 .right-column {
 	width: 40%;
+	height: 530px;
+	box-sizing: border-box;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	overflow: hidden;
+	margin-left: 20px;
+	display: flex;
+    flex-direction: column;
 }
+
 
 .myschedule ul {
 	display: flex;
 	flex-direction: column;
 	padding-inline-start: 0px !important;
-	gap: 15px;
+	gap: 20px;
 }
 
 .myschedule li {
@@ -1199,7 +1223,7 @@ input[type="checkbox"] {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	background-color: #EEEEEE;
+	background-color: #F9F9F9;
 }
 
 #shares_div a {
@@ -1224,24 +1248,52 @@ input[type="checkbox"] {
 
 .groupList_div_disabled {
 	display: flex;
-	padding-left: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
 	border-left: 1px solid #D8CDD2;
 	border-right: 1px solid #D8CDD2;
 	width: 20%;
 	height: 100%;
 	align-items: center;
-	background-color: #EEEEEE;
+	background-color: #F9F9F9;
 }
 
 .groupList_div {
 	display: flex;
-	padding-left: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
 	border-left: 1px solid #D8CDD2;
 	border-right: 1px solid #D8CDD2;
 	width: 20%;
 	height: 100%;
 	align-items: center;
 	background-color: #D6CAE4;
+}
+
+.groupList_div #group {
+	width: 100px;
+ 	box-sizing: border-box;
+	background-color: #D6CAE4;
+	border: 1px solid #B79AD7;
+	border-radius: 8px;
+	padding: 3px;
+	margin-right: 5px;
+	white-space: nowrap;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.groupList_div_disabled #group {
+	width: 100px;
+ 	box-sizing: border-box;
+	background-color: #EEEEEE;
+	border: 1px solid #DDDDDD;
+	border-radius: 8px;
+	padding: 3px;
+	margin-right: 5px;
+	white-space: nowrap;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #deleteUnitBtn_a {
@@ -1256,10 +1308,277 @@ input[type="checkbox"] {
 	background-color: white;
 }
 
+.right-column .h3Div {
+	display: flex;
+	flex-direction: rox;
+	justify-content: space-between;
+    background-color: #FAF7F9;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #D8CDD2;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
+.right-column h3 {
+    margin: 0px;
+}
 
+.right-column .h3Div input[type="submit"], 
+.right-column .h3Div input[type="reset"],
+.right-column .h3Div input[type="button"] {
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
+.add-schedule {
+	display: block;
+	width: 100%;
+	background-color: white;
+	flex: 0 0 auto;
+}
 
+.scheduleAddTable {
+	border-spacing: 0px;
+	width: 100%;
+}
+.scheduleAddTable th {
+	background-color: #FAF7F9;
+	width: 85px;
+	font-weight: 500;
+	text-align: right;
+	padding: 5px;
+	border-right: 1px solid #D8CDD2;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+.scheduleAddTable td {
+	background-color: white;
+	text-align: left;
+	padding: 5px;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+.scheduleAddTable td input[type="text"] {
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	font-size: 16px;
+}
+.scheduleAddTable td input[type="text"]:focus {
+	outline: none;
+}
+.scheduleAddTable td textarea {
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	font-size: 16px;
+	font-family: sans-serif;
+	resize: none;
+}
+.scheduleAddTable td textarea:focus {
+	outline: none;
+}
+
+.scheduleAddTable td input[type="date"] {
+	flex: 1 1 0;
+	height: 100%;
+	font-size: 16px;
+	border: 0px;
+	font-family: sans-serif;
+	border-right: 1px solid #D8CDD2;
+	padding-right: 10px;
+}
+.scheduleAddTable td input[type="time"] {
+	flex: 1 1 0;
+	height: 100%;
+	font-size: 16px;
+	border: 0px;
+	font-family: sans-serif;
+	padding-left: 10px;
+}
+
+.scheduleAddTable td input[type="radio"] {
+	accent-color: #1E8A8A;
+}
+
+.scheduleAddTable #group {
+	margin-left: 5px;
+	display: flex;
+	width: 100px;
+	height: 25px;
+	box-sizing: border-box;
+	border:	1px solid #1E8A8A;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+#creategroup {
+	display: flex;
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	cursor: pointer;
+}
+
+#schedule #privateListCommentUnit {
+  	list-style: none !important;
+  	border-bottom: 1px solid #D8CDD2;
+  	padding: 8px 7px;
+}
+
+#schedule .comments ul li:last-child {
+	border-bottom: 0px;
+}
+#schedule .comments ul {
+	margin-block-end: 0px;
+	margin-block-start: 0px;
+	padding-inline-start:0px;
+}
+
+#schedule .comments h3 {
+	flex: 0 0 40px;
+    margin: 0px;
+    background-color: #FAF7F9;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #D8CDD2;
+    border-bottom: 1px solid #D8CDD2;
+}
+
+#schedule .comments {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;   /* right-column 남는 높이 전부 차지 */
+    min-height: 0;
+}
+#schedule #commentProfile {
+	width: 25px;
+	height: 25px;	
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+	margin-right: 5px; 
+	margin-left: 5px;
+}
+
+#schedule #profile_id_time {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#schedule #commentId {
+	font-weight: 500;
+	font-size: 14px;
+	align-self: flex-start;
+}
+
+.commentRow {
+    display: flex;
+    align-items: flex-end;   /* 시간 위쪽에 맞추고 싶으면 */
+}
+
+#schedule #commentTime {
+    flex: 0 0 auto;           /* ← 더 이상 늘어나지 않게 */
+    margin-left: 8px;
+    color: #888888;
+    font-size: 12px;
+    white-space: nowrap;      /* 시간은 한 줄 유지 */
+}
+
+#schedule #commentMessage {
+    flex: 1 1 auto;           /* ← 왼쪽이 쭉 늘어나는 애 */
+    margin-left: 40px;        /* 지금 쓰던 들여쓰기 유지 */
+    margin-right: 8px;
+    padding: 0;
+    font-size: 15px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+#schedule #commentList {
+	flex: 1 1 auto;
+	overflow-y: auto;
+	scrollbar-width: none;
+    min-height: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#schedule .writeComment {
+	background-color: #FAF7F9;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	box-shadow: 0px -3px 15px #E7E1E4;
+	/*border-top: 1px solid #D8CDD2;*/
+	margin-bottom: 0px;
+	margin-top: auto; 	
+    padding: 7px 7px;
+}
+#schedule .writeComment form  {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#schedule .writeComment form span {
+	padding-right: 0px;
+	color: #1E8A8A;
+	font-weight: 600;
+	font-size: 16px;
+	padding-bottom: 2px;
+	padding-right: 7px;
+}
+
+#schedule .writeComment input[type="text"] {
+	display: flex;
+	box-sizing: border-box;
+	border: 1px solid #1E8A8A;
+	border-radius: 5px;
+	width: 75%;
+	height: 28px;
+	font-size: 15px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+#schedule .writeComment input[type="text"]:focus {
+	outline: none;
+}
+
+#schedule .writeComment input[type="submit"] {
+	display: flex;
+	box-sizing: border-box;
+	border: 1px solid #1E8A8A;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	background-color: #1E8A8A;
+	color: white;
+	width: 50px;
+	height: 28px;
+	font-size: 14px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	cursor: pointer;
+}
 
 
 
