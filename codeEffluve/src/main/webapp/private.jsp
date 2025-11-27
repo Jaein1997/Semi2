@@ -51,13 +51,13 @@ input[type="date"] {
     justify-content: space-between;
 }
 .myschedule {
-	width: 60%;
+	width: 75%;
 	background-color: #FAF7F9;
 	padding: 15px;
 }
 
 .right-column {
-	width: 40%;
+	width: 25%;
 }
 
 .myschedule ul {

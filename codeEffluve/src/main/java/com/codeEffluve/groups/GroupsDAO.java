@@ -14,7 +14,7 @@ public class GroupsDAO {
 	public ArrayList<GroupsDTO> myGroups(int m_idx){
 		try {
 			conn=CodeEffluveDB.getConn();
-			String sql="select a.g_idx, a.g_name "
+			String sql="select a.* "
 					+ "from group_info a, grouping b "
 					+ "where a.g_idx=b.g_idx and b.m_idx=? "
 					+ "order by a.g_idx";
@@ -27,6 +27,9 @@ public class GroupsDAO {
 				GroupsDTO gdto=new GroupsDTO();
 				gdto.setG_idx(rs.getInt("g_idx"));
 				gdto.setG_name(rs.getString("g_name"));
+				gdto.setG_memo(rs.getString("g_memo"));
+				gdto.setG_profile(rs.getString("g_profile"));
+				gdto.setM_idx(rs.getInt("leader"));
 				arr.add(gdto);
 			}
 			
