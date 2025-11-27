@@ -1064,6 +1064,181 @@ footer div {
 }
 
 /* private.jsp */
+.dateHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dateHeader a {
+	text-decoration: none;
+	color: #6D1044;
+}
+
+input[type="date"] {
+	width: 140px; height: 30px;
+	font-size: 15px;
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 10px;
+}
+#schedule {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.myschedule {
+	width: 60%;
+	background-color: #FAF7F9;
+	padding: 15px;
+}
+
+.right-column {
+	width: 40%;
+}
+
+.myschedule ul {
+	display: flex;
+	flex-direction: column;
+	padding-inline-start: 0px !important;
+	gap: 15px;
+}
+
+.myschedule li {
+	list-style-type: none;
+	border: 1px solid #6D1044;
+	border-radius: 15px;
+	height: 40px;
+	background-color: white;
+	overflow: hidden;
+}
+
+.myScheduleUnit {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+input[type="checkbox"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+#schedule_a {
+	display: flex;
+	width: 30%;
+	height: 100%;
+	align-items: center;
+	padding-left: 10px;
+	color: black;
+	font-size: 17px;
+	font-weight: 500;
+}
+#memo_span {
+	display: flex;
+	width: 20%;
+	height: 100%;
+	border-left: 1px solid #D8CDD2;
+	padding-left: 15px;
+	align-items: center;
+}
+#shares_div {
+	display: flex;
+	justify-content: center;
+	width: 25%;
+	height: 100%;
+	align-items: center;
+}
+
+#shares_div div {
+	width: 33%;
+	height: 100%;
+	display: flex;
+	border-left: 1px solid #D8CDD2;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: #EEEEEE;
+}
+
+#shares_div a {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	text-decoration: none;
+	color: black;
+}
+#publicUnitBtn_selected, #publicUnitBtn:hover {
+	background-color: #7E9AD9 !important;
+	
+}
+
+#privateUnitBtn_selected, #privateUnitBtn:hover {
+	background-color: #8FAF9A !important;
+}
+
+#groupUnitBtn_selected, #groupUnitBtn:hover {
+	background-color: #B79AD7 !important;
+}
+
+.groupList_div_disabled {
+	display: flex;
+	padding-left: 15px;
+	border-left: 1px solid #D8CDD2;
+	border-right: 1px solid #D8CDD2;
+	width: 20%;
+	height: 100%;
+	align-items: center;
+	background-color: #EEEEEE;
+}
+
+.groupList_div {
+	display: flex;
+	padding-left: 15px;
+	border-left: 1px solid #D8CDD2;
+	border-right: 1px solid #D8CDD2;
+	width: 20%;
+	height: 100%;
+	align-items: center;
+	background-color: #D6CAE4;
+}
+
+#deleteUnitBtn_a {
+	height: 100%;
+	width: 2%;
+	display: flex;
+	align-items: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	color: #6D1044;
+	text-decoration: none;
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* group. jsp */

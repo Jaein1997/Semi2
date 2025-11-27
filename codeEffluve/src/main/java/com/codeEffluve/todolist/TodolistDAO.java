@@ -36,9 +36,9 @@ public class TodolistDAO {
 				return null;
 			}finally {
 				try {
-					ps.close();
-					conn.close();
-					rs.close();
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
 				}catch(Exception e2) {
 					
 				}
@@ -171,8 +171,9 @@ public class TodolistDAO {
 			return 0;
 		}finally {
 			try {
+				if(rs!=null)rs.close();
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
