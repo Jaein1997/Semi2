@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class groupdelDTO {
 	private int g_idx, leader;
-	private String g_name,g_memo,g_profile;
+	private String g_name,g_memo,g_profile, leader_id;
 	
 	public groupdelDTO() {
 		
@@ -49,14 +49,24 @@ public class groupdelDTO {
 	public void setLeader(int leader) {
 		this.leader = leader;
 	}
+	
+	public String getLeader_id() {
+		return leader_id;
+	}
 
-	public groupdelDTO(int g_idx, String g_name, String g_memo, String g_profile, int leader) {
+	public void setLeader_id(String leader_id) {
+		this.leader_id = leader_id;
+	}
+
+	
+	
+	public groupdelDTO(int g_idx, int leader, String g_name, String g_memo, String g_profile, String leader_id) {
 		super();
 		this.g_idx = g_idx;
+		this.leader = leader;
 		this.g_name = g_name;
 		this.g_memo = g_memo;
 		this.g_profile = g_profile;
-		this.leader = leader;
+		this.leader_id = leader_id;
 	}
-	
 }

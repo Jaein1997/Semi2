@@ -19,7 +19,7 @@
 <table class = "adminTable">
    <tr>
       <th>불편사항번호</th>
-      <th>회원번호</th>
+      <th>회원아이디</th>
       <th>제목</th>
       <th>내용</th>
       <th>작성 시간</th>
@@ -41,7 +41,7 @@
 
    <tr>
       <td><%=dto.getS_idx()%></td>
-      <td><%=dto.getM_idx() %></td>
+      <td><%=dto.getSingoja()%></td>
       <td><%=dto.getTitle() %></td>
       <td><%=dto.getContent()%></td>
       <td><%=dto.getS_date() %></td>
@@ -60,9 +60,4 @@
       }
    }
 %>
-<<<<<<< Updated upstream
 </table>
-   
-=======
-</table>
->>>>>>> Stashed changes

@@ -19,7 +19,10 @@ public class daydelDAO {
 	    	
 	    	try {
 	    		conn = com.codeEffluve.db.CodeEffluveDB.getConn();
-	    		String sql = "SELECT * FROM todolist order by t_idx desc";
+	    		String sql ="SELECT t.t_idx, t.m_idx, m.id AS member_id, t.content, t.t_time, t.t_memo, t.shares " +
+	    	            "FROM todolist t " +
+	    	            "JOIN members m ON t.m_idx = m.m_idx " +
+	    	            "ORDER BY t.t_idx DESC";
 	    		ps = conn.prepareStatement(sql);
 	    		rs = ps.executeQuery();
 	    		
@@ -27,11 +30,13 @@ public class daydelDAO {
 	    			daydelDTO dto = new daydelDTO(
 	    					rs.getInt("t_idx"),
 	    					rs.getInt("m_idx"),
+	    					rs.getString("member_id"),
 	    					rs.getString("content"),
 	    					rs.getDate("t_time"),
 	    					rs.getString("t_memo"),
 	    					rs.getString("shares")
 	    					);
+	    					
 	    			arr.add(dto);
 	    		}
 	    		return arr;

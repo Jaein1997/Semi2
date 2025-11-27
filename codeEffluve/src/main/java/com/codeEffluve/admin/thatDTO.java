@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class thatDTO {
 	private int c_idx, t_idx, m_idx;
-	private String content,shares,message;
+	private String member_id, content,shares,message;
 	private Date c_time;
 	
 	public thatDTO() {
@@ -33,6 +33,14 @@ public class thatDTO {
 
 	public void setM_idx(int m_idx) {
 		this.m_idx = m_idx;
+	}
+	
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public String getContent() {
@@ -67,12 +75,15 @@ public class thatDTO {
 		this.c_time = c_time;
 	}
 
-	public thatDTO(int c_idx, int t_idx, int m_idx, String content, String shares, String message,
-			 Date c_time) {
+	
+	
+	public thatDTO(int c_idx, int t_idx, int m_idx, String member_id, String content, String shares, String message,
+			Date c_time) {
 		super();
 		this.c_idx = c_idx;
 		this.t_idx = t_idx;
 		this.m_idx = m_idx;
+		this.member_id = member_id;
 		this.content = content;
 		this.shares = shares;
 		this.message = message;

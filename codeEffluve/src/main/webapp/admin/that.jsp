@@ -21,10 +21,9 @@
 <table class = "adminTable">
     <tr>
         <th>댓글번호</th>
-        <th>댓글내용</th>
         <th>댓글작성자</th>
+        <th>댓글내용</th>
         <th>댓글작성 시간</th>
-        <th>원글번호</th>
         <th>원글제목</th>
         <th>공개범위</th>
         <th>삭제</th>
@@ -36,7 +35,7 @@
     if(arr == null || arr.size() == 0){
 %>
     <tr>
-        <td colspan="8">등록된 댓글이 없습니다.</td>
+        <td colspan="7">등록된 댓글이 없습니다.</td>
     </tr>
 <%
     } else {
@@ -45,10 +44,9 @@
 
 	<tr>
 		<td><%=dto.getC_idx() %></td>
+		<td><%=dto.getMember_id() %></td>
 		<td><%=dto.getMessage() %></td>
-		<td><%=dto.getM_idx() %></td>
 		<td><%=dto.getC_time() %></td>
-		<td><%=dto.getT_idx() %></td>
 		<td><%=dto.getContent() %></td>
 		<td><%=dto.getShares() %></td>
 	<td>

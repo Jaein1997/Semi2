@@ -46,9 +46,8 @@
         <td><%=dto.getG_memo()%></td>
         <td>
             <img src="/codeEffluve/groupProfiles/<%=dto.getG_profile()%>" class ="table-profile-img">
-              <!--    class="profile-img" alt="profile"> -->
         </td>
-        <td><%=dto.getLeader()%></td>
+        <td><%=dto.getLeader_id()%></td>
         <td>
             <form action="groupListDel.jsp" method="post">
                 <input type="hidden" name="g_idx" value="<%=dto.getG_idx()%>">
