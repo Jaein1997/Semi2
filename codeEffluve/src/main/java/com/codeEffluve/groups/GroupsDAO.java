@@ -39,9 +39,10 @@ public class GroupsDAO {
 			return null;
 		}finally {
 			try {
-				ps.close();
-				conn.close();
-				rs.close();
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
 			}catch(Exception e2) {
 				
 			}
@@ -65,9 +66,9 @@ public class GroupsDAO {
 			return null;
 		}finally {
 			try {
-				ps.close();
-				conn.close();
-				rs.close();
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				
 			}
@@ -106,8 +107,9 @@ public class GroupsDAO {
 			return -1;
 		}finally {
 			try {
+				if(rs!=null)rs.close();
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}

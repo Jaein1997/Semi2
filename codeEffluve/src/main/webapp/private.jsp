@@ -272,8 +272,8 @@ String currentTime = hour+":"+minute;
 		                    </div>
 		                    <% if(arr.get(i).getShares().equals("group")){
 		                    	%>
-		                    	<div id="groupList_div">
-			                    	<select select id="group" name="g_idx" multiple size="1">
+		                    	<div class="groupList_div">
+			                    	<select id="group" name="g_idx" multiple size="1">
 		                       		 <%
 		                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
 		                       		 ArrayList<GroupsDTO> tgroup=tdao.groupsofTodolist(arr.get(i).getT_idx());
@@ -297,6 +297,33 @@ String currentTime = hour+":"+minute;
 		                        	<input type="hidden" name="shares" value="group">
 		                        	<input type="submit" value="변경">
 		                    	</div>
+		                    	<%
+		                    } else {
+		                    	%>
+		                    	<div class="groupList_div_disabled">
+			                    	<select id="group" name="g_idx" multiple size="1" disabled>
+		                       		 <%
+		                       		 ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
+		                       		 ArrayList<GroupsDTO> tgroup=tdao.groupsofTodolist(arr.get(i).getT_idx());
+		                       		 
+		                       		 if(g_arr!=null){
+		                       			 for(int j=0;j<g_arr.size();j++){
+											String selected="";
+											for(int k=0;k<(tgroup!=null?tgroup.size():0);k++){
+												if(g_arr.get(j).getG_idx()==tgroup.get(k).getG_idx()){
+													selected="selected";
+												}
+											}
+		                       			 %>
+		                       			 <option value="<%=g_arr.get(j).getG_idx()%>" <%=selected %>><%=g_arr.get(j).getG_name() %></option>
+		                       			 <%
+		                       			 }
+		                       		 }
+		                       		 %>
+		                        	</select>
+		                        	<input type="submit" value="변경" disabled>
+		                    	</div>
+		                    	
 		                    	<%
 		                    }
 		                    
