@@ -5,8 +5,10 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
 <%@ page import="com.codeEffluve.groups.GroupsDTO" %>
+<%@ page import="com.codeEffluve.members.*" %>
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
 <jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
+<jsp:useBean id="gpdao" class="com.codeEffluve.grouping.GroupingDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +78,16 @@ int g_idx=0;
 if(g_idx_s!=null){
 	g_idx=Integer.parseInt(g_idx_s);
 }
+ArrayList<GroupsDTO> mygroups=gdao.myGroups(idx);
+if(mygroups.size()==0){
+	GroupsDTO gdto=new GroupsDTO();
+	gdto.setG_idx(0);
+	gdto.setG_memo("예시 그룹입니다.");
+	gdto.setG_name("예시 그룹");
+	gdto.setG_profile("basic_group.jpg");
+	gdto.setM_idx(0);
+	mygroups.add(gdto);
+}
 %>
 </head>
 <body>
@@ -98,7 +110,7 @@ if(g_idx_s!=null){
 				
 				<div class="groupPageSwitch">
 				<%
-				ArrayList<GroupsDTO> mygroups=gdao.myGroups(idx);
+				
 				if(mygroups==null||mygroups.size()==0){
 					%>
 					<input type="button" id="creategroup" value="그룹만들기">
@@ -111,6 +123,7 @@ if(g_idx_s!=null){
 					<%} %>
 					</select>
 					<input type="button" id="creategroup" value="그룹만들기">
+					<input type="button" id="searchgroup" value="그룹찾기">
 				<%
 				}
 				%>
@@ -160,7 +173,12 @@ if(g_idx_s!=null){
 
 				<div class="groupProfileArea">
 					<%
-					GroupsDTO selectedgroup=gdao.selectedGroup(g_idx);
+					GroupsDTO selectedgroup=null;
+					if(g_idx==0){
+						selectedgroup=mygroups.get(0);
+					}else{
+						selectedgroup=gdao.selectedGroup(g_idx);
+					}
 					
 					String gprofilePath = request.getContextPath() + "/groupProfiles/";
 					if(selectedgroup!=null){
@@ -169,7 +187,8 @@ if(g_idx_s!=null){
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span class="groupName"></span><span><%=selectedgroup.getG_memo() %></span>
+							<span class="groupName"><%=selectedgroup.getG_name() %></span>
+							<span class="groupMemo"><%=selectedgroup.getG_memo() %></span>
 						</div>
 
 					</div>
@@ -177,11 +196,30 @@ if(g_idx_s!=null){
 						<div class="groupingListTitle">
 							<span>그룹 멤버</span>
 						</div>
+						<%
+						ArrayList<MembersDTO> groupmems=null;
+						if(g_idx==0){
+							groupmems=gpdao.membersInGroup(mygroups.get(0).getG_idx());
+						}else{
+							groupmems=gpdao.membersInGroup(g_idx);
+						}
+						String leader="";
+						for(int i=0;i<groupmems.size();i++){
+							if(selectedgroup.getM_idx()==groupmems.get(i).getM_idx()){
+								leader=groupmems.get(i).getM_name();
+							}
+						}
+						%>
 						<div class="groupingListMembers">
 							<ul>
-								<li class="groupLeader">그룹장:<%=selectedgroup.getM_idx() %></li>
-								<li class="groupMember">그룹원1</li>
-								<li class="groupMember">그룹원2</li>
+								<li class="groupLeader">그룹장:<%=leader %></li>
+								<%for(int i=0;i<groupmems.size();i++){
+									if(!(selectedgroup.getM_idx()==groupmems.get(i).getM_idx())){
+									%>
+									<li class="groupMember"><%=groupmems.get(i).getM_name() %></li>
+									<%
+									}
+								}%>
 							</ul>
 						</div>
 						
@@ -214,6 +252,10 @@ if(g_idx_s!=null){
 	var creategroup=document.getElementById("creategroup");
 	creategroup.onclick=function(){
 		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
+	}
+	var searchgroup=document.getElementById("searchgroup");
+	searchgroup.onclick=function(){
+		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
 	}
 </script>
 </html>

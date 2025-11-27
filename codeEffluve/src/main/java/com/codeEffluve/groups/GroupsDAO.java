@@ -9,7 +9,39 @@ public class GroupsDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	
+	//전체 그룹 조회 메서드
+	public ArrayList<GroupsDTO> allGroup() {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="select * from group_info order by g_idx";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			
+			ArrayList<GroupsDTO> arr=new ArrayList();
+			while(rs.next()) {
+				GroupsDTO gdto=new GroupsDTO();
+				gdto.setG_idx(rs.getInt("g_idx"));
+				gdto.setG_name(rs.getString("g_name"));
+				gdto.setG_memo(rs.getString("g_memo"));
+				gdto.setG_profile(rs.getString("g_profile"));
+				gdto.setM_idx(rs.getInt("leader"));
+				arr.add(gdto);
+			}
+			return arr;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	//그룹 정보 조회 메서드
 	public GroupsDTO selectedGroup(int g_idx) {
 		try {
