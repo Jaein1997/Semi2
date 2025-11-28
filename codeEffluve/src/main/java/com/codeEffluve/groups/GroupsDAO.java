@@ -10,13 +10,17 @@ public class GroupsDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	
 	//날짜별 그룹일정조회 메서드
 		public ArrayList<TodolistDTO> groupTodolist(int g_idx,String date){
 			try {
 				conn=CodeEffluveDB.getConn();
-				String sql = "select a.* from todolist a, sharedList b " +
-	                    "where a.t_idx=b.t_idx and b.g_idx=? and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
-	                    + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') order by t_time";
+				String sql = "select a.*, c.id, c.m_profile "
+						+ "from todolist a, sharedList b, members c " +
+	                    "where a.t_idx=b.t_idx and a.m_idx=c.m_idx and b.g_idx=? "
+	                    + "and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "order by t_time";
 				ps=conn.prepareStatement(sql);
 	            ps.setInt(1,g_idx);
 	            ps.setString(2, date);
@@ -33,6 +37,8 @@ public class GroupsDAO {
 	            	dto.setT_time(rs.getTimestamp("t_time"));
 	            	dto.setT_memo(rs.getString("t_memo"));
 	            	dto.setShares(rs.getString("shares"));
+	            	dto.setId(rs.getString("id"));
+	            	dto.setM_profile(rs.getString("m_profile"));
 	            	arr.add(dto);
 	            }
 				return arr;

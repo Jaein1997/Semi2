@@ -15,7 +15,10 @@ public class CommentsDAO {
 			ArrayList<CommentsDTO> tdtoList = new ArrayList<CommentsDTO>();
 			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 			
-			String sql = "select c_idx, m_idx, message, c_time from comments where t_idx=? order by c_time";
+			String sql = "select c.c_idx, c.m_idx, c.message, c.c_time, m.id "
+					+ "from comments c, members m "
+					+ "where c.m_idx=m.m_idx and t_idx=? "
+					+ "order by c_time";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, t_idx);
 			rs = ps.executeQuery();
@@ -25,6 +28,7 @@ public class CommentsDAO {
 				tdto.setM_idx(rs.getInt("m_idx"));
 				tdto.setMessage(rs.getString("message"));
 				tdto.setC_time(rs.getTimestamp("c_time"));
+				tdto.setId(rs.getString("id"));
 				tdtoList.add(tdto);
 			}
 			return tdtoList;
