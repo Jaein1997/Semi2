@@ -395,6 +395,13 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 									<div id="profile_id_time">
 										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
 										<span id="commentId"><%=id%></span>
+										<%
+										if(temp.getM_idx()==idx) {
+											%>
+											<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
+											<%
+										}
+										%>
 									</div>
 									<div class="commentRow">
 										<span id="commentMessage"><%=message%></span>
