@@ -13,7 +13,7 @@ public class singoDAO {
 	}
     
     //불편사항 목록
-    public ArrayList<singoDTO> getsingoList(){
+    public ArrayList<singoDTO> getsingoList(String searchId){
     	ArrayList<singoDTO> list = new ArrayList<>();
     	
     	try {
@@ -22,9 +22,19 @@ public class singoDAO {
     			    "SELECT s.s_idx, s.m_idx, s.title, s.content, s.status, " +
     			    	    "       s.s_date, m.id AS singoja " +
     			    	    "FROM singo s " +
-    			    	    "JOIN members m ON s.m_idx = m.m_idx " +
-    			    	    "ORDER BY s.s_idx DESC";	
-    		ps = conn.prepareStatement(sql);
+    			    	    "JOIN members m ON s.m_idx = m.m_idx ";
+    			    	    	
+    		if(searchId != null && !searchId.equals("")) {
+            	sql += "WHERE m.id = ?";
+            }
+            
+            sql += "ORDER BY s.s_idx DESC";
+            ps = conn.prepareStatement(sql);
+            
+            if(searchId != null && !searchId.equals("")) {
+            	ps.setString(1, searchId);
+            }
+            
     		rs = ps.executeQuery();
     		
     		while (rs.next()) {
