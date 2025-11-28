@@ -14,16 +14,25 @@ public class daydelDAO {
 	    }
 	    
 	    //일정 리스트
-	    public ArrayList<daydelDTO> getTodoList() {
+	    public ArrayList<daydelDTO> getTodoList(String searchId) {
 	    	ArrayList<daydelDTO> arr = new ArrayList<>();
 	    	
 	    	try {
 	    		conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 	    		String sql ="SELECT t.t_idx, t.m_idx, m.id AS member_id, t.content, t.t_time, t.t_memo, t.shares " +
 	    	            "FROM todolist t " +
-	    	            "JOIN members m ON t.m_idx = m.m_idx " +
-	    	            "ORDER BY t.t_idx DESC";
+	    	            "JOIN members m ON t.m_idx = m.m_idx ";
+	    	     
+	    		if(searchId != null && !searchId.equals("")) {
+	    			sql += "WHERE m.id =?";
+	    		}
+	    		
+	    		sql += "ORDER BY t.t_idx DESC";
 	    		ps = conn.prepareStatement(sql);
+	    		
+	    		if(searchId != null && !searchId.equals("")) {
+	    			ps.setString(1, searchId);
+	    		}
 	    		rs = ps.executeQuery();
 	    		
 	    		while (rs.next()) {
