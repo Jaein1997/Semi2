@@ -78,6 +78,7 @@ String hour=""+(nowTime.get(Calendar.HOUR_OF_DAY)>9?nowTime.get(Calendar.HOUR_OF
 String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0"+nowTime.get(Calendar.MINUTE));
 String currentTime = hour+":"+minute;
 
+int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):0;
 %>
 </head>
 <body>
@@ -110,12 +111,20 @@ String currentTime = hour+":"+minute;
                 
                 <%
                 for(int i=0;i<(arr==null?0:arr.size());i++){
+                	String content = arr.get(i).getContent();
+                	String hours = arr.get(i).getT_time().getHours()<10?"0"+arr.get(i).getT_time().getHours():""+arr.get(i).getT_time().getHours();
+                	String mins = arr.get(i).getT_time().getMinutes()<10?"0"+arr.get(i).getT_time().getMinutes():""+arr.get(i).getT_time().getMinutes();
                 %>
                 
-                	<li>
-                		<div class="myScheduleUnit">
+                	<li <%=selectedT_idx==arr.get(i).getT_idx()?"class='myScheduleUnit_selected'":"class='myScheduleUnit'" %>>
+                		<div>
                 			<input type="checkbox" id="complete">
-                			<a href="private.jsp?t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a"><%= arr.get(i).getContent()+"("+arr.get(i).getT_time().getHours()+":"+arr.get(i).getT_time().getMinutes()+")"%></a>
+                			<a href="private.jsp?t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
+                				<%= content
+                						+" ("+hours
+                						+":"
+                						+mins+")"%>
+                			</a>
 		                    <span id="memo_span"><%= arr.get(i).getT_memo() %></span>
 		                    <div id="shares_div">
 		                    	<div <%= arr.get(i).getShares().equals("public")?"id='publicUnitBtn_selected'":"id='publicUnitBtn'" %>>
@@ -366,7 +375,7 @@ String currentTime = hour+":"+minute;
 				<div id="commentList">
 					<ul>
 					<%
-					int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):0;
+					
 					ArrayList<CommentsDTO> cdtoLists =cdao.getComments(selectedT_idx);
 					if(cdtoLists==null || cdtoLists.size()==0) {
 						
@@ -406,13 +415,13 @@ String currentTime = hour+":"+minute;
 					<form action="/codeEffluve/comments/writeComment_ok(private).jsp">
 						<img src="/codeEffluve/img/chat.png" alt="사진" style="width:20px; height: 20px; margin-right: 7px;">
 						<span>댓글</span>
-						<input type="text" name="message">
+						<input type="text" name="message" <%=selectedT_idx==0?"class='disabledMessage' disabled":"" %>>
 						<input type="hidden" name="id" value="<%=id%>">
 						<input type="hidden" name="t_idx" value="<%=selectedT_idx%>">
 						<input type="hidden" name="year" value="<%=year%>">
                        	<input type="hidden" name="month" value="<%=month%>">
                         <input type="hidden" name="day" value="<%=date%>">
-						<input type="submit" value="작성">
+						<input type="submit" value="작성" <%=selectedT_idx==0?"class='disabledSubmit' disabled":"" %>>
 					</form>
 				</div>
 				
