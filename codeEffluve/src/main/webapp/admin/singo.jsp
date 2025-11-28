@@ -17,6 +17,7 @@
 </style>
 <h2 style="text-align: center;">불편사항</h2>
 
+
 <form method ="get" style ="text-align: right; margin-bottom: 15px;">
 <input type = "hidden" name ="menu" value ="singo">
 
