@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class CommentsDTO {
 	private int c_idx, t_idx, m_idx;
-	private String message;
+	private String message,id;
 	private Timestamp c_time;
 	
 	public int getC_idx() {
@@ -24,6 +24,12 @@ public class CommentsDTO {
 	}
 	public void setM_idx(int m_idx) {
 		this.m_idx = m_idx;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getMessage() {
 		return message;

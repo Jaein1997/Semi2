@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class TodolistDTO {
 	private int t_idx,m_idx;
-	private String content,t_memo,shares;
+	private String content,t_memo,shares,id,m_profile;
 	private Timestamp t_time;
 	
 	public int getT_idx() {
@@ -12,6 +12,12 @@ public class TodolistDTO {
 	}
 	public void setT_idx(int t_idx) {
 		this.t_idx = t_idx;
+	}
+	public String getM_profile() {
+		return m_profile;
+	}
+	public void setM_profile(String m_profile) {
+		this.m_profile = m_profile;
 	}
 	public int getM_idx() {
 		return m_idx;
@@ -42,5 +48,11 @@ public class TodolistDTO {
 	}
 	public void setT_time(Timestamp t_time) {
 		this.t_time = t_time;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
