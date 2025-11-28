@@ -518,6 +518,8 @@ main {
 	background-color: white;
 	border: 2px solid #6D1044;
 	border-top: 0px;
+	box-shadow: 0px 7px 10px 5px #D8CDD2;
+	overflow: hidden;
 }
 
 section {
@@ -581,6 +583,7 @@ footer div {
 	border-radius: 30px;
 	padding: 20px 0;
 	scrollbar-width: none;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
 #publicListArea h1 {
@@ -687,6 +690,7 @@ footer div {
 	border: 1px solid #D8CDD2;
 	border-radius: 15px;
 	margin-left: 20px;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
 
@@ -755,6 +759,7 @@ footer div {
 	height: 60px;
 	line-height: 60px;
 	border-bottom: 1px solid #D8CDD2;
+	box-shadow: 0px 3px 15px #E7E1E4;
 }
 
 #commentId {
@@ -766,6 +771,14 @@ footer div {
 #commentTime{
 	color: #888888;
 	font-size: 13px;
+}
+
+.delComment {
+	text-decoration: none;
+	cursor: pointer;
+	color: #6D1044;
+	margin-right: 10px;
+	margin-left: auto;
 }
 
 #commentMessage{
@@ -783,8 +796,8 @@ footer div {
 	background-color: #FAF7F9;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	box-shadow: 0px -3px 15px #E7E1E4;
 	/*border-top: 1px solid #D8CDD2;*/
+	box-shadow: 0px -3px 15px #E7E1E4;
 	margin-bottom: 0px;
 	margin-top: auto; 	
 	padding: 10px 10px;
@@ -1146,6 +1159,7 @@ footer div {
 	padding: 15px;
 	overflow-y: auto;
 	scrollbar-width: none;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
 .right-column {
@@ -1159,6 +1173,7 @@ footer div {
 	margin-left: 20px;
 	display: flex;
     flex-direction: column;
+    box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
 
@@ -1169,16 +1184,45 @@ footer div {
 	gap: 20px;
 }
 
-.myschedule li {
+.myschedule .myScheduleUnit {
+	box-sizing: border-box;
 	list-style-type: none;
 	border: 1px solid #6D1044;
 	border-radius: 15px;
 	height: 40px;
 	background-color: white;
 	overflow: hidden;
+	
 }
 
-.myScheduleUnit {
+.myschedule .myScheduleUnit_selected {
+	box-sizing: border-box;
+	list-style-type: none;
+	border: 1px solid #6D1044;
+	outline: 2px solid #6D1044;
+	border-radius: 15px;
+	height: 40px;
+	background-color: white;
+	overflow: hidden;
+	box-shadow: 0px 0px 10px 5px #D8CDD2;
+}
+
+.myschedule .myScheduleUnit_selected #schedule_a {
+	font-size: 19px;
+}
+
+.myschedule .myScheduleUnit:hover {
+	box-sizing: border-box;
+	border: 1px solid #6D1044;
+	outline: 2px solid #6D1044;
+	box-shadow: 0px 0px 10px 5px #D8CDD2;
+}
+
+.myschedule .myScheduleUnit:hover #schedule_a {
+	font-size: 19px;
+}
+
+.myschedule li div:first-child {
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -1198,6 +1242,7 @@ input[type="checkbox"] {
 	color: black;
 	font-size: 17px;
 	font-weight: 500;
+	text-decoration: none;
 }
 #memo_span {
 	display: flex;
@@ -1585,6 +1630,10 @@ input[type="checkbox"] {
 	scrollbar-width: none;
 }
 
+#schedule .writeComment .disabledMessage {
+	border: 1px solid #888888 !important;
+}
+
 #schedule .writeComment input[type="text"]:focus {
 	outline: none;
 }
@@ -1604,6 +1653,12 @@ input[type="checkbox"] {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	cursor: pointer;
+}
+
+#schedule .writeComment .disabledSubmit {
+	border: 1px solid #888888 !important;
+	background-color: #888888 !important;
+	cursor:context-menu !important;
 }
 
 

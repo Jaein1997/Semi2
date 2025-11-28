@@ -6,9 +6,13 @@
 <%@ page import="com.codeEffluve.todolist.TodolistDTO" %>
 <%@ page import="com.codeEffluve.groups.GroupsDTO" %>
 <%@ page import="com.codeEffluve.members.*" %>
+<%@ page import="com.codeEffluve.comments.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <jsp:useBean id="tdao" class="com.codeEffluve.todolist.TodolistDAO"></jsp:useBean>
 <jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
 <jsp:useBean id="gpdao" class="com.codeEffluve.grouping.GroupingDAO"></jsp:useBean>
+<jsp:useBean id="cdao" class="com.codeEffluve.comments.CommentsDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +21,8 @@
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 
 <% 
+SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+SimpleDateFormat tf_c = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 String id=(String)session.getAttribute("sid");
 if(id==null||id.equals("")){
 	%>
@@ -131,44 +137,121 @@ if(mygroups.size()==0){
 			</div>
 			<div class="groupMain">
 				<div class="groupSchedule">
+				<%
+				String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
+				ArrayList<TodolistDTO> tarr=gdao.groupTodolist(g_idx==0?g_idx=mygroups.get(0).getG_idx():g_idx, dbdate);
+				
+				if(tarr==null||tarr.size()==0){
+					%>
+					등록된 일정이 없습니다.
+					<%
+					
+				}else{
+					String mprofilePath = request.getContextPath() + "/membersProfiles/";
+					for(int i=0;i<tarr.size();i+=2){
+					%>
 					<div class="schedule_left">
 						<div class="groupScheduleUser">
+							<img src="<%=mprofilePath+tarr.get(i).getM_profile()%>" alt="사진" class="groupScheduleUserImg">
+							<span class="groupScheduleUserID"><%=tarr.get(i).getId() %></span>
+						</div>
+						<div class="groupScheduleUnit">
+							<input type="checkbox">
+							<span><%=tarr.get(i).getContent() %></span>
+							<span><%=tf.format(tarr.get(i).getT_time())%></span>
 							<%
-							String mprofilePath = request.getContextPath() + "/membersProfiles/" + "basic.jpg";
+								ArrayList<CommentsDTO> carr=cdao.getComments(tarr.get(i).getT_idx());
 							%>
-							<img src="<%=mprofilePath%>" alt="사진" class="groupScheduleUserImg">
-							<span class="groupScheduleUserID">thdus1821</span>
+							<span><label onclick="toggleCommentForm('writeComment<%=tarr.get(i).getT_idx()%>')" style="cursor: pointer;">
+							[<%=carr.size() %>]
+							</label></span>
 						</div>
-						<div class="groupScheduleUnit">
-							<input type="checkbox"><span>학원가기</span><span>(09:00)</span>
-						</div>
+						
 						<div class="groupComment">
 							<ul>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">ㅋㅋㅋ</span><span class="groupCommentTime">08:37</span>
+							<%for(int j=0;j<carr.size();j++) {
+								%>
+								<li>
+								<span><%=carr.get(j).getId() %>:</span>
+								<span class="groupCommentMessage"><%=carr.get(j).getMessage() %></span>
+								<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time()) %></span>
+								<span></span>
 								</li>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">ㅋㅋㅋㅋㅋ</span><span class="groupCommentTime">08:39</span>
-								</li>
-							</ul>
-						</div>
-					</div>
 
-					<div class="schedule_right">
-						<div class="groupScheduleUser">
-							<img src="<%=mprofilePath%>" alt="사진" class="groupScheduleUserImg">
-							<span class="groupScheduleUserID">thdus1821</span>
-						</div>
-						<div class="groupScheduleUnit">
-							<input type="checkbox"><span>운동하기</span><span>(19:00)</span>
-						</div>
-						<div class="groupComment">
-							<ul>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">힘들다</span><span class="groupCommentTime">08:40</span>
-								</li>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">가기싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</span><span class="groupCommentTime">08:41</span>
-								</li>
+								<%
+							}%>
+								
 							</ul>
 						</div>
+						<div class="writeComment" id="writeComment<%=tarr.get(i).getT_idx()%>" style="display: none;">
+							<form action="/codeEffluve/comments/writeComment_ok(group).jsp">
+							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
+							<span>댓글</span>
+							<input type="text" name="message">
+							<input type="hidden" name="id" value="<%=id%>">
+							<input type="hidden" name="t_idx" value="<%=tarr.get(i).getT_idx()%>">
+							<input type="hidden" name="year" value="<%=year%>">
+							<input type="hidden" name="month" value="<%=month%>">
+							<input type="hidden" name="day" value="<%=date%>">
+							<input type="hidden" name="g_idx" value="<%=g_idx==0?mygroups.get(0).getG_idx():g_idx %>">
+							<input type="submit" value="작성">
+							</form>
+						</div>
 					</div>
+					<%
+					if(i+1<tarr.size()){
+						%>
+						<div class="schedule_right">
+							<div class="groupScheduleUser">
+								<img src="<%=mprofilePath+tarr.get(i+1).getM_profile()%>" alt="사진" class="groupScheduleUserImg">
+								<span class="groupScheduleUserID"><%=tarr.get(i+1).getId() %></span>
+							</div>
+							<div class="groupScheduleUnit">
+								<input type="checkbox">
+								<span><%=tarr.get(i+1).getContent() %></span>
+								<span><%=tf.format(tarr.get(i+1).getT_time()) %></span>
+								<%
+								carr=cdao.getComments(tarr.get(i+1).getT_idx());
+								%>
+								<span>
+								<label onclick="toggleCommentForm('writeComment<%=tarr.get(i+1).getT_idx()%>')" style="cursor: pointer;">[<%=carr.size() %>]</span>
+								</label>
+							</div>
+							<div class="groupComment">
+								<ul>
+									<%for(int j=0;j<carr.size();j++) {
+										%>
+										<li><span><%=carr.get(j).getId() %>:</span>
+										<span class="groupCommentMessage"><%=carr.get(j).getMessage() %></span>
+										<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time()) %></span>
+										</li>
+		
+										<%
+									}%>
+								</ul>
+							</div>
+							<div class="writeComment" id="writeComment<%=tarr.get(i+1).getT_idx()%>" style="display: none;">
+							<form action="/codeEffluve/comments/writeComment_ok(group).jsp">
+							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
+							<span>댓글</span>
+							<input type="text" name="message">
+							<input type="hidden" name="id" value="<%=id%>">
+							<input type="hidden" name="t_idx" value="<%=tarr.get(i+1).getT_idx()%>">
+							<input type="hidden" name="year" value="<%=year%>">
+							<input type="hidden" name="month" value="<%=month%>">
+							<input type="hidden" name="day" value="<%=date%>">
+							<input type="hidden" name="g_idx" value="<%=g_idx==0?mygroups.get(0).getG_idx():g_idx %>">
+							<input type="submit" value="작성">
+							</form>
+						</div>
+						</div>
+						<%
+						}
+					}
+					
+				}
+				%>
+					
 				</div>
 
 				<div class="groupProfileArea">
@@ -256,6 +339,16 @@ if(mygroups.size()==0){
 	var searchgroup=document.getElementById("searchgroup");
 	searchgroup.onclick=function(){
 		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
+	}
+	
+	function toggleCommentForm(elementId) {
+	    var formDiv = document.getElementById(elementId);
+	    
+	    if (formDiv.style.display === 'none' || formDiv.style.display === '') {
+	        formDiv.style.display = 'block';
+	    } else {
+	        formDiv.style.display = 'none';
+	    }
 	}
 </script>
 </html>

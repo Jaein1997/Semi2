@@ -68,7 +68,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
@@ -89,7 +89,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
@@ -116,7 +116,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
@@ -138,7 +138,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
@@ -154,6 +154,9 @@ public class TodolistDAO {
 			ps.setInt(1, dto.getM_idx());
 			ps.setString(2, dto.getContent());
 			ps.setString(3, date);
+			if(dto.getT_memo()==null) {
+				dto.setT_memo("-");
+			}
 			ps.setString(4, dto.getT_memo());
 			ps.setString(5, dto.getShares());
 			int count=ps.executeUpdate();
@@ -227,7 +230,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
@@ -248,7 +251,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
