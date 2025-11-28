@@ -68,7 +68,7 @@ public class TodolistDAO {
 		}finally {
 			try {
 				if(ps!=null)ps.close();
-				if(conn!=null)ps.close();
+				if(conn!=null)conn.close();
 			}catch(Exception e2) {
 				e2.printStackTrace();
 			}
