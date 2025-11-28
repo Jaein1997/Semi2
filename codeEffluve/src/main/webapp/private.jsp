@@ -153,6 +153,11 @@ String currentTime = hour+":"+minute;
 		                        	</select>
 		                        	<input type="hidden" name="t_idx" value="<%=arr.get(i).getT_idx()%>">
 		                        	<input type="hidden" name="shares" value="group">
+		                        	
+		                        	<input type="hidden" name="year" value="<%=year%>">
+		                        	<input type="hidden" name="month" value="<%=month%>">
+		                        	<input type="hidden" name="day" value="<%=date%>">
+		                        	
 		                        	<input type="submit" value="변경">
 		                    	</div>
 		                    	<%
