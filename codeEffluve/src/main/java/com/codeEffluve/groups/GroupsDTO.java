@@ -2,7 +2,7 @@ package com.codeEffluve.groups;
 
 public class GroupsDTO {
 	private int g_idx, m_idx;
-	private String g_name,g_memo,g_profile;
+	private String g_name,g_memo,g_profile,leader;
 	public int getG_idx() {
 		return g_idx;
 	}
@@ -33,4 +33,11 @@ public class GroupsDTO {
 	public void setG_profile(String g_profile) {
 		this.g_profile = g_profile;
 	}
+	public String getLeader() {
+		return leader;
+	}
+	public void setLeader(String leader) {
+		this.leader = leader;
+	}
+	
 }

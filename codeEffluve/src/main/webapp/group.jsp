@@ -131,11 +131,20 @@ if(mygroups.size()==0){
 			</div>
 			<div class="groupMain">
 				<div class="groupSchedule">
+				<%
+				String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
+				ArrayList<TodolistDTO> tarr=gdao.groupTodolist(g_idx, dbdate);
+				if(tarr==null||tarr.size()==0){
+					%>
+					등록된 일정이 없습니다.
+					<%
+					
+				}else{
+					String mprofilePath = request.getContextPath() + "/membersProfiles/" + "basic.jpg";
+					for(int i=0;i<tarr.size();i+=2){
+					%>
 					<div class="schedule_left">
 						<div class="groupScheduleUser">
-							<%
-							String mprofilePath = request.getContextPath() + "/membersProfiles/" + "basic.jpg";
-							%>
 							<img src="<%=mprofilePath%>" alt="사진" class="groupScheduleUserImg">
 							<span class="groupScheduleUserID">thdus1821</span>
 						</div>
@@ -151,24 +160,32 @@ if(mygroups.size()==0){
 							</ul>
 						</div>
 					</div>
-
-					<div class="schedule_right">
-						<div class="groupScheduleUser">
-							<img src="<%=mprofilePath%>" alt="사진" class="groupScheduleUserImg">
-							<span class="groupScheduleUserID">thdus1821</span>
+					<%}
+					for(int i=1;i<tarr.size();i+=2){
+						%>
+						<div class="schedule_right">
+							<div class="groupScheduleUser">
+								<img src="<%=mprofilePath%>" alt="사진" class="groupScheduleUserImg">
+								<span class="groupScheduleUserID">thdus1821</span>
+							</div>
+							<div class="groupScheduleUnit">
+								<input type="checkbox"><span>운동하기</span><span>(19:00)</span>
+							</div>
+							<div class="groupComment">
+								<ul>
+									<li><span>thdus1821 : </span><span class="groupCommentMessage">힘들다</span><span class="groupCommentTime">08:40</span>
+									</li>
+									<li><span>thdus1821 : </span><span class="groupCommentMessage">가기싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</span><span class="groupCommentTime">08:41</span>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<div class="groupScheduleUnit">
-							<input type="checkbox"><span>운동하기</span><span>(19:00)</span>
-						</div>
-						<div class="groupComment">
-							<ul>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">힘들다</span><span class="groupCommentTime">08:40</span>
-								</li>
-								<li><span>thdus1821 : </span><span class="groupCommentMessage">가기싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</span><span class="groupCommentTime">08:41</span>
-								</li>
-							</ul>
-						</div>
-					</div>
+						<%
+					}
+					
+				}
+				%>
+					
 				</div>
 
 				<div class="groupProfileArea">

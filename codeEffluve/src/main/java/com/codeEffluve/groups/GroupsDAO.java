@@ -4,16 +4,95 @@ import java.sql.*;
 import java.util.*;
 
 import com.codeEffluve.db.*;
+import com.codeEffluve.todolist.TodolistDTO;
 
 public class GroupsDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	//날짜별 그룹일정조회 메서드
+		public ArrayList<TodolistDTO> groupTodolist(int g_idx,String date){
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql = "select a.* from todolist a, sharedList b " +
+	                    "where a.t_idx=b.t_idx and b.g_idx=? and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') order by t_time";
+				ps=conn.prepareStatement(sql);
+	            ps.setInt(1,g_idx);
+	            ps.setString(2, date);
+	            date+=" 23:59";
+	            ps.setString(3, date);
+
+	            rs = ps.executeQuery();
+	            ArrayList<TodolistDTO> arr=new ArrayList<>();
+	            while(rs.next()) {
+	            	TodolistDTO dto=new TodolistDTO();
+	            	dto.setM_idx(rs.getInt("m_idx"));
+	            	dto.setT_idx(rs.getInt("t_idx"));
+	            	dto.setContent(rs.getString("content"));
+	            	dto.setT_time(rs.getTimestamp("t_time"));
+	            	dto.setT_memo(rs.getString("t_memo"));
+	            	dto.setShares(rs.getString("shares"));
+	            	arr.add(dto);
+	            }
+				return arr;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					
+				}
+			}
+		}
+	//그룹명으로 검색 메서드
+	public ArrayList<GroupsDTO> searchedGroup(String g_name) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="select a.*,b.m_name from group_info a,members b"
+					+ " where g_name like ? and a.leader = b.m_idx "
+					+ "order by g_idx";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, "%"+g_name+"%");
+			rs=ps.executeQuery();
+			
+			ArrayList<GroupsDTO> arr=new ArrayList();
+			while(rs.next()) {
+				GroupsDTO gdto=new GroupsDTO();
+				gdto.setG_idx(rs.getInt("g_idx"));
+				gdto.setG_name(rs.getString("g_name"));
+				gdto.setG_memo(rs.getString("g_memo"));
+				gdto.setG_profile(rs.getString("g_profile"));
+				gdto.setM_idx(rs.getInt("leader"));
+				gdto.setLeader(rs.getString("m_name"));
+				arr.add(gdto);
+			}
+			return arr;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	//전체 그룹 조회 메서드
 	public ArrayList<GroupsDTO> allGroup() {
 		try {
 			conn=CodeEffluveDB.getConn();
-			String sql="select * from group_info order by g_idx";
+			String sql="select a.*,b.m_name from group_info a, members b "
+					+ "where a.leader = b.m_idx "
+					+ "order by g_idx";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			
@@ -25,6 +104,7 @@ public class GroupsDAO {
 				gdto.setG_memo(rs.getString("g_memo"));
 				gdto.setG_profile(rs.getString("g_profile"));
 				gdto.setM_idx(rs.getInt("leader"));
+				gdto.setLeader(rs.getString("m_name"));
 				arr.add(gdto);
 			}
 			return arr;
