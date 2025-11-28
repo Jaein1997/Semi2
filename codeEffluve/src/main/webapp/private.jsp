@@ -227,14 +227,14 @@ String currentTime = hour+":"+minute;
                     	<table class="scheduleAddTable">
                     		<tr>
                     			<th>일정 이름</th>
-                    			<td><input type="text" name="content"></td>
+                    			<td><input type="text" name="content" required></td>
                     		</tr>
                     		<tr>
                     			<th>시작 날짜</th>
                     			<td>
                     				<div style="display: flex; flex-direction: row;">
-	                    				<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
-	                        			<input type="time" name="time" value="<%=currentTime%>">
+	                    				<input type="date" name="date" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>" required>
+	                        			<input type="time" name="time" value="<%=currentTime%>" required>
                         			</div>
                         		</td>
                     		</tr>
@@ -427,17 +427,14 @@ String currentTime = hour+":"+minute;
 var calendar = document.getElementById("calendar");
 var calendarBtn = document.getElementById("calendarBtn");
 
-// 📅 버튼 클릭하면 브라우저 기본 날짜 선택창 띄우기
 calendarBtn.onclick = function() {
-    if (calendar.showPicker) {   // 크롬/엣지 등 최신 브라우저
+    if (calendar.showPicker) {
         calendar.showPicker();
     } else {
-        // 혹시 showPicker 없으면 포커스만이라도
         calendar.focus();
     }
 };
 
-// 날짜 선택 후 페이지 이동
 calendar.onchange = function() {
     const selectedDate = calendar.value;
     if (!selectedDate) return;
