@@ -6,7 +6,7 @@ String year_s=request.getParameter("year");
 String month_s=request.getParameter("month");
 String date_s=request.getParameter("day");
 String msg="";
-if(year_s!=null&&month_s!=null&date_s!=null){
+if(year_s!=null&&month_s!=null&&date_s!=null){
 	msg="?year="+year_s+"&month="+month_s+"&date="+date_s;
 }
 
