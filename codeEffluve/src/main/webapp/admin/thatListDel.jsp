@@ -14,14 +14,14 @@
 		   %>
 		           <script>
 		               alert("삭제 완료되었습니다.");
-		               location.href="admin.jsp?menu=that";
+		               location.href="/codeEffluve/admin/admin.jsp?menu=that";
 		           </script>
 		   <%
 		       } else {
 		   %>
 		           <script>
 		               alert("삭제 실패했습니다.");
-		               location.href="admin.jsp?menu=that";
+		               location.href="/codeEffluve/admin/admin.jsp?menu=that";
 		           </script>
 		   <%
 		       }

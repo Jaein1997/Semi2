@@ -15,7 +15,7 @@ public class thatDAO {
 	}
     
     //댓글 리스트
-	public ArrayList<thatDTO> getCommentList() {
+	public ArrayList<thatDTO> getCommentList(String searchId) {
 	    ArrayList<thatDTO> arr = new ArrayList<>();
 
 	    try {
@@ -24,10 +24,18 @@ public class thatDAO {
 	    	            "SELECT c.c_idx, c.t_idx, c.m_idx, m.id AS member_id, " +
 	    	            " c.message, c.c_time, t.content, t.shares " +
 	    	            "FROM comments c JOIN todolist t ON c.t_idx = t.t_idx " +
-	    	            "JOIN members m ON c.m_idx = m.m_idx " +
-	    	            "ORDER BY c.c_idx DESC";
-
-	        ps = conn.prepareStatement(sql);
+	    	            "JOIN members m ON c.m_idx = m.m_idx ";
+	    	            
+	    	 if(searchId != null && !searchId.equals("")) {
+	            	sql += "WHERE m.id = ?";
+	            }
+	            
+	    	 sql += "ORDER BY c.c_idx DESC";
+	            ps = conn.prepareStatement(sql);
+	            
+	            if(searchId != null && !searchId.equals("")) {
+	            	ps.setString(1, searchId);
+	            }
 	        rs = ps.executeQuery();
 
 	        while(rs.next()) {

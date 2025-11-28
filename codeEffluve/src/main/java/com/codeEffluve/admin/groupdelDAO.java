@@ -12,7 +12,7 @@ public class groupdelDAO {
     public groupdelDAO() {}
 
     // 그룹 리스트
-    public ArrayList<groupdelDTO> getGroupList() {
+    public ArrayList<groupdelDTO> getGroupList(String searchId) {
         ArrayList<groupdelDTO> arr = new ArrayList<>();
 
         try {
@@ -22,9 +22,19 @@ public class groupdelDAO {
             		"SELECT g.g_idx, g.g_name, g.g_memo, g.g_profile, " +
             		"		g.leader, m.id AS leader_id " +
             		"FROM group_info g " +
-            		"JOIN members m ON g.leader = m.m_idx " +
-            		"ORDER BY g_idx DESC";
+            		"JOIN members m ON g.leader = m.m_idx ";
+            		
+            if(searchId != null && !searchId.equals("")) {
+            	sql += "WHERE m.id = ?";
+            }
+            
+            sql += "ORDER BY g_idx DESC";
             ps = conn.prepareStatement(sql);
+            
+            if(searchId != null && !searchId.equals("")) {
+            	ps.setString(1, searchId);
+            }
+            
             rs = ps.executeQuery();
 
             while (rs.next()) {

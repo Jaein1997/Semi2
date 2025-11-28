@@ -17,6 +17,18 @@
 
 </style>
 <h2 style="text-align:center;">그룹 관리</h2>
+
+<form method ="get" style ="text-align: right; margin-bottom: 15px;">
+<input type = "hidden" name ="menu" value ="group">
+
+<input type = "text" name = "searchId" placeholder="아이디 검색"
+	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>"
+	style="padding:5px;">
+	
+	<button type="submit" style ="padding: 5px 10px;">검색</button>
+	</form>
+	
+
 <table class = "adminTable">
     <tr>
         <th>번호</th>
@@ -28,7 +40,9 @@
     </tr>
 
 <%
-    ArrayList<groupdelDTO> arr = gdao.getGroupList();
+	String searchId = request.getParameter("searchId");
+	ArrayList<groupdelDTO> arr = gdao.getGroupList(searchId);
+
 
     if(arr == null || arr.size() == 0){
 %>
