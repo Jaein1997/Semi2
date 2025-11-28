@@ -186,7 +186,7 @@ if(mygroups.size()==0){
 						<div class="writeComment" id="writeComment<%=tarr.get(i).getT_idx()%>" style="display: none;">
 							<form action="/codeEffluve/comments/writeComment_ok(group).jsp">
 							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
-							<span>댓글</span>
+							<span></span>
 							<input type="text" name="message">
 							<input type="hidden" name="id" value="<%=id%>">
 							<input type="hidden" name="t_idx" value="<%=tarr.get(i).getT_idx()%>">
@@ -233,7 +233,7 @@ if(mygroups.size()==0){
 							<div class="writeComment" id="writeComment<%=tarr.get(i+1).getT_idx()%>" style="display: none;">
 							<form action="/codeEffluve/comments/writeComment_ok(group).jsp">
 							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
-							<span>댓글</span>
+							<span></span>
 							<input type="text" name="message">
 							<input type="hidden" name="id" value="<%=id%>">
 							<input type="hidden" name="t_idx" value="<%=tarr.get(i+1).getT_idx()%>">
