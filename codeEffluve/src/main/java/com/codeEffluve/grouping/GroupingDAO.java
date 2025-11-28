@@ -13,6 +13,29 @@ public class GroupingDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	//그룹 탈퇴
+	public int goodbyemember(int m_idx, int g_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from grouping where m_idx=? and g_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_idx);
+			ps.setInt(2, g_idx);
+			int result=ps.executeUpdate();
+			
+			return result;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	//그룹에 멤버 추가
 	public int joinmember(int g_idx, int m_idx) {
 		try {
