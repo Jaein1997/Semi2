@@ -1296,6 +1296,19 @@ input[type="checkbox"] {
 	text-overflow: ellipsis;
 }
 
+.groupListChangeBtn {
+	padding: 3px 7px;
+	font-size: 14px;
+	background-color: #B79AD7;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.groupListChangeBtn:disabled {
+	background-color: #EBEBEB;
+}
+
 #deleteUnitBtn_a {
 	height: 100%;
 	width: 2%;
@@ -1405,10 +1418,15 @@ input[type="checkbox"] {
 }
 
 .scheduleAddTable td input[type="radio"] {
+	margin-left: 15px;
 	accent-color: #1E8A8A;
 }
 
-.scheduleAddTable #group {
+.scheduleAddTable td input[type="radio"]:first-child {
+	margin-left: 0px;
+}
+
+.scheduleAddTable #groupSel {
 	margin-left: 5px;
 	display: flex;
 	width: 100px;
@@ -1417,6 +1435,10 @@ input[type="checkbox"] {
 	border:	1px solid #1E8A8A;
 	border-top-left-radius: 8px;
 	border-bottom-left-radius: 8px;
+}
+
+.scheduleAddTable #groupSel:disabled {
+	border: 1px solid #888888;
 }
 
 #creategroup {
@@ -1429,6 +1451,10 @@ input[type="checkbox"] {
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
 	cursor: pointer;
+}
+
+#creategroup:disabled {
+	background-color: #888888;	
 }
 
 #schedule #privateListCommentUnit {

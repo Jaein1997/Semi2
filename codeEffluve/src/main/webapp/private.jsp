@@ -158,7 +158,7 @@ String currentTime = hour+":"+minute;
 		                        	<input type="hidden" name="month" value="<%=month%>">
 		                        	<input type="hidden" name="day" value="<%=date%>">
 		                        	
-		                        	<input type="submit" value="변경">
+		                        	<input type="submit" value="변경" class="groupListChangeBtn">
 		                    	</div>
 		                    	<%
 		                    } else {
@@ -184,7 +184,7 @@ String currentTime = hour+":"+minute;
 		                       		 }
 		                       		 %>
 		                        	</select>
-		                        	<input type="submit" value="변경" disabled>
+		                        	<input type="submit" value="변경" class="groupListChangeBtn" disabled>
 		                    	</div>
 		                    	
 		                    	<%
@@ -245,11 +245,11 @@ String currentTime = hour+":"+minute;
                     		<tr>
                     			<th>공개범위</th>
                     			<td style="display:flex; flex-direction: row;">
-                    				<input type="radio" name="shares" value="public">전체공개
-			                        <input type="radio" name="shares" value="private" checked>비공개
-			                        <input type="radio" name="shares" value="group">그룹공개
+                    				<input type="radio" name="shares" value="public" id="pubRadio">전체공개
+			                        <input type="radio" name="shares" value="private" id="priRadio" checked>비공개
+			                        <input type="radio" name="shares" value="group" id="groRadio">그룹공개
 			                        <div style="display:flex; flex-direction: row;">
-			                        	<select id="group" name="g_idx" multiple size="1">
+			                        	<select id="groupSel" name="g_idx" multiple size="1" disabled>
 			                       		 <%
 			                       		ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);
 			                        		 
@@ -262,7 +262,7 @@ String currentTime = hour+":"+minute;
 			                        		 }
 			                       		 %>
 			                        	</select>
-			                        	<input type="button" id="creategroup" value="그룹생성">
+			                        	<input type="button" id="creategroup" value="그룹생성" disabled>
 			                        </div>
 			                        
                     			</td>
@@ -322,11 +322,11 @@ String currentTime = hour+":"+minute;
 	                    		<tr>
 	                    			<th>공개 여부</th>
 	                    			<td style="display:flex; flex-direction: row;">
-	                    				<input type="radio" name="shares" value="public" <%=option.equals("public")?"checked":"" %>>전체공개
-						                <input type="radio" name="shares" value="private" <%=option.equals("private")?"checked":"" %>>비공개
-						                <input type="radio" name="shares" value="group" <%=option.equals("group")?"checked":"" %>>그룹공개
+	                    				<input type="radio" name="shares" value="public" id="pubRadio" <%=option.equals("public")?"checked":"" %>>전체공개
+						                <input type="radio" name="shares" value="private" id="priRadio" <%=option.equals("private")?"checked":"" %>>비공개
+						                <input type="radio" name="shares" value="group" id="groRadio" <%=option.equals("group")?"checked":"" %>>그룹공개
 						                <div style="display:flex; flex-direction: row;">
-						                	<select id="group" name="g_idx" multiple size="1"  <%=option.equals("group")?"":"disabled" %> <%=option.equals("group")?"checked":"" %>>
+						                	<select id="groupSel" name="g_idx" multiple size="1"  <%=option.equals("group")?"":"disabled" %> <%=option.equals("group")?"checked":"" %>>
 				                       		 <%
 				                       		
 				                       		 if(g_arr!=null){
@@ -424,6 +424,7 @@ String currentTime = hour+":"+minute;
 </body>
 <script>
 
+/* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
 var calendar = document.getElementById("calendar");
 var calendarBtn = document.getElementById("calendarBtn");
 
@@ -446,34 +447,36 @@ calendar.onchange = function() {
     window.location.href =
         "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
 };
-/*
-var calendar=document.getElementById("calendar")
-calendar.onchange=function(){
-    const selectedDate = calendar.value; 
-    const dateParts = selectedDate.split('-');
-    const year = parseInt(dateParts[0]);
-    const month = parseInt(dateParts[1]); 
-    const date = parseInt(dateParts[2]);
-    window.location.href = "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
-}
-*/
-/*
-var select=document.getElementById("range");*/
-var group=document.getElementById("group");
+
+var pubRadio = document.getElementById("pubRadio");
+var priRadio = document.getElementById("priRadio");
+var groRadio = document.getElementById("groRadio");
+var groupSel = document.getElementById("groupSel");
 var creategroup=document.getElementById("creategroup");
-/*
-select.onchange=function(){
-	const selectedrange=select.value;
-	if(selectedrange==="group"){
-		group.removeAttribute('disabled');
-		creategroup.removeAttribute('disabled');
-	}else{
-		group.setAttribute('disabled','disabled');
-		creategroup.setAttribute('disabled','disabled');
+
+pubRadio.onclick = function () {
+	if(groRadio.checked==false) {
+		groupSel.disabled=true;
+		creategroup.disabled=true;
 	}
-}*/
+};
+priRadio.onclick = function () {
+	if(groRadio.checked==false) {
+		groupSel.disabled=true;
+		creategroup.disabled=true;
+	}
+};
+groRadio.onclick = function () {
+	if(groRadio.checked==false) {
+		groupSel.disabled=true;
+		creategroup.disabled=true;
+	} else {
+		groupSel.disabled=false;
+		creategroup.disabled=false;
+	}
+};
 creategroup.onclick=function(){
 	window.open("group/creategroup.jsp?m_idx=<%=idx%>","create","width=400px, height=500px");
-}
+};
 </script>
 </html>
