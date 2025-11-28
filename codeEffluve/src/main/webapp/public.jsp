@@ -20,6 +20,7 @@ if(tdtoLists!=null && tdtoLists.size()>0) {
 }
 int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):defT_idx; // 선택한 todolist Parameter
 String sid = "";
+int sidx = 0;
 if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) {
 	%>
 	<script>
@@ -30,6 +31,7 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 	return;
 } else {
 	sid = (String)session.getAttribute("sid");
+	sidx = mdao.getMemberMidx(sid);
 }
 %>
 <html>
@@ -115,6 +117,14 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 											<span id="commentId"><%=id%></span>
 											<span id="commentTime"><%=timeStr%></span>
 										</div>
+										<%
+										if (temp.getM_idx() == sidx) {
+											%>
+												<a href="/codeEffluve/comments/deleteComment_ok.jsp?t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
+											<%
+										}
+										%>
+										
 									</div>
 									<span id="commentMessage"><%=message%></span>
 								</li>

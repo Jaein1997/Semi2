@@ -24,6 +24,7 @@ public class CommentsDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				CommentsDTO tdto = new CommentsDTO();
+				tdto.setC_idx(rs.getInt("c_idx"));
 				tdto.setT_idx(t_idx);
 				tdto.setM_idx(rs.getInt("m_idx"));
 				tdto.setMessage(rs.getString("message"));
@@ -56,6 +57,29 @@ public class CommentsDAO {
 			ps.setInt(1, cdto.getT_idx());
 			ps.setInt(2, cdto.getM_idx());
 			ps.setString(3, cdto.getMessage());
+			int result = ps.executeUpdate();
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public int deleteComment(int c_idx) {
+		try {
+			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+			
+			String sql = "delete from comments where c_idx=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, c_idx);
 			int result = ps.executeUpdate();
 			return result;
 			

@@ -200,7 +200,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 		                    }
 		                    
 		                    %>
-		                    <a href="todolist/deleteTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
+		                    <a href="todolist/deleteTodolist_ok.jsp?c_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
                 		</div>
 	                	
                     </li>
