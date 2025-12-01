@@ -1506,6 +1506,19 @@ input[type="checkbox"] {
 #creategroup:disabled {
 	background-color: #888888;	
 }
+#searchgroup {
+	display: flex;
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+}
+
+#searchgroup:disabled {
+	background-color: #888888;	
+}
 
 #schedule #privateListCommentUnit {
   	list-style: none !important;
