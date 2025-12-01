@@ -364,7 +364,11 @@ if(selectedgroup.getM_idx()==idx){
 	}
 	var searchgroup=document.getElementById("searchgroup");
 	searchgroup.onclick=function(){
-		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
+		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","search","width=400px, height=500px");
+	}
+	var managegroup=document.getElementById("managegroup");
+	managegroup.onclick=function(){
+		window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=500px, height=700px");
 	}
 	
 	function toggleCommentForm(elementId) {

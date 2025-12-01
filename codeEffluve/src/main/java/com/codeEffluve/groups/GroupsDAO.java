@@ -75,6 +75,7 @@ public class GroupsDAO {
 				gdto.setG_profile(rs.getString("g_profile"));
 				gdto.setM_idx(rs.getInt("leader"));
 				gdto.setLeader(rs.getString("m_name"));
+				gdto.setApproval(rs.getString("approval"));
 				arr.add(gdto);
 			}
 			return arr;
@@ -111,6 +112,7 @@ public class GroupsDAO {
 				gdto.setG_profile(rs.getString("g_profile"));
 				gdto.setM_idx(rs.getInt("leader"));
 				gdto.setLeader(rs.getString("m_name"));
+				gdto.setApproval(rs.getString("approval"));
 				arr.add(gdto);
 			}
 			return arr;
@@ -144,6 +146,7 @@ public class GroupsDAO {
 				gdto.setG_memo(rs.getString("g_memo"));
 				gdto.setG_profile(rs.getString("g_profile"));
 				gdto.setM_idx(rs.getInt("leader"));
+				gdto.setApproval(rs.getString("approval"));
 			}
 			return gdto;
 		}catch(Exception e) {
@@ -160,6 +163,44 @@ public class GroupsDAO {
 			}
 		}
 	}
+	//가입 신청한 그룹 조회 메서드
+		public ArrayList<GroupsDTO> myaskedGroups(int m_idx){
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql="select a.* "
+						+ "from group_info a, approve b "
+						+ "where a.g_idx=b.g_idx and b.m_idx=? "
+						+ "order by a.g_idx";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, m_idx);
+				rs=ps.executeQuery();
+				
+				ArrayList<GroupsDTO> arr=new ArrayList();
+				while(rs.next()) {
+					GroupsDTO gdto=new GroupsDTO();
+					gdto.setG_idx(rs.getInt("g_idx"));
+					gdto.setG_name(rs.getString("g_name"));
+					gdto.setG_memo(rs.getString("g_memo"));
+					gdto.setG_profile(rs.getString("g_profile"));
+					gdto.setM_idx(rs.getInt("leader"));
+					arr.add(gdto);
+				}
+				
+				return arr;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+					
+				}catch(Exception e2) {
+					
+				}
+			}
+		}
 	//본인 그룹 조회 메서드
 	public ArrayList<GroupsDTO> myGroups(int m_idx){
 		try {
@@ -180,6 +221,7 @@ public class GroupsDAO {
 				gdto.setG_memo(rs.getString("g_memo"));
 				gdto.setG_profile(rs.getString("g_profile"));
 				gdto.setM_idx(rs.getInt("leader"));
+				gdto.setApproval(rs.getString("approval"));
 				arr.add(gdto);
 			}
 			
@@ -224,6 +266,36 @@ public class GroupsDAO {
 			}
 		}
 	}
+	//그룹수정 메서드
+		public int updateGroup(GroupsDTO dto) {
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql="update group_info set g_name=?, g_memo=?, g_profile=?, leader=?, approval=? "
+						+ "where g_idx=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getG_name());
+				ps.setString(2, dto.getG_memo());
+				ps.setString(3, dto.getG_profile());
+				ps.setInt(4, dto.getM_idx());
+				ps.setString(5, dto.getApproval());
+				ps.setInt(6, dto.getG_idx());
+				int count=ps.executeUpdate();
+				
+				return count;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return -1;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	
 	//그룹생성 메서드
 	public int createGroup(GroupsDTO dto) {
 		try {
