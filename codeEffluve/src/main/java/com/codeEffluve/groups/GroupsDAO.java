@@ -163,6 +163,7 @@ public class GroupsDAO {
 			}
 		}
 	}
+	
 	//가입 신청한 그룹 조회 메서드
 		public ArrayList<GroupsDTO> myaskedGroups(int m_idx){
 			try {
@@ -287,7 +288,6 @@ public class GroupsDAO {
 				return -1;
 			}finally {
 				try {
-					if(rs!=null)rs.close();
 					if(ps!=null)ps.close();
 					if(conn!=null)conn.close();
 				}catch(Exception e2) {
