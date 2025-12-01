@@ -17,6 +17,24 @@
 		window.open('idCheck.jsp', 'idCheck', 'width=450, height=300');
 		
 	}
+	
+	
+	function onlyNum(input) {
+		var value = input.value;
+		var result = "";
+
+		for (var i = 0; i < value.length; i++) {
+			var ch = value.charAt(i);
+
+			if (ch >= '0' && ch <= '9') {
+				result += ch;
+			}
+		}
+
+		if (value != result) {
+			input.value = result;
+		}
+	}
 </script>
 </head>
 <body>
@@ -54,7 +72,7 @@
 						<td><img src="/codeEffluve/img/birthdayIcon.png" alt="birthday">생년월일&nbsp;<input type="date" name="birthday" required></td>
 					</tr>
 					<tr>
-						<td><img src="/codeEffluve/img/telIcon.png" alt="tel"><input type="text" name="tel" placeholder="휴대전화번호" required></td>
+						<td><img src="/codeEffluve/img/telIcon.png" alt="tel"><input type="text" name="tel" placeholder="휴대전화번호" required oninput="onlyNum(this)"></td>
 					</tr>
 					
 					

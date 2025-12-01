@@ -149,7 +149,7 @@ public class TodolistDAO {
 	public int insertTodolist(TodolistDTO dto,String date) {
 		try {
 			conn=CodeEffluveDB.getConn();
-			String sql="insert into todolist values(todolist_t_idx.nextval,?,?,TO_DATE(?,'YYYY-MM-DD HH24:MI'),?,?)";
+			String sql="insert into todolist values(todolist_t_idx.nextval,?,?,TO_DATE(?,'YYYY-MM-DD HH24:MI'),?,?,'ud')";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, dto.getM_idx());
 			ps.setString(2, dto.getContent());
