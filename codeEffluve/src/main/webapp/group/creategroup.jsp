@@ -21,6 +21,9 @@ String m_idx=request.getParameter("m_idx");
 <input type="file" name="g_profile"><br>
 <label>그룹설명</label>
 <textarea name="g_memo"></textarea><br>
+<label>공개여부</label>
+<input type="radio" name="approval" value="t">공개
+<input type="radio" name="approval" value="f" checked>비공개<br>
 <input type="submit" value="등록하기">
 <input type="reset" value="초기화">
 

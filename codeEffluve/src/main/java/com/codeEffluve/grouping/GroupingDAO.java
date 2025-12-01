@@ -36,8 +36,31 @@ public class GroupingDAO {
 			}
 		}
 	}
+	//그룹에 가입 신청
+	public int askjoin(int g_idx, int m_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="insert into approve (g_idx, m_idx) values(?, ?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, g_idx);
+			ps.setInt(2, m_idx);
+			int result=ps.executeUpdate();
+			
+			return result;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	//그룹에 멤버 추가
-	public int joinmember(int g_idx, int m_idx) {
+	public int joinmember(int m_idx, int g_idx) {
 		try {
 			conn=CodeEffluveDB.getConn();
 			String sql="insert into grouping (m_idx, g_idx) values(?, ?)";

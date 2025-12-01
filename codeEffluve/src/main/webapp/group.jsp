@@ -94,6 +94,32 @@ if(mygroups.size()==0){
 	gdto.setM_idx(0);
 	mygroups.add(gdto);
 }
+
+GroupsDTO selectedgroup=null;
+if(g_idx==0){
+	selectedgroup=mygroups.get(0);
+}else{
+	selectedgroup=gdao.selectedGroup(g_idx);
+}
+
+ArrayList<MembersDTO> groupmems=null;
+if(g_idx==0){
+	groupmems=gpdao.membersInGroup(mygroups.get(0).getG_idx());
+}else{
+	groupmems=gpdao.membersInGroup(g_idx);
+}
+String leader="";
+for(int i=0;i<groupmems.size();i++){
+	if(selectedgroup.getM_idx()==groupmems.get(i).getM_idx()){
+		leader=groupmems.get(i).getM_name();
+	}
+}
+boolean groupleader=false;
+if(selectedgroup.getM_idx()==idx){
+	groupleader=true;
+}
+
+
 %>
 </head>
 <body>
@@ -258,12 +284,7 @@ if(mygroups.size()==0){
 
 				<div class="groupProfileArea">
 					<%
-					GroupsDTO selectedgroup=null;
-					if(g_idx==0){
-						selectedgroup=mygroups.get(0);
-					}else{
-						selectedgroup=gdao.selectedGroup(g_idx);
-					}
+
 					
 					String gprofilePath = request.getContextPath() + "/groupProfiles/";
 					if(selectedgroup!=null){
@@ -276,24 +297,27 @@ if(mygroups.size()==0){
 							<span class="groupMemo"><%=selectedgroup.getG_memo() %></span>
 						</div>
 
+
 					</div>
+						<%
+						if(groupleader){
+							%>
+							<input type="button" id="managegroup" value="그룹관리">
+							<%
+						}else{
+							%>
+							<a href="group/groupjoin_ok.jsp?m_idx=<%=idx%>&g_idx=<%=selectedgroup.getG_idx()%>&join=탈퇴">
+							<input type="button" id="goodbyegroup" value="그룹탈퇴">
+							</a>
+							<%
+						}
+						%>
 					<div class="groupingList">
 						<div class="groupingListTitle">
 							<span>그룹 멤버</span>
 						</div>
 						<%
-						ArrayList<MembersDTO> groupmems=null;
-						if(g_idx==0){
-							groupmems=gpdao.membersInGroup(mygroups.get(0).getG_idx());
-						}else{
-							groupmems=gpdao.membersInGroup(g_idx);
-						}
-						String leader="";
-						for(int i=0;i<groupmems.size();i++){
-							if(selectedgroup.getM_idx()==groupmems.get(i).getM_idx()){
-								leader=groupmems.get(i).getM_name();
-							}
-						}
+
 						%>
 						<div class="groupingListMembers">
 							<ul>

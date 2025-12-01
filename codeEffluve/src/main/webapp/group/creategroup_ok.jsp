@@ -28,6 +28,7 @@ try {
 	GroupsDTO dto = new GroupsDTO();
 	dto.setM_idx(Integer.parseInt(multi.getParameter("m_idx")));
 	dto.setG_name(multi.getParameter("g_name"));
+	dto.setApproval(multi.getParameter("approval"));
 	if(multi.getParameter("g_memo")==null || multi.getParameter("g_memo").equals("")) {
 		dto.setG_memo("-");
 	} else {
