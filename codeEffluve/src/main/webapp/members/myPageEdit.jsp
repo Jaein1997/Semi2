@@ -40,6 +40,23 @@
 
         return true;
     }
+    
+    function onlyNum(input) {
+		var value = input.value;
+		var result = "";
+
+		for (var i = 0; i < value.length; i++) {
+			var ch = value.charAt(i);
+
+			if (ch >= '0' && ch <= '9') {
+				result += ch;
+			}
+		}
+
+		if (value != result) {
+			input.value = result;
+		}
+	}
 </script>
 </head>
 <body>
@@ -88,7 +105,7 @@
 	                        </td>
 	                    </tr>
 	                    <tr><th>생년월일</th><td><input type="date" name="birthday" value="<%=member.getBirthday()%>" required></td></tr>
-	                    <tr><th>전화번호</th><td><input type="text" name="tel" value="<%=member.getTel()%>"></td></tr>
+	                    <tr><th>전화번호</th><td><input type="text" name="tel" value="<%=member.getTel()%>" oninput="onlyNum(this)"></td></tr>
 	                    
 	                </table>
                 </div>

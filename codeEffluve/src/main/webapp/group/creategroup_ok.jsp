@@ -28,10 +28,20 @@ try {
 	GroupsDTO dto = new GroupsDTO();
 	dto.setM_idx(Integer.parseInt(multi.getParameter("m_idx")));
 	dto.setG_name(multi.getParameter("g_name"));
-	dto.setG_memo(multi.getParameter("g_memo"));
+	if(multi.getParameter("g_memo")==null || multi.getParameter("g_memo").equals("")) {
+		dto.setG_memo("-");
+	} else {
+		dto.setG_memo(multi.getParameter("g_memo"));
+	}
+	
 	
 	//파일명
-	String uploadFile = multi.getFilesystemName("g_profile");
+	String uploadFile = "";
+	if(multi.getFilesystemName("g_profile")==null) {
+		uploadFile = "basic_group.jpg";
+	} else {
+		uploadFile = multi.getFilesystemName("g_profile");
+	}
 	dto.setG_profile(uploadFile);
 	
 	GroupsDAO dao = new GroupsDAO();
