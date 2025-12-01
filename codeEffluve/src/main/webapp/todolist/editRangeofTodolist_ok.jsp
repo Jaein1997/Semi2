@@ -33,7 +33,7 @@ if(g_idx_s!=null){
 if(result>0){
 	%>
 	<script>
-	window.alert("공개범위를 변경했습니다.");
+	//window.alert("공개범위를 변경했습니다.");
 	location.href="../private.jsp<%=msg%>&viewOption=<%=viewOption%>";
 	</script>
 	<%

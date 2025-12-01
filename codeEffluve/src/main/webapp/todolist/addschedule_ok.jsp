@@ -33,7 +33,7 @@ if(g_idx_s!=null){
 if(t_idx>0){
 	%>
 	<script>
-	window.alert("일정이 등록되었습니다.");
+	//window.alert("일정이 등록되었습니다.");
 	location.href="../private.jsp<%=msg%>";
 	</script>
 	<%
