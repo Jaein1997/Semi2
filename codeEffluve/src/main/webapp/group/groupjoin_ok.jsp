@@ -11,12 +11,14 @@ int g_idx=Integer.parseInt(g_idx_s);
 int m_idx=Integer.parseInt(m_idx_s);
 int result=0;
 if(join.equals("가입")){
-	result=gpdao.joinmember(g_idx, m_idx);
+	result=gpdao.joinmember(m_idx, g_idx);
+}else if(join.equals("가입신청")){
+	result=gpdao.askjoin(g_idx, m_idx);
 }else{
 	result=gpdao.goodbyemember(m_idx, g_idx);
 }
 
-if(result>0){
+if(result>0&&join.equals("가입")){
 	%>
 	<script>
 	window.alert('<%=join%>완료');
@@ -24,12 +26,18 @@ if(result>0){
 	window.self.close();
 	</script>
 	<%
+}else if(result>0&&join.equals("탈퇴")){
+	%>
+	<script>
+	window.alert('<%=join%>완료');
+	window.location.href="../group.jsp";
+	</script>
+	<%
 }else{
 	%>
 	<script>
-	window.alert('<%=join%>실패');
-	opener.location.reload();
-	window.self.close();
+	window.alert('처리실패');
+	window.location.href="../group.jsp";
 	</script>
 	<%
 }

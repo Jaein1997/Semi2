@@ -224,16 +224,17 @@ public class GroupsDAO {
 			}
 		}
 	}
-	//내 일정 수정 및 추가 그룹생성 메서드
+	//그룹생성 메서드
 	public int createGroup(GroupsDTO dto) {
 		try {
 			conn=CodeEffluveDB.getConn();
-			String sql="insert into group_info values(group_g_idx.nextval,?,?,?,?)";
+			String sql="insert into group_info values(group_g_idx.nextval,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, dto.getG_name());
 			ps.setString(2, dto.getG_memo());
 			ps.setString(3, dto.getG_profile());
 			ps.setInt(4, dto.getM_idx());
+			ps.setString(5, dto.getApproval());
 			int count=ps.executeUpdate();
 			
 			sql="select g_idx from group_info where leader=? order by g_idx desc";

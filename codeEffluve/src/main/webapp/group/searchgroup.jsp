@@ -38,7 +38,11 @@ if(g_name==null||g_name.equals("")){
 			if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
 				msg="탈퇴";
 			}
+			if(allgroups.get(i).getApproval().equals("f")){
+				msg="가입신청";
+			}
 		}
+		if(msg.equals("가입")){
 		%>
 		<li>
 		<table border=1px;>
@@ -51,6 +55,7 @@ if(g_name==null||g_name.equals("")){
 		</table>
 		</li>
 		<%
+		}
 	}%>
 	
 </ul>
@@ -70,6 +75,7 @@ if(g_name==null||g_name.equals("")){
 					msg="탈퇴";
 				}
 			}
+			if(msg.equals("가입")){
 			%>
 			<li>
 		<table border=1px;>
@@ -82,6 +88,7 @@ if(g_name==null||g_name.equals("")){
 		</table>
 		</li>
 			<%
+			}
 		}%>
 		
 	</ul>

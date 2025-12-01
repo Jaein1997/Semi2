@@ -2,7 +2,13 @@ package com.codeEffluve.groups;
 
 public class GroupsDTO {
 	private int g_idx, m_idx;
-	private String g_name,g_memo,g_profile,leader;
+	private String g_name,g_memo,g_profile,leader,approval;
+	public String getApproval() {
+		return approval;
+	}
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
 	public int getG_idx() {
 		return g_idx;
 	}
