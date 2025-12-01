@@ -280,6 +280,7 @@ public class TodolistDAO {
             	dto.setT_time(rs.getTimestamp("t_time"));
             	dto.setT_memo(rs.getString("t_memo"));
             	dto.setShares(rs.getString("shares"));
+            	dto.setStatus(rs.getString("status"));
             	arr.add(dto);
             }
 			return arr;
@@ -307,7 +308,7 @@ public class TodolistDAO {
 //					+ " on t.m_idx = m.m_idx"
 //					+ " where t.shares = 'public'"
 //					+ " order by t.t_time desc;";
-			String sql = "select t_idx, m_idx, content, t_time from todolist where shares='public' and trunc(t_time) = trunc(sysdate) order by t_time";
+			String sql = "select t_idx, m_idx, content, t_time, status from todolist where shares='public' and trunc(t_time) = trunc(sysdate) and status='ud' order by t_time";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -316,6 +317,7 @@ public class TodolistDAO {
 				tdto.setM_idx(rs.getInt("m_idx"));
 				tdto.setContent(rs.getString("content"));
 				tdto.setT_time(rs.getTimestamp("t_time"));
+				tdto.setStatus(rs.getString("status"));
 				tdtoList.add(tdto);
 			}
 			return tdtoList;
@@ -333,4 +335,44 @@ public class TodolistDAO {
 			}
 		}
 	}
+	
+	// 일정 완료처리 메소드
+	public void doneTodolist(int t_idx) {
+		try {
+			conn = CodeEffluveDB.getConn();
+			String sql = "update todolist set status='d' where t_idx=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, t_idx);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	// 일정 미완료처리 메소드
+		public void undoneTodolist(int t_idx) {
+			try {
+				conn = CodeEffluveDB.getConn();
+				String sql = "update todolist set status='ud' where t_idx=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, t_idx);
+				ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
 }
