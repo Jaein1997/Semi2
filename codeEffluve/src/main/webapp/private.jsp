@@ -106,7 +106,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                 int idx=tdao.returnM_idx(id);
                 ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
                 %>
-                <form action="todolist/editRangeofTodolist_ok.jsp">
+                
                 <ul>
                 
                 <%
@@ -117,6 +117,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                 %>
                 
                 	<li <%=selectedT_idx==arr.get(i).getT_idx()?"class='myScheduleUnit_selected'":"class='myScheduleUnit'" %>>
+                		<form action="todolist/editRangeofTodolist_ok.jsp">
                 		<div>
                 			<input type="checkbox" id="complete">
                 			<a href="private.jsp?t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
@@ -202,7 +203,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 		                    %>
 		                    <a href="todolist/deleteTodolist_ok.jsp?c_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
                 		</div>
-	                	
+	                	</form>
                     </li>
                 
                 <%
@@ -210,7 +211,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                 %>
                 
                 </ul>
-                </form>
+                
             </div>
     	</div>
 
