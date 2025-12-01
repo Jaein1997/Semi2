@@ -157,4 +157,5 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 	
 	<%@include file="footer.jsp" %>
 </body>
+
 </html>
