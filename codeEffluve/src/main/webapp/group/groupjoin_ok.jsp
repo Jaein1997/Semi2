@@ -26,6 +26,14 @@ if(result>0&&join.equals("가입")){
 	window.self.close();
 	</script>
 	<%
+}else if(result>0&&join.equals("가입신청")){
+	%>
+	<script>
+	window.alert('<%=join%>완료');
+	opener.location.reload();
+	window.self.close();
+	</script>
+	<%
 }else if(result>0&&join.equals("탈퇴")){
 	%>
 	<script>
