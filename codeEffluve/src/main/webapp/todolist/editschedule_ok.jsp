@@ -36,7 +36,7 @@ if(g_idx_s!=null){
 if(result>0){
 	%>
 	<script>
-	window.alert("일정이 수정되었습니다.");
+	//window.alert("일정이 수정되었습니다.");
 	location.href="../private.jsp<%=msg%>&viewOption=<%=viewOption%>";
 	</script>
 	<%

@@ -51,7 +51,7 @@ try {
 	if(result > 0) {
 %>
 <script>
-	alert("그룹 생성 완료!");
+	//alert("그룹 생성 완료!");
 	opener.location.reload();
 	self.close();
 </script>

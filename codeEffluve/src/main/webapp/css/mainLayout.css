@@ -1857,6 +1857,8 @@ input[type="checkbox"] {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
 }
 
 #groupPage .groupProfileArea {
@@ -2040,6 +2042,8 @@ input[type="checkbox"] {
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 	padding: 10px 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
 }
 
 .groupLeader {

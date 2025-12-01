@@ -21,7 +21,7 @@ int result=tdao.deleteTodolist(t_idx);
 if(result>0){
 	%>
 	<script>
-	window.alert("일정이 삭제되었습니다.");
+	//window.alert("일정이 삭제되었습니다.");
 	location.href="../private.jsp<%=msg%>&viewOption=<%=viewOption%>";
 	</script>
 	<%
