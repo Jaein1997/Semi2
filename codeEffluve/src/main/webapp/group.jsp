@@ -128,8 +128,10 @@ if(mygroups.size()==0){
 						<option value="<%=mygroups.get(i).getG_idx()%>" <%=g_idx==mygroups.get(i).getG_idx()?"selected":"" %>><%=mygroups.get(i).getG_name() %></option>
 					<%} %>
 					</select>
-					<input type="button" id="creategroup" value="그룹만들기">
 					<input type="button" id="searchgroup" value="그룹찾기">
+					<input type="button" id="creategroup" value="그룹만들기">
+					
+					
 				<%
 				}
 				%>
