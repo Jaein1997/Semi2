@@ -37,7 +37,7 @@
 	</header>
 
 	<main style="background-color: transparent !important; border: 0px;">
-		<img src="/codeEffluve/img/leLogo2.png"
+		<img src="/codeEffluve/img/leLogoGif.gif"
 			alt="leLogo2" id="leLogo2">
 		<div class="indexMenu">
 			<a href="/codeEffluve/public.jsp"><img

@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div id="loginDiv">
-        <h2 style="text-align:center; color: rgb(109, 16, 68)">로 그 인</h2>
+        <h2 style="text-align:center; color: rgb(109, 16, 68);">로 그 인</h2>
     
     	<form name="logIn" action="logIn_ok.jsp">
     		<table id="loginTable">
@@ -38,7 +38,7 @@
 							}
 						}
 						%>
-						<td><input type="text" name="id" value="<%=id%>" placeholder="아이디" required></td>
+						<td><input type="text" name="id" value="<%=id%>" placeholder="아이디" maxlength="20" required></td>
 					</tr>
 					<tr>
 						<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
