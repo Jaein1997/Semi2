@@ -26,6 +26,7 @@ try {
 			);
 			
 	GroupsDTO dto = new GroupsDTO();
+	dto.setG_idx(Integer.parseInt(multi.getParameter("g_idx")));
 	dto.setM_idx(Integer.parseInt(multi.getParameter("m_idx")));
 	dto.setG_name(multi.getParameter("g_name"));
 	dto.setApproval(multi.getParameter("approval"));
@@ -46,20 +47,22 @@ try {
 	dto.setG_profile(uploadFile);
 	
 	GroupsDAO dao = new GroupsDAO();
-	int result = dao.createGroup(dto);
+	int result = dao.updateGroup(dto);
 	
 	if(result > 0) {
 %>
 <script>
 	alert("그룹 수정 완료!");
-	window.location.reload();
+	opener.location.reload();
+	window.self.close()
 </script>
 <%		
 	} else {
 %>
 <script>
 	alert("그룹 수정 실패!");
-	window.location.reload();
+	opener.location.reload();
+	window.self.close()
 </script>	
 <%
 }

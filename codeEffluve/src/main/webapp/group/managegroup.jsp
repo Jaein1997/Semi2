@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.codeEffluve.members.*" %>
+<%@ page import="java.util.*" %>
 <jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
 <jsp:useBean id="gdto" class="com.codeEffluve.groups.GroupsDTO"></jsp:useBean>
 <jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
+<jsp:useBean id="gpdao" class="com.codeEffluve.grouping.GroupingDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +26,7 @@ if(m_idx!=mdao.getMemberMidx(id)){
 	<%
 }
 gdto=gdao.selectedGroup(g_idx);
+ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 %>
 
 <body>
@@ -53,7 +57,23 @@ gdto=gdao.selectedGroup(g_idx);
 	%>
 	<fieldset>
 	<legend>가입신청목록</legend>
-	
+	<table border=1px>
+		<tr>
+			<th>ID</th>
+			<th>이름</th>
+		<tr>
+	<%for(int i=0;i<whoasked.size();i++) {
+		%>
+		<tr>
+			<td><%=whoasked.get(i).getId() %></td>
+			<td><%=whoasked.get(i).getM_name() %></td>
+			<td><a href="groupjoin_ok.jsp?m_idx=<%=whoasked.get(i).getM_idx()%>&g_idx=<%=g_idx%>&join=수락"><input type="button" value="수락"></a></td>
+		</tr>
+		<%
+	}
+	%>
+		
+	</table>
 	</fieldset>
 	<%
 }%>
