@@ -1208,7 +1208,10 @@ footer div {
 	overflow: hidden;
 	box-shadow: 0px 0px 10px 5px #D8CDD2;
 }
-
+.myschedule form {
+	display: flex;
+	height: 100%;
+}
 .myschedule .myScheduleUnit_selected #schedule_a {
 	font-size: 19px;
 }
