@@ -645,7 +645,7 @@ footer div {
 	display: flex;
 	flex-direction: column;
 	width: 60%;
-	
+	padding-right: 20px;
 	border-right: 1px solid #D8CDD2;
 	justify-content: center;
 	
@@ -653,7 +653,6 @@ footer div {
 
 #publicListArea div {
 	overflow-y: auto;
-	margin-right: 20px;
 	height: 410px;
 	background-color: #FAF7F9;
 	border: 1px solid #D8CDD2;
@@ -743,9 +742,10 @@ footer div {
 	align-items: center;
 	height: 100%;
 	border: 0px !important;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 0px !important;
+	margin: 0px !important;
 	font-size:18px;
+	box-shadow: none !important;
 }
 
 .publicListCommentUnit {
@@ -1221,7 +1221,6 @@ footer div {
 
 #schedule {
     display: flex;
-    justify-content: space-between;
 }
 
 .left-column {
@@ -1254,7 +1253,6 @@ footer div {
 .right-column {
 	width: 40%;
 	height: 530px;
-	box-sizing: border-box;
 	background-color: #FAF7F9;
 	border: 1px solid #D8CDD2;
 	border-radius: 15px;
