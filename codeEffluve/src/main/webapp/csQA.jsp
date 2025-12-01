@@ -39,6 +39,7 @@
                 </div>
                 <div class="cs-main-content">
                     <%
+                      
                         ArrayList<qadelDTO> faqList = qdao.getQAList();
                         
                         if(faqList == null || faqList.isEmpty()){
@@ -49,7 +50,7 @@
                             int qNum = 1;
                             for(qadelDTO dto : faqList){
                     %>
-                                <div class="faq-item">
+                                <div class="faq-item" data-qid="<%=dto.getQ_idx()%>"> 
                                     <div class="question">
                                         <span>Q<%=qNum++%>. <%=dto.getQ()%></span>
                                         <span class="toggle-icon">+</span>
@@ -73,8 +74,31 @@
             item.addEventListener('click', event => {
                 const faqItem = item.closest('.faq-item');
                 faqItem.classList.toggle('active');
+                
+                const q_idx = faqItem.dataset.qid;
+
+              
+                if (faqItem.classList.contains('active')) {
+                    incrementViewCount(q_idx); 
+                }
             });
         });
+        
+     
+        function incrementViewCount(q_idx) {
+        
+            if (!q_idx) return; 
+
+            const xhr = new XMLHttpRequest();
+           
+            xhr.open('POST', '/codeEffluve/admin/viewCountUpdate.jsp', true); 
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            
+            
+            xhr.send('q_idx=' + q_idx);
+
+            
+        }
     </script>
 </body>
 </html>

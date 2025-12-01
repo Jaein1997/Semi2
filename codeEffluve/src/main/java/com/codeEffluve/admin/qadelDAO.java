@@ -11,13 +11,14 @@ public class qadelDAO {
 
     public qadelDAO() {}
 
-    // QA목록
+   //
     public ArrayList<qadelDTO> getQAList() {
         ArrayList<qadelDTO> list = new ArrayList<>();
         try {
             conn = com.codeEffluve.db.CodeEffluveDB.getConn();
             
-            String sql = "SELECT * FROM qa ORDER BY q_idx DESC";
+          
+            String sql = "SELECT q_idx, q, a, viewcount FROM qa ORDER BY viewcount DESC"; 
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -38,6 +39,28 @@ public class qadelDAO {
         } finally {
             try {
                 if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(conn != null) conn.close();
+            } catch(Exception e2) {}
+        }
+    }
+    
+    // 조회수 증가
+    public int updateViewCount(int q_idx) {
+        try {
+            conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+            
+            String sql = "UPDATE qa SET viewcount = viewcount + 1 WHERE q_idx=?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, q_idx);
+
+            return ps.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            try {
                 if(ps != null) ps.close();
                 if(conn != null) conn.close();
             } catch(Exception e2) {}
@@ -64,7 +87,8 @@ public class qadelDAO {
             } catch(Exception e2) {}
         }
     }
-  //자주 묻는 질문 추가
+  
+    //자주 묻는 질문 추가
     public int insertQA(String q, String a) {
     	try {
     		conn = com.codeEffluve.db.CodeEffluveDB.getConn();
@@ -86,17 +110,3 @@ public class qadelDAO {
     	}
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
