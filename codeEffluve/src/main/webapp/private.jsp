@@ -79,6 +79,13 @@ String minute=""+(nowTime.get(Calendar.MINUTE)>9?nowTime.get(Calendar.MINUTE):"0
 String currentTime = hour+":"+minute;
 
 int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request.getParameter("t_idx")):0;
+String viewOption = "";
+if(request.getParameter("viewOption")!=null) {
+	viewOption = request.getParameter("viewOption");
+} else {
+	viewOption = "ud";
+}
+
 %>
 </head>
 <body>
@@ -88,18 +95,27 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
     
     <section id="schedule">
     	<div class="left-column">
-    		    	<div class="dateHeader">
-	        <h2>
-	            <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
-	            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
-	            
-	            <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
-	    		<button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
-	        	<a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
-	        </h2>
-    	</div>
+    		<div class="dateHeader">
+		        <h2>
+		            <a href="private.jsp?viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
+		            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
+		            
+		            <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+		    		<button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
+		        	<a href="private.jsp?viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
+		        </h2>
+		        <form name="fm">
+		        	<select name="viewOption" id="myscheduleOption">
+	        			<option value="ud" <%=viewOption.equals("ud")?"selected":"" %>>미완료 일정</option>
+	        			<option value="d" <%=viewOption.equals("d")?"selected":"" %>>완료된 일정</option>
+	        			<option value="all" <%=viewOption.equals("all")?"selected":"" %>>모든 일정</option>
+	        		</select>
+		        </form>
+		        
+    		</div>
         
-        <div class="myschedule">
+        	<div class="myschedule">
+        		
                 
                 <% 
                 String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
@@ -111,6 +127,11 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                 
                 <%
                 for(int i=0;i<(arr==null?0:arr.size());i++){
+                	if(viewOption.equals("ud") && arr.get(i).getStatus().equals("d")) {
+                		continue;
+                	} else if(viewOption.equals("d") && arr.get(i).getStatus().equals("ud")) {
+                		continue;
+                	}
                 	String content = arr.get(i).getContent();
                 	String hours = arr.get(i).getT_time().getHours()<10?"0"+arr.get(i).getT_time().getHours():""+arr.get(i).getT_time().getHours();
                 	String mins = arr.get(i).getT_time().getMinutes()<10?"0"+arr.get(i).getT_time().getMinutes():""+arr.get(i).getT_time().getMinutes();
@@ -119,8 +140,8 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                 	<li <%=selectedT_idx==arr.get(i).getT_idx()?"class='myScheduleUnit_selected'":"class='myScheduleUnit'" %>>
                 		<form action="todolist/editRangeofTodolist_ok.jsp">
                 		<div>
-                			<input type="checkbox" id="complete">
-                			<a href="private.jsp?t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
+                			<input type="checkbox" class="complete" value="<%=arr.get(i).getT_idx()%>" <%= (arr.get(i).getStatus()).equals("ud")?"":"checked"%>>
+                			<a href="private.jsp?viewOption=<%=viewOption%>&t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
                 				<%= content
                 						+" ("+hours
                 						+":"
@@ -129,13 +150,13 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 		                    <span id="memo_span"><%= arr.get(i).getT_memo() %></span>
 		                    <div id="shares_div">
 		                    	<div <%= arr.get(i).getShares().equals("public")?"id='publicUnitBtn_selected'":"id='publicUnitBtn'" %>>
-		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=public&year=<%=year%>&month=<%=month%>&day=<%=date%>">공개</a>
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(i).getT_idx()%>&shares=public&year=<%=year%>&month=<%=month%>&day=<%=date%>">공개</a>
 		                    	</div>
 		                    	<div <%= arr.get(i).getShares().equals("private")?"id='privateUnitBtn_selected'":"id='privateUnitBtn'" %>>
-		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=private&year=<%=year%>&month=<%=month%>&day=<%=date%>">비공개</a>
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(i).getT_idx()%>&shares=private&year=<%=year%>&month=<%=month%>&day=<%=date%>">비공개</a>
 		                    	</div>
 		                    	<div <%= arr.get(i).getShares().equals("group")?"id='groupUnitBtn_selected'":"id='groupUnitBtn'" %>>
-		                    		<a href="todolist/editRangeofTodolist_ok.jsp?t_idx=<%=arr.get(i).getT_idx()%>&shares=group&year=<%=year%>&month=<%=month%>&day=<%=date%>">그룹</a>
+		                    		<a href="todolist/editRangeofTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(i).getT_idx()%>&shares=group&year=<%=year%>&month=<%=month%>&day=<%=date%>">그룹</a>
 		                    	</div>
 		                    </div>
 		                    <% if(arr.get(i).getShares().equals("group")){
@@ -163,7 +184,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 		                        	</select>
 		                        	<input type="hidden" name="t_idx" value="<%=arr.get(i).getT_idx()%>">
 		                        	<input type="hidden" name="shares" value="group">
-		                        	
+		                        	<input type="hidden" name="viewOption" value="<%=viewOption %>">
 		                        	<input type="hidden" name="year" value="<%=year%>">
 		                        	<input type="hidden" name="month" value="<%=month%>">
 		                        	<input type="hidden" name="day" value="<%=date%>">
@@ -201,7 +222,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 		                    }
 		                    
 		                    %>
-		                    <a href="todolist/deleteTodolist_ok.jsp?c_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
+		                    <a href="todolist/deleteTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>" id="deleteUnitBtn_a">×</a>
                 		</div>
 	                	</form>
                     </li>
@@ -302,9 +323,10 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                     	<div class="h3Div">
                     		<h3>일정 수정</h3>
                     		 <div>
-                                <input type="submit" value="수정하기">
+                    		 	<a href="todolist/deleteTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(arr_idx).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>"><input type="button" value="삭제"></a>
+                                <input type="submit" value="수정">
                                 <input type="reset" value="초기화">
-                                <a href="private.jsp?year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
+                                <a href="private.jsp?viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
                             </div>
                     	</div>
                     	
@@ -365,7 +387,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
                         	<input type="hidden" name="year" value="<%=year%>">
                         	<input type="hidden" name="month" value="<%=month%>">
                         	<input type="hidden" name="day" value="<%=date%>">
-                        	
+                        	<input type="hidden" name="viewOption" value="<%=viewOption%>">
                             
                         </form>
                         <%
@@ -378,6 +400,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 					<%
 					
 					ArrayList<CommentsDTO> cdtoLists =cdao.getComments(selectedT_idx);
+					String arr_idx = request.getParameter("arr_idx");
 					if(cdtoLists==null || cdtoLists.size()==0) {
 						
 					} else {
@@ -399,7 +422,7 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 										<%
 										if(temp.getM_idx()==idx) {
 											%>
-											<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
+											<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
 											<%
 										}
 										%>
@@ -429,6 +452,11 @@ int selectedT_idx = request.getParameter("t_idx")!=null?Integer.parseInt(request
 						<input type="hidden" name="year" value="<%=year%>">
                        	<input type="hidden" name="month" value="<%=month%>">
                         <input type="hidden" name="day" value="<%=date%>">
+                        <%
+                       	arr_idx = request.getParameter("arr_idx");
+                        %>
+                        <input type="hidden" name="arr_idx" value="<%=arr_idx%>">
+                        <input type="hidden" name="viewOption" value="<%=viewOption%>">
 						<input type="submit" value="작성" <%=selectedT_idx==0?"class='disabledSubmit' disabled":"" %>>
 					</form>
 				</div>
@@ -462,7 +490,7 @@ calendar.onchange = function() {
     const month = parseInt(dateParts[1], 10);
     const date = parseInt(dateParts[2], 10);
     window.location.href =
-        "private.jsp?year=" + year + "&month=" + month + "&date=" + date;
+        "private.jsp?viewOption=<%=viewOption%>&year=" + year + "&month=" + month + "&date=" + date;
 };
 
 var pubRadio = document.getElementById("pubRadio");
@@ -495,5 +523,23 @@ groRadio.onclick = function () {
 creategroup.onclick=function(){
 	window.open("group/creategroup.jsp?m_idx=<%=idx%>","create","width=400px, height=500px");
 };
+
+
+var complete = document.getElementsByClassName("complete");
+for (var i = 0; i < complete.length; i++) {
+	complete[i].onclick = function() {
+		if (this.checked) {
+			location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+		} else {
+			location.href = "/codeEffluve/todolist/undoneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+		}
+	};
+}
+
+var myscheduleOption = document.getElementById("myscheduleOption");
+myscheduleOption.onchange = function() {
+	var viewoption = document.fm.viewOption.value;
+	location.href='/codeEffluve/private.jsp?viewOption='+viewoption;
+}
 </script>
 </html>

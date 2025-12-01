@@ -6,10 +6,12 @@
 <%
 int c_idx = Integer.parseInt(request.getParameter("c_idx"));
 int t_idx = Integer.parseInt(request.getParameter("t_idx"));
+String viewOption = request.getParameter("viewOption");
+String arr_idx = request.getParameter("arr_idx");
 
 cdao.deleteComment(c_idx);
 %>
 
 <script>
-	location.href='/codeEffluve/private.jsp?t_idx=<%=t_idx%>';
+	location.href='/codeEffluve/private.jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx%>&t_idx=<%=t_idx%>';
 </script>

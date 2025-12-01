@@ -8,6 +8,8 @@
 String year_s=request.getParameter("year");
 String month_s=request.getParameter("month");
 String date_s=request.getParameter("day");
+String viewOption = request.getParameter("viewOption");
+String arr_idx = request.getParameter("arr_idx");
 String msg="";
 if(year_s!=null&&month_s!=null&date_s!=null){
 	msg="&year="+year_s+"&month="+month_s+"&date="+date_s;
@@ -27,13 +29,13 @@ int result = cdao.writeComment(cdto);
 if (result>0) {
 	%>
 	<script>
-		location.href='/codeEffluve/private.jsp?t_idx=<%=t_idx+msg%>';
+		location.href='/codeEffluve/private.jsp?viewOption=<%=viewOption%>&t_idx=<%=t_idx+"&arr_idx="+arr_idx+msg%>';
 	</script>
 	<%
 } else {
 	%>
 	<script>
-		location.href='/codeEffluve/private.jsp?t_idx=<%=t_idx+msg%>';
+		location.href='/codeEffluve/private.jsp?viewOption=<%=viewOption%>&t_idx=<%=t_idx+"&arr_idx="+arr_idx+msg%>';
 	</script>
 	<%
 }

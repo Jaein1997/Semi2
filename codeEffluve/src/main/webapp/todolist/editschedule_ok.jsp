@@ -9,6 +9,7 @@
 String year_s=request.getParameter("year");
 String month_s=request.getParameter("month");
 String date_s=request.getParameter("day");
+String viewOption = request.getParameter("viewOption");
 String msg="";
 if(year_s!=null&&month_s!=null&date_s!=null){
 	msg="?year="+year_s+"&month="+month_s+"&date="+date_s;
@@ -36,14 +37,14 @@ if(result>0){
 	%>
 	<script>
 	window.alert("일정이 수정되었습니다.");
-	location.href="../private.jsp<%=msg%>";
+	location.href="../private.jsp<%=msg%>&viewOption=<%=viewOption%>";
 	</script>
 	<%
 }else{
 	%>
 	<script>
 	window.alert("일정 수정에 실패했습니다.");
-	location.href="../private.jsp<%=msg%>";
+	location.href="../private.jsp<%=msg%>&viewOption=<%=viewOption%>";
 	</script>
 	<%
 }
