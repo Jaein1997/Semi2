@@ -35,7 +35,7 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 
 <fieldset>
 <legend>그룹정보수정</legend>
-<form name="editgroup" action="editgroup_ok.jsp" method = "post" enctype = "multipart/form-data">
+<form name="creategroup" action="editgroup_ok.jsp" method = "post" enctype = "multipart/form-data">
 
 <input type="hidden" name="g_idx" value="<%=g_idx%>">
 <input type="hidden" name="m_idx" value="<%=m_idx%>">
