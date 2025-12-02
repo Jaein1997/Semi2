@@ -1165,6 +1165,62 @@ footer div {
     margin-top: 10px;
 }
 
+#mORd {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: 10px;
+	bottom: 0px;
+}
+
+.dailyBtnSelected, .monthlyBtnSelected {
+	box-sizing: border-box;
+	width: 70px;
+	height: 27px;
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 10px;
+	padding: 2px 6px;
+	font-size: 15px;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.dailyBtn, .monthlyBtn {
+	
+	box-sizing: border-box;
+	width: 70px;
+	height: 27px;
+	background-color: white;
+	color: #1E8A8A;
+	border: 1px solid #1E8A8A;
+	border-radius: 10px;
+	padding: 2px 6px;
+	font-size: 15px;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.dailyBtnSelected, .dailyBtn{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.monthlyBtnSelected, .monthlyBtn {
+	width: 90px !important;
+	display:flex;
+	align-items: center;
+	gap: 3px;
+	flex-direction: row;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.monthlyBtnSelected img {
+	filter: brightness(0) invert(1);
+}
+
 .dateHeader a {
 	text-decoration: none;
 	color: #1E8A8A;
@@ -1239,6 +1295,105 @@ footer div {
 	overflow-y: auto;
 	scrollbar-width: none;
 	box-shadow: 0px 0px 8px 2px #D8CDD2;
+}
+
+.myscheduleMonthly {
+	width: 100%;
+	height: 450px;
+	box-sizing: border-box;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	overflow-y: auto;
+	scrollbar-width: none;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
+	overflow: hidden;
+}
+
+#monthlyTable {
+	width: 100%;
+	height: 100%;
+	border-spacing: 0px;
+	table-layout: fixed;
+}
+
+
+#monthlyTable thead th {
+	font-size: 14px;
+	font-weight: 500;
+	width: 14.285%;
+	height: 20px;
+	border-right: 1px solid #D8CDD2;
+	border-bottom: 2px solid #D8CDD2;
+}
+#monthlyTable thead th:first-child {color: #D92A0D;}
+#monthlyTable thead th:last-child {color: #4249DE;border-right:0px;}
+
+#monthlyTable tbody td {
+	position: relative;
+	padding-top: 21px;
+	border-right: 1px solid #D8CDD2;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#dayNumA {
+	position: absolute;
+	top: 1px;
+	left: 4px;
+	font-size: 14px;
+	text-decoration: none;
+	color: black;
+}
+
+
+
+#monthlyTable tbody td div {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+#monthlyTable tbody td:last-child {
+	border-right: 0;
+}
+
+#monthlyTable tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+#monthlyTable ul {
+	padding-inline-start: 0px;
+	margin-block-start: 0em;
+    margin-block-end: 0em;
+	list-style: none;
+}
+
+#monthlyTable li {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	height: 17px;
+}
+
+
+#monthlyTable li span:first-child {
+	position: absolute;
+	left: 3px;
+	top: 0px;
+}
+
+#monthlyTable li a {
+	padding-left: 40px;
+	font-size: 12px;
+	text-decoration: none;
+	color: black;
+	font-weight:450;
+}
+
+.todayCell {
+	outline: 2px solid #1E8A8A;
+	outline-offset: -1px;
 }
 
 #myscheduleOption {
