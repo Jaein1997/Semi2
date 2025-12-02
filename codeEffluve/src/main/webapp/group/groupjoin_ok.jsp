@@ -6,6 +6,7 @@
 String g_idx_s=request.getParameter("g_idx");
 String m_idx_s=request.getParameter("m_idx");
 String join=request.getParameter("join");
+String g_leader=request.getParameter("g_leader");
 
 int g_idx=Integer.parseInt(g_idx_s);
 int m_idx=Integer.parseInt(m_idx_s);
@@ -17,11 +18,13 @@ if(join.equals("가입")){
 }else if(join.equals("수락")){
 	result=gpdao.joinmember(m_idx, g_idx);
 	gpdao.cancel(m_idx, g_idx);
+}else if(join.equals("거절")){
+	result=gpdao.cancel(m_idx, g_idx);
 }else{
 	result=gpdao.goodbyemember(m_idx, g_idx);
 }
 
-if(join.equals("수락")){
+if(join.equals("수락")||join.equals("거절")){
 	%>
 	<script>
 	window.alert('<%=join%>완료');
@@ -51,6 +54,14 @@ if(result>0&&join.equals("가입")){
 	<script>
 	window.alert('<%=join%>완료');
 	window.location.href="../group.jsp";
+	</script>
+	<%
+}else if(result>0&&join.equals("탈퇴처리")){
+	%>
+	<script>
+	window.alert('<%=join%>완료');
+	opener.location.reload();
+	window.location.href="managemember.jsp?m_idx=<%=g_leader%>&g_idx=<%=g_idx%>";
 	</script>
 	<%
 }else{

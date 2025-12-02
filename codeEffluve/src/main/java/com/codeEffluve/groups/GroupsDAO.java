@@ -4,12 +4,134 @@ import java.sql.*;
 import java.util.*;
 
 import com.codeEffluve.db.*;
+import com.codeEffluve.members.MembersDTO;
 import com.codeEffluve.todolist.TodolistDTO;
 
 public class GroupsDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	//그룹 삭제 메서드
+	public int deletegroup(int g_idx, int m_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="delete from group_info "
+					+ "where g_idx=? and leader=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, g_idx);
+			ps.setInt(2, m_idx);
+			int count=ps.executeUpdate();
+			
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	//그룹장 변경 메서드
+	public int changeleader(int g_idx, int m_idx) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="update group_info set leader=? "
+					+ "where g_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_idx);
+			ps.setInt(2, g_idx);
+			int count=ps.executeUpdate();
+			
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	//이름으로 그룹 멤버 검색 메서드
+	public ArrayList<MembersDTO> searchedmember(int g_idx, String m_name) {
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql="select a.* "
+					+ "from members a, grouping b "
+					+ "where a.m_name like ? and b.g_idx=? and a.m_idx = b.m_idx "
+					+ "order by a.m_idx";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, "%"+m_name+"%");
+			ps.setInt(2, g_idx);
+			rs=ps.executeQuery();
+			
+			ArrayList<MembersDTO> arr=new ArrayList();
+			while(rs.next()) {
+				MembersDTO dto=new MembersDTO();
+				dto.setM_idx(rs.getInt("m_idx"));
+				dto.setId(rs.getString("id"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_profile(rs.getString("m_profile"));
+				arr.add(dto);
+			}
+			return arr;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
+	//그룹장 제외 그룹 멤버 조회 메서드
+	public ArrayList<MembersDTO> groupmembers(int g_idx){
+		try {
+			conn=CodeEffluveDB.getConn();
+			String sql = "select a.* "
+					+ "from members a, grouping b "
+					+ "where a.m_idx=b.m_idx and b.g_idx=? "
+                    + "order by a.m_idx";
+			ps=conn.prepareStatement(sql);
+            ps.setInt(1,g_idx);
+            rs = ps.executeQuery();
+            
+            ArrayList<MembersDTO> arr=new ArrayList();
+            while(rs.next()) {
+            	MembersDTO dto=new MembersDTO();
+            	dto.setM_idx(rs.getInt("m_idx"));
+            	dto.setId(rs.getString("id"));
+            	dto.setM_name(rs.getString("m_name"));
+            	dto.setM_profile(rs.getString("m_profile"));
+            	arr.add(dto);
+            }
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
 	
 	//날짜별 그룹일정조회 메서드
 		public ArrayList<TodolistDTO> groupTodolist(int g_idx,String date){
