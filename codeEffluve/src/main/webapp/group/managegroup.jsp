@@ -50,6 +50,7 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 <input type="radio" name="approval" value="f" <%=gdto.getApproval().equals("f")?"checked":"" %>>비공개<br>
 <input type="submit" value="수정하기">
 <input type="reset" value="초기화">
+<a href="deletegroup_ok.jsp?g_idx=<%=g_idx%>"><input type="button" value="그룹삭제"></a>
 </form>
 </fieldset>
 
@@ -57,10 +58,17 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 	%>
 	<fieldset>
 	<legend>가입신청목록</legend>
+	<%if(whoasked.size()==0){
+		%>
+		신청한 회원이 없습니다.
+		<%
+	}else{%>
 	<table border=1px>
 		<tr>
 			<th>ID</th>
 			<th>이름</th>
+			<th>수락</th>
+			<th>거절</th>
 		<tr>
 	<%for(int i=0;i<whoasked.size();i++) {
 		%>
@@ -68,6 +76,7 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 			<td><%=whoasked.get(i).getId() %></td>
 			<td><%=whoasked.get(i).getM_name() %></td>
 			<td><a href="groupjoin_ok.jsp?m_idx=<%=whoasked.get(i).getM_idx()%>&g_idx=<%=g_idx%>&join=수락"><input type="button" value="수락"></a></td>
+			<td><a href="groupjoin_ok.jsp?m_idx=<%=whoasked.get(i).getM_idx()%>&g_idx=<%=g_idx%>&join=거절"><input type="button" value="거절"></a></td>
 		</tr>
 		<%
 	}
@@ -76,7 +85,8 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 	</table>
 	</fieldset>
 	<%
-}%>
+	}
+	}%>
 
 </form>
 <script>

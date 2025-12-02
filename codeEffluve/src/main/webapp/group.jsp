@@ -303,6 +303,7 @@ if(selectedgroup.getM_idx()==idx){
 						if(groupleader){
 							%>
 							<input type="button" id="managegroup" value="그룹관리">
+							<input type="button" id="managemember" value="멤버관리">
 							<%
 						}else{
 							%>
@@ -369,6 +370,11 @@ if(selectedgroup.getM_idx()==idx){
 	var managegroup=document.getElementById("managegroup");
 	managegroup.onclick=function(){
 		window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=500px, height=700px");
+	}
+	
+	var managemember=document.getElementById("managemember");
+	managemember.onclick=function(){
+		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=500px, height=700px");
 	}
 	
 	function toggleCommentForm(elementId) {
