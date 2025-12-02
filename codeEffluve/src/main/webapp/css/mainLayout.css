@@ -1301,6 +1301,14 @@ footer div {
 	font-size: 19px;
 }
 
+.myschedule .myScheduleUnit_selected #schedule_a span:last-child,
+.myschedule .myScheduleUnit #schedule_a span:last-child {
+	
+	white-space: nowrap;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .myschedule .myScheduleUnit:hover {
 	box-sizing: border-box;
 	border: 1px solid #6D1044;
@@ -1325,7 +1333,18 @@ input[type="checkbox"] {
 }
 #schedule_a {
 	display: flex;
-	width: 30%;
+	flex: 0 1 20%;
+    min-width: 0;
+	height: 100%;
+	align-items: center;
+	color: black;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+#schedule_time {
+	display: flex;
+	flex: 0 1 10%;
 	height: 100%;
 	align-items: center;
 	padding-left: 10px;
@@ -1333,13 +1352,17 @@ input[type="checkbox"] {
 	font-size: 17px;
 	font-weight: 500;
 }
+
 #memo_span {
-	display: flex;
-	width: 20%;
 	height: 100%;
+	flex: 0 1 20%;
+	padding-top: 6px;
 	border-left: 1px solid #D8CDD2;
 	padding-left: 15px;
 	align-items: center;
+	white-space: nowrap;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 #shares_div {
 	display: flex;
