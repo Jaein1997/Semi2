@@ -141,11 +141,8 @@ if(request.getParameter("viewOption")!=null) {
                 		<form action="todolist/editRangeofTodolist_ok.jsp">
                 		<div>
                 			<input type="checkbox" class="complete" value="<%=arr.get(i).getT_idx()%>" <%= (arr.get(i).getStatus()).equals("ud")?"":"checked"%>>
-                			<a href="private.jsp?viewOption=<%=viewOption%>&t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
-                				<%= content
-                						+" ("+hours
-                						+":"
-                						+mins+")"%>
+                			<span id="schedule_time"><%="("+hours+":"+mins+")" %></span><a href="private.jsp?viewOption=<%=viewOption%>&t_idx=<%=arr.get(i).getT_idx() %>&arr_idx=<%=i %>&year=<%=year %>&month=<%=month %>&date=<%=date %>" id="schedule_a">
+                				<span><%=content %></span>
                 			</a>
 		                    <span id="memo_span"><%= arr.get(i).getT_memo() %></span>
 		                    <div id="shares_div">

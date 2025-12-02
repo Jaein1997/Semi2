@@ -66,11 +66,13 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 						String timeStr = (t_time != null) ? tf.format(t_time) : "";
 						String id = mdao.getIdStr(temp.getM_idx());
 						String content = temp.getContent();
+						String ProfilePath = mdao.getProfilePath(temp.getM_idx());
 						int t_idx = temp.getT_idx();
 						%>
 						
 							<li class=<%=t_idx==selectedT_idx?"publicListUnit_selected":"publicListUnit" %>>
 								<a href="/codeEffluve/public.jsp?t_idx=<%=t_idx%>">
+									<img src="/codeEffluve/membersProfiles/<%=ProfilePath%>" alt="프로필" style="width:40px; height:40px;border-radius: 50%;object-fit: cover; margin-right: 10px;">
 									<span style="width:25%; border-right:1px solid #888888; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><%=id%></span>
 									<span style="width:60%; padding-left: 15px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><%=content%></span>
 									<span style="width:15%; text-align: right; border-left:1px solid #888888;"><%=timeStr%></span>
