@@ -74,7 +74,7 @@ public class TodolistDAO {
 			}
 		}
 	}
-	//일정 그룹핑 해제 메서드
+	//일정의 모든 그룹핑 해제 메서드
 	public int groopDelete(int t_idx) {
 		try {
 			conn=CodeEffluveDB.getConn();
@@ -95,6 +95,28 @@ public class TodolistDAO {
 			}
 		}
 	}
+	//일정의 개별 그룹핑 해제 메서드
+		public int thisgroopDelete(int t_idx, int g_idx) {
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql="delete from sharedList where t_idx=? and g_idx=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, t_idx);
+				ps.setInt(2, g_idx);
+				int count=ps.executeUpdate();
+				return count;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return -1;
+			}finally {
+				try {
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
 	//일정 그룹 수정 메서드(그룹공개->그룹공개)
 	public int groopChange(int t_idx, int g_idx) {
 		try {
