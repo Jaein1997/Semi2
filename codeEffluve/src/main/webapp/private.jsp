@@ -275,13 +275,6 @@ if(request.getParameter("mdMode")!=null) {
 		            <%=year %>년 <%=month %>월
 		        	<a href="private.jsp?mdMode=monthly&year=<%=nextYear%>&month=<%=nextMonth%>">▶</a>
 		        </h2>
-		        <form name="fm">
-		        	<select name="viewOption" id="myscheduleOption">
-	        			<option value="ud" <%=viewOption.equals("ud")?"selected":"" %>>미완료 일정</option>
-	        			<option value="d" <%=viewOption.equals("d")?"selected":"" %>>완료된 일정</option>
-	        			<option value="all" <%=viewOption.equals("all")?"selected":"" %>>모든 일정</option>
-	        		</select>
-		        </form>
 		        
     		</div>
 			<div class="myscheduleMonthly">
@@ -449,10 +442,10 @@ if(request.getParameter("mdMode")!=null) {
                     	<div class="h3Div">
                     		<h3>일정 수정</h3>
                     		 <div>
-                    		 	<a href="todolist/deleteTodolist_ok.jsp?viewOption=<%=viewOption %>&t_idx=<%=arr.get(arr_idx).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>"><input type="button" value="삭제"></a>
+                    		 	<a href="todolist/deleteTodolist_ok.jsp?mdMode=<%=mdMode%>&viewOption=<%=viewOption %>&t_idx=<%=arr.get(arr_idx).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>"><input type="button" value="삭제"></a>
                                 <input type="submit" value="수정">
                                 <input type="reset" value="초기화">
-                                <a href="private.jsp?viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
+                                <a href="private.jsp?mdMode=<%=mdMode%>&viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>"><input type="button" value="취소"></a>
                             </div>
                     	</div>
                     	
@@ -514,6 +507,7 @@ if(request.getParameter("mdMode")!=null) {
                         	<input type="hidden" name="month" value="<%=month%>">
                         	<input type="hidden" name="day" value="<%=date%>">
                         	<input type="hidden" name="viewOption" value="<%=viewOption%>">
+                        	<input type="hidden" name="mdMode" value="<%=mdMode%>">
                             
                         </form>
                         <%
@@ -665,7 +659,7 @@ for (var i = 0; i < complete.length; i++) {
 var myscheduleOption = document.getElementById("myscheduleOption");
 myscheduleOption.onchange = function() {
 	var viewoption = document.fm.viewOption.value;
-	location.href='/codeEffluve/private.jsp?viewOption='+viewoption;
+	location.href='/codeEffluve/private.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&viewOption='+viewoption;
 }
 </script>
 </html>
