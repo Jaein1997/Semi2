@@ -40,11 +40,14 @@ String user_year=request.getParameter("year");
 String user_month=request.getParameter("month");
 String user_date=request.getParameter("date");
 
-if(user_year!=null&&user_month!=null&&user_date!=null
-&&!user_year.equals("")&&!user_month.equals("")&&!user_date.equals("")){
+if(user_year!=null&&user_month!=null
+&&!user_year.equals("")&&!user_month.equals("")){
 	int year=Integer.parseInt(user_year);
 	int month=Integer.parseInt(user_month)-1;
-	int date=Integer.parseInt(user_date);
+	int date = 1;
+	if (user_date != null && !user_date.equals("")) {
+	    date = Integer.parseInt(user_date);
+	}
 	today.set(year,month,date);
 }
 
@@ -86,6 +89,12 @@ if(request.getParameter("viewOption")!=null) {
 	viewOption = "ud";
 }
 
+String mdMode = "";
+if(request.getParameter("mdMode")!=null) {
+	mdMode = request.getParameter("mdMode");
+} else {
+	mdMode = "daily";
+}
 %>
 </head>
 <body>
@@ -95,7 +104,16 @@ if(request.getParameter("viewOption")!=null) {
     
     <section id="schedule">
     	<div class="left-column">
+    		<%
+        	String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
+            int idx=tdao.returnM_idx(id);
+            ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
+        	if (mdMode.equals("daily")) { %>
     		<div class="dateHeader">
+    			<div id="mORd">
+    				<a href="/codeEffluve/private.jsp?mdMode=daily" style="margin:0px !important;box-sizing: border-box;"><button <%=mdMode.equals("daily")?"class='dailyBtnSelected'":"class='dailyBtn'" %> id="dailyBtn">일별보기</button></a>
+    				<a href="/codeEffluve/private.jsp?mdMode=monthly" style="margin:0px !important;"><button <%=mdMode.equals("monthly")?"class='monthlyBtnSelected'":"class='monthlyBtn'" %> id="monthlyBtn">월별보기<img src="/codeEffluve/img/calendar_mini.png" alt="날짜선택" style="width:16px;height:auto;"></button></a>
+    			</div>
 		        <h2>
 		            <a href="private.jsp?viewOption=<%=viewOption %>&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
 		            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
@@ -114,13 +132,13 @@ if(request.getParameter("viewOption")!=null) {
 		        
     		</div>
         
+        	
         	<div class="myschedule">
         		
                 
                 <% 
-                String dbdate=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
-                int idx=tdao.returnM_idx(id);
-                ArrayList<TodolistDTO> arr=tdao.showTodolist(idx,dbdate);
+                
+               
                 %>
                 
                 <ul>
@@ -231,13 +249,124 @@ if(request.getParameter("viewOption")!=null) {
                 </ul>
                 
             </div>
-    	</div>
+    	
+		<%} else if (mdMode.equals("monthly")) {
+			int prevYear = year;
+			int prevMonth = month - 1;
+			if (prevMonth < 1) {
+			    prevMonth = 12;
+			    prevYear--;
+			}
 
-        
+			int nextYear = year;
+			int nextMonth = month + 1;
+			if (nextMonth > 12) {
+			    nextMonth = 1;
+			    nextYear++;
+			}
+			%>
+			<div class="dateHeader">
+    			<div id="mORd">
+    				<a href="/codeEffluve/private.jsp?mdMode=daily" style="margin:0px !important;box-sizing: border-box;"><button <%=mdMode.equals("daily")?"class='dailyBtnSelected'":"class='dailyBtn'" %> id="dailyBtn">일별보기</button></a>
+    				<a href="/codeEffluve/private.jsp?mdMode=monthly" style="margin:0px !important;"><button <%=mdMode.equals("monthly")?"class='monthlyBtnSelected'":"class='monthlyBtn'" %> id="monthlyBtn">월별보기<img src="/codeEffluve/img/calendar_mini.png" alt="날짜선택" style="width:16px;height:16px;"></button></a>
+    			</div>
+		        <h2>
+		            <a href="private.jsp?mdMode=monthly&year=<%=prevYear%>&month=<%=prevMonth%>">◀</a>
+		            <%=year %>년 <%=month %>월
+		        	<a href="private.jsp?mdMode=monthly&year=<%=nextYear%>&month=<%=nextMonth%>">▶</a>
+		        </h2>
+		        <form name="fm">
+		        	<select name="viewOption" id="myscheduleOption">
+	        			<option value="ud" <%=viewOption.equals("ud")?"selected":"" %>>미완료 일정</option>
+	        			<option value="d" <%=viewOption.equals("d")?"selected":"" %>>완료된 일정</option>
+	        			<option value="all" <%=viewOption.equals("all")?"selected":"" %>>모든 일정</option>
+	        		</select>
+		        </form>
+		        
+    		</div>
+			<div class="myscheduleMonthly">
+
+					<table id="monthlyTable">
+						<thead>
+							<tr>
+								<th>SUN</th>
+								<th>MON</th>
+								<th>TUE</th>
+								<th>WED</th>
+								<th>THU</th>
+								<th>FRI</th>
+								<th>SAT</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+							int calYear = year;
+							int calMonth = month;
+							Calendar cal = Calendar.getInstance();
+							cal.set(calYear, calMonth-1, 1);
+							int firstDay = cal.get(Calendar.DAY_OF_WEEK);  // 1일이 무슨 요일인지
+							int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // 이번달 며칠까지 있는지
+							int dayNum = 1;
+							int x = (firstDay-1+lastDay)%7 == 0 ? 0 : 1;
+							int weeks = (firstDay-1+lastDay)/7 + x;
+							for (int week = 0; week < weeks; week++) {
+							%>
+							<tr style="height: <%=100/weeks %>%;">
+								<%
+								for (int dow = 1; dow <= 7; dow++) {
+									int cellNum = week * 7 + dow;
+									if (cellNum<firstDay || dayNum>lastDay) {
+										%>
+										<td style="background-color:#E7E1E4;">&nbsp;</td>
+										<%
+									} else {
+										boolean isToday = (dayNum == date && calMonth == month && calYear == year);
+										%>
+										<td <%=isToday ? "class='todayCell'" : ""%>>
+											<div>
+											<a href="/codeEffluve/private.jsp?mdMode=daily&year=<%=calYear %>&month=<%=calMonth %>&date=<%=dayNum %>" id="dayNumA"><%=dayNum%></a>
+											<ul>
+											<%
+											String getCelldate=year+"-"+(month<10?"0"+month:month)+"-"+(dayNum<10?"0"+dayNum:dayNum);
+								            ArrayList<TodolistDTO> cellArr=tdao.showTodolist(idx,getCelldate);
+								            for(int j = 0; j<cellArr.size(); j++) {
+											%>
+												<li>
+												<%
+												String hours = cellArr.get(j).getT_time().getHours()<10?"0"+cellArr.get(j).getT_time().getHours():""+cellArr.get(j).getT_time().getHours();
+							                	String mins = cellArr.get(j).getT_time().getMinutes()<10?"0"+cellArr.get(j).getT_time().getMinutes():""+cellArr.get(j).getT_time().getMinutes();
+												%>
+												<span style="font-size: 12px; color:#444444; font-weight:450;"><%=hours+":"+mins%></span>
+												<a <%=(cellArr.get(j).getStatus()).equals("d")?"style='color:#999999; text-decoration: line-through !important;'":"style='color:black;'"%> href="/codeEffluve/private.jsp?mdMode=monthly&t_idx=<%=cellArr.get(j).getT_idx() %>&year=<%=calYear %>&month=<%=calMonth %>&date=<%=dayNum %>&arr_idx=<%=j%>">
+                									<%=cellArr.get(j).getContent() %>
+                								</a>
+												</li>
+											<%} %>
+											</ul>
+											</div>
+										</td>
+										<%
+										dayNum++;
+									}
+								}
+								%>
+							</tr>
+							<%
+							}
+							%>
+						</tbody>
+					</table>
+				</div>
+				<%
+				}
+				%>
+        </div>
         <div class="right-column">
             
             <div class="add-schedule">
-                <%if(request.getParameter("arr_idx")==null){ %>
+                <%
+                if (request.getParameter("arr_idx") == null) {
+                %>
                 <form name="newschedule" action="todolist/addschedule_ok.jsp">
                 	<div class="h3Div">
                 		<h3>일정 추가</h3>
