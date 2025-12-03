@@ -52,6 +52,18 @@
 	
 	<button type="submit" style ="padding: 5px 10px;" class = "search-btn">검색</button>
 	</form>
+<%
+int cp = request.getParameter("cp") == null ?
+        1 : Integer.parseInt(request.getParameter("cp"));
+int ls = 10;
+
+String searchId = request.getParameter("searchId");
+
+ArrayList<daydelDTO> arr = ddao.getTodoList(searchId, cp, ls);
+
+int totalCnt = ddao.getTotalCount(searchId);
+int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+%>
 	
 <table class = "adminTable">
 	<tr>
@@ -65,9 +77,6 @@
 	</tr>
 	
 <%
-	String searchId = request.getParameter("searchId");
-	ArrayList<daydelDTO> arr = ddao.getTodoList(searchId);
-	
 	if(arr == null || arr.size() == 0){
 %>
 	    <tr>
@@ -97,3 +106,17 @@
 	    }
 %>
 </table>
+
+<div style="text-align:center; margin-top:20px;">
+<%
+    for(int i = 1; i <= totalPage; i++){
+%>
+    <a href="/codeEffluve/admin/admin.jsp?menu=todo&cp=<%=i%><%
+        if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
+    %>">
+        <%=i%>
+    </a>
+<%
+    }
+%>
+</div>
