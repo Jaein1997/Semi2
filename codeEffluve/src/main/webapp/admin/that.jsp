@@ -48,12 +48,23 @@
 <input type = "hidden" name ="menu" value ="that">
 
 <input type = "text" name = "searchId" placeholder="아이디 검색" class ="search-input"
-	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>"
-	style="padding:5px;">
-	
-	<button type="submit" style ="padding: 5px 10px;" class = "search-btn">검색</button>
+	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
+
+	<button type="submit" class = "search-btn">검색</button>
 	</form>
 
+<%
+    int cp = request.getParameter("cp") == null ?
+             1 : Integer.parseInt(request.getParameter("cp"));
+    int ls = 10;
+
+    String searchId = request.getParameter("searchId");
+
+    ArrayList<thatDTO> arr = tdao.getCommentList(searchId, cp, ls);
+
+    int totalCnt = tdao.getTotalCount(searchId);
+    int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+%>
 <table class = "adminTable">
     <tr>
         <th>댓글번호</th>
@@ -66,9 +77,6 @@
     </tr>
 
 <%
-String searchId = request.getParameter("searchId");
-    ArrayList<thatDTO> arr = tdao.getCommentList(searchId);
-
     if(arr == null || arr.size() == 0){
 %>
     <tr>
@@ -98,6 +106,20 @@ String searchId = request.getParameter("searchId");
 	}
    %>
   </table>
+
+<div style="text-align:center; margin-top:20px;">
+<%
+    for(int i = 1; i <= totalPage; i++){
+%>
+    <a href="/codeEffluve/admin/admin.jsp?menu=that&cp=<%=i%><%
+        if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
+    %>">
+        <%=i%>
+    </a>
+<%
+    }
+%>
+</div>
 
 
 

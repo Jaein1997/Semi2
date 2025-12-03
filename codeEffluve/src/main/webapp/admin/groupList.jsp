@@ -6,7 +6,7 @@
 
 <style>
 .delete-btn {
-	  padding: 6px 12px;
+    padding: 6px 12px;
     background-color: rgb(109, 16, 68);
     color: white;
     border: none;
@@ -14,13 +14,13 @@
     cursor: pointer;
     font-size: 13px;
 }
+
 .search-wrapper {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 15px;
 }
 
-/* 검색창 */
 .search-input {
     padding: 7px 12px;
     border: 1.5px solid rgb(109, 16, 68);
@@ -31,30 +31,40 @@
     width: 180px;
 }
 
-/* 검색 버튼 */
 .search-btn {
     border-radius: 0 8px 8px 0; 
     padding: 7px 14px;
     background-color: rgb(109, 16, 68);
     color: white;
-	border: none;
+    border: none;
 }
-
 </style>
+
 <h2 style="text-align:center;">그룹 관리</h2>
 
-<form method ="get" class = "search-wrapper">
-<input type = "hidden" name ="menu" value ="group">
+<form method ="get" class="search-wrapper">
+    <input type="hidden" name="menu" value="group">
 
-<input type = "text" name = "searchId" placeholder="아이디 검색" class = "search-input"
-	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>"
-	style="padding:5px;">
-	
-	<button type="submit" style ="padding: 5px 10px;" class = "search-btn">검색</button>
-	</form>
-	
+    <input type="text" name="searchId" placeholder="아이디 검색" class="search-input"
+           value="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
 
-<table class = "adminTable">
+    <button type="submit" class="search-btn">검색</button>
+</form>
+
+<%
+    int cp = request.getParameter("cp") == null ?
+             1 : Integer.parseInt(request.getParameter("cp"));
+    int ls = 10;
+
+    String searchId = request.getParameter("searchId");
+
+    ArrayList<groupdelDTO> arr = gdao.getGroupList(searchId, cp, ls);
+
+    int totalCnt = gdao.getTotalCount(searchId);
+    int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+%>
+
+<table class="adminTable">
     <tr>
         <th>번호</th>
         <th>그룹명</th>
@@ -65,17 +75,11 @@
     </tr>
 
 <%
-	String searchId = request.getParameter("searchId");
-	ArrayList<groupdelDTO> arr = gdao.getGroupList(searchId);
-
-
     if(arr == null || arr.size() == 0){
 %>
-    <tr>
-        <td colspan="6">등록된 그룹이 없습니다.</td>
-    </tr>
+    <tr><td colspan="6">등록된 그룹이 없습니다.</td></tr>
 <%
-    } else {
+    } else{
         for(groupdelDTO dto : arr){
 %>
 
@@ -83,20 +87,32 @@
         <td><%=dto.getG_idx()%></td>
         <td><%=dto.getG_name()%></td>
         <td><%=dto.getG_memo()%></td>
-        <td>
-            <img src="/codeEffluve/groupProfiles/<%=dto.getG_profile()%>" class ="table-profile-img">
-        </td>
+        <td><img src="/codeEffluve/groupProfiles/<%=dto.getG_profile()%>" class="table-profile-img"></td>
         <td><%=dto.getLeader_id()%></td>
         <td>
             <form action="groupListDel.jsp" method="post">
                 <input type="hidden" name="g_idx" value="<%=dto.getG_idx()%>">
-                <input type="submit" value="삭제" class = "delete-btn">
+                <input type="submit" value="삭제" class="delete-btn">
             </form>
         </td>
     </tr>
 
 <%
-        } 
-    } 
+        }
+    }
 %>
 </table>
+
+<div style="text-align:center; margin-top:20px;">
+<%
+    for(int i = 1; i <= totalPage; i++){
+%>
+    <a href="/codeEffluve/admin/admin.jsp?menu=group&cp=<%=i%><%
+        if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
+    %>">
+        <%=i%>
+    </a>
+<%
+    }
+%>
+</div>

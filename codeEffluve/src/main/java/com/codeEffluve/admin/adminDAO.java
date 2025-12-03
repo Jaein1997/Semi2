@@ -12,26 +12,74 @@ public class adminDAO {
 	public adminDAO() {
 
 	}
+		//전체 개수
+	  public int getTotalCount(String searchId) {
+	    	try {
+	    		conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+	    		
+	    		String sql = "SELECT COUNT(*) FROM members ";
+	    		
+	    		if (searchId != null && !searchId.equals("")) {
+	                sql += "WHERE id LIKE ? ";
+	            }
+
+	            ps = conn.prepareStatement(sql);
+
+	            if (searchId != null && !searchId.equals("")) {
+	                ps.setString(1, "%" + searchId + "%");
+	            }
+
+	            rs = ps.executeQuery();
+	            rs.next();
+	            return rs.getInt(1);
+	            
+	    	}catch(Exception e) {
+	    		e.printStackTrace();
+	    		return 0;
+	    		
+	    	}finally {
+	    		try {
+	    			if(rs != null) rs.close();
+	    			if(ps != null) ps.close();
+	    			if(conn != null) conn.close();
+	    		}catch(Exception e2) {
+	    		}
+	    	}
+	    }
+
 
 	// 회원 목록
-	public ArrayList<adminDTO> getMemberList(String searchId) {
+	public ArrayList<adminDTO> getMemberList(String searchId, int cp, int ls) {
 	    ArrayList<adminDTO> arr = new ArrayList<>();
 	    try {
 	        conn = com.codeEffluve.db.CodeEffluveDB.getConn();
 
-	        String sql = "SELECT m_idx, id, pwd, m_name, sex, birthday, tel, m_profile FROM members ";
+	        int start = (cp -1) * ls + 1;
+	        int end = cp * ls;
+	        
+	        String sql =
+	        		"SELECT * FROM ( " +
+	        		"SELECT ROWNUM rnum, a.* FROM ( " +
+	        		"SELECT m_idx, id, pwd, m_name, sex, birthday, tel, m_profile FROM members ";
 
 	        if(searchId != null && !searchId.equals("")) {
 	            sql += "WHERE id LIKE ? ";
 	        }
 
-	        sql += "ORDER BY m_idx DESC";
+	        sql += "ORDER BY m_idx DESC" +
+	        	   "  ) a " +
+	        	   ") WHERE rnum >= ? AND rnum <= ?";
 
 	        ps = conn.prepareStatement(sql);
+	        
+	        int i = 1;
 
 	        if(searchId != null && !searchId.equals("")) {
-	            ps.setString(1, "%" + searchId + "%");
+	            ps.setString(i++, "%" + searchId + "%");
 	        }
+	        
+	        ps.setInt(i++, start);
+            ps.setInt(i, end);
 
 	        rs = ps.executeQuery();
 
