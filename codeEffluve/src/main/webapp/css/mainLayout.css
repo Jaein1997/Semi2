@@ -1726,6 +1726,11 @@ input[type="checkbox"] {
 	text-decoration: none;
 	background-color: white;
 }
+#deleteUnitBtn_b {
+	color: #6D1044;
+	text-decoration: none;
+	align-items: right;
+}
 
 .right-column .h3Div {
 	display: flex;
@@ -2198,12 +2203,19 @@ input[type="checkbox"] {
 }
 
 .groupScheduleUnit {
+	display: flex;
 	width: 100%;
 	border: 1px solid #1E8A8A;
 	background-color: #CFE9E7;
 	border-radius: 12px;
 	padding: 4px 4px;
 	margin-bottom: 3px;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.leftGroup, .rightGroup {
+	display: flex;
+	gap: 5px;
 }
 
 .groupScheduleUnit span {
