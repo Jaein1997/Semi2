@@ -103,7 +103,7 @@ if (g_idx_s != null) {
 g_idx = Integer.parseInt(g_idx_s);
 }
 ArrayList<GroupsDTO> mygroups = gdao.myGroups(idx);
-if (mygroups.size() == 0) {
+if (mygroups==null||mygroups.size() == 0) {
 GroupsDTO gdto = new GroupsDTO();
 gdto.setG_idx(0);
 gdto.setG_memo("예시 그룹입니다.");
@@ -142,44 +142,27 @@ groupleader = true;
 	<%@include file="header.jsp"%>
 	<main>
 		<section id="groupPage">
+
 			<div class="dateHeader">
 				<h2>
-					<a href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=이전날">◀</a>
-					<%=year%>년
-					<%=month%>월
-					<%=date%>일
-					<%=day%>요일 
-					<a href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=다음날">▶</a>
-				</h2>
-				<div>
-					<input type="date" id="calendar"
-						value="<%=year%>-<%=month < 10 ? "0" + month : month%>-<%=date < 10 ? "0" + date : date%>">
-				</div>
-
-				<div class="groupPageSwitch">
-					<%
-					if (mygroups == null || mygroups.size() == 0) {
-					%>
+		            <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
+		            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
+		            <button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
+		        	<a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
+		        	
+		        </h2>
+		        <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+		    </div>
+		        <div class="groupPageSwitch">
+					
+					<input type="button" id="searchgroup" value="그룹찾기"> 
 					<input type="button" id="creategroup" value="그룹만들기">
-					<%
-					} else {
-					%>
-					<select id="selectedgroup">
-						<%
-						for (int i = 0; i < mygroups.size(); i++) {
-						%>
-						<option value="<%=mygroups.get(i).getG_idx()%>"
-							<%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
-						<%
-						}
-						%>
-					</select> <input type="button" id="searchgroup" value="그룹찾기"> <input
-						type="button" id="creategroup" value="그룹만들기">
-					<%
-					}
-					%>
+					
 				</div>
-			</div>
+			
+				
+			
+			
 			<div class="groupMain">
 				<div class="groupSchedule">
 					<%
@@ -338,7 +321,8 @@ groupleader = true;
 					%>
 
 				</div>
-
+				
+				
 				<div class="groupProfileArea">
 					<%
 					String gprofilePath = request.getContextPath() + "/groupProfiles/";
@@ -348,8 +332,17 @@ groupleader = true;
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span class="groupName"><%=selectedgroup.getG_name()%></span> <span
-								class="groupMemo"><%=selectedgroup.getG_memo()%></span>
+							<select id="selectedgroup">
+						<%
+						for (int i = 0; i < mygroups.size(); i++) {
+						%>
+						<option value="<%=mygroups.get(i).getG_idx()%>"
+							<%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
+						<%
+						}
+						%>
+					</select> 
+							<div class="groupMemo"><%=selectedgroup.getG_memo()%></div>
 						</div>
 
 
@@ -357,8 +350,8 @@ groupleader = true;
 					<%
 					if (groupleader) {
 					%>
-					<input type="button" id="managegroup" value="그룹관리"> <input
-						type="button" id="managemember" value="멤버관리">
+					<input type="button" id="managegroup" value="그룹관리"> 
+					<input type="button" id="managemember" value="멤버관리">
 					<%
 					} else {
 					%>
@@ -399,21 +392,13 @@ groupleader = true;
 					%>
 				</div>
 			</div>
+			
 		</section>
 	</main>
 	<%@include file="footer.jsp"%>
 </body>
 <script>
-	var calendar = document.getElementById("calendar")
-	calendar.onchange = function() {
-		const selectedDate = calendar.value;
-		const dateParts = selectedDate.split('-');
-		const year = parseInt(dateParts[0]);
-		const month = parseInt(dateParts[1]);
-		const date = parseInt(dateParts[2]);
-		window.location.href = "group.jsp?year=" + year + "&month=" + month
-				+ "&date=" + date;
-	}
+	
 	
 	var selectedgroup=document.getElementById("selectedgroup")
 	selectedgroup.onchange=function(){
@@ -446,5 +431,29 @@ groupleader = true;
 			formDiv.style.display = 'none';
 		}
 	}
+	
+	/* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
+	var calendar = document.getElementById("calendar");
+	var calendarBtn = document.getElementById("calendarBtn");
+
+	calendarBtn.onclick = function() {
+	    if (calendar.showPicker) {
+	        calendar.showPicker();
+	    } else {
+	        calendar.focus();
+	    }
+	};
+
+	calendar.onchange = function() {
+	    const selectedDate = calendar.value;
+	    if (!selectedDate) return;
+
+	    const dateParts = selectedDate.split('-');
+	    const year = parseInt(dateParts[0], 10);
+	    const month = parseInt(dateParts[1], 10);
+	    const date = parseInt(dateParts[2], 10);
+	    window.location.href =
+	        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
+	};
 </script>
 </html>
