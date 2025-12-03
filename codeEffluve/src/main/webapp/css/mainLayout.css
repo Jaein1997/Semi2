@@ -1754,29 +1754,23 @@ input[type="checkbox"] {
 	border: 1px solid #888888;
 }
 
-#creategroup {
-	display: flex;
+#creategroup,#searchgroup,#managegroup,#managemember,#goodbyegroup {
+	
 	height: 25px;
 	box-sizing: border-box;
-	background-color: #1E8A8A;
+	background-color: #6D1044;
 	color: white;
 	border: 0px;
 	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
 	cursor: pointer;
+	margin: 5px 0px 1px 1px;
 }
 
 #creategroup:disabled {
 	background-color: #888888;	
-}
-#searchgroup {
-	display: flex;
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #1E8A8A;
-	color: white;
-	border: 0px;
-	cursor: pointer;
 }
 
 #searchgroup:disabled {
@@ -1998,6 +1992,17 @@ input[type="checkbox"] {
 	margin-right: 0px;
 }
 #groupPage .groupPageSwitch select {
+	
+	width: 200px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+#selectedgroup {
 	
 	width: 200px; height: 40px;
 	font-size: 18px;
