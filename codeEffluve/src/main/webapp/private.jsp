@@ -293,6 +293,10 @@ if(request.getParameter("mdMode")!=null) {
 						</thead>
 						<tbody>
 							<%
+							Calendar realToday = Calendar.getInstance();
+							int todayYear = realToday.get(Calendar.YEAR);
+							int todayMonth = realToday.get(Calendar.MONTH) + 1;
+							int todayDate = realToday.get(Calendar.DATE);
 							int calYear = year;
 							int calMonth = month;
 							Calendar cal = Calendar.getInstance();
@@ -313,7 +317,14 @@ if(request.getParameter("mdMode")!=null) {
 										<td style="background-color:#E7E1E4;">&nbsp;</td>
 										<%
 									} else {
-										boolean isToday = (dayNum == date && calMonth == month && calYear == year);
+										boolean isToday = (dayNum==todayDate && calMonth==todayMonth && calYear==todayYear);
+										System.out.println(dayNum);
+										System.out.println(date);
+										System.out.println(calMonth);
+										System.out.println(month);
+										System.out.println(calYear);
+										System.out.println(year);
+										
 										%>
 										<td <%=isToday ? "class='todayCell'" : ""%>>
 											<div>
