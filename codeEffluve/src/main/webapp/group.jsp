@@ -184,20 +184,26 @@ groupleader = true;
 								class="groupScheduleUserID"><%=tarr.get(i).getId()%></span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"><span><%=tarr.get(i).getContent()%></span>
-							<span><%=tf.format(tarr.get(i).getT_time())%></span>
+							<span class="leftGroup">
+							<%if(idx==tarr.get(i).getM_idx()){
+								%>
+								<input type="checkbox" class="complete" value="<%=tarr.get(i).getT_idx()%>">
+								<%
+							}
+							%>
+							<%=tarr.get(i).getContent()%>[<%=tf.format(tarr.get(i).getT_time())%>]</span>
 							<%
 							ArrayList<CommentsDTO> carr = cdao.getComments(tarr.get(i).getT_idx());
 							%>
-							<span><label
+							<span class="rightGroup"><label
 								onclick="toggleCommentForm('writeComment<%=tarr.get(i).getT_idx()%>')"
 								style="cursor: pointer;"> [<%=carr.size()%>]
-							</label></span>
+							</label>
 							<%
 							if(groupleader||idx==tarr.get(i).getM_idx()){
 								%>
-								<span>
-								<a href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
+								
+								<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
 								</span>
 								<%
 							}
@@ -211,13 +217,14 @@ groupleader = true;
 								%>
 								<li><span><%=carr.get(j).getId()%>:</span> 
 								<span class="groupCommentMessage"><%=carr.get(j).getMessage()%>
-									<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
-								%>
-								<a href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
-								<%
-							}%>
+									
 									</span>
 									<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
+									<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
+								%>
+								<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+								<%
+							}%>
 									<span></span></li>
 									
 								<%
@@ -254,20 +261,25 @@ groupleader = true;
 								class="groupScheduleUserID"><%=tarr.get(i + 1).getId()%></span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"> <span><%=tarr.get(i + 1).getContent()%></span>
-							<span><%=tf.format(tarr.get(i + 1).getT_time())%></span>
+						<span class="leftGroup">
+							<%if(idx==tarr.get(i+1).getM_idx()){
+								%>
+								<input type="checkbox" class="complete" value="<%=tarr.get(i+1).getT_idx()%>">
+								<%
+							}
+							%>
+							<%=tarr.get(i+1).getContent()%>[<%=tf.format(tarr.get(i+1).getT_time())%>]</span>
 							<%
 							carr = cdao.getComments(tarr.get(i + 1).getT_idx());
 							%>
-							<span> <label
-								onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
-								style="cursor: pointer;">[<%=carr.size()%>]</span> </label>
+							<span class="rightGroup"> 
+							<label onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
+								style="cursor: pointer;">[<%=carr.size()%>] </label>
 								
 							<%
 							if(groupleader||idx==tarr.get(i+1).getM_idx()){
 								%>
-								<span>
-								<a href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
+								<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
 								</span>
 								<%
 							}
@@ -280,13 +292,14 @@ groupleader = true;
 								%>
 								<li><span><%=carr.get(j).getId()%>:</span> 
 								<span class="groupCommentMessage"><%=carr.get(j).getMessage()%>
-								<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
-								%>
-								<a href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
-								<%
-							}%>
+								
 									</span>
 									<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
+								<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
+								%>
+								<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+								<%
+							}%>
 								</li>
 								
 
@@ -455,5 +468,14 @@ groupleader = true;
 	    window.location.href =
 	        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
 	};
+	
+	var complete = document.getElementsByClassName("complete");
+	for (var i = 0; i < complete.length; i++) {
+		complete[i].onclick = function() {
+			if (this.checked) {
+				location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
+			} 
+		};
+	}
 </script>
 </html>

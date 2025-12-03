@@ -142,6 +142,7 @@ public class GroupsDAO {
 	                    "where a.t_idx=b.t_idx and a.m_idx=c.m_idx and b.g_idx=? "
 	                    + "and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
 	                    + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "and a.status='ud' "
 	                    + "order by t_time";
 				ps=conn.prepareStatement(sql);
 	            ps.setInt(1,g_idx);
