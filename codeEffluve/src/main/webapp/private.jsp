@@ -318,12 +318,6 @@ if(request.getParameter("mdMode")!=null) {
 										<%
 									} else {
 										boolean isToday = (dayNum==todayDate && calMonth==todayMonth && calYear==todayYear);
-										System.out.println(dayNum);
-										System.out.println(date);
-										System.out.println(calMonth);
-										System.out.println(month);
-										System.out.println(calYear);
-										System.out.println(year);
 										
 										%>
 										<td <%=isToday ? "class='todayCell'" : ""%>>
@@ -550,13 +544,7 @@ if(request.getParameter("mdMode")!=null) {
 									<div id="profile_id_time">
 										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
 										<span id="commentId"><%=id%></span>
-										<%
-										if(temp.getM_idx()==idx) {
-											%>
-											<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
-											<%
-										}
-										%>
+										<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
 									</div>
 									<div class="commentRow">
 										<span id="commentMessage"><%=message%></span>
@@ -660,9 +648,9 @@ var complete = document.getElementsByClassName("complete");
 for (var i = 0; i < complete.length; i++) {
 	complete[i].onclick = function() {
 		if (this.checked) {
-			location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+			location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&viewOption=<%=viewOption%>&t_idx="+ this.value;
 		} else {
-			location.href = "/codeEffluve/todolist/undoneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+			location.href = "/codeEffluve/todolist/undoneTodolist_ok.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&viewOption=<%=viewOption%>&t_idx="+ this.value;
 		}
 	};
 }

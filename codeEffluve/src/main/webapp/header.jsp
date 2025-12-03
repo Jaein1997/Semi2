@@ -38,6 +38,7 @@
 			<li <%=selectedPage.equals("public.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/public.jsp">공개 일정</a></li>
 			<li <%=selectedPage.equals("private.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/private.jsp">내 일정</a></li>
 			<li <%=selectedPage.equals("group.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/group.jsp">그룹 일정</a></li>
+			<li <%=selectedPage.equals("friend.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/friend.jsp">친구칭긔</a></li>
 			<li <%=selectedPage.equals("cs.jsp")||selectedPage.equals("csProblem.jsp")||selectedPage.equals("csQA.jsp")?"class='selectedPage'":"" %>><a href="/codeEffluve/cs.jsp">고객센터</a></li>
 		</ul>
 	</nav>

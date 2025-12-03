@@ -118,37 +118,37 @@ public class GroupsDAO {
                dto.setM_profile(rs.getString("m_profile"));
                arr.add(dto);
             }
-         return arr;
-      } catch (Exception e) {
-         e.printStackTrace();
-         return null;
-      }finally {
-         try {
-            if(rs!=null)rs.close();
-            if(ps!=null)ps.close();
-            if(conn!=null)conn.close();
-         }catch(Exception e2) {
-            
-         }
-      }
-   }
-   
-   //날짜별 그룹일정조회 메서드
-      public ArrayList<TodolistDTO> groupTodolist(int g_idx,String date){
-         try {
-            conn=CodeEffluveDB.getConn();
-            String sql = "select a.*, c.id, c.m_profile "
-                  + "from todolist a, sharedList b, members c " +
-                       "where a.t_idx=b.t_idx and a.m_idx=c.m_idx and b.g_idx=? "
-                       + "and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
-                       + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') "
-                       + "and a.status='ud' "
-                       + "order by t_time";
-            ps=conn.prepareStatement(sql);
-               ps.setInt(1,g_idx);
-               ps.setString(2, date);
-               date+=" 23:59";
-               ps.setString(3, date);
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				
+			}
+		}
+	}
+	
+	//날짜별 그룹일정조회 메서드
+		public ArrayList<TodolistDTO> groupTodolist(int g_idx,String date){
+			try {
+				conn=CodeEffluveDB.getConn();
+				String sql = "select a.*, c.id, c.m_profile "
+						+ "from todolist a, sharedList b, members c " +
+	                    "where a.t_idx=b.t_idx and a.m_idx=c.m_idx and b.g_idx=? "
+	                    + "and t_time >= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "and t_time <= to_date(?,'YYYY-MM-DD HH24:MI') "
+	                    + "and a.status='ud' "
+	                    + "order by t_time";
+				ps=conn.prepareStatement(sql);
+	            ps.setInt(1,g_idx);
+	            ps.setString(2, date);
+	            date+=" 23:59";
+	            ps.setString(3, date);
 
                rs = ps.executeQuery();
                ArrayList<TodolistDTO> arr=new ArrayList<>();
