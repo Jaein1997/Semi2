@@ -27,7 +27,7 @@ public class thatDAO {
 	    	            "JOIN members m ON c.m_idx = m.m_idx ";
 	    	            
 	    	 if(searchId != null && !searchId.equals("")) {
-	            	sql += "WHERE m.id = ?";
+	            	sql += "WHERE m.id LIKE ? ";
 	            }
 	            
 	    	 sql += "ORDER BY c.c_idx DESC";

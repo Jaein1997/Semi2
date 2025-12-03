@@ -25,7 +25,7 @@ public class groupdelDAO {
             		"JOIN members m ON g.leader = m.m_idx ";
             		
             if(searchId != null && !searchId.equals("")) {
-            	sql += "WHERE m.id = ?";
+            	sql += "WHERE m.id LIKE ? ";
             }
             
             sql += "ORDER BY g_idx DESC";

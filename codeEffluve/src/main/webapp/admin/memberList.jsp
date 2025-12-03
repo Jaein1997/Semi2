@@ -17,10 +17,47 @@
     font-size: 13px;
 }
 
+.search-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+/* 검색창 */
+.search-input {
+    padding: 7px 12px;
+    border: 1.5px solid rgb(109, 16, 68);
+    border-right: none;  
+    border-radius: 8px 0 0 8px;
+    font-size: 13px;
+    outline: none;
+    width: 180px;
+}
+
+/* 검색 버튼 */
+.search-btn {
+    border-radius: 0 8px 8px 0; 
+    padding: 7px 14px;
+    background-color: rgb(109, 16, 68);
+    color: white;
+	border: none;
+}
+
 </style>
 <section>
 <h2 style="text-align:center;">회원 관리</h2>
-<table class = "adminTable">
+
+<form method ="get" class = "search-wrapper">
+<input type = "hidden" name ="menu" value ="member">
+
+<input type = "text" name = "searchId" placeholder="아이디 검색" class = "search-input"
+	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>"
+	style="padding:5px;">
+	
+	<button type="submit" style ="padding: 5px 10px;" class = "search-btn">검색</button>
+	</form>
+	
+	<table class = "adminTable">
 	<tr>
 	<th>번호</th>
 	<th>아이디</th>
@@ -33,7 +70,9 @@
 	</tr>
 	
 <%
-	ArrayList<adminDTO> arr = adminDao.getMemberList();
+	String searchId = request.getParameter("searchId");
+	ArrayList<adminDTO> arr = adminDao.getMemberList(searchId);
+	
 	if(arr == null || arr.size() ==0){
 %>
 	<tr>
