@@ -2391,6 +2391,18 @@ input[type="checkbox"] {
 	gap: 10px;
 	overflow-y: auto;
 	scrollbar-width: none;
+	position: relative;
+}
+#createGroupTodo {
+	position: absolute;
+ 	top: 10px; 
+ 	right: 10px; 
+ 	z-index: 10;
+ 	background-color: transparent;
+ 	font-size: 25px;
+ 	color: #6D1044;
+ 	cursor: pointer;
+ 	border: none;
 }
 
 #groupPage .groupProfileArea {
