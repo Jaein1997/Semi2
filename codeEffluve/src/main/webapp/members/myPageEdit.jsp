@@ -91,7 +91,7 @@
 	                <table>
 	                    <tr><th>ID</th><td><input type="text" name="id" value="<%=member.getId()%>" readonly></td></tr>
 	                    
-	                    <tr><th>현재 비밀번호 확인</th><td><input type="password" name="currentPwd" required placeholder="정보 수정을 위해 반드시 입력"></td></tr>
+	                    <tr><th><span style="color: #D92A0D;">*</span>&nbsp;현재 비밀번호 확인</th><td><input type="password" name="currentPwd" required placeholder="정보 수정을 위해 반드시 입력"></td></tr>
 	                    
 	                    <tr><th>새 비밀번호</th><td><input type="password" name="newPwd" placeholder="변경할 경우에만 입력"></td></tr>
 	                    <tr><th>새 비밀번호 확인</th><td><input type="password" name="newPwdCheck" placeholder="새 비밀번호를 다시 입력"></td></tr>
