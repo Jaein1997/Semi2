@@ -1978,6 +1978,11 @@ input[type="checkbox"] {
 	text-decoration: none;
 	background-color: white;
 }
+#deleteUnitBtn_b {
+	color: #6D1044;
+	text-decoration: none;
+	align-items: right;
+}
 
 .right-column .h3Div {
 	display: flex;
@@ -2099,29 +2104,23 @@ input[type="checkbox"] {
 	border: 1px solid #888888;
 }
 
-#creategroup {
-	display: flex;
+#creategroup,#searchgroup,#managegroup,#managemember,#goodbyegroup {
+	
 	height: 25px;
 	box-sizing: border-box;
-	background-color: #1E8A8A;
+	background-color: #6D1044;
 	color: white;
 	border: 0px;
 	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
 	cursor: pointer;
+	margin: 5px 0px 1px 1px;
 }
 
 #creategroup:disabled {
 	background-color: #888888;	
-}
-#searchgroup {
-	display: flex;
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #1E8A8A;
-	color: white;
-	border: 0px;
-	cursor: pointer;
 }
 
 #searchgroup:disabled {
@@ -2353,6 +2352,17 @@ input[type="checkbox"] {
 	font-family: sans-serif;
 	padding-left: 5px;
 }
+#selectedgroup {
+	
+	width: 200px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
 
 #groupPage .dateHeader a {
 	text-decoration: none;
@@ -2445,12 +2455,19 @@ input[type="checkbox"] {
 }
 
 .groupScheduleUnit {
+	display: flex;
 	width: 100%;
 	border: 1px solid #1E8A8A;
 	background-color: #CFE9E7;
 	border-radius: 12px;
 	padding: 4px 4px;
 	margin-bottom: 3px;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.leftGroup, .rightGroup {
+	display: flex;
+	gap: 5px;
 }
 
 .groupScheduleUnit span {

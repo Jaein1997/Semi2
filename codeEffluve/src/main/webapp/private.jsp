@@ -654,9 +654,9 @@ var complete = document.getElementsByClassName("complete");
 for (var i = 0; i < complete.length; i++) {
 	complete[i].onclick = function() {
 		if (this.checked) {
-			location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+			location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&viewOption=<%=viewOption%>&t_idx="+ this.value;
 		} else {
-			location.href = "/codeEffluve/todolist/undoneTodolist_ok.jsp?viewOption=<%=viewOption%>&t_idx="+ this.value;
+			location.href = "/codeEffluve/todolist/undoneTodolist_ok.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&viewOption=<%=viewOption%>&t_idx="+ this.value;
 		}
 	};
 }

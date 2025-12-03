@@ -103,7 +103,7 @@ if (g_idx_s != null) {
 g_idx = Integer.parseInt(g_idx_s);
 }
 ArrayList<GroupsDTO> mygroups = gdao.myGroups(idx);
-if (mygroups.size() == 0) {
+if (mygroups==null||mygroups.size() == 0) {
 GroupsDTO gdto = new GroupsDTO();
 gdto.setG_idx(0);
 gdto.setG_memo("예시 그룹입니다.");
@@ -142,44 +142,27 @@ groupleader = true;
 	<%@include file="header.jsp"%>
 	<main>
 		<section id="groupPage">
+
 			<div class="dateHeader">
 				<h2>
-					<a href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=이전날">◀</a>
-					<%=year%>년
-					<%=month%>월
-					<%=date%>일
-					<%=day%>요일 
-					<a href="group.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&day=다음날">▶</a>
-				</h2>
-				<div>
-					<input type="date" id="calendar"
-						value="<%=year%>-<%=month < 10 ? "0" + month : month%>-<%=date < 10 ? "0" + date : date%>">
-				</div>
-
-				<div class="groupPageSwitch">
-					<%
-					if (mygroups == null || mygroups.size() == 0) {
-					%>
+		            <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
+		            <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
+		            <button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
+		        	<a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
+		        	
+		        </h2>
+		        <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
+		    </div>
+		        <div class="groupPageSwitch">
+					
+					<input type="button" id="searchgroup" value="그룹찾기"> 
 					<input type="button" id="creategroup" value="그룹만들기">
-					<%
-					} else {
-					%>
-					<select id="selectedgroup">
-						<%
-						for (int i = 0; i < mygroups.size(); i++) {
-						%>
-						<option value="<%=mygroups.get(i).getG_idx()%>"
-							<%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
-						<%
-						}
-						%>
-					</select> <input type="button" id="searchgroup" value="그룹찾기"> <input
-						type="button" id="creategroup" value="그룹만들기">
-					<%
-					}
-					%>
+					
 				</div>
-			</div>
+			
+				
+			
+			
 			<div class="groupMain">
 				<div class="groupSchedule">
 					<%
@@ -201,20 +184,26 @@ groupleader = true;
 								class="groupScheduleUserID"><%=tarr.get(i).getId()%></span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"><span><%=tarr.get(i).getContent()%></span>
-							<span><%=tf.format(tarr.get(i).getT_time())%></span>
+							<span class="leftGroup">
+							<%if(idx==tarr.get(i).getM_idx()){
+								%>
+								<input type="checkbox" class="complete" value="<%=tarr.get(i).getT_idx()%>">
+								<%
+							}
+							%>
+							<%=tarr.get(i).getContent()%>[<%=tf.format(tarr.get(i).getT_time())%>]</span>
 							<%
 							ArrayList<CommentsDTO> carr = cdao.getComments(tarr.get(i).getT_idx());
 							%>
-							<span><label
+							<span class="rightGroup"><label
 								onclick="toggleCommentForm('writeComment<%=tarr.get(i).getT_idx()%>')"
 								style="cursor: pointer;"> [<%=carr.size()%>]
-							</label></span>
+							</label>
 							<%
 							if(groupleader||idx==tarr.get(i).getM_idx()){
 								%>
-								<span>
-								<a href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
+								
+								<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
 								</span>
 								<%
 							}
@@ -228,13 +217,14 @@ groupleader = true;
 								%>
 								<li><span><%=carr.get(j).getId()%>:</span> 
 								<span class="groupCommentMessage"><%=carr.get(j).getMessage()%>
-									<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
-								%>
-								<a href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
-								<%
-							}%>
+									
 									</span>
 									<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
+									<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
+								%>
+								<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+								<%
+							}%>
 									<span></span></li>
 									
 								<%
@@ -271,20 +261,25 @@ groupleader = true;
 								class="groupScheduleUserID"><%=tarr.get(i + 1).getId()%></span>
 						</div>
 						<div class="groupScheduleUnit">
-							<input type="checkbox"> <span><%=tarr.get(i + 1).getContent()%></span>
-							<span><%=tf.format(tarr.get(i + 1).getT_time())%></span>
+						<span class="leftGroup">
+							<%if(idx==tarr.get(i+1).getM_idx()){
+								%>
+								<input type="checkbox" class="complete" value="<%=tarr.get(i+1).getT_idx()%>">
+								<%
+							}
+							%>
+							<%=tarr.get(i+1).getContent()%>[<%=tf.format(tarr.get(i+1).getT_time())%>]</span>
 							<%
 							carr = cdao.getComments(tarr.get(i + 1).getT_idx());
 							%>
-							<span> <label
-								onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
-								style="cursor: pointer;">[<%=carr.size()%>]</span> </label>
+							<span class="rightGroup"> 
+							<label onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
+								style="cursor: pointer;">[<%=carr.size()%>] </label>
 								
 							<%
 							if(groupleader||idx==tarr.get(i+1).getM_idx()){
 								%>
-								<span>
-								<a href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
+								<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
 								</span>
 								<%
 							}
@@ -297,13 +292,14 @@ groupleader = true;
 								%>
 								<li><span><%=carr.get(j).getId()%>:</span> 
 								<span class="groupCommentMessage"><%=carr.get(j).getMessage()%>
-								<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
-								%>
-								<a href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">X</a>
-								<%
-							}%>
+								
 									</span>
 									<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
+								<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
+								%>
+								<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+								<%
+							}%>
 								</li>
 								
 
@@ -338,7 +334,8 @@ groupleader = true;
 					%>
 
 				</div>
-
+				
+				
 				<div class="groupProfileArea">
 					<%
 					String gprofilePath = request.getContextPath() + "/groupProfiles/";
@@ -348,8 +345,17 @@ groupleader = true;
 					<div id="groupImgAndName">
 						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
 						<div id="groupInfo">
-							<span class="groupName"><%=selectedgroup.getG_name()%></span> <span
-								class="groupMemo"><%=selectedgroup.getG_memo()%></span>
+							<select id="selectedgroup">
+						<%
+						for (int i = 0; i < mygroups.size(); i++) {
+						%>
+						<option value="<%=mygroups.get(i).getG_idx()%>"
+							<%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
+						<%
+						}
+						%>
+					</select> 
+							<div class="groupMemo"><%=selectedgroup.getG_memo()%></div>
 						</div>
 
 
@@ -357,8 +363,8 @@ groupleader = true;
 					<%
 					if (groupleader) {
 					%>
-					<input type="button" id="managegroup" value="그룹관리"> <input
-						type="button" id="managemember" value="멤버관리">
+					<input type="button" id="managegroup" value="그룹관리"> 
+					<input type="button" id="managemember" value="멤버관리">
 					<%
 					} else {
 					%>
@@ -399,21 +405,13 @@ groupleader = true;
 					%>
 				</div>
 			</div>
+			
 		</section>
 	</main>
 	<%@include file="footer.jsp"%>
 </body>
 <script>
-	var calendar = document.getElementById("calendar")
-	calendar.onchange = function() {
-		const selectedDate = calendar.value;
-		const dateParts = selectedDate.split('-');
-		const year = parseInt(dateParts[0]);
-		const month = parseInt(dateParts[1]);
-		const date = parseInt(dateParts[2]);
-		window.location.href = "group.jsp?year=" + year + "&month=" + month
-				+ "&date=" + date;
-	}
+	
 	
 	var selectedgroup=document.getElementById("selectedgroup")
 	selectedgroup.onchange=function(){
@@ -445,6 +443,39 @@ groupleader = true;
 		} else {
 			formDiv.style.display = 'none';
 		}
+	}
+	
+	/* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
+	var calendar = document.getElementById("calendar");
+	var calendarBtn = document.getElementById("calendarBtn");
+
+	calendarBtn.onclick = function() {
+	    if (calendar.showPicker) {
+	        calendar.showPicker();
+	    } else {
+	        calendar.focus();
+	    }
+	};
+
+	calendar.onchange = function() {
+	    const selectedDate = calendar.value;
+	    if (!selectedDate) return;
+
+	    const dateParts = selectedDate.split('-');
+	    const year = parseInt(dateParts[0], 10);
+	    const month = parseInt(dateParts[1], 10);
+	    const date = parseInt(dateParts[2], 10);
+	    window.location.href =
+	        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
+	};
+	
+	var complete = document.getElementsByClassName("complete");
+	for (var i = 0; i < complete.length; i++) {
+		complete[i].onclick = function() {
+			if (this.checked) {
+				location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
+			} 
+		};
 	}
 </script>
 </html>
