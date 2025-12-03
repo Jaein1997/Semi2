@@ -11,15 +11,73 @@ public class qadelDAO {
 
     public qadelDAO() {}
 
-   //
-    public ArrayList<qadelDTO> getQAList() {
+    public int getTotalCount(String searchQ) {
+        try {
+            conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+
+            String sql = "SELECT COUNT(*) FROM qa ";
+
+            if(searchQ != null && !searchQ.equals("")) {
+                sql += "WHERE q LIKE ? OR a LIKE ? ";
+            }
+
+            ps = conn.prepareStatement(sql);
+
+            if(searchQ != null && !searchQ.equals("")) {
+                ps.setString(1, "%" + searchQ + "%");
+                ps.setString(2, "%" + searchQ + "%");
+            }
+
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            try {
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(conn != null) conn.close();
+            } catch(Exception e2){}
+        }
+    }
+    
+   // QA리스트
+    public ArrayList<qadelDTO> getQAList(String searchQ, int cp, int ls) {
         ArrayList<qadelDTO> list = new ArrayList<>();
+        
         try {
             conn = com.codeEffluve.db.CodeEffluveDB.getConn();
             
+            int start = (cp - 1) * ls + 1;
+            int end = cp * ls;
           
-            String sql = "SELECT q_idx, q, a, viewcount FROM qa ORDER BY viewcount DESC"; 
-            ps = conn.prepareStatement(sql);
+            String sql =
+                    "SELECT * FROM ( " +
+                    "    SELECT ROWNUM rnum, a.* FROM ( " +
+                    "        SELECT q_idx, q, a, viewcount " +
+                    "        FROM qa ";
+
+                if(searchQ != null && !searchQ.equals("")) {
+                    sql += "WHERE q LIKE ? OR a LIKE ? ";
+                }
+            sql += "        ORDER BY viewcount DESC " +
+                    "    ) a " +
+                    ") WHERE rnum >= ? AND rnum <= ?";
+
+             ps = conn.prepareStatement(sql);
+
+             int i = 1;
+
+             if(searchQ != null && !searchQ.equals("")) {
+                 ps.setString(i++, "%" + searchQ + "%");
+                 ps.setString(i++, "%" + searchQ + "%");
+             }
+
+             ps.setInt(i++, start);
+             ps.setInt(i, end);
             rs = ps.executeQuery();
 
             while(rs.next()) {

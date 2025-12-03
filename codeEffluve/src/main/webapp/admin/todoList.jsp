@@ -47,10 +47,9 @@
 <input type = "hidden" name ="menu" value ="todo">
 
 <input type = "text" name = "searchId" placeholder="아이디 검색" class = "search-input"
-	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>"
-	style="padding:5px;">
+	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
 	
-	<button type="submit" style ="padding: 5px 10px;" class = "search-btn">검색</button>
+	<button type="submit" class = "search-btn">검색</button>
 	</form>
 <%
 int cp = request.getParameter("cp") == null ?
