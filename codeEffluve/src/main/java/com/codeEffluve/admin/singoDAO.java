@@ -25,14 +25,14 @@ public class singoDAO {
     			    	    "JOIN members m ON s.m_idx = m.m_idx ";
     			    	    	
     		if(searchId != null && !searchId.equals("")) {
-            	sql += "WHERE m.id = ?";
+            	sql += "WHERE m.id LIKE ? ";
             }
             
             sql += "ORDER BY s.s_idx DESC";
             ps = conn.prepareStatement(sql);
             
             if(searchId != null && !searchId.equals("")) {
-            	ps.setString(1, searchId);
+            	ps.setString(1, "%" + searchId + "%");
             }
             
     		rs = ps.executeQuery();

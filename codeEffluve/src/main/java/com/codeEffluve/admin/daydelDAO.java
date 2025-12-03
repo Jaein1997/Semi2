@@ -24,14 +24,14 @@ public class daydelDAO {
 	    	            "JOIN members m ON t.m_idx = m.m_idx ";
 	    	     
 	    		if(searchId != null && !searchId.equals("")) {
-	    			sql += "WHERE m.id =?";
+	    			sql += "WHERE m.id LIKE ? ";
 	    		}
 	    		
 	    		sql += "ORDER BY t.t_idx DESC";
 	    		ps = conn.prepareStatement(sql);
 	    		
 	    		if(searchId != null && !searchId.equals("")) {
-	    			ps.setString(1, searchId);
+	    			ps.setString(1, "%" + searchId + "%");
 	    		}
 	    		rs = ps.executeQuery();
 	    		
