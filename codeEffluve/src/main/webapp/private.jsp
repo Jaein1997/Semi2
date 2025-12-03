@@ -544,13 +544,7 @@ if(request.getParameter("mdMode")!=null) {
 									<div id="profile_id_time">
 										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
 										<span id="commentId"><%=id%></span>
-										<%
-										if(temp.getM_idx()==idx) {
-											%>
-											<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
-											<%
-										}
-										%>
+										<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
 									</div>
 									<div class="commentRow">
 										<span id="commentMessage"><%=message%></span>
