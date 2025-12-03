@@ -165,6 +165,7 @@ groupleader = true;
 			
 			<div class="groupMain">
 				<div class="groupSchedule">
+				<input type="button" id="createGroupTodo" value="+">
 					<%
 					String dbdate = year + "-" + (month < 10 ? "0" + month : month) + "-" + (date < 10 ? "0" + date : date);
 					ArrayList<TodolistDTO> tarr = gdao.groupTodolist(g_idx == 0 ? g_idx = mygroups.get(0).getG_idx() : g_idx, dbdate);
@@ -433,6 +434,10 @@ groupleader = true;
 	var managemember=document.getElementById("managemember");
 	managemember.onclick=function(){
 		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=500px, height=700px");
+	}
+	var createGroupTodo=document.getElementById("createGroupTodo");
+	createGroupTodo.onclick=function(){
+		window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
 	}
 
 	function toggleCommentForm(elementId) {

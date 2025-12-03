@@ -10,7 +10,7 @@ String viewOption = request.getParameter("viewOption");
 String previousPage=request.getHeader("Referer");
 String g_idx=request.getParameter("g_idx");
 
-previousPage=previousPage.substring(previousPage.lastIndexOf("/")+1,previousPage.indexOf("?"))+"?";
+previousPage=previousPage.substring(previousPage.lastIndexOf("/")+1,previousPage.indexOf("?")==-1?previousPage.lastIndexOf("jsp")+3:previousPage.indexOf("?"))+"?";
 
 if(viewOption==null||viewOption.equals("")){
 	
