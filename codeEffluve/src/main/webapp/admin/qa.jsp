@@ -17,6 +17,22 @@
 }
 </style>
 <h2 style="text-align:center;">자주 묻는 질문</h2>
+
+
+
+<%
+    int cp = request.getParameter("cp") == null ?
+             1 : Integer.parseInt(request.getParameter("cp"));
+    int ls = 10;
+
+    String searchId = request.getParameter("searchId");
+
+    ArrayList<qadelDTO> arr = qdao.getQAList(searchId, cp, ls);
+
+    int totalCnt = qdao.getTotalCount(searchId);
+    int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+%>
+
 <table class = "adminTable">
     <tr>
         <th>질문 번호</th>
@@ -27,16 +43,14 @@
     </tr>
 
 <%
-    ArrayList<qadelDTO> list = qdao.getQAList();
-
-    if(list == null || list.size() == 0){
+    if(arr == null || arr.size() == 0){
 %>
     <tr>
         <td colspan="5">등록된 질문이 없습니다.</td>
     </tr>
 <%
     } else {
-        for(qadelDTO dto : list){
+        for(qadelDTO dto : arr){
 %>
     <tr>
         <td><%=dto.getQ_idx()%></td>
@@ -61,7 +75,19 @@
         글쓰기
     </button>
 </div>
-
+<div style="text-align:center; margin-top:20px;">
+<%
+    for(int i = 1; i <= totalPage; i++){
+%>
+    <a href="/codeEffluve/admin/admin.jsp?menu=qa&cp=<%=i%><%
+        if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
+    %>">
+        <%=i%>
+    </a>
+<%
+    }
+%>
+</div>
 <script>
 function openWritePopup() {
     window.open(

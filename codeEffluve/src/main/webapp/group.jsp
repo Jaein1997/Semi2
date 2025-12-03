@@ -1,6 +1,6 @@
 <%@page import="java.security.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.codeEffluve.todolist.TodolistDTO"%>
@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css"
-	href="/codeEffluve/css/mainLayout.css">
+   href="/codeEffluve/css/mainLayout.css">
 
 <%
 SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
@@ -28,9 +28,9 @@ String id = (String) session.getAttribute("sid");
 if (id == null || id.equals("")) {
 %>
 <script>
-	window.alert("로그인 후 이용하실 수 있습니다.");
-	window.location.href="index.jsp";
-	</script>
+   window.alert("로그인 후 이용하실 수 있습니다.");
+   window.location.href="index.jsp";
+   </script>
 <%
 return;
 }
@@ -41,7 +41,7 @@ String user_month = request.getParameter("month");
 String user_date = request.getParameter("date");
 
 if (user_year != null && user_month != null && user_date != null && !user_year.equals("") && !user_month.equals("")
-		&& !user_date.equals("")) {
+      && !user_date.equals("")) {
 int year = Integer.parseInt(user_year);
 int month = Integer.parseInt(user_month) - 1;
 int date = Integer.parseInt(user_date);
@@ -51,9 +51,9 @@ today.set(year, month, date);
 String nextday = request.getParameter("day");
 if (nextday != null && !nextday.equals("")) {
 if (nextday.equals("다음날")) {
-	today.add(Calendar.DATE, 1);
+   today.add(Calendar.DATE, 1);
 } else {
-	today.add(Calendar.DATE, -1);
+   today.add(Calendar.DATE, -1);
 }
 }
 
@@ -65,34 +65,34 @@ String day = "";
 
 switch (day_n) {
 case 1 :
-	day = "일";
-	break;
+   day = "일";
+   break;
 case 2 :
-	day = "월";
-	break;
+   day = "월";
+   break;
 case 3 :
-	day = "화";
-	break;
+   day = "화";
+   break;
 case 4 :
-	day = "수";
-	break;
+   day = "수";
+   break;
 case 5 :
-	day = "목";
-	break;
+   day = "목";
+   break;
 case 6 :
-	day = "금";
-	break;
+   day = "금";
+   break;
 case 7 :
-	day = "토";
-	break;
+   day = "토";
+   break;
 }
 
 Calendar nowTime = Calendar.getInstance();
 String hour = "" + (nowTime.get(Calendar.HOUR_OF_DAY) > 9
-		? nowTime.get(Calendar.HOUR_OF_DAY)
-		: "0" + nowTime.get(Calendar.HOUR_OF_DAY));
+      ? nowTime.get(Calendar.HOUR_OF_DAY)
+      : "0" + nowTime.get(Calendar.HOUR_OF_DAY));
 String minute = ""
-		+ (nowTime.get(Calendar.MINUTE) > 9 ? nowTime.get(Calendar.MINUTE) : "0" + nowTime.get(Calendar.MINUTE));
+      + (nowTime.get(Calendar.MINUTE) > 9 ? nowTime.get(Calendar.MINUTE) : "0" + nowTime.get(Calendar.MINUTE));
 String currentTime = hour + ":" + minute;
 
 int idx = tdao.returnM_idx(id);
@@ -104,6 +104,7 @@ g_idx = Integer.parseInt(g_idx_s);
 }
 ArrayList<GroupsDTO> mygroups = gdao.myGroups(idx);
 if (mygroups==null||mygroups.size() == 0) {
+	mygroups=new ArrayList<GroupsDTO>();
 GroupsDTO gdto = new GroupsDTO();
 gdto.setG_idx(0);
 gdto.setG_memo("예시 그룹입니다.");
@@ -129,7 +130,7 @@ groupmems = gpdao.membersInGroup(g_idx);
 String leader = "";
 for (int i = 0; i < groupmems.size(); i++) {
 if (selectedgroup.getM_idx() == groupmems.get(i).getM_idx()) {
-	leader = groupmems.get(i).getM_name();
+   leader = groupmems.get(i).getM_name();
 }
 }
 boolean groupleader = false;
@@ -139,9 +140,9 @@ groupleader = true;
 %>
 </head>
 <body>
-	<%@include file="header.jsp"%>
-	<main>
-		<section id="groupPage">
+   <%@include file="header.jsp"%>
+   <main>
+      <section id="groupPage">
 
 			<div class="dateHeader">
 				<h2>
@@ -304,112 +305,112 @@ groupleader = true;
 								</li>
 								
 
-								<%
-								}
-								%>
-							</ul>
-						</div>
-						<div class="writeComment"
-							id="writeComment<%=tarr.get(i + 1).getT_idx()%>"
-							style="display: none;">
-							<form action="/codeEffluve/comments/writeComment_ok(group).jsp">
-								<img src="/codeEffluve/img/chat.png" alt="사진"
-									style="width: 30px; height: 30px; margin-right: 7px;"> <span></span>
-								<input type="text" name="message"> <input type="hidden"
-									name="id" value="<%=id%>"> <input type="hidden"
-									name="t_idx" value="<%=tarr.get(i + 1).getT_idx()%>"> <input
-									type="hidden" name="year" value="<%=year%>"> <input
-									type="hidden" name="month" value="<%=month%>"> <input
-									type="hidden" name="day" value="<%=date%>"> <input
-									type="hidden" name="g_idx"
-									value="<%=g_idx == 0 ? mygroups.get(0).getG_idx() : g_idx%>">
-								<input type="submit" value="작성">
-							</form>
-						</div>
-					</div>
-					<%
-					}
-					}
+                        <%
+                        }
+                        %>
+                     </ul>
+                  </div>
+                  <div class="writeComment"
+                     id="writeComment<%=tarr.get(i + 1).getT_idx()%>"
+                     style="display: none;">
+                     <form action="/codeEffluve/comments/writeComment_ok(group).jsp">
+                        <img src="/codeEffluve/img/chat.png" alt="사진"
+                           style="width: 30px; height: 30px; margin-right: 7px;"> <span></span>
+                        <input type="text" name="message"> <input type="hidden"
+                           name="id" value="<%=id%>"> <input type="hidden"
+                           name="t_idx" value="<%=tarr.get(i + 1).getT_idx()%>"> <input
+                           type="hidden" name="year" value="<%=year%>"> <input
+                           type="hidden" name="month" value="<%=month%>"> <input
+                           type="hidden" name="day" value="<%=date%>"> <input
+                           type="hidden" name="g_idx"
+                           value="<%=g_idx == 0 ? mygroups.get(0).getG_idx() : g_idx%>">
+                        <input type="submit" value="작성">
+                     </form>
+                  </div>
+               </div>
+               <%
+               }
+               }
 
-					}
-					%>
+               }
+               %>
 
-				</div>
-				
-				
-				<div class="groupProfileArea">
-					<%
-					String gprofilePath = request.getContextPath() + "/groupProfiles/";
-					if (selectedgroup != null) {
-						gprofilePath += selectedgroup.getG_profile() == null ? "basic_group.jpg" : selectedgroup.getG_profile();
-					%>
-					<div id="groupImgAndName">
-						<img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
-						<div id="groupInfo">
-							<select id="selectedgroup">
-						<%
-						for (int i = 0; i < mygroups.size(); i++) {
-						%>
-						<option value="<%=mygroups.get(i).getG_idx()%>"
-							<%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
-						<%
-						}
-						%>
-					</select> 
-							<div class="groupMemo"><%=selectedgroup.getG_memo()%></div>
-						</div>
+            </div>
+            
+            
+            <div class="groupProfileArea">
+               <%
+               String gprofilePath = request.getContextPath() + "/groupProfiles/";
+               if (selectedgroup != null) {
+                  gprofilePath += selectedgroup.getG_profile() == null ? "basic_group.jpg" : selectedgroup.getG_profile();
+               %>
+               <div id="groupImgAndName">
+                  <img src="<%=gprofilePath%>" alt="사진" id="groupProfile">
+                  <div id="groupInfo">
+                     <select id="selectedgroup">
+                  <%
+                  for (int i = 0; i < mygroups.size(); i++) {
+                  %>
+                  <option value="<%=mygroups.get(i).getG_idx()%>"
+                     <%=g_idx == mygroups.get(i).getG_idx() ? "selected" : ""%>><%=mygroups.get(i).getG_name()%></option>
+                  <%
+                  }
+                  %>
+               </select> 
+                     <div class="groupMemo"><%=selectedgroup.getG_memo()%></div>
+                  </div>
 
 
-					</div>
-					<%
-					if (groupleader) {
-					%>
-					<input type="button" id="managegroup" value="그룹관리"> 
-					<input type="button" id="managemember" value="멤버관리">
-					<%
-					} else {
-					%>
-					<a
-						href="group/groupjoin_ok.jsp?m_idx=<%=idx%>&g_idx=<%=selectedgroup.getG_idx()%>&join=탈퇴">
-						<input type="button" id="goodbyegroup" value="그룹탈퇴">
-					</a>
-					<%
-					}
-					%>
-					<div class="groupingList">
-						<div class="groupingListTitle">
-							<span>그룹 멤버</span>
-						</div>
-						<%
+               </div>
+               <%
+               if (groupleader) {
+               %>
+               <input type="button" id="managegroup" value="그룹관리"> 
+               <input type="button" id="managemember" value="멤버관리">
+               <%
+               } else {
+               %>
+               <a
+                  href="group/groupjoin_ok.jsp?m_idx=<%=idx%>&g_idx=<%=selectedgroup.getG_idx()%>&join=탈퇴">
+                  <input type="button" id="goodbyegroup" value="그룹탈퇴">
+               </a>
+               <%
+               }
+               %>
+               <div class="groupingList">
+                  <div class="groupingListTitle">
+                     <span>그룹 멤버</span>
+                  </div>
+                  <%
 
-						%>
-						<div class="groupingListMembers">
-							<ul>
-								<li class="groupLeader">그룹장:<%=leader%></li>
-								<%
-								for (int i = 0; i < groupmems.size(); i++) {
-									if (!(selectedgroup.getM_idx() == groupmems.get(i).getM_idx())) {
-								%>
-								<li class="groupMember"><%=groupmems.get(i).getM_name()%></li>
-								<%
-								}
-								}
-								%>
-							</ul>
-						</div>
+                  %>
+                  <div class="groupingListMembers">
+                     <ul>
+                        <li class="groupLeader">그룹장:<%=leader%></li>
+                        <%
+                        for (int i = 0; i < groupmems.size(); i++) {
+                           if (!(selectedgroup.getM_idx() == groupmems.get(i).getM_idx())) {
+                        %>
+                        <li class="groupMember"><%=groupmems.get(i).getM_name()%></li>
+                        <%
+                        }
+                        }
+                        %>
+                     </ul>
+                  </div>
 
-					</div>
-					<%
-					} else {
+               </div>
+               <%
+               } else {
 
-					}
-					%>
-				</div>
-			</div>
-			
-		</section>
-	</main>
-	<%@include file="footer.jsp"%>
+               }
+               %>
+            </div>
+         </div>
+         
+      </section>
+   </main>
+   <%@include file="footer.jsp"%>
 </body>
 <script>
 	
@@ -440,31 +441,31 @@ groupleader = true;
 		window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
 	}
 
-	function toggleCommentForm(elementId) {
-		var formDiv = document.getElementById(elementId);
+   function toggleCommentForm(elementId) {
+      var formDiv = document.getElementById(elementId);
 
-		if (formDiv.style.display === 'none' || formDiv.style.display === '') {
-			formDiv.style.display = 'block';
-		} else {
-			formDiv.style.display = 'none';
-		}
-	}
-	
-	/* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
-	var calendar = document.getElementById("calendar");
-	var calendarBtn = document.getElementById("calendarBtn");
+      if (formDiv.style.display === 'none' || formDiv.style.display === '') {
+         formDiv.style.display = 'block';
+      } else {
+         formDiv.style.display = 'none';
+      }
+   }
+   
+   /* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
+   var calendar = document.getElementById("calendar");
+   var calendarBtn = document.getElementById("calendarBtn");
 
-	calendarBtn.onclick = function() {
-	    if (calendar.showPicker) {
-	        calendar.showPicker();
-	    } else {
-	        calendar.focus();
-	    }
-	};
+   calendarBtn.onclick = function() {
+       if (calendar.showPicker) {
+           calendar.showPicker();
+       } else {
+           calendar.focus();
+       }
+   };
 
-	calendar.onchange = function() {
-	    const selectedDate = calendar.value;
-	    if (!selectedDate) return;
+   calendar.onchange = function() {
+       const selectedDate = calendar.value;
+       if (!selectedDate) return;
 
 	    const dateParts = selectedDate.split('-');
 	    const year = parseInt(dateParts[0], 10);
