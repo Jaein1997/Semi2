@@ -318,12 +318,6 @@ if(request.getParameter("mdMode")!=null) {
 										<%
 									} else {
 										boolean isToday = (dayNum==todayDate && calMonth==todayMonth && calYear==todayYear);
-										System.out.println(dayNum);
-										System.out.println(date);
-										System.out.println(calMonth);
-										System.out.println(month);
-										System.out.println(calYear);
-										System.out.println(year);
 										
 										%>
 										<td <%=isToday ? "class='todayCell'" : ""%>>

@@ -40,15 +40,16 @@
 		<img src="/codeEffluve/img/leLogoGif.gif"
 			alt="leLogo2" id="leLogo2">
 		<div class="indexMenu">
-			<a href="/codeEffluve/public.jsp"><img
-				src="/codeEffluve/img/internet.png"
-				alt="public" onmouseover="mouseOver();">공개 일정</a> <a
-				href="/codeEffluve/private.jsp"><img
-				src="/codeEffluve/img/profile.png"
-				alt="private">내 일정</a> <a href="/codeEffluve/group.jsp"><img
-				src="/codeEffluve/img/people.png" alt="group">그룹
-				일정</a> <a href="/codeEffluve/cs.jsp"><img
-				src="/codeEffluve/img/headset.png" alt="cs">고객센터</a>
+			<a href="/codeEffluve/public.jsp">
+				<img src="/codeEffluve/img/internet.png" alt="public" onmouseover="mouseOver();">공개 일정</a>
+			<a href="/codeEffluve/private.jsp">
+				<img src="/codeEffluve/img/profile.png" alt="private">내 일정</a>
+			<a href="/codeEffluve/group.jsp">
+				<img src="/codeEffluve/img/people.png" alt="group">그룹 일정</a>
+			<a href="/codeEffluve/friend.jsp">
+				<img src="/codeEffluve/img/friends.png" alt="friend">친구 관리</a>
+			<a href="/codeEffluve/cs.jsp">
+				<img src="/codeEffluve/img/headset.png" alt="cs">고객센터</a>
 		</div>
 	</main>
 
