@@ -32,7 +32,7 @@ public class groupdelDAO {
             ps = conn.prepareStatement(sql);
             
             if(searchId != null && !searchId.equals("")) {
-            	ps.setString(1, searchId);
+            	ps.setString(1, "%" + searchId + "%");
             }
             
             rs = ps.executeQuery();
