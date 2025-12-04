@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+html {
+	padding:0px 0px;
+	height:100%;
+}
+body {
+	background: linear-gradient(#FFFDFE, #FFF6FA);
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	/*background-color: white;*/
+	padding-top: 20px;
+	padding-left: 60px;
+	padding-right: 60px;
+	box-sizing:border-box;
+}
+
+header {
+	width: 100%;
+	/*margin-bottom: 20px;*/
+}
+/* idCheck.jsp */
+#idCheckDiv {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	border:1px solid #6D1044 !important;
+	border-radius: 13px !important;
+	width:90%;
+	height:90%;
+	background-color: #FAF7F9;
+}
+
+#idCheckDiv h2 {
+	text-align:center;
+	color: rgb(109, 16, 68);
+	margin-block-start: 0em !important;
+}
+
+#idCheckDiv div {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width:90%;
+	height:90%;
+	margin: 0 auto;
+}
+
+#idCheckDiv input[type="text"] {
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	width: 80%;
+	height: 25px;
+	box-sizing: border-box;
+	padding-left: 15px;
+}
+
+#idCheckDiv input[type="text"]:focus {
+	outline: none;
+}
+
+#idCheckDiv input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	font-size: 15px;
+	height: 25px;
+}
+
+#idSpan {
+	margin: 0 auto;
+	padding: 0px 20px;
+	font-size: 13px;
+	color: red;
+}

@@ -47,6 +47,12 @@ if(g_name==null||g_name.equals("")){
 						msg="가입신청됨";
 					}
 				}
+				for(int j=0;j<mygroups.size();j++){
+					if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
+					}
+				}
 			}else{
 				//공개그룹일 경우
 				for(int j=0;j<mygroups.size();j++){
@@ -105,6 +111,12 @@ if(g_name==null||g_name.equals("")){
 					if(searchedgroups.get(i).getG_idx()==myaskedgroups.get(j).getG_idx()){
 						//이미 가입신청한 그룹이면 가입신청됨으로 변경
 						msg="가입신청됨";
+					}
+				}
+				for(int j=0;j<mygroups.size();j++){
+					if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
 					}
 				}
 			}else{
