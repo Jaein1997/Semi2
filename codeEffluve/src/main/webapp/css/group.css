@@ -3,10 +3,14 @@
 /* group. jsp */
 #groupPage {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	width: 100%;
 }
-
+.left-column {
+	width: 60%;
+	padding-right: 20px;
+	border-right: 1px solid #D8CDD2;
+}
 .groupMain {
 	display: flex;
 	flex-direction: row;
@@ -21,20 +25,35 @@
 	margin-top: 0px; margin-bottom: 0px;
 	gap: 5px;
 }
-.groupMain li {
-	
-}
-#groupPage .dateHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 20px;
-}
+
 #groupPage .groupPageSwitch {
 	display: flex;
 	margin-left: auto;
 	margin-right: 0px;
+	margin-bottom: 18px;
+	gap: 5px;
 }
+
+.groupPageSwitch input[type="button"], .groupPageSwitch button {
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	gap: 3px;
+}
+
+.groupPageSwitch button img {
+	width: 13px;
+	height: 13px;		
+}
+
 #groupPage .groupPageSwitch select {
 	
 	width: 200px; height: 40px;
@@ -48,33 +67,77 @@
 }
 #selectedgroup {
 	
-	width: 200px; height: 40px;
+	width: 300px; height: 40px;
 	font-size: 18px;
 	font-weight: 500;
 	
-	border: 1px solid #6D1044;
+	border: 1px solid #E7E1E4;
 	border-radius: 10px;
 	font-family: sans-serif;
 	padding-left: 5px;
 }
 
-#groupPage .dateHeader a {
-	text-decoration: none;
-	color: #6D1044;
+.groupMemo {
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.dateHeader {
+	position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
-#groupPage input[type="date"] {
-	margin-left: 10px;
-	display: flex;
-	width: 140px; height: 30px;
-	font-size: 15px;
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 10px;
+#groupPage .dateHeader a {
+	text-decoration: none;
+	color: #1E8A8A;
+	margin: 5px;
 }
+
+.dateHeader h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 30px;
+	gap: 1px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+.dateHeader img {
+	padding-top: 2px;
+	width: 29px;
+	height: 29px;
+}
+.calendar-input {
+    width: 1px;
+    height: 1px;
+    opacity: 0;      /* 완전히 투명 */
+    border: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none; /* 클릭은 버튼으로만 */
+}
+/* 실제로 보이는 버튼 */
+.calendar-btn {
+    margin-left: 2px;
+    
+    width: 30px;
+    height: 30px;
+    display: inline;
+    background-color: white;
+	border: 0px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+
 #groupPage .groupSchedule {
-	flex: 7;
+	width:100%;
 	height: 410px;
 	background-color: #FAF7F9;
 	border: 1px solid #D8CDD2;
@@ -86,6 +149,7 @@
 	overflow-y: auto;
 	scrollbar-width: none;
 	position: relative;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 #createGroupTodo {
 	position: absolute;
@@ -100,9 +164,12 @@
 }
 
 #groupPage .groupProfileArea {
-	flex: 3;
-	border-left: 1px solid #D8CDD2;
-	padding-left: 20px;
+	width: 40%;
+	height: 532px;
+	margin-left: 20px;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #groupPage #groupProfile {
@@ -134,8 +201,17 @@
 	margin-left: 10px;
 }
 #groupPage #groupImgAndName {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px 2px #D8CDD2;
+    padding: 15px;
+    height: 180px;
+
+	width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 #groupPage input[type="checkbox"] {
@@ -251,6 +327,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	border-radius: 15px;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
 .groupingList span {
@@ -264,12 +342,17 @@
 	flex-direction: column;
 	align-items: flex-start;
 	padding-inline-start: 0px !important;
+	margin-block-start: 0em;
+    margin-block-end: 0em;
 	
 }
 .groupingListTitle {
 	width: 100%;
 	display: flex;
+	flex-direction: row;
 	box-sizing:border-box;
+	justify-content: space-between;
+	align-items: center;
 	background-color: white;
 	border: 1px solid #D8CDD2;
 	border-top-left-radius: 15px;
@@ -277,6 +360,15 @@
 	border-bottom: 0px;
 	padding: 10px 10px;
 }
+
+#managemember, #managegroup {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	margin-right: 0px;
+	margin-left: auto;
+}
+
 .groupingListMembers {
 	width: 100%;
 	display: flex;

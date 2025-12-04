@@ -87,15 +87,8 @@
 	padding-top: 2px;
 	width: 29px;
 	height: 29px;
-}/*
-.calendar-input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    pointer-events: none;
 }
-*/
+
 .calendar-input {
     width: 1px;
     height: 1px;

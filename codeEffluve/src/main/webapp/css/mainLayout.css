@@ -194,20 +194,6 @@ header nav a {
 	color: rgb(109, 16, 68);
 	font-weight: 500;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**/
 
 main {
@@ -224,9 +210,13 @@ section {
 	width: 100%;
 }
 
+
+/* footer.jsp */
+
+
 footer {
 	display: block;
-	margin-top: auto;
+	margin-top: 15px;
 	padding-bottom: 20px;
 	width: 100%;
 	clear: both;
