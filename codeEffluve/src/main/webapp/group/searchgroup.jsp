@@ -48,7 +48,6 @@ ArrayList<GroupsDTO> myaskedgroups=gdao.myaskedGroups(Integer.parseInt(m_idx));
 String g_name=request.getParameter("g_name");
 %>
 <body>
-<h2>그룹 찾기</h2>
 <form name="searchgroup">
 <fieldset>
 <legend>그룹검색</legend>

@@ -9,6 +9,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+fieldset{
+	border-radius: 10px;
+	border: 1px solid #6D1044;
+}
+fieldset input[type=button],fieldset input[type=submit]{
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	margin: 1px 1px 1px 1px;
+}
+fieldset input{
+	border-radius: 8px;
+}
+fieldset table{
+	width: 350px;
+}
+fieldset th{
+	border-bottom: 2px solid #6D1044;
+}
+fieldset td{
+	border-bottom: 1px solid #6D1044;
+	text-align: center;
+}
+</style>
 </head>
 <%
 int m_idx=Integer.parseInt(request.getParameter("m_idx"));
@@ -19,7 +47,6 @@ String m_name=request.getParameter("m_name");
 
 %>
 <body>
-<h2>멤버 찾기</h2>
 <form name="searchgroup">
 <fieldset>
 <legend>멤버 검색</legend>
@@ -35,7 +62,7 @@ if(m_name==null||m_name.equals("")){
 %>
 <fieldset>
 <legend>멤버목록</legend>
-<table border=1px>
+<table>
 	<tr>
 		<th>ID</th>
 		<th>이름</th>
@@ -77,7 +104,7 @@ if(m_name==null||m_name.equals("")){
 	%>
 <fieldset>
 <legend>검색된 멤버</legend>
-<table border=1px>
+<table>
 	
 	<%
 	if(searchedmembers.size()==0){
