@@ -14,7 +14,7 @@
 	<main>
 		<section>
 
-			<h1 style="text-align: center; margin-bottom: 30px;">고객센터 💬</h1>
+			<h1 style="text-align: center; margin-block-start: 10px; margin-block-end: 20px;">고객센터 💬</h1>
 			<div id="cs">
 				<div class="sub-menu">
 					<a href="/codeEffluve/cs.jsp" class="selectedSubmenu">고객센터</a>

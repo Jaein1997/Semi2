@@ -81,4 +81,27 @@ public class FriendingDAO {
 			}
 		}
 	}
+	
+	public int addFriend(int fr1, int fr2) {
+		try {
+			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+			String sql1 = "insert into friending values(?,?)";
+			ps = conn.prepareStatement(sql1);
+			ps.setInt(1, fr1);
+			ps.setInt(2, fr2);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if (rs!=null) rs.close();
+				if (ps!=null) ps.close();
+				if (conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

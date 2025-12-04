@@ -4,11 +4,12 @@
 <jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
 <jsp:useBean id="chdao" class="com.codeEffluve.chat.ChatDAO"></jsp:useBean>
 <jsp:useBean id="fdao" class="com.codeEffluve.friending.FriendingDAO"></jsp:useBean>
-<jsp:useBean id="fadao" class="com.codeEffluve.frapprove.FrapproveDAO"></jsp:useBean>
+<jsp:useBean id="frdao" class="com.codeEffluve.frapprove.FrapproveDAO"></jsp:useBean>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.codeEffluve.chat.ChatDTO" %>
+<%@ page import="com.codeEffluve.frapprove.FrapproveDTO" %>
 
 <!DOCTYPE html>
 
@@ -53,6 +54,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 				<h1>내 친구 목록</h1>
 				<div id="friendsDiv">
 					<div id="addFriendDiv">
+						<span>친구목록</span>
 						<button id="findFriend">친구찾기</button>
 						<button id="approveFriend">받은신청</button>
 					</div>
@@ -77,6 +79,22 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						%>
 						    <li>등록된 친구가 없습니다.</li>
 						<%
+						}
+						%>
+						<%
+						ArrayList<FrapproveDTO> frapproveList = frdao.selectApplicant(sidx);
+						if (frapproveList != null && !frapproveList.isEmpty()) {
+						    for (int i = 0; i < frapproveList.size(); i++) {
+						        int friendIdx = frapproveList.get(i).getApprover();
+						        String friendId = mdao.getIdStr(friendIdx);
+						        String friendProfile = mdao.getProfilePath(friendIdx);
+						%>
+						        <li>
+							        	<img src="/codeEffluve/membersProfiles/<%=friendProfile%>" alt="프로필" id="friendProfile">
+							        	<span><%=friendId %></span><span style="color:#1E8A8A">(수락 대기중)</span>
+						        </li>
+						<%
+						    }
 						}
 						%>
 					</ul>
@@ -168,7 +186,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						}
 					} else {
 						%>
-						친구를 선택하세요
+						<span id="noselectFriend">친구를 선택하여 대화를 시작하세요</span>
 						<%
 					}
 					%>

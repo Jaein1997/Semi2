@@ -30,7 +30,7 @@
     <%@include file="/header.jsp" %>
     <main>
         <section>
-            <h1 style="text-align: center; margin-bottom: 30px;">자주 묻는 질문 (FAQ) 💡</h1>
+            <h1 style="text-align: center; margin-block-start: 10px; margin-block-end: 20px;">자주 묻는 질문 (FAQ) 💡</h1>
             
             <div class="csQA">
                 <div class="sub-menu">
