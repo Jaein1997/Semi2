@@ -1107,6 +1107,11 @@ footer div {
     padding-right: 10px;
 }
 
+.selectedFriend span {
+	color: #6D1044;
+	font-weight: 550;
+	font-size: 18px;
+}
 #chatDiv {
 	display: flex;
 	flex-direction: column;
@@ -1161,6 +1166,7 @@ footer div {
 	align-items: center;
 	text-decoration: none;
 	color: black;
+	width: 100%;
 }
 
 #friendsDiv li span {
@@ -1233,6 +1239,15 @@ footer div {
 	margin-bottom: 10px;
 	gap: 8px;
 }
+
+#noChatList {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
 #noselectFriend {
 	display: flex;
 	text-align: center;
@@ -1407,6 +1422,16 @@ footer div {
 	height: 25px;
 	padding-left: 6px;
 	padding-right: 10px;
+}
+
+.cancelApproval, .deleteFriend {
+	background-color: #E3E3E3;
+	border: 0px;
+	border-radius: 7px;
+	padding: 3px 6px;
+	margin-right: 9px;
+	margin-left: auto;
+	cursor: pointer;
 }
 
 /* approveFriend.jsp */

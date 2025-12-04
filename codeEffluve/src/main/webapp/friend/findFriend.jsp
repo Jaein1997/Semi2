@@ -43,25 +43,40 @@ if(request.getParameter("searchID")!=null) {
 				<input type="hidden" name="m_idx" value="<%=m_idx%>">
 				<input type="hidden" name="resultIdx" value="<%=resultIdx %>">
 				<%
-				if(fdao.isFriend(m_idx, resultIdx)) {
-					%>
-					<span>이미 친구입니다.</span>
-					<%
-				} else if(frdao.isApprove(m_idx, resultIdx)) {
-					%>
-					<span style="color:#1E8A8A;">수락 대기중</span>
-					<%
-				} else if(m_idx==resultIdx) {
+				if(m_idx==resultIdx) {
 					%>
 					<span style="color:#D92A0D;">나와는 친구를 할 수 없습니다.</span>
 					<%				
-				} else {
+				} else if(!frdao.isApprove(m_idx,resultIdx) && !fdao.isFriend(m_idx, resultIdx)) {
 					%>
 					<input type="submit" value="친구신청">
 					<%
 				}
 				%>
 			</form>
+			<%
+			if(fdao.isFriend(m_idx, resultIdx)) {
+				%>
+				<form action="deleteFriend_ok.jsp">
+					<span style="color:#1E8A8A;">이미 친구입니다.</span>
+					<input type="hidden" name="applicant" value="<%=m_idx%>">
+    				<input type="hidden" name="approver" value="<%=resultIdx %>">
+					<input type="submit" class="deleteFriend" value="친구끊기">
+				</form>
+				<%
+			}
+			if(frdao.isApprove(m_idx, resultIdx)) {
+				%>
+				<form action="cancelApprove_ok.jsp">
+					<span style="color:#1E8A8A;">수락 대기중</span>
+					<input type="hidden" name="applicant" value="<%=m_idx%>">
+    				<input type="hidden" name="approver" value="<%=resultIdx %>">
+					<input type="submit" class="cancelApproval" value="신청취소">
+				</form>
+				
+				<%
+			} 
+			%>
 			
 		</div>
 		<%
