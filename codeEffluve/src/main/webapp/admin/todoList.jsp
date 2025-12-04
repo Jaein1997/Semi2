@@ -43,18 +43,12 @@
 </style>
 <h2 style="text-align: center;">일정 관리</h2>
 
-<form method ="get" class = "search-wrapper">
-<input type = "hidden" name ="menu" value ="todo">
-
-<input type = "text" name = "searchId" placeholder="아이디 검색" class = "search-input"
-	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
-	
-	<button type="submit" class = "search-btn">검색</button>
-	</form>
 <%
-int cp = request.getParameter("cp") == null ?
-        1 : Integer.parseInt(request.getParameter("cp"));
-int ls = 10;
+int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
+
+int pageSize = request.getParameter("pageSize") == null ? 10 : Integer.parseInt(request.getParameter("pageSize"));
+
+int ls = pageSize;
 
 String searchId = request.getParameter("searchId");
 
@@ -63,7 +57,22 @@ ArrayList<daydelDTO> arr = ddao.getTodoList(searchId, cp, ls);
 int totalCnt = ddao.getTotalCount(searchId);
 int totalPage = (int)Math.ceil(totalCnt / (double)ls);
 %>
+
+<form method ="get" class = "search-wrapper">
+<input type = "hidden" name ="menu" value ="todo">
+
+<input type = "text" name = "searchId" placeholder="아이디 검색" class = "search-input"
+	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
 	
+	<button type="submit" class = "search-btn">검색</button>
+	<select name="pageSize" onchange="this.form.submit()" style="margin-right:10px; border-radius: 8px 8px 8px 8px; border: 2px solid rgb(109, 16, 68);">
+        <option value="5"  <%=pageSize==5?"selected":""%>>5개씩</option>
+        <option value="10" <%=pageSize==10?"selected":""%>>10개씩</option>
+        <option value="15" <%=pageSize==15?"selected":""%>>15개씩</option>
+        <option value="20" <%=pageSize==20?"selected":""%>>20개씩</option>
+    </select>
+	</form>
+
 <table class = "adminTable">
 	<tr>
 		<th>일정번호</th>

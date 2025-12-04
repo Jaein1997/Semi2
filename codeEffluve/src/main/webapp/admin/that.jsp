@@ -45,11 +45,9 @@
 <h2 style="text-align:center;">댓글 관리</h2>
 
 <%
-    int cp = request.getParameter("cp") == null ?
-             1 : Integer.parseInt(request.getParameter("cp"));
+    int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
 
-	int pageSize = request.getParameter("pageSize") == null ?
-            10 : Integer.parseInt(request.getParameter("pageSize"));
+	int pageSize = request.getParameter("pageSize") == null ? 10 : Integer.parseInt(request.getParameter("pageSize"));
 	
     int ls = pageSize;
 
@@ -68,7 +66,7 @@
 	value ="<%=request.getParameter("searchId") == null ? "" : request.getParameter("searchId")%>">
 
 	<button type="submit" class = "search-btn">검색</button>
-    <select name="pageSize" onchange="this.form.submit()" style="margin-right:10px;">
+    <select name="pageSize" onchange="this.form.submit()" style="margin-right:10px; border-radius: 8px 8px 8px 8px; border: 2px solid rgb(109, 16, 68);">
         <option value="5"  <%=pageSize==5?"selected":""%>>5개씩</option>
         <option value="10" <%=pageSize==10?"selected":""%>>10개씩</option>
         <option value="15" <%=pageSize==15?"selected":""%>>15개씩</option>
@@ -121,17 +119,11 @@
 <%
     for(int i = 1; i <= totalPage; i++){
 %>
-    <a href="/codeEffluve/admin/admin.jsp?menu=that&cp=<%=i%>
-    &pageSize=<%=pageSize %>
-    <% if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
-    %>">
-        <%=i%>
+    <a href="/codeEffluve/admin/admin.jsp?menu=that&cp=<%=i%>&pageSize=<%=pageSize %><% 
+  	if(searchId != null && !searchId.equals("")){ %>&searchId=<%=searchId%><% }%>">
+    	<%=i%>
     </a>
 <%
     }
 %>
 </div>
-
-
-
-
