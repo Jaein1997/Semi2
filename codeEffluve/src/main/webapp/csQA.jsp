@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 
 <jsp:useBean id="qdao" class="com.codeEffluve.admin.qadelDAO" scope="page" /> 
+
 <%
     Object loginCheck = session.getAttribute("sid"); 
     
@@ -40,7 +41,7 @@
                 <div class="cs-main-content">
                     <%
                       
-                        ArrayList<qadelDTO> faqList = qdao.getQAList();
+                        ArrayList<qadelDTO> faqList = qdao.getQALists();
                         
                         if(faqList == null || faqList.isEmpty()){
                     %>

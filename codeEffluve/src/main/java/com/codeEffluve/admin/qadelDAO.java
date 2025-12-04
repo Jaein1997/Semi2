@@ -167,4 +167,39 @@ public class qadelDAO {
     		}catch(Exception e2) {}
     	}
     }
+    
+    public ArrayList<qadelDTO> getQALists() {
+        ArrayList<qadelDTO> list = new ArrayList<>();
+        try {
+            conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+            
+          
+            String sql = "SELECT q_idx, q, a, viewcount FROM qa ORDER BY viewcount DESC"; 
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                qadelDTO dto = new qadelDTO(
+                    rs.getInt("q_idx"),
+                    rs.getString("q"),
+                    rs.getString("a"),
+                    rs.getInt("viewcount")
+                );
+                list.add(dto);
+            }
+            return list;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(conn != null) conn.close();
+            } catch(Exception e2) {}
+        }
+    }
+    
 }
+

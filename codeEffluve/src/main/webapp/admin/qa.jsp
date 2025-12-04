@@ -18,8 +18,6 @@
 </style>
 <h2 style="text-align:center;">자주 묻는 질문</h2>
 
-
-
 <%
     int cp = request.getParameter("cp") == null ?
              1 : Integer.parseInt(request.getParameter("cp"));
