@@ -67,10 +67,12 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						        String friendId = mdao.getIdStr(friendIdx);
 						        String friendProfile = mdao.getProfilePath(friendIdx);
 						%>
-						        <li>
+						        <li <%=friendIdx==sf?"class='selectedFriend'":"" %>>
 							        <a href="/codeEffluve/friend.jsp?sf=<%=friendIdx%>">
 							        	<img src="/codeEffluve/membersProfiles/<%=friendProfile%>" alt="프로필" id="friendProfile">
 							        	<span><%=friendId %></span>
+							        	<button class="deleteFriend" 
+							        		onclick="window.open('/codeEffluve/friend/findFriend.jsp?m_idx=<%=sidx%>&searchID=<%=friendId%>&resultIdx=<%=friendIdx%>&profilepath=<%=friendProfile%>','findFriend', 'width=400px,height=500px');">친구끊기</button>
 							        </a>
 						        </li>
 						<%
@@ -92,6 +94,8 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						        <li>
 							        	<img src="/codeEffluve/membersProfiles/<%=friendProfile%>" alt="프로필" id="friendProfile">
 							        	<span><%=friendId %></span><span style="color:#1E8A8A">(수락 대기중)</span>
+							        	<button class="cancelApproval" 
+							        		onclick="window.open('/codeEffluve/friend/findFriend.jsp?m_idx=<%=sidx%>&searchID=<%=friendId%>&resultIdx=<%=friendIdx%>&profilepath=<%=friendProfile%>','findFriend', 'width=400px,height=500px');">신청취소</button>
 						        </li>
 						<%
 						    }
@@ -182,7 +186,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 								<%
 							}
 						} else {
-							%>새로운 대화를 시작해보세요!<%
+							%><span id="noChatList">새로운 대화를 시작해보세요!</span><%
 						}
 					} else {
 						%>
@@ -196,7 +200,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						<form action="/codeEffluve/chat/writeChat_ok.jsp">
 							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
 							<span>채팅</span>
-							<input type="text" name="message">
+							<input type="text" name="message" autofocus>
 							<input type="hidden" name="sender" value="<%=sidx%>">
 							<input type="hidden" name="receiver" value="<%=sf%>">
 							<input type="submit" value="전송">
@@ -226,6 +230,7 @@ findFriend.onclick = function() {
 approveFriend.onclick = function() {
 	window.open('friend/approveFriend.jsp?m_idx=<%=sidx%>','approveFriend','width=400px, height=500px');
 }
+
 
 </script>
 
