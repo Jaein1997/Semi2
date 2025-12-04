@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>ID 중복확인</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/idCheck.css"> 
 <style>
 	body {
 		background:#FAF7F9;

@@ -5,39 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-fieldset{
-	border-radius: 10px;
-	border: 1px solid #6D1044;
-}
-fieldset input[type=button],fieldset input[type=submit],fieldset input[type=reset]{
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #6D1044;
-	color: white;
-	border: 0px;
-	cursor: pointer;
-	margin: 1px 1px 1px 1px;
-}
-fieldset input[type=file]{
-	height: 25px;
-	background-color: #6D1044;
-	color: white;
-	border: 0px;
-	cursor: pointer;
-	width: 170px;
-}
-fieldset input,textarea{
-	border-radius: 8px;
-	border: 1px solid #6D1044;
-}
-fieldset textarea{
-	width:330px;
-	height:50px;
-}
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/creategroup.css">
 </head>
 <%
 String m_idx=request.getParameter("m_idx");

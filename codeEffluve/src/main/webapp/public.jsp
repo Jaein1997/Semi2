@@ -39,6 +39,7 @@ if(session.getAttribute("sid")==null || session.getAttribute("sid").equals("")) 
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/public.css"> 
 </head>
 <body>
 	<%@include file="header.jsp" %>

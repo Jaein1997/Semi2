@@ -25,6 +25,7 @@
 <meta charset="UTF-8">
 <title>자주 묻는 질문 (FAQ)</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/csQA.css"> 
 </head>
 <body>
     <%@include file="/header.jsp" %>
