@@ -18,13 +18,13 @@ if(join.equals("가입")){
 }else if(join.equals("수락")){
 	result=gpdao.joinmember(m_idx, g_idx);
 	gpdao.cancel(m_idx, g_idx);
-}else if(join.equals("거절")){
+}else if(join.equals("거절")||join.equals("가입신청취소")){
 	result=gpdao.cancel(m_idx, g_idx);
 }else{
 	result=gpdao.goodbyemember(m_idx, g_idx);
 }
 
-if(join.equals("수락")||join.equals("거절")){
+if(join.equals("수락")||join.equals("거절")||join.equals("가입신청취소")){
 	%>
 	<script>
 	window.alert('<%=join%>완료');

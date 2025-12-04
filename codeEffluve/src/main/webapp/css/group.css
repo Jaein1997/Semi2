@@ -611,10 +611,7 @@ input[type="checkbox"] {
 	background-color: #6D1044;
 	color: white;
 	border: 0px;
-	border-top-right-radius: 8px;
-	border-top-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
+	border-radius: 8px;
 	cursor: pointer;
 	margin: 5px 0px 1px 1px;
 }

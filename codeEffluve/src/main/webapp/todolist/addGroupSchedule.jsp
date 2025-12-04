@@ -17,6 +17,9 @@
 	width: 100%;
 }
 
+.scheduleAddTable th, td {
+	border-top: 1px solid #D8CDD2;
+}
 .scheduleAddTable th {
 	background-color: #FAF7F9;
 	width: 85px;
@@ -25,6 +28,7 @@
 	padding: 5px;
 	border-right: 1px solid #D8CDD2;
 	border-bottom: 1px solid #D8CDD2;
+	
 }
 
 .scheduleAddTable td {
@@ -32,6 +36,7 @@
 	text-align: left;
 	padding: 5px;
 	border-bottom: 1px solid #D8CDD2;
+	
 }
 
 .scheduleAddTable td input[type="text"] {
@@ -130,7 +135,7 @@ String currentTime = request.getParameter("currentTime");
 <body>
 	<form name="newschedule" action="addGroupSchedule_ok.jsp">
 		<div class="h3Div">
-			<h3>일정 추가</h3>
+			<h3>그룹 일정 추가</h3>
 		</div>
 		<table class="scheduleAddTable">
 			<tr>
