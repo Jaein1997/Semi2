@@ -47,7 +47,7 @@
 			<a href="/codeEffluve/group.jsp">
 				<img src="/codeEffluve/img/people.png" alt="group">그룹 일정</a>
 			<a href="/codeEffluve/friend.jsp">
-				<img src="/codeEffluve/img/friends.png" alt="friend">친구 관리</a>
+				<img src="/codeEffluve/img/friends.png" alt="friend">친구</a>
 			<a href="/codeEffluve/cs.jsp">
 				<img src="/codeEffluve/img/headset.png" alt="cs">고객센터</a>
 		</div>

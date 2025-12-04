@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 
 <jsp:useBean id="fdao" class="com.codeEffluve.friending.FriendingDAO"></jsp:useBean>
+<jsp:useBean id="frdao" class="com.codeEffluve.frapprove.FrapproveDAO"></jsp:useBean>
 
 <!DOCTYPE html>
 <html>
@@ -20,14 +21,16 @@ if(request.getParameter("searchID")!=null) {
 }
 %>
 <body>
-	<h2>친구 찾기</h2>
-	<form name="searchgroup" action="findFriend_ok.jsp">
-		<div>
-			<input type="hidden" name="m_idx" value="<%=m_idx%>">
-			<input type="text" name="searchID" placeholder="아이디 입력" value="<%=searchID%>"><input type="submit" value="검색">
-		</div>
-		
-	</form>
+	<div id="searchFriendDiv">
+		<h2>친구 찾기</h2>
+		<form name="searchgroup" action="findFriend_ok.jsp">
+			<div>
+				<input type="hidden" name="m_idx" value="<%=m_idx%>">
+				<input type="text" name="searchID" placeholder="아이디 입력" value="<%=searchID%>"><input type="submit" value="검색">
+			</div>
+			
+		</form>
+	</div>
 		<%
 		if(request.getParameter("profilepath")!=null) {
 			String profilepath = request.getParameter("profilepath");
@@ -44,6 +47,14 @@ if(request.getParameter("searchID")!=null) {
 					%>
 					<span>이미 친구입니다.</span>
 					<%
+				} else if(frdao.isApprove(m_idx, resultIdx)) {
+					%>
+					<span style="color:#1E8A8A;">수락 대기중</span>
+					<%
+				} else if(m_idx==resultIdx) {
+					%>
+					<span style="color:#D92A0D;">나와는 친구를 할 수 없습니다.</span>
+					<%				
 				} else {
 					%>
 					<input type="submit" value="친구신청">
