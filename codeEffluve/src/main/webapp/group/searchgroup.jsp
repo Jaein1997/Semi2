@@ -8,6 +8,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+h2{
+	text-align:center;
+}
+fieldset{
+	border-radius: 10px;
+	border: 1px solid #6D1044;
+}
+fieldset input[type=button],fieldset input[type=submit]{
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	margin: 1px 1px 1px 1px;
+}
+fieldset input{
+	border-radius: 8px;
+}
+fieldset table{
+	width: 350px;
+}
+fieldset th{
+	border-bottom: 2px solid #6D1044;
+}
+fieldset td{
+	border-bottom: 1px solid #6D1044;
+	text-align: center;
+}
+</style>
 </head>
 <%
 String m_idx=request.getParameter("m_idx");
@@ -32,9 +63,19 @@ if(g_name==null||g_name.equals("")){
 %>
 <fieldset>
 <legend>그룹목록</legend>
-<ul>
+<table>
+	<%if(allgroups==null||allgroups.size()==0){
+		
+	}else{
+		%>
+		<tr>
+			<th>그룹명</th>
+			<th>그룹장</th>
+			<th>상태</th>
+		</tr>
+		<%
+	}%>
 	<%
-	
 		for(int i=0;i<allgroups.size();i++){
 			String msg="가입";
 			//비공개, 공개 그룹 여부 판정
@@ -44,7 +85,7 @@ if(g_name==null||g_name.equals("")){
 				for(int j=0;j<myaskedgroups.size();j++){
 					if(allgroups.get(i).getG_idx()==myaskedgroups.get(j).getG_idx()){
 						//이미 가입신청한 그룹이면 가입신청됨으로 변경
-						msg="가입신청됨";
+						msg="가입신청취소";
 					}
 				}
 				for(int j=0;j<mygroups.size();j++){
@@ -63,44 +104,45 @@ if(g_name==null||g_name.equals("")){
 				}
 			}
 			
-			if(msg.equals("가입")||msg.equals("가입신청")){
+			if(msg.equals("가입")||msg.equals("가입신청")||msg.equals("가입신청취소")){
 			%>
-			<li>
-			<table border=1px;>
 				<tr>
 					<td><%=allgroups.get(i).getG_name()%></td>
-					<td>그룹장:<%=allgroups.get(i).getLeader() %></td>
+					<td><%=allgroups.get(i).getLeader() %></td>
 					<td><a href="groupjoin_ok.jsp?m_idx=<%=m_idx%>&g_idx=<%=allgroups.get(i).getG_idx()%>&join=<%=msg%>"><input type="button" value="<%=msg %>"></a></td>
 				</tr>
-			
-			</table>
-			</li>
 			<%
 			}else{
 			%>
-			<li>
-			<table border=1px;>
 				<tr>
 					<td><%=allgroups.get(i).getG_name()%></td>
-					<td>그룹장:<%=allgroups.get(i).getLeader() %></td>
+					<td><%=allgroups.get(i).getLeader() %></td>
 					<td><%=msg %></td>
 				</tr>
-				
-			</table>
-			</li>
 			<%
 			}
 	}%>
 	
-</ul>
+</table>
 </fieldset>
 <%}else{
 	%>
 	<fieldset>
 	<legend>검색된 그룹</legend>
-	<ul>
+	<table>
 		<%
 		ArrayList<GroupsDTO> searchedgroups=gdao.searchedGroup(g_name);
+		if(searchedgroups==null||searchedgroups.size()==0){
+			
+		}else{
+			%>
+			<tr>
+				<th>그룹명</th>
+				<th>그룹장</th>
+				<th>상태</th>
+			</tr>
+			<%
+		}
 		for(int i=0;i<searchedgroups.size();i++){
 			String msg="가입";
 			//비공개, 공개 그룹 여부 판정
@@ -110,11 +152,11 @@ if(g_name==null||g_name.equals("")){
 				for(int j=0;j<myaskedgroups.size();j++){
 					if(searchedgroups.get(i).getG_idx()==myaskedgroups.get(j).getG_idx()){
 						//이미 가입신청한 그룹이면 가입신청됨으로 변경
-						msg="가입신청됨";
+						msg="가입신청취소";
 					}
 				}
 				for(int j=0;j<mygroups.size();j++){
-					if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+					if(searchedgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
 						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
 						msg="가입됨";
 					}
@@ -122,43 +164,32 @@ if(g_name==null||g_name.equals("")){
 			}else{
 				//공개그룹일 경우
 				for(int j=0;j<mygroups.size();j++){
-					if(searchedgroups.get(i).getG_idx()==searchedgroups.get(j).getG_idx()){
+					if(searchedgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
 						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
 						msg="가입됨";
 					}
 				}
 			}
 			
-			if(msg.equals("가입")||msg.equals("가입신청")){
+			if(msg.equals("가입")||msg.equals("가입신청")||msg.equals("가입신청취소")){
 			%>
-			<li>
-			<table border=1px;>
 				<tr>
 					<td><%=searchedgroups.get(i).getG_name()%></td>
-					<td>그룹장:<%=searchedgroups.get(i).getLeader() %></td>
+					<td><%=searchedgroups.get(i).getLeader() %></td>
 					<td><a href="groupjoin_ok.jsp?m_idx=<%=m_idx%>&g_idx=<%=searchedgroups.get(i).getG_idx()%>&join=<%=msg%>"><input type="button" value="<%=msg %>"></a></td>
 				</tr>
-			
-			</table>
-			</li>
 			<%
 			}else{
 			%>
-			<li>
-			<table border=1px;>
 				<tr>
 					<td><%=searchedgroups.get(i).getG_name()%></td>
-					<td>그룹장:<%=searchedgroups.get(i).getLeader() %></td>
+					<td><%=searchedgroups.get(i).getLeader() %></td>
 					<td><%=msg %></td>
 				</tr>
-				
-			</table>
-			</li>
 			<%
 			}
 	}%>
-		
-	</ul>
+	</table>
 	</fieldset>
 	<%
 }%>

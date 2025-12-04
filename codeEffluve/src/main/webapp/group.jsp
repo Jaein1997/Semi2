@@ -22,6 +22,7 @@
    href="/codeEffluve/css/mainLayout.css">
 
 <%
+
 SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 SimpleDateFormat tf_c = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 String id = (String) session.getAttribute("sid");
