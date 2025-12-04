@@ -19,17 +19,36 @@
 <h2 style="text-align:center;">자주 묻는 질문</h2>
 
 <%
-    int cp = request.getParameter("cp") == null ?
-             1 : Integer.parseInt(request.getParameter("cp"));
-    int ls = 10;
+int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
 
-    String searchId = request.getParameter("searchId");
+int pageSize = request.getParameter("pageSize") == null ? 10 : Integer.parseInt(request.getParameter("pageSize"));
 
-    ArrayList<qadelDTO> arr = qdao.getQAList(searchId, cp, ls);
+int ls = pageSize;
 
-    int totalCnt = qdao.getTotalCount(searchId);
-    int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+String searchQ = request.getParameter("searchQ");
+
+ArrayList<qadelDTO> arr = qdao.getQAList(searchQ, cp, ls);
+
+int totalCnt = qdao.getTotalCount(searchQ);
+int totalPage = (int)Math.ceil(totalCnt / (double)ls);
 %>
+ 	<div style="text-align:right; margin-bottom:15px;">
+    <form method="get" action="/codeEffluve/admin/admin.jsp">
+        <input type="hidden" name="menu" value="qa">
+        <input type="hidden" name="cp" value="<%=cp%>">
+        <% if(searchQ != null && !searchQ.equals("")) { %>
+            <input type="hidden" name="searchQ" value="<%=searchQ%>">
+        <% } %>
+
+        <select name="pageSize" onchange="this.form.submit()" style="margin-right:10px; border-radius: 8px 8px 8px 8px; border: 2px solid rgb(109, 16, 68);">
+            <option value="5"  <%=pageSize==5?"selected":""%>>5개씩</option>
+            <option value="10" <%=pageSize==10?"selected":""%>>10개씩</option>
+            <option value="15" <%=pageSize==15?"selected":""%>>15개씩</option>
+            <option value="20" <%=pageSize==20?"selected":""%>>20개씩</option>
+        </select>
+    </form>
+</div>
+
 
 <table class = "adminTable">
     <tr>
@@ -77,8 +96,8 @@
 <%
     for(int i = 1; i <= totalPage; i++){
 %>
-    <a href="/codeEffluve/admin/admin.jsp?menu=qa&cp=<%=i%><%
-        if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }
+    <a href="/codeEffluve/admin/admin.jsp?menu=qa&cp=<%=i%>&pageSize=<%=pageSize %><%
+        if(searchQ != null && !searchQ.equals("")) { %>&searchQ=<%=searchQ%><% }
     %>">
         <%=i%>
     </a>
