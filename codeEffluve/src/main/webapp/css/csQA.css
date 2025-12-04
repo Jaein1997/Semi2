@@ -1,0 +1,79 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+html {
+	padding:0px 0px;
+	height:100%;
+}
+body {
+	background: linear-gradient(#FFFDFE, #FFF6FA);
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	/*background-color: white;*/
+	padding-top: 20px;
+	padding-left: 60px;
+	padding-right: 60px;
+	box-sizing:border-box;
+}
+
+header {
+	width: 100%;
+	/*margin-bottom: 20px;*/
+}
+/* csQA.jsp */
+.csQA {
+	display: flex;
+	flex-direction: row;
+}
+
+.qa-container {
+	width: 80%;
+}
+
+.faq-item {
+	margin-bottom: 10px;
+	border: 1px solid #D8CDD2;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.question {
+	background-color: #FAF7F9;
+	cursor: pointer;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background-color 0.3s;
+}
+
+.question span {
+	margin: 15px;
+}
+
+.question:hover {
+	background-color: #FAF7F9;
+}
+
+.answer {
+	background-color: white;
+	color: black; 
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.answer p {	
+	padding: 15px 15px;
+	border-top: 1px solid #D8CDD2;
+	margin: 0px;
+}
+
+.toggle-icon {
+	font-size: 1.2em;
+}
+
+.faq-item.active .answer {
+	max-height: 200px;
+}
