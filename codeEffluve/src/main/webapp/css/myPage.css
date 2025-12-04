@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+/*myPage.jsp*/
+#myPage h2 {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+#myPage #profileImg { 
+	width: 150px; 
+	height: 150px; 
+	border-radius: 50%; 
+	object-fit: cover; 
+}
+    
+  
+#myPage .profile-layout {
+	display: flex; 
+	align-items: flex-start;
+	justify-content: center; 
+	width: 800px; 
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+    
+   
+#myPage table { 
+    margin-left: 20px;
+    background-color: white;
+    width: 350px;
+	border-spacing: 0px;
+    border: 1px solid #D8CDD2;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#myPage td {
+	border: none;
+}
+#myPage th,
+#myPage td { 
+    padding: 10px; 
+    border-bottom: 1px solid #D8CDD2;
+}
+
+#myPage tr:last-child th,
+#myPage tr:last-child td {
+    border-bottom: none;
+}
+
+#myPage th {
+    width: 30%; 
+    border-right: 1px solid #D8CDD2;
+    background-color: #FAF7F9;
+}
+ 
+#myPage .action-buttons { 
+	text-align: center; 
+	width: 800px; 
+	margin: 10px auto;
+}
+
+#myPage .action-buttons button {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+/* deleteAccount.jsp */
+#deleteAccount {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#deleteAccount tr:first-child th {
+	width: 100px;
+	height: 35px !important;
+	box-sizing: border-box;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	margin-bottom: 15px;
+}
+
+#deleteAccount input[type="password"] {
+	width: 600px;
+	height: 35px;
+	box-sizing: border-box;
+	border: 1px solid #D8CDD2;
+	border-left: 0px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	width: 100%;
+}
+
+#deleteAccount input[type="submit"], #deleteAccount input[type="button"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 90px;
+	height: 35px;
+	font-size: 16px;
+	cursor: pointer;
+}
+#deleteAccount input[type="button"] {
+	background-color: #E7E1E4;
+	color: black;
+}
+
+/**/
+
+main {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 30px 40px;
+	background-color: white;
+	border: 2px solid #6D1044;
+	border-top: 0px;
+	overflow: hidden;
+}
+
+section {
+	width: 100%;
+}
+
+footer {
+	display: block;
+	margin-top: auto;
+	padding-bottom: 20px;
+	width: 100%;
+	clear: both;
+	
+}
+
+.footerLogo {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Alex Brush", cursive;
+	font-size: 40px;
+	color: rgb(147,127,113);
+	margin: 0 0;
+}
+footer img {
+	width: 60px;
+	height: 60px;
+}
+
+footer div {
+	text-align: center;
+	color: gray;
+	font-size: 12px;
+}

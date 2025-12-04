@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+/*logIn.jsp*/
+#loginDiv {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	border:1px solid #6D1044 !important;
+	border-radius: 13px !important;
+	width:90%;
+	height:90%;
+	background-color: #FAF7F9;
+}
+
+#loginTable {
+	margin: 6px auto;
+	background-color: white;
+	border: 1px solid #AEAEAE;
+	border-radius: 15px;
+	width: 90%;
+}
+
+#loginTable td {
+	border-bottom: 1px solid #AEAEAE;
+	height: 50px;
+	padding: 0 15px;               /* 왼오 여백만 */
+    display: flex;                 /* 한 줄을 flex 컨테이너로 */
+    align-items: center;
+}
+
+#loginTable tr:last-child td {
+	border-bottom: none;
+}
+
+#loginDiv input[type="submit"] {
+	display:block;
+	margin: 0 auto;
+	width:90%;
+	height: 50px;
+	background-color: rgb(109, 16, 68);
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	font-size: 17px;
+	margin-bottom: 20px;
+}
+
+#loginDiv td input[type="text"], #loginDiv input[type="password"] {
+	border: 0px solid #AEAEAE;
+	font-size: 16px;
+	flex: 1;
+	padding: 0;
+    background: transparent;
+}
+
+#loginDiv input[type="text"],input[type="password"]:focus {
+	outline: none;
+}
+
+#loginDiv input[type="checkbox"] {
+	margin-left: 30px;
+	margin-bottom: 25px;
+	accent-color: #1E8A8A;
+}

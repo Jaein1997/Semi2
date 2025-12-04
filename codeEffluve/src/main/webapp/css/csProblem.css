@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* csProblem.jsp */
+.problem-form-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.problem-form-container table {
+	width: 100%;
+}
+
+.cs-main-content table {
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	border-spacing: 0px;
+	overflow: hidden;
+}
+
+.cs-main-content table th {
+	background-color: #FAF7F9;
+	border-bottom: 1px solid #D8CDD2;
+	border-right: 1px solid #D8CDD2;
+}
+
+.cs-main-content table input[type="text"] {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	border: 0px;
+	font-size: 15px;
+}
+.cs-main-content table td {
+	padding: 10px; 
+    border-bottom: 1px solid #D8CDD2;
+}
+
+.cs-main-content table tr:last-child td, .cs-main-content table tr:last-child th {
+	border-bottom: 0px;
+}
+
+
+.cs-main-content table input[type="text"]:focus, .cs-main-content table textarea:focus {
+	outline: none;
+}
+
+.problem-form-container select {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #D8CDD2;
+	border-radius: 6px;
+	box-sizing: border-box;
+	font-size: 15px;
+}
+
+.cs-main-content table textarea {
+	width: 100%;
+	height: 150px;
+	font-family: sans-serif;
+	font-size: 15px;
+	resize: none;
+	border: 0px;
+}
+
+.submit-area button[type="submit"] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+	width: 100px;
+	height: 45px;
+	border: 0px;
+	border-radius: 13px;
+	font-size: 16px;
+	margin: 20px auto;
+	padding-top: 0px !important;
+}

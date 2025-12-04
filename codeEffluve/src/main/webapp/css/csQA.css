@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* csQA.jsp */
+.csQA {
+	display: flex;
+	flex-direction: row;
+}
+
+.qa-container {
+	width: 80%;
+}
+
+.faq-item {
+	margin-bottom: 10px;
+	border: 1px solid #D8CDD2;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.question {
+	background-color: #FAF7F9;
+	cursor: pointer;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background-color 0.3s;
+}
+
+.question span {
+	margin: 15px;
+}
+
+.question:hover {
+	background-color: #FAF7F9;
+}
+
+.answer {
+	background-color: white;
+	color: black; 
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.answer p {	
+	padding: 15px 15px;
+	border-top: 1px solid #D8CDD2;
+	margin: 0px;
+}
+
+.toggle-icon {
+	font-size: 1.2em;
+}
+
+.faq-item.active .answer {
+	max-height: 200px;
+}

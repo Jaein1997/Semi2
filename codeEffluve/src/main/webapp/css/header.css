@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/* header.jsp */
+
+header h1 {
+	color: rgb(109, 16, 68);
+	font-size: 80px;
+	font-weight: 500;
+	font-family: "Alex Brush", cursive;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+
+header div {
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px; 
+	font-size: 15px;
+	color: gray;
+	line-height: 30px;
+}
+
+header nav {
+	height: 40px;
+	border-bottom: 2px solid rgb(109, 16, 68);
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding-inline-start: 0px;
+	height: 100%;
+	gap: 10px;
+}
+
+header nav li {
+	list-style-type: none;
+	align-items: center;
+	width: 100%;
+	text-align:center;
+	height: 100%;
+	font-size: 18px;
+}
+header nav ul li a{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	background-color: #EFD79B;
+  	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+header nav ul li a:hover{
+	background-color: rgb(109, 16, 68);
+	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 5px #D8CDD2;
+}
+.selectedPage a {
+	background-color: rgb(109, 16, 68);
+	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 7px #D8CDD2;
+}
+
+header a {
+	text-decoration: none;
+	color: gray;
+}
+
+header div a {
+	height: 30px;
+}
+
+header nav a {
+	color: rgb(109, 16, 68);
+	font-weight: 500;
+}
