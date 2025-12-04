@@ -49,7 +49,6 @@ int totalPage = (int)Math.ceil(totalCnt / (double)ls);
     </form>
 </div>
 
-
 <table class = "adminTable">
     <tr>
         <th>질문 번호</th>
