@@ -416,8 +416,19 @@ groupleader = true;
 <script>
 	
 	var createGroupTodo=document.getElementById("createGroupTodo");
-	createGroupTodo.onclick=function(){
-	window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
+	if(createGroupTodo!=null){
+		createGroupTodo.onclick=function(){
+			window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
+			}
+	}
+	
+	var complete = document.getElementsByClassName("complete");
+	for (var i = 0; i < complete.length; i++) {
+		complete[i].onclick = function() {
+			if (this.checked) {
+				location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
+			} 
+		};
 	}
 	var selectedgroup=document.getElementById("selectedgroup")
 	selectedgroup.onchange=function(){
@@ -476,13 +487,6 @@ groupleader = true;
 	        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
 	};
 	
-	var complete = document.getElementsByClassName("complete");
-	for (var i = 0; i < complete.length; i++) {
-		complete[i].onclick = function() {
-			if (this.checked) {
-				location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
-			} 
-		};
-	}
+	
 </script>
 </html>
