@@ -414,7 +414,10 @@ groupleader = true;
 </body>
 <script>
 	
-	
+	var createGroupTodo=document.getElementById("createGroupTodo");
+	createGroupTodo.onclick=function(){
+	window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
+	}
 	var selectedgroup=document.getElementById("selectedgroup")
 	selectedgroup.onchange=function(){
 	    window.location.href = "group.jsp?g_idx="+selectedgroup.value+"&year=<%=year%>"+"&month=<%=month%>"+"&date=<%=date%>";
@@ -436,10 +439,7 @@ groupleader = true;
 	managemember.onclick=function(){
 		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=400px, height=500px");
 	}
-	var createGroupTodo=document.getElementById("createGroupTodo");
-	createGroupTodo.onclick=function(){
-		window.open("todolist/addGroupSchedule.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&currentTime=<%=currentTime%>","addGroupTodo","width=400px, height=300px");
-	}
+	
 
    function toggleCommentForm(elementId) {
       var formDiv = document.getElementById(elementId);
