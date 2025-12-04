@@ -45,6 +45,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/friend.css">
 </head>
 <body>
 	<%@include file="header.jsp" %>

@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* findFriend.jsp */
+
+#findResultDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+}
+
+#findResultDiv img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+#findResultDiv span {
+	padding-top: 15px;
+	font-size: 21px;
+	font-weight: 500;
+	padding-bottom: 15px;
+}
+
+#findResultDiv input[type="submit"] {
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	font-size: 17px;
+	padding: 4px 10px;
+}
+
+#searchFriendDiv h2 {
+	color: #6D1044;
+	text-align: center;
+}
+
+#searchFriendDiv div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#searchFriendDiv input[type="text"] {
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	width: 80%;
+	height: 25px;
+	box-sizing: border-box;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+#searchFriendDiv input[type="text"]:focus {
+	outline: none;
+}
+
+#searchFriendDiv input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	font-size: 15px;
+	height: 25px;
+	padding-left: 6px;
+	padding-right: 10px;
+}
+
+.cancelApproval, .deleteFriend {
+	background-color: #E3E3E3;
+	border: 0px;
+	border-radius: 7px;
+	padding: 3px 6px;
+	margin-right: 9px;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+#deleteWarning {
+	color: #D92A0D;
+	font-size: 14px !important;
+}
