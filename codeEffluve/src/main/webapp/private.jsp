@@ -22,6 +22,7 @@
 <meta charset="UTF-8">
 <title>Life Effluve</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/private.css">
 <% 
 String id=(String)session.getAttribute("sid");
 if(id==null||id.equals("")){

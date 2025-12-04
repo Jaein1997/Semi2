@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
-<link rel="stylesheet" type="text/css" href="/codeEffluve/css/login.css"> 
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/logIn.css"> 
 <style>
 	body {
 		background:#FAF7F9;
