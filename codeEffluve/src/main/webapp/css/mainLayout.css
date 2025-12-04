@@ -1434,6 +1434,11 @@ footer div {
 	cursor: pointer;
 }
 
+#deleteWarning {
+	color: #D92A0D;
+	font-size: 14px !important;
+}
+
 /* approveFriend.jsp */
 #approveFriendDiv h2 {
 	text-align: center;

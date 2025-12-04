@@ -73,4 +73,29 @@ public class ChatDAO {
 			}
 		}
 	}
+	
+	// 친구 삭제 시 채팅 내역 삭제 {
+	public int deleteChats(int sender, int receiver) {
+		try {
+			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+			String sql = "delete from chat where sender=? and receiver=? or sender=? and receiver=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, sender);
+			ps.setInt(2, receiver);
+			ps.setInt(3, receiver);
+			ps.setInt(4, sender);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if(ps!=null) ps.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

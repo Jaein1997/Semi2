@@ -63,6 +63,7 @@ if(request.getParameter("searchID")!=null) {
     				<input type="hidden" name="approver" value="<%=resultIdx %>">
 					<input type="submit" class="deleteFriend" value="친구끊기">
 				</form>
+				<span id="deleteWarning">* 친구를 끊으면 채팅 내용도 사라집니다.</span>
 				<%
 			}
 			if(frdao.isApprove(m_idx, resultIdx)) {
