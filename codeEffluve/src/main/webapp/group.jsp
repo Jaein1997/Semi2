@@ -18,8 +18,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Life Effluve</title>
-<link rel="stylesheet" type="text/css"
-   href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/group.css"> 
 
 <%
 
@@ -423,17 +423,23 @@ groupleader = true;
 	}
 	
 	var complete = document.getElementsByClassName("complete");
-	for (var i = 0; i < complete.length; i++) {
-		complete[i].onclick = function() {
-			if (this.checked) {
-				location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
-			} 
-		};
+	if(complete!=null){
+		for (var i = 0; i < complete.length; i++) {
+			complete[i].onclick = function() {
+				if (this.checked) {
+					location.href = "/codeEffluve/todolist/doneTodolist_ok.jsp?g_idx=<%=g_idx%>&year=<%=year%>&month=<%=month%>&date=<%=date%>&t_idx="+ this.value;
+				} 
+			};
+		}
 	}
+	
 	var selectedgroup=document.getElementById("selectedgroup")
-	selectedgroup.onchange=function(){
-	    window.location.href = "group.jsp?g_idx="+selectedgroup.value+"&year=<%=year%>"+"&month=<%=month%>"+"&date=<%=date%>";
+	if(selectedgroup!=null){
+		selectedgroup.onchange=function(){
+		    window.location.href = "group.jsp?g_idx="+selectedgroup.value+"&year=<%=year%>"+"&month=<%=month%>"+"&date=<%=date%>";
+		}
 	}
+	
 	var creategroup=document.getElementById("creategroup");
 	creategroup.onclick=function(){
 		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=260px");
@@ -442,16 +448,43 @@ groupleader = true;
 	searchgroup.onclick=function(){
 		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","search","width=400px, height=500px");
 	}
+	
 	var managegroup=document.getElementById("managegroup");
-	managegroup.onclick=function(){
-		window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=400px, height=500px");
+	if(managegroup!=null){
+		
+		managegroup.onclick=function(){
+			window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=400px, height=500px");
+		}
 	}
-	
 	var managemember=document.getElementById("managemember");
-	managemember.onclick=function(){
-		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=400px, height=500px");
+	if(managemember!=null){
+		managemember.onclick=function(){
+			window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=400px, height=500px");
+		}
 	}
-	
+	 /* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
+	   var calendar = document.getElementById("calendar");
+	   var calendarBtn = document.getElementById("calendarBtn");
+
+	   calendarBtn.onclick = function() {
+	       if (calendar.showPicker) {
+	           calendar.showPicker();
+	       } else {
+	           calendar.focus();
+	       }
+	   };
+
+	   calendar.onchange = function() {
+	       const selectedDate = calendar.value;
+	       if (!selectedDate) return;
+
+		    const dateParts = selectedDate.split('-');
+		    const year = parseInt(dateParts[0], 10);
+		    const month = parseInt(dateParts[1], 10);
+		    const date = parseInt(dateParts[2], 10);
+		    window.location.href =
+		        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
+		};
 
    function toggleCommentForm(elementId) {
       var formDiv = document.getElementById(elementId);
@@ -463,29 +496,7 @@ groupleader = true;
       }
    }
    
-   /* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */
-   var calendar = document.getElementById("calendar");
-   var calendarBtn = document.getElementById("calendarBtn");
-
-   calendarBtn.onclick = function() {
-       if (calendar.showPicker) {
-           calendar.showPicker();
-       } else {
-           calendar.focus();
-       }
-   };
-
-   calendar.onchange = function() {
-       const selectedDate = calendar.value;
-       if (!selectedDate) return;
-
-	    const dateParts = selectedDate.split('-');
-	    const year = parseInt(dateParts[0], 10);
-	    const month = parseInt(dateParts[1], 10);
-	    const date = parseInt(dateParts[2], 10);
-	    window.location.href =
-	        "group.jsp?year=" + year + "&month=" + month + "&date=" + date;
-	};
+  
 	
 	
 </script>

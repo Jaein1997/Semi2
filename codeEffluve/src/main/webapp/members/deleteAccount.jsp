@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/deleteAccount.css"> 
 <script>
     function validateDelete() {
         const form = document.deleteForm;

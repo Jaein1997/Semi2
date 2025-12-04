@@ -1713,6 +1713,349 @@ footer div {
 	max-height: 200px;
 }
 
+
+
+
+
+
+/* group. jsp */
+#groupPage {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.groupMain {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 20px;
+}
+
+.groupMain ul {
+	display: flex;
+	flex-direction: column;
+	padding-inline-start: 0px !important;
+	margin-top: 0px; margin-bottom: 0px;
+	gap: 5px;
+}
+.groupMain li {
+	
+}
+#groupPage .dateHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#groupPage .groupPageSwitch {
+	display: flex;
+	margin-left: auto;
+	margin-right: 0px;
+}
+#groupPage .groupPageSwitch select {
+	
+	width: 200px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+#selectedgroup {
+	
+	width: 200px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+
+#groupPage .dateHeader a {
+	text-decoration: none;
+	color: #6D1044;
+}
+
+#groupPage input[type="date"] {
+	margin-left: 10px;
+	display: flex;
+	width: 140px; height: 30px;
+	font-size: 15px;
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 10px;
+}
+#groupPage .groupSchedule {
+	flex: 7;
+	height: 410px;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
+	position: relative;
+}
+#createGroupTodo {
+	position: absolute;
+ 	top: 10px; 
+ 	right: 10px; 
+ 	z-index: 10;
+ 	background-color: transparent;
+ 	font-size: 25px;
+ 	color: #6D1044;
+ 	cursor: pointer;
+ 	border: none;
+}
+
+#groupPage .groupProfileArea {
+	flex: 3;
+	border-left: 1px solid #D8CDD2;
+	padding-left: 20px;
+}
+
+#groupPage #groupProfile {
+	width: 150px;
+	height: 150px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	vertical-align: middle;
+	object-fit: cover;
+	margin-right: 20px;
+}
+
+.groupScheduleUserImg {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+}
+
+#userMini {
+	display: flex;
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+	margin-left: 10px;
+}
+#groupPage #groupImgAndName {
+	display: flex;
+	flex-direction: row;
+}
+
+#groupPage input[type="checkbox"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+
+.schedule_left {
+	display: flex;
+    flex-direction: column;
+    margin-left: 0;
+	margin-right: auto;
+    width: 450px;
+}
+
+.schedule_right {
+	display: flex;
+    flex-direction: column;
+    margin-left: auto;
+	margin-right: 0;
+	
+    width: 500px;
+}
+
+.groupScheduleUnit {
+	display: flex;
+	width: 100%;
+	border: 1px solid #1E8A8A;
+	background-color: #CFE9E7;
+	border-radius: 12px;
+	padding: 4px 4px;
+	margin-bottom: 3px;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.leftGroup, .rightGroup {
+	display: flex;
+	gap: 5px;
+}
+
+.groupScheduleUnit span {
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 5px;
+}
+ 
+.groupComment {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.groupComment li {
+	display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 24px;
+    list-style: none;
+}
+.groupComment li::before {
+	content: "";
+	position: absolute;
+	left: 6px;
+	top: 0.6em;
+	transform: translateY(-50%);
+	width: 10px;
+	height: 10px;
+	background: url("/codeEffluve/img/arrow.png") no-repeat center;
+	background-size: contain;
+}
+
+.groupScheduleUser {
+	display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+
+.groupScheduleUserID {
+	margin: auto 0;
+	font-size: 12px;
+}
+.groupCommentTime {
+	flex-shrink: 0;        /* 줄어들지 않게 */
+	margin-left: auto;
+	
+    margin-top: 3px;
+    white-space: nowrap;   /* 시간은 한 줄 유지 */
+    font-size: 12px;
+    color: #888;
+}
+.groupComment li span:first-child {
+    white-space: nowrap;   /* 이 안에서는 줄바꿈 금지 */
+    font-size: 14px;
+}
+.groupCommentMessage {
+	flex: 1 1 auto;
+	margin: 0 6px;
+    white-space: normal;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 14px;
+}
+
+.groupName {
+	display: block !important;
+	font-size: 20px;
+	font-weight: 600;
+}
+.groupingList {
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.groupingList span {
+	font-weight: 500;
+	color: #6D1044;
+	margin-left: 5px;
+}
+.groupingList ul {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-inline-start: 0px !important;
+	
+}
+.groupingListTitle {
+	width: 100%;
+	display: flex;
+	box-sizing:border-box;
+	background-color: white;
+	border: 1px solid #D8CDD2;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom: 0px;
+	padding: 10px 10px;
+}
+.groupingListMembers {
+	width: 100%;
+	display: flex;
+	box-sizing:border-box;
+	height: 235px;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	padding: 10px 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.groupLeader {
+	list-style: none;
+	position: relative;
+	margin-left: 20px;
+}
+
+.groupMember {
+	list-style: none;
+	position: relative;
+	margin-left: 20px;
+}
+.groupLeader::before {
+	content: "";
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px;
+	height: 16px;
+	background: url("/codeEffluve/img/crown.png") no-repeat center;
+	background-size: contain;
+}
+
+.groupMember::before {
+	content: "";
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 15px;
+	height: 15px;
+	background: url("/codeEffluve/img/user_mini.png") no-repeat center;
+	background-size: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* private.jsp */
 .dateHeader {
 	position: relative;
@@ -2499,348 +2842,3 @@ input[type="checkbox"] {
 	cursor:context-menu !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* group. jsp */
-#groupPage {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
-.groupMain {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	gap: 20px;
-}
-
-.groupMain ul {
-	display: flex;
-	flex-direction: column;
-	padding-inline-start: 0px !important;
-	margin-top: 0px; margin-bottom: 0px;
-	gap: 5px;
-}
-.groupMain li {
-	
-}
-#groupPage .dateHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 20px;
-}
-#groupPage .groupPageSwitch {
-	display: flex;
-	margin-left: auto;
-	margin-right: 0px;
-}
-#groupPage .groupPageSwitch select {
-	
-	width: 200px; height: 40px;
-	font-size: 18px;
-	font-weight: 500;
-	
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 5px;
-}
-#selectedgroup {
-	
-	width: 200px; height: 40px;
-	font-size: 18px;
-	font-weight: 500;
-	
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 5px;
-}
-
-#groupPage .dateHeader a {
-	text-decoration: none;
-	color: #6D1044;
-}
-
-#groupPage input[type="date"] {
-	margin-left: 10px;
-	display: flex;
-	width: 140px; height: 30px;
-	font-size: 15px;
-	border: 1px solid #6D1044;
-	border-radius: 10px;
-	font-family: sans-serif;
-	padding-left: 10px;
-}
-#groupPage .groupSchedule {
-	flex: 7;
-	height: 410px;
-	background-color: #FAF7F9;
-	border: 1px solid #D8CDD2;
-	border-radius: 15px;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	overflow-y: auto;
-	scrollbar-width: none;
-	position: relative;
-}
-#createGroupTodo {
-	position: absolute;
- 	top: 10px; 
- 	right: 10px; 
- 	z-index: 10;
- 	background-color: transparent;
- 	font-size: 25px;
- 	color: #6D1044;
- 	cursor: pointer;
- 	border: none;
-}
-
-#groupPage .groupProfileArea {
-	flex: 3;
-	border-left: 1px solid #D8CDD2;
-	padding-left: 20px;
-}
-
-#groupPage #groupProfile {
-	width: 150px;
-	height: 150px;
-	flex-shrink: 0;
-	border-radius: 10px;
-	vertical-align: middle;
-	object-fit: cover;
-	margin-right: 20px;
-}
-
-.groupScheduleUserImg {
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;
-	flex-shrink: 0;
-	vertical-align: middle;
-	object-fit: cover;
-}
-
-#userMini {
-	display: flex;
-	width: 18px;
-	height: 18px;
-	flex-shrink: 0;
-	vertical-align: middle;
-	object-fit: cover;
-	margin-left: 10px;
-}
-#groupPage #groupImgAndName {
-	display: flex;
-	flex-direction: row;
-}
-
-#groupPage input[type="checkbox"] {
-	accent-color: #1E8A8A;
-	margin-left: 15px;
-}
-
-.schedule_left {
-	display: flex;
-    flex-direction: column;
-    margin-left: 0;
-	margin-right: auto;
-    width: 450px;
-}
-
-.schedule_right {
-	display: flex;
-    flex-direction: column;
-    margin-left: auto;
-	margin-right: 0;
-	
-    width: 500px;
-}
-
-.groupScheduleUnit {
-	display: flex;
-	width: 100%;
-	border: 1px solid #1E8A8A;
-	background-color: #CFE9E7;
-	border-radius: 12px;
-	padding: 4px 4px;
-	margin-bottom: 3px;
-	justify-content: space-between;
-	flex-wrap: nowrap;
-}
-.leftGroup, .rightGroup {
-	display: flex;
-	gap: 5px;
-}
-
-.groupScheduleUnit span {
-	font-size: 18px;
-	font-weight: 500;
-	margin-left: 5px;
-}
- 
-.groupComment {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-.groupComment li {
-	display: flex;
-    align-items: flex-start;
-    position: relative;
-    padding-left: 24px;
-    list-style: none;
-}
-.groupComment li::before {
-	content: "";
-	position: absolute;
-	left: 6px;
-	top: 0.6em;
-	transform: translateY(-50%);
-	width: 10px;
-	height: 10px;
-	background: url("/codeEffluve/img/arrow.png") no-repeat center;
-	background-size: contain;
-}
-
-.groupScheduleUser {
-	display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: 5px;
-    margin-bottom: 3px;
-}
-
-.groupScheduleUserID {
-	margin: auto 0;
-	font-size: 12px;
-}
-.groupCommentTime {
-	flex-shrink: 0;        /* 줄어들지 않게 */
-	margin-left: auto;
-	
-    margin-top: 3px;
-    white-space: nowrap;   /* 시간은 한 줄 유지 */
-    font-size: 12px;
-    color: #888;
-}
-.groupComment li span:first-child {
-    white-space: nowrap;   /* 이 안에서는 줄바꿈 금지 */
-    font-size: 14px;
-}
-.groupCommentMessage {
-	flex: 1 1 auto;
-	margin: 0 6px;
-    white-space: normal;
-    word-break: break-all;
-    overflow-wrap: break-word;
-    font-size: 14px;
-}
-
-.groupName {
-	display: block !important;
-	font-size: 20px;
-	font-weight: 600;
-}
-.groupingList {
-	width: 100%;
-	margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-
-.groupingList span {
-	font-weight: 500;
-	color: #6D1044;
-	margin-left: 5px;
-}
-.groupingList ul {
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	align-items: flex-start;
-	padding-inline-start: 0px !important;
-	
-}
-.groupingListTitle {
-	width: 100%;
-	display: flex;
-	box-sizing:border-box;
-	background-color: white;
-	border: 1px solid #D8CDD2;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	border-bottom: 0px;
-	padding: 10px 10px;
-}
-.groupingListMembers {
-	width: 100%;
-	display: flex;
-	box-sizing:border-box;
-	height: 235px;
-	background-color: #FAF7F9;
-	border: 1px solid #D8CDD2;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-	padding: 10px 10px;
-	overflow-y: auto;
-	scrollbar-width: none;
-}
-
-.groupLeader {
-	list-style: none;
-	position: relative;
-	margin-left: 20px;
-}
-
-.groupMember {
-	list-style: none;
-	position: relative;
-	margin-left: 20px;
-}
-.groupLeader::before {
-	content: "";
-	position: absolute;
-	left: -20px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 16px;
-	height: 16px;
-	background: url("/codeEffluve/img/crown.png") no-repeat center;
-	background-size: contain;
-}
-
-.groupMember::before {
-	content: "";
-	position: absolute;
-	left: -20px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 15px;
-	height: 15px;
-	background: url("/codeEffluve/img/user_mini.png") no-repeat center;
-	background-size: contain;
-}

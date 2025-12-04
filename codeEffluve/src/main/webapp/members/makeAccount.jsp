@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/makeAccount.css"> 
 <style>
 	#profileImg {
 		width: 200px;

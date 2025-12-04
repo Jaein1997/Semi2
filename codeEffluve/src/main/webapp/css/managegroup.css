@@ -1,0 +1,43 @@
+@charset "UTF-8";
+fieldset{
+	border-radius: 10px;
+	border: 1px solid #6D1044;
+}
+fieldset input[type=button],fieldset input[type=submit],fieldset input[type=reset]{
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	margin: 1px 1px 1px 1px;
+}
+fieldset input[type=file]{
+	height: 25px;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	width: 170px;
+}
+fieldset input,textarea{
+	border-radius: 8px;
+	border: 1px solid #6D1044;
+}
+fieldset textarea{
+	width:330px;
+	height:50px;
+}
+fieldset input{
+	border-radius: 8px;
+}
+fieldset table{
+	width: 350px;
+}
+fieldset th{
+	border-bottom: 2px solid #6D1044;
+}
+fieldset td{
+	border-bottom: 1px solid #6D1044;
+	text-align: center;
+}

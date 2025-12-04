@@ -7,6 +7,7 @@
 	String sprofilePath = request.getContextPath() + "/membersProfiles/" + sprofile;
 %>
 <header>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/header.css"> 
 	<%
 	if(sname==null) {
 		%>
