@@ -81,4 +81,52 @@ public class FriendingDAO {
 			}
 		}
 	}
+	
+	public int addFriend(int fr1, int fr2) {
+		try {
+			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+			String sql1 = "insert into friending values(?,?)";
+			ps = conn.prepareStatement(sql1);
+			ps.setInt(1, fr1);
+			ps.setInt(2, fr2);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if (rs!=null) rs.close();
+				if (ps!=null) ps.close();
+				if (conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public int deleteFriend(int fr1, int fr2) {
+		try {
+			conn = com.codeEffluve.db.CodeEffluveDB.getConn();
+			String sql1 = "delete from friending where fr1=? and fr2=? or fr2=? and fr1=?";
+			ps = conn.prepareStatement(sql1);
+			ps.setInt(1, fr1);
+			ps.setInt(2, fr2);
+			ps.setInt(3, fr1);
+			ps.setInt(4, fr2);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if (rs!=null) rs.close();
+				if (ps!=null) ps.close();
+				if (conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

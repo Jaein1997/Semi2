@@ -11,6 +11,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+fieldset{
+	border-radius: 10px;
+	border: 1px solid #6D1044;
+}
+fieldset input[type=button],fieldset input[type=submit],fieldset input[type=reset]{
+	height: 25px;
+	box-sizing: border-box;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	margin: 1px 1px 1px 1px;
+}
+fieldset input[type=file]{
+	height: 25px;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	cursor: pointer;
+	width: 170px;
+}
+fieldset input,textarea{
+	border-radius: 8px;
+	border: 1px solid #6D1044;
+}
+fieldset textarea{
+	width:330px;
+	height:50px;
+}
+fieldset input{
+	border-radius: 8px;
+}
+fieldset table{
+	width: 350px;
+}
+fieldset th{
+	border-bottom: 2px solid #6D1044;
+}
+fieldset td{
+	border-bottom: 1px solid #6D1044;
+	text-align: center;
+}
+
+</style>
 </head>
 <%
 int g_idx=Integer.parseInt(request.getParameter("g_idx"));
@@ -30,9 +75,6 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 %>
 
 <body>
-<h2>그룹 관리</h2>
-
-
 <fieldset>
 <legend>그룹정보수정</legend>
 <form name="creategroup" action="editgroup_ok.jsp" method = "post" enctype = "multipart/form-data">
@@ -56,14 +98,14 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 
 <%if(gdto.getApproval().equals("f")){
 	%>
-	<fieldset>
+	<fieldset id="askinglist">
 	<legend>가입신청목록</legend>
 	<%if(whoasked.size()==0){
 		%>
 		신청한 회원이 없습니다.
 		<%
 	}else{%>
-	<table border=1px>
+	<table>
 		<tr>
 			<th>ID</th>
 			<th>이름</th>
@@ -94,6 +136,10 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 	back.onclick=function(){
 		window.open('groupcheck.jsp','groupCheck','width=400, height=300');	
 	};
-    </script>
+	var askinglist=document.getElementById('askinglist');
+	if(askinglist==null){
+		window.resizeTo(420,340);
+	};
+</script>
 </body>
 </html>

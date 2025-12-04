@@ -36,9 +36,9 @@ header {
 #leLogo2 {
 	display: block;
 	margin: 0 auto;
-	padding-top: 100px;
+	padding-top: 50px;
 	padding-bottom: 50px;
-	width: 700px;
+	width: 850px;
 	height: auto;
 }
 
@@ -66,7 +66,7 @@ header {
 	width: 200px !important;
 	height: 200px !important;
 	margin: 10px 30px;
-	margin-bottom: 110px;
+	margin-bottom: 80px;
 }
 
 .indexMenu a:hover {
@@ -89,18 +89,24 @@ header {
 	width: 100px;
 	height: 100px;
 }
-
+#headerLogoDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+}
 .titleLogo {
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
   	align-items: center;
 	margin: 0 auto;
-	
 }
 
 .titleLogo img {
-	width:120px;
-	height: 120px;
+	width:100px;
+	height: 100px;
 }
 
 /* header.jsp */
@@ -710,13 +716,14 @@ footer {
 	justify-content: center;
 	align-items: center;
 	font-family: "Alex Brush", cursive;
-	font-size: 40px;
+	font-size: 35px;
 	color: rgb(147,127,113);
 	margin: 0 0;
 }
 footer img {
-	width: 60px;
-	height: 60px;
+	width: 35px;
+	height: 35px;
+	margin-right: 10px;
 }
 
 footer div {
@@ -1047,6 +1054,13 @@ footer div {
 	width: 25%;
 }
 
+#friendsArea h1 {
+	font-size: 30px;
+	text-align: center;
+	margin-block-start: 10px;
+    margin-block-end: 20px;
+}
+
 #chatArea {
 	display: flex;
 	flex-direction: column;
@@ -1066,6 +1080,38 @@ footer div {
 	box-shadow: 0px 0px 8px 2px #D8CDD2;
 }
 
+#addFriendDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 10px;
+	gap: 5px;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#addFriendDiv span {
+	font-size: 19px;
+	font-weight: 550;
+	margin-right: auto;
+	margin-left: 0px;
+}
+
+#findFriend, #approveFriend {
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.selectedFriend span {
+	color: #6D1044;
+	font-weight: 550;
+	font-size: 18px;
+}
 #chatDiv {
 	display: flex;
 	flex-direction: column;
@@ -1103,22 +1149,34 @@ footer div {
 	list-style: none;
 	background-color: white;
 	width: 100%;
-	flex-shrink: 1;
+	height: 100%;
+	margin-bottom: 0px;
+	padding: 5px;
 }
 
 #friendsDiv li {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
+	padding: 5px;
 }
+#friendsDiv li a {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	width: 100%;
+}
+
 #friendsDiv li span {
-	margin: auto 0;
+	margin-left: 10px;
 }
 
 #friendProfile {
 	width: 30px;
     height: 30px;
     border-radius: 50%;
-    flex-shrink: 0;
     object-fit: cover;
 }
 
@@ -1136,6 +1194,8 @@ footer div {
   	padding-left: 0;
   	gap: 15px;
   	list-style: none;
+  	overflow-y: auto;
+	scrollbar-width: none;
 }
 
 .todayDiv .leftChat {
@@ -1179,6 +1239,23 @@ footer div {
 	margin-bottom: 10px;
 	gap: 8px;
 }
+
+#noChatList {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+#noselectFriend {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
 
 .rightChat #messageUnit {
 	background-color: #1E8A8A;
@@ -1276,6 +1353,7 @@ footer div {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-top: 30px;
 }
 
 #findResultDiv img {
@@ -1284,6 +1362,140 @@ footer div {
 	border-radius: 50%;
 	object-fit: cover;
 }
+
+#findResultDiv span {
+	padding-top: 15px;
+	font-size: 21px;
+	font-weight: 500;
+	padding-bottom: 15px;
+}
+
+#findResultDiv input[type="submit"] {
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	font-size: 17px;
+	padding: 4px 10px;
+}
+
+#searchFriendDiv h2 {
+	color: #6D1044;
+	text-align: center;
+}
+
+#searchFriendDiv div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#searchFriendDiv input[type="text"] {
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	width: 80%;
+	height: 25px;
+	box-sizing: border-box;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+#searchFriendDiv input[type="text"]:focus {
+	outline: none;
+}
+
+#searchFriendDiv input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	font-size: 15px;
+	height: 25px;
+	padding-left: 6px;
+	padding-right: 10px;
+}
+
+.cancelApproval, .deleteFriend {
+	background-color: #E3E3E3;
+	border: 0px;
+	border-radius: 7px;
+	padding: 3px 6px;
+	margin-right: 9px;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+#deleteWarning {
+	color: #D92A0D;
+	font-size: 14px !important;
+}
+
+/* approveFriend.jsp */
+#approveFriendDiv h2 {
+	text-align: center;
+	color: #6D1044;
+}
+
+#frapproveTable {
+	width: 100%;
+	border-spacing: 0px;
+	border-radius: 10px;
+}
+
+#frapproveTable th {
+	text-align: center;
+	background-color: #FAF7F9;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#frapproveTable td {
+	text-align: center;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#frapproveTable img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	margin-top: 4px;
+}
+
+#frapproveBtnsDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#frapproveBtnsDiv button {
+	outline: none;
+	border: 0px;
+	border-radius: 8px;
+	padding: 3px 9px;
+	cursor: pointer;
+}
+#frapproveBtnsDiv form:first-child button {
+	background-color: #1E8A8A;
+	color: white;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#frapproveBtnsDiv form:last-child button {
+	background-color: #E3E3E3;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
 
 /*********************************************/
 /* cs.jsp */

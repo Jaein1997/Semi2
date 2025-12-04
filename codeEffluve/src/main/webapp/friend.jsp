@@ -4,11 +4,12 @@
 <jsp:useBean id="mdao" class="com.codeEffluve.members.MembersDAO"></jsp:useBean>
 <jsp:useBean id="chdao" class="com.codeEffluve.chat.ChatDAO"></jsp:useBean>
 <jsp:useBean id="fdao" class="com.codeEffluve.friending.FriendingDAO"></jsp:useBean>
-<jsp:useBean id="fadao" class="com.codeEffluve.frapprove.FrapproveDAO"></jsp:useBean>
+<jsp:useBean id="frdao" class="com.codeEffluve.frapprove.FrapproveDAO"></jsp:useBean>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.codeEffluve.chat.ChatDTO" %>
+<%@ page import="com.codeEffluve.frapprove.FrapproveDTO" %>
 
 <!DOCTYPE html>
 
@@ -53,6 +54,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 				<h1>내 친구 목록</h1>
 				<div id="friendsDiv">
 					<div id="addFriendDiv">
+						<span>친구목록</span>
 						<button id="findFriend">친구찾기</button>
 						<button id="approveFriend">받은신청</button>
 					</div>
@@ -65,10 +67,12 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						        String friendId = mdao.getIdStr(friendIdx);
 						        String friendProfile = mdao.getProfilePath(friendIdx);
 						%>
-						        <li>
+						        <li <%=friendIdx==sf?"class='selectedFriend'":"" %>>
 							        <a href="/codeEffluve/friend.jsp?sf=<%=friendIdx%>">
 							        	<img src="/codeEffluve/membersProfiles/<%=friendProfile%>" alt="프로필" id="friendProfile">
 							        	<span><%=friendId %></span>
+							        	<button class="deleteFriend" 
+							        		onclick="window.open('/codeEffluve/friend/findFriend.jsp?m_idx=<%=sidx%>&searchID=<%=friendId%>&resultIdx=<%=friendIdx%>&profilepath=<%=friendProfile%>','findFriend', 'width=400px,height=500px');">친구끊기</button>
 							        </a>
 						        </li>
 						<%
@@ -77,6 +81,24 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						%>
 						    <li>등록된 친구가 없습니다.</li>
 						<%
+						}
+						%>
+						<%
+						ArrayList<FrapproveDTO> frapproveList = frdao.selectApplicant(sidx);
+						if (frapproveList != null && !frapproveList.isEmpty()) {
+						    for (int i = 0; i < frapproveList.size(); i++) {
+						        int friendIdx = frapproveList.get(i).getApprover();
+						        String friendId = mdao.getIdStr(friendIdx);
+						        String friendProfile = mdao.getProfilePath(friendIdx);
+						%>
+						        <li>
+							        	<img src="/codeEffluve/membersProfiles/<%=friendProfile%>" alt="프로필" id="friendProfile">
+							        	<span><%=friendId %></span><span style="color:#1E8A8A">(수락 대기중)</span>
+							        	<button class="cancelApproval" 
+							        		onclick="window.open('/codeEffluve/friend/findFriend.jsp?m_idx=<%=sidx%>&searchID=<%=friendId%>&resultIdx=<%=friendIdx%>&profilepath=<%=friendProfile%>','findFriend', 'width=400px,height=500px');">신청취소</button>
+						        </li>
+						<%
+						    }
 						}
 						%>
 					</ul>
@@ -164,11 +186,11 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 								<%
 							}
 						} else {
-							%>새로운 대화를 시작해보세요!<%
+							%><span id="noChatList">새로운 대화를 시작해보세요!</span><%
 						}
 					} else {
 						%>
-						친구를 선택하세요
+						<span id="noselectFriend">친구를 선택하여 대화를 시작하세요</span>
 						<%
 					}
 					%>
@@ -178,7 +200,7 @@ if(request.getParameter("sf")==null || request.getParameter("sf").equals("")) {
 						<form action="/codeEffluve/chat/writeChat_ok.jsp">
 							<img src="/codeEffluve/img/chat.png" alt="사진" style="width:30px; height: 30px; margin-right: 7px;">
 							<span>채팅</span>
-							<input type="text" name="message">
+							<input type="text" name="message" autofocus>
 							<input type="hidden" name="sender" value="<%=sidx%>">
 							<input type="hidden" name="receiver" value="<%=sf%>">
 							<input type="submit" value="전송">
@@ -208,6 +230,7 @@ findFriend.onclick = function() {
 approveFriend.onclick = function() {
 	window.open('friend/approveFriend.jsp?m_idx=<%=sidx%>','approveFriend','width=400px, height=500px');
 }
+
 
 </script>
 

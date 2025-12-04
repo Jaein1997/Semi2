@@ -28,7 +28,7 @@
     <%@include file="/header.jsp" %>
     <main>
         <section>
-			<h1 style="text-align: center; margin-bottom: 30px;">불편사항 접수 📝</h1>  <!-- <p style="text-align: center; color: #555;">사용 중 불편했던 점을 상세히 알려주시면 빠르게 해결하겠습니다.</p> -->
+			<h1 style="text-align: center; margin-block-start: 10px; margin-block-end: 20px;">불편사항 접수 📝</h1>  <!-- <p style="text-align: center; color: #555;">사용 중 불편했던 점을 상세히 알려주시면 빠르게 해결하겠습니다.</p> -->
 
             <div class="problem-form-container">
             	<div class="sub-menu">

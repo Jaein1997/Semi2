@@ -22,6 +22,7 @@
    href="/codeEffluve/css/mainLayout.css">
 
 <%
+
 SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 SimpleDateFormat tf_c = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 String id = (String) session.getAttribute("sid");
@@ -402,7 +403,6 @@ groupleader = true;
                </div>
                <%
                } else {
-
                }
                %>
             </div>
@@ -421,7 +421,7 @@ groupleader = true;
 	}
 	var creategroup=document.getElementById("creategroup");
 	creategroup.onclick=function(){
-		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=500px");
+		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=260px");
 	}
 	var searchgroup=document.getElementById("searchgroup");
 	searchgroup.onclick=function(){
@@ -429,12 +429,12 @@ groupleader = true;
 	}
 	var managegroup=document.getElementById("managegroup");
 	managegroup.onclick=function(){
-		window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=500px, height=700px");
+		window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=400px, height=500px");
 	}
 	
 	var managemember=document.getElementById("managemember");
 	managemember.onclick=function(){
-		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=500px, height=700px");
+		window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=400px, height=500px");
 	}
 	var createGroupTodo=document.getElementById("createGroupTodo");
 	createGroupTodo.onclick=function(){
