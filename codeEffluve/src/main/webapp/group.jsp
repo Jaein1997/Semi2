@@ -199,7 +199,7 @@ groupleader = true;
 								if(groupleader||idx==tarr.get(i).getM_idx()){
 									%>
 									
-									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									</span>
 									<%
 								}
@@ -218,7 +218,7 @@ groupleader = true;
 										<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
 										<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
 									%>
-									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									<%
 								}%>
 										<span></span></li>
@@ -268,14 +268,15 @@ groupleader = true;
 								<%
 								carr = cdao.getComments(tarr.get(i + 1).getT_idx());
 								%>
-								<span class="rightGroup"> 
+								<span class="rightGroup">
+								<img id="chatIcon" src="/codeEffluve/img/chatIcon.png" alt="채팅">
 								<label onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
 									style="cursor: pointer;">[<%=carr.size()%>] </label>
 									
 								<%
 								if(groupleader||idx==tarr.get(i+1).getM_idx()){
 									%>
-									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									</span>
 									<%
 								}
@@ -293,7 +294,7 @@ groupleader = true;
 										<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
 									<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
 									%>
-									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									<%
 								}%>
 									</li>
