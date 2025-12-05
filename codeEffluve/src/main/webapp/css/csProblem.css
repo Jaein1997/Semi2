@@ -1,6 +1,54 @@
 @charset "UTF-8";
 
 /* csProblem.jsp */
+
+.sub-menu {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #D8CDD2;
+}
+
+.sub-menu a {
+	width: block;
+	height: 45px;
+	background-color: #CFE9E7;
+	text-decoration : none;
+	color: #1E8A8A;
+	display: flex;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	align-items: center;
+	padding-left: 15px;
+	text-decoration: none;
+	border-bottom: 1px solid #1E8A8A;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.selectedSubmenu {
+	width: block;
+	height: 45px;
+	background-color: #1E8A8A !important;
+	text-decoration: none;
+	color: white !important;
+	display: flex;
+	font-weight: 600;
+	font-size: 18px;
+	text-align: center;
+	align-items: center;
+	padding-left: 15px;
+	border-bottom: 1px solid #1E8A8A;
+}
+
+.sub-menu a:hover {
+	background-color: #1E8A8A;
+	color: white;
+}
+
+
 .problem-form-container {
 	display: flex;
 	flex-direction: row;
@@ -8,6 +56,26 @@
 
 .problem-form-container table {
 	width: 100%;
+}
+
+.cs-main-content {
+	width: 80%;
+	padding: 20px 40px;
+	margin-left: 50px;
+}
+
+.cs-main-content h3 {
+	color: #333;
+	font-size: 1.8em;
+	margin-top: 0;
+	border-bottom: 2px solid #1E8A8A;
+	padding-bottom: 10px;
+}
+
+.cs-main-content p {
+	color: #555;
+	line-height: 1.6;
+	margin-bottom: 20px;
 }
 
 .cs-main-content table {

@@ -9,34 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-fieldset{
-	border-radius: 10px;
-	border: 1px solid #6D1044;
-}
-fieldset input[type=button],fieldset input[type=submit]{
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #6D1044;
-	color: white;
-	border: 0px;
-	cursor: pointer;
-	margin: 1px 1px 1px 1px;
-}
-fieldset input{
-	border-radius: 8px;
-}
-fieldset table{
-	width: 350px;
-}
-fieldset th{
-	border-bottom: 2px solid #6D1044;
-}
-fieldset td{
-	border-bottom: 1px solid #6D1044;
-	text-align: center;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/managemember.css">
 </head>
 <%
 int m_idx=Integer.parseInt(request.getParameter("m_idx"));

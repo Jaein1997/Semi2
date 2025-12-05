@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/approveFriend.css">
 <style>
 	body {
 		padding-left: 20px !important;

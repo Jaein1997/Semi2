@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/myPage.css"> 
 
 </head>
 <body>

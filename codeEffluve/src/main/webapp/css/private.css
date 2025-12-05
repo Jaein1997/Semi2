@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 /* private.jsp */
 .dateHeader {
@@ -86,15 +87,8 @@
 	padding-top: 2px;
 	width: 29px;
 	height: 29px;
-}/*
-.calendar-input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    pointer-events: none;
 }
-*/
+
 .calendar-input {
     width: 1px;
     height: 1px;
@@ -784,4 +778,14 @@ input[type="checkbox"] {
 	border: 1px solid #888888 !important;
 	background-color: #888888 !important;
 	cursor:context-menu !important;
+}
+
+.delComment {
+	text-decoration: none;
+	cursor: pointer;
+	color: #6D1044;
+	margin-right: 10px;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: auto;
 }

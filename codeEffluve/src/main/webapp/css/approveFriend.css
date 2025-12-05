@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* approveFriend.jsp */
+#approveFriendDiv h2 {
+	text-align: center;
+	color: #6D1044;
+}
+
+#frapproveTable {
+	width: 100%;
+	border-spacing: 0px;
+	border-radius: 10px;
+}
+
+#frapproveTable th {
+	text-align: center;
+	background-color: #FAF7F9;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#frapproveTable td {
+	text-align: center;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#frapproveTable img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	margin-top: 4px;
+}
+
+#frapproveBtnsDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#frapproveBtnsDiv button {
+	outline: none;
+	border: 0px;
+	border-radius: 8px;
+	padding: 3px 9px;
+	cursor: pointer;
+}
+#frapproveBtnsDiv form:first-child button {
+	background-color: #1E8A8A;
+	color: white;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#frapproveBtnsDiv form:last-child button {
+	background-color: #E3E3E3;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}

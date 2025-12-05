@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/myPageEdit.css"> 
 <script>
     // 이미지 미리보기 함수
     function setThumbnail(event) {

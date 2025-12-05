@@ -23,6 +23,7 @@
 <meta charset="UTF-8">
 <title>불편사항 접수</title>
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/csProblem.css"> 
 </head>
 <body>
     <%@include file="/header.jsp" %>
