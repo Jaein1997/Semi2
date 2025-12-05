@@ -100,8 +100,10 @@ int idx = tdao.returnM_idx(id);
 
 String g_idx_s = request.getParameter("g_idx");
 int g_idx = 0;
-if (g_idx_s != null) {
-g_idx = Integer.parseInt(g_idx_s);
+if (g_idx_s == null||g_idx_s.equals("")) {
+
+}else{
+	g_idx = Integer.parseInt(g_idx_s);
 }
 ArrayList<GroupsDTO> mygroups = gdao.myGroups(idx);
 if (mygroups==null||mygroups.size() == 0) {
@@ -147,11 +149,11 @@ groupleader = true;
 			<div class="left-column">
 				<div class="dateHeader">
 					<h2>
-					    <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날">◀</a>
+					    <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=이전날&g_idx=<%=g_idx %>">◀</a>
 					    <%=year %>년 <%=month %>월 <%=date %>일 (<%=day %>)
 					    <input type="date" id="calendar" class="calendar-input" value="<%=year%>-<%=month<10?"0"+month:month%>-<%=date<10?"0"+date:date%>">
 					    <button type="button" id="calendarBtn" class="calendar-btn"><img src="/codeEffluve/img/calendar.png" alt="날짜선택"></button>
-					    <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날">▶</a>
+					    <a href="group.jsp?&year=<%=year %>&month=<%=month %>&date=<%=date %>&day=다음날&g_idx=<%=g_idx %>">▶</a>
 					        	
 				    </h2>
 				    
