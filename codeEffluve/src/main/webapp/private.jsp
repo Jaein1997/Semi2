@@ -399,11 +399,11 @@ if(request.getParameter("mdMode")!=null) {
                     		</tr>
                     		<tr>
                     			<th>공개범위</th>
-                    			<td style="display:flex; flex-direction: row;">
+                    			<td style="display:flex; flex-direction: row; align-items: center;">
                     				<input type="radio" name="shares" value="public" id="pubRadio">전체공개
 			                        <input type="radio" name="shares" value="private" id="priRadio" checked>비공개
 			                        <input type="radio" name="shares" value="group" id="groRadio">그룹공개
-			                        <div style="display:flex; flex-direction: row;">
+			                        <div style="display:flex; flex-direction: row;  align-items: center;">
 			                        	<select id="groupSel" name="g_idx" multiple size="1" disabled>
 			                       		 <%
 			                       		ArrayList<GroupsDTO> g_arr=gdao.myGroups(idx);

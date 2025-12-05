@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/searchgroup.css">
 </head>
 <%
@@ -19,19 +20,21 @@ String g_name=request.getParameter("g_name");
 %>
 <body>
 <form name="searchgroup">
-<fieldset>
-<legend>그룹검색</legend>
-<input type="hidden" name="m_idx" value="<%=m_idx%>">
-<label>그룹이름</label>
-<input type="text" name="g_name"><input type="submit" value="검색">
-<a href="searchgroup.jsp?m_idx=<%=m_idx %>"><input type="button" value="처음으로"></a>
+<div id="searchGroupDiv">
+	<h2 style="text-align: center;">그룹 검색</h2>
+	<input type="hidden" name="m_idx" value="<%=m_idx%>">
+	<div>
+		<input type="text" name="g_name" placeholder="그룹이름"><input type="submit" value="검색">
+		<a href="searchgroup.jsp?m_idx=<%=m_idx %>"><input type="button" value="초기화"></a>
+	</div>
+	
+</div>
 </form>
-</fieldset>
 <%
 if(g_name==null||g_name.equals("")){
 %>
-<fieldset>
-<legend>그룹목록</legend>
+<div id="groupListDiv">
+	<h2 style="text-align: center;">그룹 목록</h2>
 <table>
 	<%if(allgroups==null||allgroups.size()==0){
 		
@@ -93,11 +96,11 @@ if(g_name==null||g_name.equals("")){
 	}%>
 	
 </table>
-</fieldset>
+</div>
 <%}else{
 	%>
-	<fieldset>
-	<legend>검색된 그룹</legend>
+	<div id="groupListDiv">
+	<h2 style="text-align: center;">검색 결과</h2>
 	<table>
 		<%
 		ArrayList<GroupsDTO> searchedgroups=gdao.searchedGroup(g_name);
@@ -159,7 +162,7 @@ if(g_name==null||g_name.equals("")){
 			}
 	}%>
 	</table>
-	</fieldset>
+	</div>
 	<%
 }%>
 

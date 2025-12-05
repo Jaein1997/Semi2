@@ -598,23 +598,21 @@ input[type="checkbox"] {
 	border: 1px solid #888888;
 }
 
-#creategroup,#searchgroup,#managegroup,#managemember,#goodbyegroup {
-	
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #6D1044;
+#creategroup {
+	background-color: #1E8A8A;
 	color: white;
 	border: 0px;
 	border-top-right-radius: 8px;
-	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
 	cursor: pointer;
-	margin: 5px 0px 1px 1px;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #creategroup:disabled {
-	background-color: #888888;	
+	background-color: #888888;
+	cursor: default;
 }
 
 #searchgroup:disabled {
