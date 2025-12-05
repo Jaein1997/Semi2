@@ -408,7 +408,6 @@ groupleader = true;
                </div>
                <%
                } else {
-
                }
                %>
             </div>
