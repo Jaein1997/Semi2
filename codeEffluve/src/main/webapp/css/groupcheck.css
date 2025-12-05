@@ -1,0 +1,18 @@
+@charset "UTF-8";
+fieldset{
+	border-radius: 10px;
+	border: 1px solid #6D1044;
+}
+input{
+	height: 25px;
+	box-sizing: border-box;
+	border: 0px;
+	cursor: pointer;
+	margin: 1px 1px 1px 1px;
+	border-radius: 8px;
+	border: 1px solid #6D1044;
+}
+input[type=submit]{
+	background-color: #6D1044;
+	color: white;
+}

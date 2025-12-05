@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/groupcheck.css">
 </head>
 <body>
 <form name="group" action="groupcheck_ok.jsp">
