@@ -446,11 +446,11 @@ groupleader = true;
 	
 	var creategroup=document.getElementById("creategroup");
 	creategroup.onclick=function(){
-		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=400px, height=260px");
+		window.open("group/creategroup.jsp?m_idx=<%=idx%>&from","create","width=500px, height=490px");
 	}
 	var searchgroup=document.getElementById("searchgroup");
 	searchgroup.onclick=function(){
-		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","search","width=400px, height=500px");
+		window.open("group/searchgroup.jsp?m_idx=<%=idx%>&from","search","width=600px, height=600px");
 	}
 	
 	var managegroup=document.getElementById("managegroup");
