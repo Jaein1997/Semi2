@@ -54,7 +54,7 @@ String m_idx=request.getParameter("m_idx");
 <script>
 	var back=document.getElementById('groupcheck');
 	back.onclick=function(){
-		window.open('groupcheck.jsp','groupCheck','width=400, height=300');	
+		window.open('groupcheck.jsp','groupCheck','width=500,height=200,top=150px,left=700px');	
 	};
 </script>
 </html>
