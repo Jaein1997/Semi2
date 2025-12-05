@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
 <div id="adminWrapper">
 
 <!-- 왼쪽메뉴 -->
@@ -47,8 +48,6 @@
 	%>
 	</section>
 </div>
-
-</main>
 
 <%@include file="/footer.jsp" %>
 </body>

@@ -8,6 +8,52 @@
 <html>
 <meta charset="UTF-8">
 <style>
+/* 페이지 영역 */
+.pagest {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.pagest a {
+    display: inline-block;
+    margin: 0 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* 숫자 버튼 스타일 */
+.pagest a.page-num {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1.5px solid rgb(109, 16, 68);
+    color: rgb(109, 16, 68);
+    transition: 0.15s;
+}
+
+.pagest a.page-num:hover {
+    background-color: rgb(109, 16, 68);
+    color: white;
+}
+
+/* 현재 페이지 활성화 */
+.pagest a.active {
+    background-color: rgb(109, 16, 68);
+    color: white !important;
+    border: 1.5px solid rgb(109, 16, 68);
+}
+
+/* 화살표 아이콘 스타일 */
+.pagest a.arrow {
+    font-size: 18px;
+    color: rgb(109, 16, 68);
+    padding: 5px 2px; 
+    border: none;  
+}
+
+.pagest a.arrow:hover {
+    color: rgb(160, 40, 90);
+}
+
 .delete-btn {
 	  padding: 6px 12px;
     background-color: rgb(109, 16, 68);
@@ -61,6 +107,13 @@
 
     int totalCnt = adminDao.getTotalCount(searchId);
     int totalPage = (int)Math.ceil(totalCnt / (double)ls);
+    
+    int blockSize = 5; // 5개씩 보이게 만든 페이지 수
+    int clickBlock = (int)Math.ceil(cp / (double)blockSize);
+    int startPage = (clickBlock - 1) * blockSize + 1;
+    int endPage = startPage + blockSize - 1;
+
+    if(endPage > totalPage) endPage = totalPage;
 %>
 
 <form method ="get" class = "search-wrapper">
@@ -120,17 +173,36 @@
 	}
 %>
 </table>
-<div style="text-align:center; margin-top:20px;">
-<%
-    for(int i = 1; i <= totalPage; i++){
-%>
-    <a href="/codeEffluve/admin/admin.jsp?menu=member&cp=<%=i%><%
-     if(searchId != null && !searchId.equals("")) { %>&searchId=<%=searchId%><% }%>">
-        <%=i%>
-    </a>
-<%
-    }
-%>
+<div class="pagest">
+   <!-- 왼쪽  -->
+    <% if(startPage > 1) { %>
+        <a class ="arrow" 
+        href="/codeEffluve/admin/admin.jsp?menu=member&cp=<%=startPage - 1%>&pageSize=<%=pageSize %><%
+            if(searchId != null && !searchId.equals("")){ %>&searchId=<%=searchId%><% } %>">
+            ◀
+        </a>
+    <% } %>
+
+    <!-- 페이지 번호 -->
+    <%
+        for(int i = startPage; i <= endPage; i++){
+            String active = (i == cp) ? "active" : "";
+    %>
+        <a class="page-num <%=active%>"
+           href="/codeEffluve/admin/admin.jsp?menu=member&cp=<%=i%>&pageSize=<%=pageSize %><%
+                if(searchId != null && !searchId.equals("")){ %>&searchId=<%=searchId%><% } %>">
+           <%=i%>
+        </a>
+    <% } %>
+
+    <!-- 오른쪽 -->
+    <% if(endPage < totalPage) { %>
+        <a class ="arrow" 
+        href="/codeEffluve/admin/admin.jsp?menu=member&cp=<%=endPage + 1%>&pageSize=<%=pageSize %><%
+            if(searchId != null && !searchId.equals("")){ %>&searchId=<%=searchId%><% } %>">
+            ▶
+        </a>
+    <% } %>
 </div>
 </section>
 </html>
