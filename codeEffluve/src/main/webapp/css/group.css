@@ -224,18 +224,34 @@
     flex-direction: column;
     margin-left: 0;
 	margin-right: auto;
-    width: 450px;
+    width: 550px;
 }
 
+.chatIcon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	padding-bottom: 3px;
+}
 .schedule_right {
 	display: flex;
     flex-direction: column;
     margin-left: auto;
 	margin-right: 0;
-	
-    width: 500px;
+    width: 550px;
 }
-
+#groupImgAndName a {
+	margin-right: 0px;
+	margin-left: auto;
+}
+#goodbyegroup {
+	border: 0px;
+	text-decoration: underline;
+	background-color: white;
+	cursor: pointer;
+	
+}
 .groupScheduleUnit {
 	display: flex;
 	width: 100%;
@@ -245,6 +261,7 @@
 	padding: 4px 4px;
 	margin-bottom: 3px;
 	justify-content: space-between;
+	align-items: center;
 	flex-wrap: nowrap;
 }
 .leftGroup, .rightGroup {
@@ -367,6 +384,14 @@
 	cursor: pointer;
 	margin-right: 0px;
 	margin-left: auto;
+}
+
+#deleteUnitBtn_b {
+	cursor: pointer;
+	text-decoration: none;
+	color: #6D1044;
+	margin-right: 0px;
+	padding-left: 10px;
 }
 
 .groupingListMembers {

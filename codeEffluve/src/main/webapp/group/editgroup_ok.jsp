@@ -38,15 +38,15 @@ try {
 	
 	
 	//파일명
-	String uploadFile = "";
-	if(multi.getFilesystemName("g_profile")==null) {
-		uploadFile = "basic_group.jpg";
-	} else {
-		uploadFile = multi.getFilesystemName("g_profile");
+	String uploadFile = multi.getFilesystemName("g_profile");
+	GroupsDAO dao = new GroupsDAO();
+	GroupsDTO origin = dao.selectedGroup(Integer.parseInt(multi.getParameter("g_idx")));
+
+	if (uploadFile == null) {
+	    uploadFile = origin.getG_profile();
 	}
 	dto.setG_profile(uploadFile);
 	
-	GroupsDAO dao = new GroupsDAO();
 	int result = dao.updateGroup(dto);
 	
 	if(result > 0) {

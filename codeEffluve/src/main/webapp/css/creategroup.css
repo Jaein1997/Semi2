@@ -5,6 +5,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 #createGroupDiv img {
@@ -19,6 +20,7 @@
 	border: 1px solid #AEAEAE;
 	border-radius: 15px;
 	width: 350px;
+	border-spacing: 0px;
 }
 
 #createGroupDiv table th {

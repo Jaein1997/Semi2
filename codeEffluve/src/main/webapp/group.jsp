@@ -193,15 +193,18 @@ groupleader = true;
 								<%
 								ArrayList<CommentsDTO> carr = cdao.getComments(tarr.get(i).getT_idx());
 								%>
-								<span class="rightGroup"><label
+								
+								<span class="rightGroup">
+								
+								<label
 									onclick="toggleCommentForm('writeComment<%=tarr.get(i).getT_idx()%>')"
-									style="cursor: pointer;"> [<%=carr.size()%>]
+									style="cursor: pointer; color: #6D1044;"><img class="chatIcon" src="/codeEffluve/img/chatIcon.png" alt="채팅"> (<%=carr.size()%>)
 								</label>
 								<%
 								if(groupleader||idx==tarr.get(i).getM_idx()){
 									%>
 									
-									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									</span>
 									<%
 								}
@@ -220,7 +223,7 @@ groupleader = true;
 										<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
 										<%if(idx==tarr.get(i).getM_idx()||idx==carr.get(j).getM_idx()){
 									%>
-									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									<%
 								}%>
 										<span></span></li>
@@ -259,30 +262,31 @@ groupleader = true;
 									class="groupScheduleUserID"><%=tarr.get(i + 1).getId()%></span>
 							</div>
 							<div class="groupScheduleUnit">
-							<span class="leftGroup">
-								<%if(idx==tarr.get(i+1).getM_idx()){
-									%>
-									<input type="checkbox" class="complete" value="<%=tarr.get(i+1).getT_idx()%>">
-									<%
-								}
-								%>
-								<%=tarr.get(i+1).getContent()%>[<%=tf.format(tarr.get(i+1).getT_time())%>]</span>
-								<%
-								carr = cdao.getComments(tarr.get(i + 1).getT_idx());
-								%>
-								<span class="rightGroup"> 
-								<label onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
-									style="cursor: pointer;">[<%=carr.size()%>] </label>
-									
-								<%
-								if(groupleader||idx==tarr.get(i+1).getM_idx()){
-									%>
-									<a id="deleteUnitBtn_b" href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
-									</span>
-									<%
-								}
-								%>
+							    <span class="leftGroup">
+							        <% if(idx==tarr.get(i+1).getM_idx()){ %>
+							            <input type="checkbox" class="complete" value="<%=tarr.get(i+1).getT_idx()%>">
+							        <% } %>
+							        <%=tarr.get(i+1).getContent()%>[<%=tf.format(tarr.get(i+1).getT_time())%>]
+							    </span>
+							
+							    <% carr = cdao.getComments(tarr.get(i + 1).getT_idx()); %>
+							
+							    <span class="rightGroup">
+							        <label onclick="toggleCommentForm('writeComment<%=tarr.get(i + 1).getT_idx()%>')"
+							               style="cursor: pointer;  color: #6D1044;">
+							            <img class="chatIcon" src="/codeEffluve/img/chatIcon.png" alt="채팅">
+							            (<%=carr.size()%>)
+							        </label>
+							
+							        <% if(groupleader || idx==tarr.get(i+1).getM_idx()){ %>
+							            <a id="deleteUnitBtn_b"
+							               href="todolist/deleteFromGroup_ok.jsp?g_idx=<%=g_idx %>&t_idx=<%=tarr.get(i+1).getT_idx()%>&year=<%=year %>&month=<%=month %>&day=<%=date %>">
+							               ×
+							            </a>
+							        <% } %>
+							    </span>
 							</div>
+
 							<div class="groupComment">
 								<ul>
 									<%
@@ -295,7 +299,7 @@ groupleader = true;
 										<span class="groupCommentTime"><%=tf_c.format(carr.get(j).getC_time())%></span>
 									<%if(idx==tarr.get(i+1).getM_idx()||idx==carr.get(j).getM_idx()){
 									%>
-									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">x</a>
+									<a id="deleteUnitBtn_b" href="comments/deleteComment_ok(group).jsp?c_idx=<%=carr.get(j).getC_idx() %>&g_idx=<%=g_idx %>&year=<%=year %>&month=<%=month %>&day=<%=date %>">×</a>
 									<%
 								}%>
 									</li>
@@ -458,13 +462,13 @@ groupleader = true;
 	if(managegroup!=null){
 		
 		managegroup.onclick=function(){
-			window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage","width=400px, height=500px");
+			window.open("group/managegroup.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","managegroupWin_" + Date.now(),"width=500,height=690");
 		}
 	}
 	var managemember=document.getElementById("managemember");
 	if(managemember!=null){
 		managemember.onclick=function(){
-			window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","manage", "width=400px, height=500px");
+			window.open("group/managemember.jsp?m_idx=<%=idx%>&g_idx=<%=g_idx%>","managemember", "width=400px, height=500px");
 		}
 	}
 	 /* 캘린더 버튼 눌렀을 때 날짜선택창 띄우는 거 */

@@ -1,43 +1,143 @@
 @charset "UTF-8";
-fieldset{
-	border-radius: 10px;
-	border: 1px solid #6D1044;
+
+#editGroupDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid #D8CDD2;
+	padding-bottom : 20px;
+	margin-bottom: 30px;
 }
-fieldset input[type=button],fieldset input[type=submit],fieldset input[type=reset]{
-	height: 25px;
-	box-sizing: border-box;
-	background-color: #6D1044;
-	color: white;
-	border: 0px;
-	cursor: pointer;
-	margin: 1px 1px 1px 1px;
+
+#editGroupDiv img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
 }
-fieldset input[type=file]{
-	height: 25px;
-	background-color: #6D1044;
-	color: white;
-	border: 0px;
-	cursor: pointer;
-	width: 170px;
+
+#editGroupDiv table {
+	margin: 6px auto;
+	background-color: white;
+	border: 1px solid #AEAEAE;
+	border-radius: 15px;
+	width: 100%;
+	border-spacing: 0px;
 }
-fieldset input,textarea{
+
+#askinglist {
+	overflow-y: auto;
+	scrollbar-width: none;
+	height: 230px;
+}
+
+#askinglist table{
+	width: 100%;
+	border-spacing: 0px;
 	border-radius: 8px;
-	border: 1px solid #6D1044;
+	
 }
-fieldset textarea{
-	width:330px;
-	height:50px;
+
+#askinglist th{
+	border-top: 2px solid #D8CDD2;
+	border-bottom: 2px solid #D8CDD2;
+	background-color: #FAF7F9;
 }
-fieldset input{
-	border-radius: 8px;
-}
-fieldset table{
-	width: 350px;
-}
-fieldset th{
-	border-bottom: 2px solid #6D1044;
-}
-fieldset td{
-	border-bottom: 1px solid #6D1044;
+
+#askinglist td{
+	border-bottom: 1px solid #D8CDD2;
+	background-color: white;
 	text-align: center;
+}
+
+#askinglist input[type=button]{
+	height: 25px;
+	background-color: #6D1044;
+	color: white;
+	border: 0px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#editGroupDiv table th {
+	font-weight: 400;
+	width: 80px;
+}
+
+#editGroupDiv table td {
+	border-bottom: 1px solid #AEAEAE;
+	height: 50px;
+	padding: 0 15px;               /* 왼오 여백만 */
+    display: flex;                 /* 한 줄을 flex 컨테이너로 */
+    align-items: center;
+}
+
+#editGroupDiv table tr:last-child td {
+	border-bottom: none;
+}
+
+#editGroupDiv input[type="radio"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+
+#editGroupDiv table td input[type="text"] {
+	border: 0px solid #AEAEAE;
+	font-size: 16px;
+	flex: 1;
+	padding: 0;
+    background: transparent;
+}
+#editGroupDiv table td span {
+	color: #797979;
+	width: 90px;
+	border-right: 1px solid #D8CDD2;
+	margin-right: 10px;
+}
+
+#editGroupDiv table td input[type="text"] {
+	outline: none;
+}
+
+#groupcheck {
+	flex-shrink: 0;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	padding-left: 0px  !important;
+	padding-right: 0px  !important;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 13px;
+	width: 90px;
+	height: 35px;
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+}
+
+#editGroupDiv input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#editGroupDiv input[type="submit"]:disabled {
+	cursor: default;
+}
+
+#editGroupDiv input[type="reset"],#editGroupDiv input[type="button"] {
+	background-color: #E3E3E3;
+	color: black;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
 }
