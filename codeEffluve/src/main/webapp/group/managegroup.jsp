@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/managegroup.css">
 </head>
 <%
@@ -31,31 +32,59 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 %>
 
 <body>
-<fieldset>
-<legend>그룹정보수정</legend>
-<form name="creategroup" action="editgroup_ok.jsp" method = "post" enctype = "multipart/form-data">
 
-<input type="hidden" name="g_idx" value="<%=g_idx%>">
-<input type="hidden" name="m_idx" value="<%=m_idx%>">
-<label>그룹이름수정</label>
-<input type="text" name="g_name" value="<%=gdto.getG_name() %>" readonly><input type="button" id="groupcheck" value="중복검사"><br>
-<label>그룹프로필</label>
-<input type="file" name="g_profile" value="<%=gdto.getG_profile()%>"><br>
-<label>그룹설명</label>
-<textarea name="g_memo"><%=gdto.getG_memo()%></textarea><br>
-<label>공개여부</label>
-<input type="radio" name="approval" value="t" <%=gdto.getApproval().equals("t")?"checked":"" %>>공개
-<input type="radio" name="approval" value="f" <%=gdto.getApproval().equals("f")?"checked":"" %>>비공개<br>
-<input type="submit" value="수정하기">
-<input type="reset" value="초기화">
-<a href="deletegroup_ok.jsp?g_idx=<%=g_idx%>"><input type="button" value="그룹삭제"></a>
-</form>
-</fieldset>
 
+		<div id="editGroupDiv">
+		<form name="editgroup" action="editgroup_ok.jsp" method = "post" enctype = "multipart/form-data">
+			<h2 style="text-align:center; color: rgb(109, 16, 68);">그룹 정보 수정</h2>
+			<input type="hidden" name="g_idx" value="<%=g_idx%>">
+			<input type="hidden" name="m_idx" value="<%=m_idx%>">
+			
+			<table>
+				<tr>
+					<td><img src="/codeEffluve/img/groupIcon.png" alt="그룹"><input type="text" name="g_name" value="<%=gdto.getG_name() %>" placeholder="그룹이름" required readonly><input type="button" value="중복확인" id="groupcheck"></td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/codeEffluve/img/pencil.png" alt="그룹"><input type="text" name="g_memo" value="<%=gdto.getG_memo()%>" placeholder="한줄소개" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<span>그룹 프로필</span>
+					<%
+					String nowProfile = (gdto.getG_profile() == null || gdto.getG_profile().equals("")) ? "basic_group.jpg" : gdto.getG_profile();
+					%>
+				        <img src="<%=request.getContextPath()%>/groupProfiles/<%=nowProfile%>"
+				             alt="현재 그룹 프로필"
+				             class="groupProfilePreview">
+				
+				        <input type="file" name="g_profile"><br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>공개 여부</span>
+						<input type="radio" name="approval" value="t" <%=gdto.getApproval().equals("t")?"checked":"" %>>공개
+						<input type="radio" name="approval" value="f" <%=gdto.getApproval().equals("f")?"checked":"" %>>비공개
+						
+					</td>
+				</tr>
+			</table>
+			<div style="margin-top:20px; display: flex; flex-direction: row; justify-content: center; gap: 10px;">
+				<input type="submit" value="수정">
+				<input type="reset" value="초기화">
+				<a href="deletegroup_ok.jsp?g_idx=<%=g_idx%>"><input type="button" value="그룹삭제"></a>
+			</div>
+			
+		</form>
+		</div>
+	
+	
 <%if(gdto.getApproval().equals("f")){
 	%>
-	<fieldset id="askinglist">
-	<legend>가입신청목록</legend>
+	<div id="askinglist">
+	<h2 style="text-align:center; color: rgb(109, 16, 68);">가입 신청 목록</h2>
 	<%if(whoasked.size()==0){
 		%>
 		신청한 회원이 없습니다.
@@ -81,7 +110,7 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 	%>
 		
 	</table>
-	</fieldset>
+	</div>
 	<%
 	}
 	}%>
@@ -90,11 +119,11 @@ ArrayList<MembersDTO> whoasked=gpdao.whohasasked(g_idx);
 <script>
 	var back=document.getElementById('groupcheck');
 	back.onclick=function(){
-		window.open('groupcheck.jsp','groupCheck','width=400, height=300');	
+		window.open('groupcheck.jsp','groupCheck','width=500,height=200,top=150px,left=700px');	
 	};
 	var askinglist=document.getElementById('askinglist');
 	if(askinglist==null){
-		window.resizeTo(420,340);
+		window.resizeTo(500,490);
 	};
 </script>
 </body>
