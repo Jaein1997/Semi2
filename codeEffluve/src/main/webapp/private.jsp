@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="/codeEffluve/css/private.css">
 <% 
 String id=(String)session.getAttribute("sid");
+System.out.println(id);
 if(id==null||id.equals("")){
 	%>
 	<script>
@@ -533,7 +534,7 @@ if(request.getParameter("mdMode")!=null) {
 						for(CommentsDTO temp:cdtoLists) {
 							String profileStr = mdao.getProfilePath(temp.getM_idx());
 							String profilePath = request.getContextPath() + "/membersProfiles/" + profileStr;
-							id = mdao.getIdStr(temp.getM_idx());
+							String id_c=mdao.getIdStr(temp.getM_idx());
 							String message = temp.getMessage();
 							Timestamp c_time = temp.getC_time();
 							String timeStr = (c_time != null) ? tf.format(c_time) : "";
@@ -543,7 +544,7 @@ if(request.getParameter("mdMode")!=null) {
 								<li id="privateListCommentUnit">
 									<div id="profile_id_time">
 										<img src="<%=profilePath %>" alt="사진" id="commentProfile">
-										<span id="commentId"><%=id%></span>
+										<span id="commentId"><%=id_c%></span>
 										<a href="/codeEffluve/comments/deleteComment_ok(private).jsp?viewOption=<%=viewOption%>&arr_idx=<%=arr_idx %>&t_idx=<%=selectedT_idx %>&c_idx=<%=temp.getC_idx() %>" class="delComment">×</a>
 									</div>
 									<div class="commentRow">
