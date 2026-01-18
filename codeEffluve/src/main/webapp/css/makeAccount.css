@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+/*makeAccount.jsp*/
+
+#makeAccount form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#makeAccount h1 {
+	text-align: center;
+	color: rgb(109, 16, 68);
+	font-size: 29px;
+	
+}
+
+#makeAccount div {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#makeAccount div img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+}
+
+#makeAccount img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#makeAccount table {
+	margin: 6px auto;
+	background-color: white;
+	border: 1px solid #AEAEAE;
+	border-radius: 15px;
+	width: 350px;
+}
+
+#makeAccount table td {
+	border-bottom: 1px solid #AEAEAE;
+	height: 50px;
+	padding: 0 15px;               /* 왼오 여백만 */
+    display: flex;                 /* 한 줄을 flex 컨테이너로 */
+    align-items: center;
+}
+
+#makeAccount table tr:last-child td {
+	border-bottom: none;
+}
+
+#makeAccount td input[type="text"], #makeAccount input[type="password"] {
+	border: 0px solid #AEAEAE;
+	font-size: 16px;
+	flex: 1;
+	padding: 0;
+    background: transparent;
+}
+
+#makeAccount td input[type="text"],input[type="password"]:focus {
+	outline: none;
+}
+
+#makeAccount input[type="date"] {
+	font-family:sans-serif;
+	font-size: 16px;
+	margin-left: 8px;
+	width: 180px;
+	border: 1px solid #AEAEAE;
+	border-radius: 12px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#makeAccount input[type="radio"] {
+	accent-color: #1E8A8A;
+	margin-left: 35px;
+}
+
+
+#makeAccount input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#makeAccount input[type="submit"]:disabled {
+	cursor: default;
+}
+
+#makeAccount input[type="button"] {
+	background-color: #E3E3E3;
+	color: black;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#makeAccount #checkbtn {
+	flex-shrink: 0;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	padding-left: 0px  !important;
+	padding-right: 0px  !important;
+	font-size: 15px;
+	width: 90px;
+	height: 35px;
+	background-color: #1E8A8A;
+	color: white;
+}
+
+.makeAccountBtns {
+	margin-top: 20px;
+}
+
+#telSpan {
+	margin: 0 auto;
+	font-size: 14px;
+	color: red;
+}
+
+#pwdSpan {
+	margin: 0 auto;
+	font-size: 14px;
+	color: red;
+}

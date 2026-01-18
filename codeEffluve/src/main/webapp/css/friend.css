@@ -1,0 +1,317 @@
+@charset "UTF-8";
+
+/* friend.jsp */
+#friend {
+	display: flex;
+}
+
+#friendsArea {
+	display: flex;
+	flex-direction: column;
+	padding-right: 20px;
+	border-right: 1px solid #D8CDD2;
+	justify-content: center;
+	width: 25%;
+}
+
+#friendsArea h1 {
+	font-size: 30px;
+	text-align: center;
+	margin-block-start: 10px;
+    margin-block-end: 20px;
+}
+
+#chatArea {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 75%;
+	margin-left: 20px;
+}
+
+#friendsDiv {
+	overflow-y: auto;
+	width: 100%;
+	height: 450px;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	scrollbar-width: none;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
+}
+
+#addFriendDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 10px;
+	gap: 5px;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#addFriendDiv span {
+	font-size: 19px;
+	font-weight: 550;
+	margin-right: auto;
+	margin-left: 0px;
+}
+
+#findFriend, #approveFriend {
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.selectedFriend span {
+	color: #6D1044;
+	font-weight: 550;
+	font-size: 18px;
+}
+#chatDiv {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 540px;
+	background-color: white;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
+	overflow: hidden;
+}
+
+#messageDivv {
+	width: 100%;
+	overflow-y: auto !important;
+	scrollbar-width: none;
+}
+#chatDiv h2 {
+	flex: 0 0 60px;
+	height: 60px;
+	line-height: 60px;
+	box-shadow: 0px 3px 15px #E7E1E4;
+	background-color: #FAF7F9 !important;
+	margin-block-start: 0em;
+    margin-block-end: 0em;
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #D8CDD2;
+}
+
+#friendsDiv ul {
+	margin-block-start: 0em;
+    margin-block-end: 0em;
+	padding-inline-start: 0px;
+	list-style: none;
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 0px;
+	padding: 5px;
+}
+
+#friendsDiv li {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 5px;
+}
+#friendsDiv li a {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	width: 100%;
+}
+
+#friendsDiv li span {
+	margin-left: 10px;
+}
+
+#friendProfile {
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.todayDiv {
+	display: flex;
+	flex-direction: column;
+}
+
+.todayDiv ul {
+	display: flex;
+	flex-direction: column;
+  	margin: 0;
+  	margin-left: 15px;
+  	margin-right: 15px;
+  	padding-left: 0;
+  	gap: 15px;
+  	list-style: none;
+  	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.todayDiv .leftChat {
+	display: flex;
+    align-items: flex-end;
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.chatingProfile {
+	width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.leftChat #messageUnit {
+	display: inline-block;
+    border: 1px solid #1E8A8A;
+    border-radius: 19px;
+    max-width: 500px;
+    word-break: break-word;
+    padding: 5px 13px;
+    background-color: #ffffff;
+}
+
+.leftChat #chattimeUnit {
+	font-size: 11px;
+    color: #777777;
+    align-self: flex-end;
+}
+
+.todayDiv .rightChat {
+	display: flex;
+    align-items: flex-end;
+    margin-left: auto;
+	margin-right: 0;
+	margin-bottom: 10px;
+	gap: 8px;
+}
+
+#noChatList {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+#noselectFriend {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+
+.rightChat #messageUnit {
+	background-color: #1E8A8A;
+	border-radius: 19px;
+    max-width: 500px;
+	word-break: break-word;
+    padding: 5px 13px;
+    color: white;
+}
+.rightChat #chattimeUnit {
+	font-size: 11px;
+    color: #777777;
+    align-self: flex-end;
+}
+
+#chatDiv h3 {
+	margin: 10px auto;
+	text-align:center;
+	background-color: #DDDDDD;
+	border: 0px;
+	border-radius: 10px;
+	width: 180px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+#writeChatDiv {
+	background-color: #FAF7F9;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	box-shadow: 0px -3px 15px #E7E1E4;
+	margin-bottom: 0px;
+	margin-top: auto; 	
+	padding: 10px 10px;
+}
+
+#writeChatDiv form  {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#writeChatDiv form span {
+	display: flex;
+	box-sizing: border-box;
+	width: 50px;
+	padding-right: 0px;
+	color: #1E8A8A;
+	font-weight: 600;
+	font-size: 17px;
+	padding-bottom: 2px;
+	text-align: right;
+}
+
+#writeChatDiv input[type="text"] {
+	display: flex;
+	box-sizing: border-box;
+	border: 1px solid #1E8A8A;
+	border-radius: 5px;
+	width: 75%;
+	height: 35px;
+	font-size: 17px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+#writeChatDiv input[type="text"]:focus {
+	outline: none;
+}
+
+#writeChatDiv input[type="submit"] {
+	display: flex;
+	box-sizing: border-box;
+	border: 1px solid #1E8A8A;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	background-color: #1E8A8A;
+	color: white;
+	width: 60px;
+	height: 35px;
+	font-size: 16px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	cursor: pointer;
+}
+
+.cancelApproval, .deleteFriend {
+	background-color: #E3E3E3;
+	border: 0px;
+	border-radius: 7px;
+	padding: 3px 6px;
+	margin-right: 9px;
+	margin-left: auto;
+	cursor: pointer;
+}

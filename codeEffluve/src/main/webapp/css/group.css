@@ -1,0 +1,444 @@
+@charset "UTF-8";
+
+/* group. jsp */
+#groupPage {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+.left-column {
+	width: 60%;
+	padding-right: 20px;
+	border-right: 1px solid #D8CDD2;
+}
+.groupMain {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 20px;
+}
+
+.groupMain ul {
+	display: flex;
+	flex-direction: column;
+	padding-inline-start: 0px !important;
+	margin-top: 0px; margin-bottom: 0px;
+	gap: 5px;
+}
+
+#groupPage .groupPageSwitch {
+	display: flex;
+	margin-left: auto;
+	margin-right: 0px;
+	margin-bottom: 18px;
+	gap: 5px;
+}
+
+.groupPageSwitch input[type="button"], .groupPageSwitch button {
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+	background-color: #1E8A8A;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	gap: 3px;
+}
+
+.groupPageSwitch button img {
+	width: 13px;
+	height: 13px;		
+}
+
+#groupPage .groupPageSwitch select {
+	
+	width: 200px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #6D1044;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+#selectedgroup {
+	
+	width: 300px; height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	
+	border: 1px solid #E7E1E4;
+	border-radius: 10px;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+
+.groupMemo {
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.dateHeader {
+	position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+#groupPage .dateHeader a {
+	text-decoration: none;
+	color: #1E8A8A;
+	margin: 5px;
+}
+
+.dateHeader h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 30px;
+	gap: 1px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+.dateHeader img {
+	padding-top: 2px;
+	width: 29px;
+	height: 29px;
+}
+.calendar-input {
+    width: 1px;
+    height: 1px;
+    opacity: 0;      /* 완전히 투명 */
+    border: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none; /* 클릭은 버튼으로만 */
+}
+/* 실제로 보이는 버튼 */
+.calendar-btn {
+    margin-left: 2px;
+    
+    width: 30px;
+    height: 30px;
+    display: inline;
+    background-color: white;
+	border: 0px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+#groupPage .groupSchedule {
+	width:100%;
+	height: 410px;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-radius: 15px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
+	position: relative;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
+}
+#createGroupTodo {
+	position: absolute;
+ 	top: 10px; 
+ 	right: 10px; 
+ 	z-index: 10;
+ 	background-color: transparent;
+ 	font-size: 25px;
+ 	color: #6D1044;
+ 	cursor: pointer;
+ 	border: none;
+}
+
+#groupPage .groupProfileArea {
+	width: 40%;
+	height: 532px;
+	margin-left: 20px;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#groupPage #groupProfile {
+	width: 150px;
+	height: 150px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	vertical-align: middle;
+	object-fit: cover;
+	margin-right: 20px;
+}
+
+.groupScheduleUserImg {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+}
+
+#userMini {
+	display: flex;
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover;
+	margin-left: 10px;
+}
+#groupPage #groupImgAndName {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px 2px #D8CDD2;
+    padding: 15px;
+    height: 180px;
+
+	width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#groupPage input[type="checkbox"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+
+.schedule_left {
+	display: flex;
+    flex-direction: column;
+    margin-left: 0;
+	margin-right: auto;
+    width: 550px;
+}
+
+.chatIcon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	padding-bottom: 3px;
+}
+.schedule_right {
+	display: flex;
+    flex-direction: column;
+    margin-left: auto;
+	margin-right: 0;
+    width: 550px;
+}
+#groupImgAndName a {
+	margin-right: 0px;
+	margin-left: auto;
+}
+#goodbyegroup {
+	border: 0px;
+	text-decoration: underline;
+	background-color: white;
+	cursor: pointer;
+	
+}
+.groupScheduleUnit {
+	display: flex;
+	width: 100%;
+	border: 1px solid #1E8A8A;
+	background-color: #CFE9E7;
+	border-radius: 12px;
+	padding: 4px 4px;
+	margin-bottom: 3px;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+.leftGroup, .rightGroup {
+	display: flex;
+	gap: 5px;
+}
+
+.groupScheduleUnit span {
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 5px;
+}
+ 
+.groupComment {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.groupComment li {
+	display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 24px;
+    list-style: none;
+}
+.groupComment li::before {
+	content: "";
+	position: absolute;
+	left: 6px;
+	top: 0.6em;
+	transform: translateY(-50%);
+	width: 10px;
+	height: 10px;
+	background: url("/codeEffluve/img/arrow.png") no-repeat center;
+	background-size: contain;
+}
+
+.groupScheduleUser {
+	display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+
+.groupScheduleUserID {
+	margin: auto 0;
+	font-size: 12px;
+}
+.groupCommentTime {
+	flex-shrink: 0;        /* 줄어들지 않게 */
+	margin-left: auto;
+	
+    margin-top: 3px;
+    white-space: nowrap;   /* 시간은 한 줄 유지 */
+    font-size: 12px;
+    color: #888;
+}
+.groupComment li span:first-child {
+    white-space: nowrap;   /* 이 안에서는 줄바꿈 금지 */
+    font-size: 14px;
+}
+.groupCommentMessage {
+	flex: 1 1 auto;
+	margin: 0 6px;
+    white-space: normal;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 14px;
+}
+
+.groupName {
+	display: block !important;
+	font-size: 20px;
+	font-weight: 600;
+}
+.groupingList {
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	border-radius: 15px;
+	box-shadow: 0px 0px 8px 2px #D8CDD2;
+}
+
+.groupingList span {
+	font-weight: 500;
+	color: #6D1044;
+	margin-left: 5px;
+}
+.groupingList ul {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-inline-start: 0px !important;
+	margin-block-start: 0em;
+    margin-block-end: 0em;
+	
+}
+.groupingListTitle {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	box-sizing:border-box;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	border: 1px solid #D8CDD2;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom: 0px;
+	padding: 10px 10px;
+}
+
+#managemember, #managegroup {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	margin-right: 0px;
+	margin-left: auto;
+}
+
+#deleteUnitBtn_b {
+	cursor: pointer;
+	text-decoration: none;
+	color: #6D1044;
+	margin-right: 0px;
+	padding-left: 10px;
+}
+
+.groupingListMembers {
+	width: 100%;
+	display: flex;
+	box-sizing:border-box;
+	height: 235px;
+	background-color: #FAF7F9;
+	border: 1px solid #D8CDD2;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	padding: 10px 10px;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.groupLeader {
+	list-style: none;
+	position: relative;
+	margin-left: 20px;
+}
+
+.groupMember {
+	list-style: none;
+	position: relative;
+	margin-left: 20px;
+}
+.groupLeader::before {
+	content: "";
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px;
+	height: 16px;
+	background: url("/codeEffluve/img/crown.png") no-repeat center;
+	background-size: contain;
+}
+
+.groupMember::before {
+	content: "";
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 15px;
+	height: 15px;
+	background: url("/codeEffluve/img/user_mini.png") no-repeat center;
+	background-size: contain;
+}

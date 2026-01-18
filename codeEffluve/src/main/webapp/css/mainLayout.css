@@ -1,0 +1,284 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+html {
+	padding:0px 0px;
+	height:100%;
+}
+body {
+	background: linear-gradient(#FFFDFE, #FFF6FA);
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	/*background-color: white;*/
+	padding-top: 20px;
+	padding-left: 60px;
+	padding-right: 60px;
+	box-sizing:border-box;
+}
+
+header {
+	width: 100%;
+	/*margin-bottom: 20px;*/
+}
+
+/*index.jsp*/
+
+#miniProfile {
+	width: 30px;
+	height: 30px;	
+	border-radius: 50%;
+	flex-shrink: 0;
+	vertical-align: middle;
+	object-fit: cover; 
+}
+
+#leLogo2 {
+	display: block;
+	margin: 0 auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 850px;
+	height: auto;
+}
+
+.indexMenu {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.indexMenu a {
+	display: flex;
+	flex-shrink: 0;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	text-decoration: none;
+	font-size: 26px;
+	font-weight: 500;
+	background-color: white;
+	box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+	color:rgb(109, 16, 68);
+	border: 2px solid rgb(109, 16, 68);
+	border-radius: 13px;
+	width: 200px !important;
+	height: 200px !important;
+	margin: 10px 30px;
+	margin-bottom: 80px;
+}
+
+.indexMenu a:hover {
+	transform: translateY(-4px); /*위로 뜨기*/
+	box-shadow:3px 3px 5px #888888;
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border-color: rgb(109, 16, 68);
+	transition:0.15s; /*붕 뜨는 애니메이션*/
+	cursor: pointer;
+}
+
+.indexMenu a:hover img {
+	filter: brightness(0) invert(1);
+}
+
+.indexMenu img {
+	align-self: center;
+	margin-bottom: 15px;
+	width: 100px;
+	height: 100px;
+}
+#headerLogoDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+}
+.titleLogo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+  	align-items: center;
+	margin: 0 auto;
+}
+
+.titleLogo img {
+	width:70px;
+	height: 70px;
+	margin-right: 30px;
+}
+
+/* header.jsp */
+
+header h1 {
+	color: rgb(109, 16, 68);
+	font-size: 80px;
+	font-weight: 500;
+	font-family: "Alex Brush", cursive;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+
+header div {
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px; 
+	font-size: 15px;
+	color: gray;
+	line-height: 30px;
+}
+
+header nav {
+	height: 40px;
+	border-bottom: 2px solid rgb(109, 16, 68);
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding-inline-start: 0px;
+	height: 100%;
+	gap: 10px;
+}
+
+header nav li {
+	list-style-type: none;
+	align-items: center;
+	width: 100%;
+	text-align:center;
+	height: 100%;
+	font-size: 18px;
+}
+header nav ul li a{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	background-color: #EFD79B;
+  	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+header nav ul li a:hover{
+	background-color: rgb(109, 16, 68);
+	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 5px #D8CDD2;
+}
+.selectedPage a {
+	background-color: rgb(109, 16, 68);
+	color: white !important;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+  	box-shadow: 3px -3px 7px #D8CDD2;
+}
+
+header a {
+	text-decoration: none;
+	color: gray;
+}
+
+header div a {
+	height: 30px;
+}
+
+header nav a {
+	color: rgb(109, 16, 68);
+	font-weight: 500;
+}
+/**/
+
+main {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 30px 40px;
+	background-color: white;
+	border: 2px solid #6D1044;
+	border-top: 0px;
+	overflow: hidden;
+}
+
+section {
+	width: 100%;
+}
+
+
+/* footer.jsp */
+
+
+footer {
+	display: block;
+	margin-top: 15px;
+	padding-bottom: 20px;
+	width: 100%;
+	clear: both;
+	
+}
+
+.footerLogo {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Alex Brush", cursive;
+	font-size: 35px;
+	color: rgb(147,127,113);
+	margin: 0 0;
+}
+footer img {
+	width: 35px;
+	height: 35px;
+	margin-right: 10px;
+}
+
+footer div {
+	text-align: center;
+	color: gray;
+	font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*********************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

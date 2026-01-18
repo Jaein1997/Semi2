@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+#createGroupDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+#createGroupDiv img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#createGroupDiv table {
+	margin: 6px auto;
+	background-color: white;
+	border: 1px solid #AEAEAE;
+	border-radius: 15px;
+	width: 350px;
+	border-spacing: 0px;
+}
+
+#createGroupDiv table th {
+	font-weight: 400;
+	width: 80px;
+}
+
+#createGroupDiv table td {
+	border-bottom: 1px solid #AEAEAE;
+	height: 50px;
+	padding: 0 15px;               /* 왼오 여백만 */
+    display: flex;                 /* 한 줄을 flex 컨테이너로 */
+    align-items: center;
+}
+
+#createGroupDiv table tr:last-child td {
+	border-bottom: none;
+}
+
+#createGroupDiv input[type="radio"] {
+	accent-color: #1E8A8A;
+	margin-left: 15px;
+}
+
+#createGroupDiv table td input[type="text"] {
+	border: 0px solid #AEAEAE;
+	font-size: 16px;
+	flex: 1;
+	padding: 0;
+    background: transparent;
+}
+#createGroupDiv table td span {
+	color: #797979;
+	width: 90px;
+	border-right: 1px solid #D8CDD2;
+	margin-right: 10px;
+}
+
+#createGroupDiv table td input[type="text"] {
+	outline: none;
+}
+
+#groupcheck {
+	flex-shrink: 0;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	padding-left: 0px  !important;
+	padding-right: 0px  !important;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 13px;
+	width: 90px;
+	height: 35px;
+	background-color: #1E8A8A;
+	color: white;
+	cursor: pointer;
+}
+
+#createGroupDiv input[type="submit"] {
+	background-color: rgb(109, 16, 68);
+	color: white;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#createGroupDiv input[type="submit"]:disabled {
+	cursor: default;
+}
+
+#createGroupDiv input[type="reset"] {
+	background-color: #E3E3E3;
+	color: black;
+	border: 0px;
+	border-radius: 13px;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	cursor: pointer;
+}

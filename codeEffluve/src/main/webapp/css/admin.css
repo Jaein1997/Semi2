@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/* 전체 관리자 페이지 레이아웃 */
+#adminWrapper {
+    display: flex;
+    width: 100%;
+    min-height: 750px;
+    background: white;
+    padding: 40px;
+    box-sizing: border-box;
+    border: 2px solid #6D1044;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+}
+
+/* 왼쪽 관리자 사이드바 */
+#adminSidebar {
+    width: 240px;
+    padding: 25px;
+    background: #FAF7F9;
+    border: 2px solid #D8CDD2;
+    border-radius: 20px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+}
+
+#adminSidebar h2 {
+    font-family: "Alex Brush", cursive;
+    font-size: 38px;
+    color: rgb(109,16,68);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#adminSidebar ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#adminSidebar li a {
+    text-decoration: none;
+    display: block;
+    padding: 14px 0;
+    background-color: white;
+    color: rgb(109,16,68);
+    font-size: 18px;
+    font-weight: 500;
+    border: 2px solid rgb(109,16,68);
+    border-radius: 12px;
+    transition: 0.15s;
+    text-align: center;
+}
+
+#adminSidebar li a:hover {
+    background: rgb(109,16,68);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* 오른쪽 관리자 콘텐츠 영역 */
+#adminContent {
+    flex: 1;
+    background: white;
+    margin-left: 35px;
+    padding: 30px 35px;
+    border: 1px solid #D8CDD2;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 콘텐츠 타이틀 */
+.adminTitle {
+    font-size: 26px;
+    font-weight: 700;
+    color: rgb(109,16,68);
+    margin-bottom: 20px;
+}
+
+/* 표 스타일 (table) */
+.adminTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden; /* 테두리 둥근 효과 유지 */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.07);
+    text-align: center;
+}
+
+/* 표 제목 행 */
+.adminTable th {
+    background: rgb(109,16,68);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 표 데이터 행 */
+.adminTable td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 15px;
+}
+
+/* 테이블 프로필 이미지 크기 통일 */
+.table-profile-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;      /* 이미지가 딱 맞게 잘림 */
+    border-radius: 10px;    /* 살짝 둥글게 */
+    display: block;
+    margin: 0 auto;         /* 가운데 정렬 */
+}
+
+/* 짝수 줄 배경색 */
+.adminTable tr:nth-child(even) {
+    background: #FAF7FA;
+}
+
+/* 마지막 줄 밑줄 제거 */
+.adminTable tr:last-child td {
+    border-bottom: none;
+}

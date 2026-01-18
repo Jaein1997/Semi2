@@ -1,0 +1,170 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.codeEffluve.groups.*" %>
+<%@ page import="java.util.*" %>
+<jsp:useBean id="gdao" class="com.codeEffluve.groups.GroupsDAO"></jsp:useBean>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/codeEffluve/css/searchgroup.css">
+</head>
+<%
+String m_idx=request.getParameter("m_idx");
+ArrayList<GroupsDTO> allgroups=gdao.allGroup();
+ArrayList<GroupsDTO> mygroups=gdao.myGroups(Integer.parseInt(m_idx));
+ArrayList<GroupsDTO> myaskedgroups=gdao.myaskedGroups(Integer.parseInt(m_idx));
+String g_name=request.getParameter("g_name");
+%>
+<body>
+<form name="searchgroup">
+<div id="searchGroupDiv">
+	<h2 style="text-align: center;">그룹 검색</h2>
+	<input type="hidden" name="m_idx" value="<%=m_idx%>">
+	<div>
+		<input type="text" name="g_name" placeholder="그룹이름"><input type="submit" value="검색">
+		<a href="searchgroup.jsp?m_idx=<%=m_idx %>"><input type="button" value="초기화"></a>
+	</div>
+	
+</div>
+</form>
+<%
+if(g_name==null||g_name.equals("")){
+%>
+<div id="groupListDiv">
+	<h2 style="text-align: center;">그룹 목록</h2>
+<table>
+	<%if(allgroups==null||allgroups.size()==0){
+		
+	}else{
+		%>
+		<tr>
+			<th>그룹명</th>
+			<th>그룹장</th>
+			<th>상태</th>
+		</tr>
+		<%
+	}%>
+	<%
+		for(int i=0;i<allgroups.size();i++){
+			String msg="가입";
+			//비공개, 공개 그룹 여부 판정
+			if(allgroups.get(i).getApproval().equals("f")){
+				//비공개이면 msg를 가입신청으로 변경
+				msg="가입신청";
+				for(int j=0;j<myaskedgroups.size();j++){
+					if(allgroups.get(i).getG_idx()==myaskedgroups.get(j).getG_idx()){
+						//이미 가입신청한 그룹이면 가입신청됨으로 변경
+						msg="가입신청취소";
+					}
+				}
+				for(int j=0;j<mygroups.size();j++){
+					if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
+					}
+				}
+			}else{
+				//공개그룹일 경우
+				for(int j=0;j<mygroups.size();j++){
+					if(allgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
+					}
+				}
+			}
+			
+			if(msg.equals("가입")||msg.equals("가입신청")||msg.equals("가입신청취소")){
+			%>
+				<tr>
+					<td><%=allgroups.get(i).getG_name()%></td>
+					<td><%=allgroups.get(i).getLeader() %></td>
+					<td><a href="groupjoin_ok.jsp?m_idx=<%=m_idx%>&g_idx=<%=allgroups.get(i).getG_idx()%>&join=<%=msg%>"><input type="button" value="<%=msg %>"></a></td>
+				</tr>
+			<%
+			}else{
+			%>
+				<tr>
+					<td><%=allgroups.get(i).getG_name()%></td>
+					<td><%=allgroups.get(i).getLeader() %></td>
+					<td><%=msg %></td>
+				</tr>
+			<%
+			}
+	}%>
+	
+</table>
+</div>
+<%}else{
+	%>
+	<div id="groupListDiv">
+	<h2 style="text-align: center;">검색 결과</h2>
+	<table>
+		<%
+		ArrayList<GroupsDTO> searchedgroups=gdao.searchedGroup(g_name);
+		if(searchedgroups==null||searchedgroups.size()==0){
+			
+		}else{
+			%>
+			<tr>
+				<th>그룹명</th>
+				<th>그룹장</th>
+				<th>상태</th>
+			</tr>
+			<%
+		}
+		for(int i=0;i<searchedgroups.size();i++){
+			String msg="가입";
+			//비공개, 공개 그룹 여부 판정
+			if(searchedgroups.get(i).getApproval().equals("f")){
+				//비공개이면 msg를 가입신청으로 변경
+				msg="가입신청";
+				for(int j=0;j<myaskedgroups.size();j++){
+					if(searchedgroups.get(i).getG_idx()==myaskedgroups.get(j).getG_idx()){
+						//이미 가입신청한 그룹이면 가입신청됨으로 변경
+						msg="가입신청취소";
+					}
+				}
+				for(int j=0;j<mygroups.size();j++){
+					if(searchedgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
+					}
+				}
+			}else{
+				//공개그룹일 경우
+				for(int j=0;j<mygroups.size();j++){
+					if(searchedgroups.get(i).getG_idx()==mygroups.get(j).getG_idx()){
+						//이미 가입된 그룹일 경우 msg를 탈퇴로 변경
+						msg="가입됨";
+					}
+				}
+			}
+			
+			if(msg.equals("가입")||msg.equals("가입신청")||msg.equals("가입신청취소")){
+			%>
+				<tr>
+					<td><%=searchedgroups.get(i).getG_name()%></td>
+					<td><%=searchedgroups.get(i).getLeader() %></td>
+					<td><a href="groupjoin_ok.jsp?m_idx=<%=m_idx%>&g_idx=<%=searchedgroups.get(i).getG_idx()%>&join=<%=msg%>"><input type="button" value="<%=msg %>"></a></td>
+				</tr>
+			<%
+			}else{
+			%>
+				<tr>
+					<td><%=searchedgroups.get(i).getG_name()%></td>
+					<td><%=searchedgroups.get(i).getLeader() %></td>
+					<td><%=msg %></td>
+				</tr>
+			<%
+			}
+	}%>
+	</table>
+	</div>
+	<%
+}%>
+
+</body>
+</html>
